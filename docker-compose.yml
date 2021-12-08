@@ -1,0 +1,60 @@
+version: "2.3"
+
+services:
+  db:
+    image: postgres:13
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./StorageTests/db:/docker-entrypoint-initdb.d/
+    command:
+      - postgres
+      - -c
+      - wal_level=logical
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_PORT: 5432
+
+  rest:
+    image: postgrest/postgrest:v7.0.1
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      PGRST_DB_URI: postgres://postgres:postgres@db:5432/postgres
+      PGRST_DB_SCHEMA: public,storage
+      PGRST_DB_EXTRA_SEARCH_PATH: public,storage,extensions
+      PGRST_DB_ANON_ROLE: postgres
+      PGRST_JWT_SECRET: 'f023d3db-39dc-4ac9-87b2-b2be72e9162b'
+    depends_on:
+      - db
+
+  storage:
+    image: supabase/storage-api
+    restart: unless-stopped
+    depends_on:
+      - db
+    ports:
+      - "5000:5000"
+    environment:
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+      ANON_KEY: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYxMzUzMTk4NSwiZXhwIjoxOTI5MTA3OTg1fQ.mqfi__KnQB4v6PkIjkhzfwWrYyF94MEbSC6LnuvVniE
+      SERVICE_KEY: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoic2VydmljZV9yb2xlIiwiaWF0IjoxNjEzNTMxOTg1LCJleHAiOjE5MjkxMDc5ODV9.th84OKK0Iz8QchDyXZRrojmKSEZ-OuitQm_5DvLiSIc
+      PROJECT_REF: bjhaohmqunupljrqypxz
+      REGION: ${AWS_REGION}
+      GLOBAL_S3_BUCKET: ${AWS_BUCKET}
+      POSTGREST_URL: http://rest:3000
+      PGRST_JWT_SECRET: f023d3db-39dc-4ac9-87b2-b2be72e9162b
+      DATABASE_URL: postgresql://postgres:postgres@db/postgres
+      PGOPTIONS: "-c search_path=storage,public"
+      FILE_SIZE_LIMIT: 52428800
+      STORAGE_BACKEND: s3
+      FILE_STORAGE_BACKEND_PATH: ./data
+      X_FORWARDED_HOST_REGEXP: 
+      POSTGREST_URL_SUFFIX: /rest/v1
+      ADMIN_API_KEYS: apikey
+      ENCRYPTION_KEY: encryptionkey
