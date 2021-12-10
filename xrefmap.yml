@@ -1,12 +1,6 @@
 ### YamlMime:XRefMap
 sorted: true
 references:
-- uid: Supabase
-  name: Supabase
-  href: api/Supabase.html
-  commentId: N:Supabase
-  fullName: Supabase
-  nameWithType: Supabase
 - uid: Supabase.Storage
   name: Supabase.Storage
   href: api/Supabase.Storage.html
@@ -822,22 +816,22 @@ references:
   isSpec: "True"
   fullName: Supabase.Storage.StorageFileApi.Url
   nameWithType: StorageFileApi.Url
-- uid: Supabase.Util
+- uid: Supabase.Storage.Util
   name: Util
-  href: api/Supabase.Util.html
-  commentId: T:Supabase.Util
-  fullName: Supabase.Util
+  href: api/Supabase.Storage.Util.html
+  commentId: T:Supabase.Storage.Util
+  fullName: Supabase.Storage.Util
   nameWithType: Util
-- uid: Supabase.Util.GetAssemblyVersion
+- uid: Supabase.Storage.Util.GetAssemblyVersion
   name: GetAssemblyVersion()
-  href: api/Supabase.Util.html#Supabase_Util_GetAssemblyVersion
-  commentId: M:Supabase.Util.GetAssemblyVersion
-  fullName: Supabase.Util.GetAssemblyVersion()
+  href: api/Supabase.Storage.Util.html#Supabase_Storage_Util_GetAssemblyVersion
+  commentId: M:Supabase.Storage.Util.GetAssemblyVersion
+  fullName: Supabase.Storage.Util.GetAssemblyVersion()
   nameWithType: Util.GetAssemblyVersion()
-- uid: Supabase.Util.GetAssemblyVersion*
+- uid: Supabase.Storage.Util.GetAssemblyVersion*
   name: GetAssemblyVersion
-  href: api/Supabase.Util.html#Supabase_Util_GetAssemblyVersion_
-  commentId: Overload:Supabase.Util.GetAssemblyVersion
+  href: api/Supabase.Storage.Util.html#Supabase_Storage_Util_GetAssemblyVersion_
+  commentId: Overload:Supabase.Storage.Util.GetAssemblyVersion
   isSpec: "True"
-  fullName: Supabase.Util.GetAssemblyVersion
+  fullName: Supabase.Storage.Util.GetAssemblyVersion
   nameWithType: Util.GetAssemblyVersion
