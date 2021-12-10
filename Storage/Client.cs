@@ -6,7 +6,7 @@ namespace Supabase.Storage
     public class Client : StorageBucketApi
     {
         public Client(string url, Dictionary<string, string> headers) : base(url, headers)
-        { }
+        {}
 
         /// <summary>
         /// Perform a file operation in a bucket

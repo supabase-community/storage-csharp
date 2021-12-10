@@ -23,6 +23,11 @@ namespace Supabase.Storage
             {
                 Headers = headers;
             }
+
+            if (!Headers.ContainsKey("X-Client-Info"))
+            {
+                Headers.Add("X-Client-Info", Util.GetAssemblyVersion());
+            }
         }
 
         /// <summary>

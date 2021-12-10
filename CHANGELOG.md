@@ -1,18 +1,9 @@
 ﻿# Changelog
 
-## 0.2.8 - 2021-12-4
+## 1.0.1 - 12-9-2021
 
-- Update gotrue-csharp to 2.2.4
-    - Adds support for `ListUsers` (paginate, sort, filter), `GetUserById`, `CreateUser`, and `UpdateById`
+- Add missing support for `X-Client-Info`
 
-## 0.2.7 - 2021-12-2
+## 1.0.0 - 12-9-2021
 
-- Update gotrue-csharp to 2.2.3
-    - Adds support for sending password resets to users.
-
-## 0.2.6 - 2021-11-29
-
-- Support for [#12](https://github.com/supabase-community/supabase-csharp/issues/12)
-- Update realtime-csharp to 2.0.6
-- Update gotrue-csharp to 2.2.2
-- Add `StatelessClient` re:[#7](https://github.com/supabase-community/supabase-csharp/issues/7)
+- Initial release of separated storage client
