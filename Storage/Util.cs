@@ -3,13 +3,13 @@ using System.Diagnostics;
 using System.Reflection;
 using System.Runtime.InteropServices;
 
-namespace Supabase
+namespace Supabase.Storage
 {
     public static class Util
     {
         public static string GetAssemblyVersion()
         {
-            var assembly = typeof(Storage.Client).Assembly;
+            var assembly = typeof(Client).Assembly;
             var informationVersion = assembly.GetCustomAttribute<AssemblyInformationalVersionAttribute>().InformationalVersion;
             var name = assembly.GetName().Name;
 
