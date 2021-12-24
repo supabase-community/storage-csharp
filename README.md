@@ -3,8 +3,8 @@
 </p>
 <p align="center">
   <img src="https://github.com/supabase-community/storage-csharp/workflows/Build%20And%20Test/badge.svg"/>
-  <a href="https://www.nuget.org/packages/storage-csharp/">
-    <img src="https://img.shields.io/nuget/vpre/storage-csharp"/>
+  <a href="https://www.nuget.org/packages/supabase-storage-csharp/">
+    <img src="https://img.shields.io/nuget/vpre/supabase-storage-csharp"/>
   </a>
 </p>
 
