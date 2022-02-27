@@ -169,10 +169,29 @@ namespace SupabaseTests
             var name = $"{Guid.NewGuid()}.bin";
             await bucket.Upload(new Byte[] { 0x0, 0x1 }, name);
 
-            var url = bucket.CreateSignedUrl(name, 3600);
-            Assert.IsNotNull(url);
+            var url = await bucket.CreateSignedUrl(name, 3600);
+            Assert.IsTrue(Uri.IsWellFormedUriString(url, UriKind.Absolute));
 
             await bucket.Remove(new List<string> { name });
+        }
+
+        [TestMethod("File: Get Multiple Signed Links")]
+        public async Task GetMultipleSignedLinks()
+        {
+            var name1 = $"{Guid.NewGuid()}.bin";
+            await bucket.Upload(new Byte[] { 0x0, 0x1 }, name1);
+
+            var name2 = $"{Guid.NewGuid()}.bin";
+            await bucket.Upload(new Byte[] { 0x0, 0x1 }, name2);
+
+            var urls = await bucket.CreateSignedUrls(new List<string> { name1, name2 }, 3600);
+
+            foreach (var response in urls)
+            {
+                Assert.IsTrue(Uri.IsWellFormedUriString(response.SignedUrl, UriKind.Absolute));
+            }
+
+            await bucket.Remove(new List<string> { name1 });
         }
     }
 }

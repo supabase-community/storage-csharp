@@ -44,6 +44,25 @@ namespace Supabase.Storage
         }
 
         /// <summary>
+        /// Create signed URLs to download files without requiring permissions. These URLs can be valid for a set number of seconds.
+        /// </summary>
+        /// <param name="paths">paths The file paths to be downloaded, including the current file names. For example [`folder/image.png`, 'folder2/image2.png'].</param>
+        /// <param name="expiresIn">The number of seconds until the signed URLs expire. For example, `60` for URLs which are valid for one minute.</param>
+        /// <returns></returns>
+        public async Task<List<CreateSignedUrlsResponse>> CreateSignedUrls(List<string> paths, int expiresIn)
+        {
+            var body = new Dictionary<string, object> { { "expiresIn", expiresIn }, { "paths", paths } };
+            var response = await Helpers.MakeRequest<List<CreateSignedUrlsResponse>>(HttpMethod.Post, $"{Url}/object/sign/{BucketId}", body, Headers);
+
+            foreach(var item in response)
+            {
+                item.SignedUrl = $"{Url}{item.SignedUrl}";
+            }
+
+            return response;
+        }
+
+        /// <summary>
         /// Retrieve URLs for assets in public buckets
         /// </summary>
         /// <param name="path"></param>

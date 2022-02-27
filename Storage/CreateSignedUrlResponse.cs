@@ -8,4 +8,10 @@ namespace Supabase.Storage
         [JsonProperty("signedURL")]
         public string SignedUrl { get; set; }
     }
+
+    public class CreateSignedUrlsResponse: CreateSignedUrlResponse
+    {
+        [JsonProperty("path")]
+        public string Path { get; set; }
+    }
 }
