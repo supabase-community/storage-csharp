@@ -1,5 +1,9 @@
 ﻿# Changelog
 
+## 1.1.1 - 07-17-2022
+
+- Fix missing API change on `Update` method of `StorageFileApi`
+
 ## 1.1.0 - 07-17-2022
 
 - API Change [Breaking/Minor] Library no longer uses `WebClient` and instead leverages `HttpClient`. Progress events on `Upload` and `Download` are now handled with `EventHandler<float>` instead of `WebClient` EventHandlers.
