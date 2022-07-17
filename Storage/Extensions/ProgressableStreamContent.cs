@@ -84,7 +84,8 @@ namespace Supabase.Storage.Extensions
 
         protected override bool TryComputeLength(out long length)
         {
-            throw new NotImplementedException();
+            length = content.Length;
+            return length > 0;
         }
     }
 }

@@ -67,7 +67,7 @@ namespace SupabaseTests
             var tsc = new TaskCompletionSource<bool>();
 
             var name = $"{Guid.NewGuid()}.bin";
-            UploadProgressChangedEventHandler onProgress = (sender, args) =>
+            EventHandler<float> onProgress = (sender, args) =>
             {
                 tsc.TrySetResult(true);
             };
@@ -97,7 +97,7 @@ namespace SupabaseTests
 
             await bucket.Upload(imagePath, name);
 
-            DownloadProgressChangedEventHandler onProgress = (sender, args) =>
+            EventHandler<float> onProgress = (sender, args) =>
             {
                 tsc.TrySetResult(true);
             };

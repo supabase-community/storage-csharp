@@ -72,24 +72,40 @@ namespace Supabase.Storage.Extensions
             }
         }
 
-        public static async Task<HttpResponseMessage> UploadFileAsync(this HttpClient client, Uri uri, string filePath, Dictionary<string, string> headers = null, Progress<float> progress = null)
+        public static Task<HttpResponseMessage> UploadFileAsync(this HttpClient client, Uri uri, string filePath, Dictionary<string, string> headers = null, Progress<float> progress = null)
         {
-            using (var fileStream = new FileStream(filePath, mode: FileMode.Open, FileAccess.Read))
-            {
-                var content = new ProgressableStreamContent(fileStream, 4096, progress);
+            var fileStream = new FileStream(filePath, mode: FileMode.Open, FileAccess.Read);
+            return UploadAsync(client, uri, fileStream, headers, progress);
+        }
 
-                if (headers != null)
+        public static Task<HttpResponseMessage> UploadBytesAsync(this HttpClient client, Uri uri, byte[] data, Dictionary<string, string> headers = null, Progress<float> progress = null)
+        {
+            var stream = new MemoryStream(data);
+            return UploadAsync(client, uri, stream, headers, progress);
+        }
+
+        public static async Task<HttpResponseMessage> UploadAsync(this HttpClient client, Uri uri, Stream stream, Dictionary<string, string> headers = null, Progress<float> progress = null)
+        {
+            var content = new ProgressableStreamContent(stream, 4096, progress);
+
+            if (headers != null)
+            {
+                foreach (var header in headers)
                 {
-                    foreach (var header in headers)
+                    if (header.Key.Contains("content"))
                     {
                         content.Headers.Add(header.Key, header.Value);
                     }
+                    else
+                    {
+                        client.DefaultRequestHeaders.Add(header.Key, header.Value);
+                    }
                 }
-
-                var response = await client.PostAsync(uri, content);
-
-                return response;
             }
+
+            var response = await client.PostAsync(uri, content);
+
+            return response;
         }
     }
 }
