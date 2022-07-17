@@ -707,12 +707,15 @@ references:
   isSpec: "True"
   fullName: Supabase.Storage.StorageFileApi.CreateSignedUrls
   nameWithType: StorageFileApi.CreateSignedUrls
-- uid: Supabase.Storage.StorageFileApi.Download(System.String,DownloadProgressChangedEventHandler)
-  name: Download(String, DownloadProgressChangedEventHandler)
-  href: api/Supabase.Storage.StorageFileApi.html#Supabase_Storage_StorageFileApi_Download_System_String_DownloadProgressChangedEventHandler_
-  commentId: M:Supabase.Storage.StorageFileApi.Download(System.String,DownloadProgressChangedEventHandler)
-  fullName: Supabase.Storage.StorageFileApi.Download(System.String, DownloadProgressChangedEventHandler)
-  nameWithType: StorageFileApi.Download(String, DownloadProgressChangedEventHandler)
+- uid: Supabase.Storage.StorageFileApi.Download(System.String,EventHandler{System.Single})
+  name: Download(String, EventHandler<Single>)
+  href: api/Supabase.Storage.StorageFileApi.html#Supabase_Storage_StorageFileApi_Download_System_String_EventHandler_System_Single__
+  commentId: M:Supabase.Storage.StorageFileApi.Download(System.String,EventHandler{System.Single})
+  name.vb: Download(String, EventHandler(Of Single))
+  fullName: Supabase.Storage.StorageFileApi.Download(System.String, EventHandler<System.Single>)
+  fullName.vb: Supabase.Storage.StorageFileApi.Download(System.String, EventHandler(Of System.Single))
+  nameWithType: StorageFileApi.Download(String, EventHandler<Single>)
+  nameWithType.vb: StorageFileApi.Download(String, EventHandler(Of Single))
 - uid: Supabase.Storage.StorageFileApi.Download(System.String,System.String,DownloadProgressChangedEventHandler)
   name: Download(String, String, DownloadProgressChangedEventHandler)
   href: api/Supabase.Storage.StorageFileApi.html#Supabase_Storage_StorageFileApi_Download_System_String_System_String_DownloadProgressChangedEventHandler_
@@ -825,12 +828,15 @@ references:
   fullName.vb: Supabase.Storage.StorageFileApi.Upload(System.Byte(), System.String, Supabase.Storage.FileOptions, UploadProgressChangedEventHandler, System.Boolean)
   nameWithType: StorageFileApi.Upload(Byte[], String, FileOptions, UploadProgressChangedEventHandler, Boolean)
   nameWithType.vb: StorageFileApi.Upload(Byte(), String, FileOptions, UploadProgressChangedEventHandler, Boolean)
-- uid: Supabase.Storage.StorageFileApi.Upload(System.String,System.String,Supabase.Storage.FileOptions,UploadProgressChangedEventHandler,System.Boolean)
-  name: Upload(String, String, FileOptions, UploadProgressChangedEventHandler, Boolean)
-  href: api/Supabase.Storage.StorageFileApi.html#Supabase_Storage_StorageFileApi_Upload_System_String_System_String_Supabase_Storage_FileOptions_UploadProgressChangedEventHandler_System_Boolean_
-  commentId: M:Supabase.Storage.StorageFileApi.Upload(System.String,System.String,Supabase.Storage.FileOptions,UploadProgressChangedEventHandler,System.Boolean)
-  fullName: Supabase.Storage.StorageFileApi.Upload(System.String, System.String, Supabase.Storage.FileOptions, UploadProgressChangedEventHandler, System.Boolean)
-  nameWithType: StorageFileApi.Upload(String, String, FileOptions, UploadProgressChangedEventHandler, Boolean)
+- uid: Supabase.Storage.StorageFileApi.Upload(System.String,System.String,Supabase.Storage.FileOptions,EventHandler{System.Single},System.Boolean)
+  name: Upload(String, String, FileOptions, EventHandler<Single>, Boolean)
+  href: api/Supabase.Storage.StorageFileApi.html#Supabase_Storage_StorageFileApi_Upload_System_String_System_String_Supabase_Storage_FileOptions_EventHandler_System_Single__System_Boolean_
+  commentId: M:Supabase.Storage.StorageFileApi.Upload(System.String,System.String,Supabase.Storage.FileOptions,EventHandler{System.Single},System.Boolean)
+  name.vb: Upload(String, String, FileOptions, EventHandler(Of Single), Boolean)
+  fullName: Supabase.Storage.StorageFileApi.Upload(System.String, System.String, Supabase.Storage.FileOptions, EventHandler<System.Single>, System.Boolean)
+  fullName.vb: Supabase.Storage.StorageFileApi.Upload(System.String, System.String, Supabase.Storage.FileOptions, EventHandler(Of System.Single), System.Boolean)
+  nameWithType: StorageFileApi.Upload(String, String, FileOptions, EventHandler<Single>, Boolean)
+  nameWithType.vb: StorageFileApi.Upload(String, String, FileOptions, EventHandler(Of Single), Boolean)
 - uid: Supabase.Storage.StorageFileApi.Upload*
   name: Upload
   href: api/Supabase.Storage.StorageFileApi.html#Supabase_Storage_StorageFileApi_Upload_
