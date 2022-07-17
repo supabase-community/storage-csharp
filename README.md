@@ -10,6 +10,9 @@
 
 Integrate your [Supabase](https://supabase.io) projects with C#.
 
+**NOTICE, As of v1.1.0**
+**API Change [Breaking/Minor] Library no longer uses `WebClient` and instead leverages `HttpClient`. Progress events on `Upload` and `Download` are now handled with `EventHandler<float>` instead of `WebClient` EventHandlers.**
+
 ## Examples (using supabase-csharp)
 
 ```c#
@@ -38,7 +41,7 @@ public async void Main()
   await bucket.Upload(imagePath, "supabase-csharp.png");
 
   // If bucket is public, get url
-  bucket.GetPublicUrl("supabase-csharp.png"));
+  bucket.GetPublicUrl("supabase-csharp.png");
 
   // If bucket is private, generate url
   await bucket.CreateSignedUrl("supabase-csharp.png", 3600));
