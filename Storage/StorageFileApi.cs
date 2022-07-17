@@ -217,7 +217,12 @@ namespace Supabase.Storage
 
                 var stream = await client.DownloadDataAsync(uri, Headers, progress);
 
-                return stream.ToString();
+                using (var outstream = new FileStream(localPath, FileMode.OpenOrCreate, FileAccess.Write))
+                {
+                    stream.WriteTo(outstream);
+                }
+
+                return localPath;
             }
         }
 
