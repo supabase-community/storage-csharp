@@ -800,21 +800,24 @@ references:
   isSpec: "True"
   fullName: Supabase.Storage.StorageFileApi.Remove
   nameWithType: StorageFileApi.Remove
-- uid: Supabase.Storage.StorageFileApi.Update(System.Byte[],System.String,Supabase.Storage.FileOptions,UploadProgressChangedEventHandler)
-  name: Update(Byte[], String, FileOptions, UploadProgressChangedEventHandler)
-  href: api/Supabase.Storage.StorageFileApi.html#Supabase_Storage_StorageFileApi_Update_System_Byte___System_String_Supabase_Storage_FileOptions_UploadProgressChangedEventHandler_
-  commentId: M:Supabase.Storage.StorageFileApi.Update(System.Byte[],System.String,Supabase.Storage.FileOptions,UploadProgressChangedEventHandler)
-  name.vb: Update(Byte(), String, FileOptions, UploadProgressChangedEventHandler)
-  fullName: Supabase.Storage.StorageFileApi.Update(System.Byte[], System.String, Supabase.Storage.FileOptions, UploadProgressChangedEventHandler)
-  fullName.vb: Supabase.Storage.StorageFileApi.Update(System.Byte(), System.String, Supabase.Storage.FileOptions, UploadProgressChangedEventHandler)
-  nameWithType: StorageFileApi.Update(Byte[], String, FileOptions, UploadProgressChangedEventHandler)
-  nameWithType.vb: StorageFileApi.Update(Byte(), String, FileOptions, UploadProgressChangedEventHandler)
-- uid: Supabase.Storage.StorageFileApi.Update(System.String,System.String,Supabase.Storage.FileOptions,UploadProgressChangedEventHandler)
-  name: Update(String, String, FileOptions, UploadProgressChangedEventHandler)
-  href: api/Supabase.Storage.StorageFileApi.html#Supabase_Storage_StorageFileApi_Update_System_String_System_String_Supabase_Storage_FileOptions_UploadProgressChangedEventHandler_
-  commentId: M:Supabase.Storage.StorageFileApi.Update(System.String,System.String,Supabase.Storage.FileOptions,UploadProgressChangedEventHandler)
-  fullName: Supabase.Storage.StorageFileApi.Update(System.String, System.String, Supabase.Storage.FileOptions, UploadProgressChangedEventHandler)
-  nameWithType: StorageFileApi.Update(String, String, FileOptions, UploadProgressChangedEventHandler)
+- uid: Supabase.Storage.StorageFileApi.Update(System.Byte[],System.String,Supabase.Storage.FileOptions,EventHandler{System.Single})
+  name: Update(Byte[], String, FileOptions, EventHandler<Single>)
+  href: api/Supabase.Storage.StorageFileApi.html#Supabase_Storage_StorageFileApi_Update_System_Byte___System_String_Supabase_Storage_FileOptions_EventHandler_System_Single__
+  commentId: M:Supabase.Storage.StorageFileApi.Update(System.Byte[],System.String,Supabase.Storage.FileOptions,EventHandler{System.Single})
+  name.vb: Update(Byte(), String, FileOptions, EventHandler(Of Single))
+  fullName: Supabase.Storage.StorageFileApi.Update(System.Byte[], System.String, Supabase.Storage.FileOptions, EventHandler<System.Single>)
+  fullName.vb: Supabase.Storage.StorageFileApi.Update(System.Byte(), System.String, Supabase.Storage.FileOptions, EventHandler(Of System.Single))
+  nameWithType: StorageFileApi.Update(Byte[], String, FileOptions, EventHandler<Single>)
+  nameWithType.vb: StorageFileApi.Update(Byte(), String, FileOptions, EventHandler(Of Single))
+- uid: Supabase.Storage.StorageFileApi.Update(System.String,System.String,Supabase.Storage.FileOptions,EventHandler{System.Single})
+  name: Update(String, String, FileOptions, EventHandler<Single>)
+  href: api/Supabase.Storage.StorageFileApi.html#Supabase_Storage_StorageFileApi_Update_System_String_System_String_Supabase_Storage_FileOptions_EventHandler_System_Single__
+  commentId: M:Supabase.Storage.StorageFileApi.Update(System.String,System.String,Supabase.Storage.FileOptions,EventHandler{System.Single})
+  name.vb: Update(String, String, FileOptions, EventHandler(Of Single))
+  fullName: Supabase.Storage.StorageFileApi.Update(System.String, System.String, Supabase.Storage.FileOptions, EventHandler<System.Single>)
+  fullName.vb: Supabase.Storage.StorageFileApi.Update(System.String, System.String, Supabase.Storage.FileOptions, EventHandler(Of System.Single))
+  nameWithType: StorageFileApi.Update(String, String, FileOptions, EventHandler<Single>)
+  nameWithType.vb: StorageFileApi.Update(String, String, FileOptions, EventHandler(Of Single))
 - uid: Supabase.Storage.StorageFileApi.Update*
   name: Update
   href: api/Supabase.Storage.StorageFileApi.html#Supabase_Storage_StorageFileApi_Update_
