@@ -43,7 +43,7 @@ namespace SupabaseTests
             var basePath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase).Replace("file:", "");
             var imagePath = Path.Combine(basePath, "Assets", asset);
 
-            UploadProgressChangedEventHandler onProgress = (sender, args) =>
+            EventHandler<float> onProgress = (sender, args) =>
             {
                 tsc.TrySetResult(true);
             };
@@ -124,7 +124,7 @@ namespace SupabaseTests
 
             await bucket.Upload(data, name);
 
-            DownloadProgressChangedEventHandler onProgress = (sender, args) =>
+            EventHandler<float> onProgress = (sender, args) =>
             {
                 tsc.TrySetResult(true);
             };
