@@ -146,14 +146,14 @@ namespace Supabase.Storage
         /// <param name="supabasePath">The relative file path. Should be of the format `folder/subfolder/filename.png`. The bucket must already exist before attempting to upload.</param>
         /// <param name="options">HTTP headers.</param>
         /// <returns></returns>
-        public async Task<string> Update(string localFilePath, string supabasePath, FileOptions options = null, UploadProgressChangedEventHandler onProgress = null)
+        public async Task<string> Update(string localFilePath, string supabasePath, FileOptions options = null, EventHandler<float> onProgress = null)
         {
             if (options == null)
             {
                 options = new FileOptions();
             }
 
-            var result = await UploadOrUpdate(localFilePath, supabasePath, options);
+            var result = await UploadOrUpdate(localFilePath, supabasePath, options, onProgress);
             return result;
         }
 
@@ -164,14 +164,14 @@ namespace Supabase.Storage
         /// <param name="supabasePath">The relative file path. Should be of the format `folder/subfolder/filename.png`. The bucket must already exist before attempting to upload.</param>
         /// <param name="options">HTTP headers.</param>
         /// <returns></returns>
-        public async Task<string> Update(byte[] data, string supabasePath, FileOptions options = null, UploadProgressChangedEventHandler onProgress = null)
+        public async Task<string> Update(byte[] data, string supabasePath, FileOptions options = null, EventHandler<float> onProgress = null)
         {
             if (options == null)
             {
                 options = new FileOptions();
             }
 
-            var result = await UploadOrUpdate(data, supabasePath, options);
+            var result = await UploadOrUpdate(data, supabasePath, options, onProgress);
             return result;
         }
 
