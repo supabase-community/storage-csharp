@@ -1,5 +1,10 @@
 ﻿# Changelog
 
+## 1.2.0 - 11-4-2022
+
+- [#2](https://github.com/supabase-community/storage-csharp/issues/2) Restructure Library to support Dependency Injection (DI)
+- Enable nullability in the project and make use of nullable reference types.
+
 ## 1.1.1 - 07-17-2022
 
 - Fix missing API change on `Update` method of `StorageFileApi`
