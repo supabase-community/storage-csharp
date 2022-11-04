@@ -7,16 +7,16 @@ namespace Supabase.Storage
     public class FileObject
     {
         [JsonProperty("name")]
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
         [JsonProperty("bucket_id")]
-        public string BucketId { get; set; }
+        public string? BucketId { get; set; }
 
         [JsonProperty("owner")]
-        public string Owner { get; set; }
+        public string? Owner { get; set; }
 
         [JsonProperty("id")]
-        public string Id { get; set; }
+        public string? Id { get; set; }
 
         [JsonProperty("updated_at")]
         public DateTime UpdatedAt { get; set; }
@@ -31,6 +31,6 @@ namespace Supabase.Storage
         public Dictionary<string, object> MetaData = new Dictionary<string, object>();
 
         [JsonProperty("buckets")]
-        public Bucket Buckets { get; set; }
+        public Bucket? Buckets { get; set; }
     }
 }

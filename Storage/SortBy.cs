@@ -6,9 +6,9 @@ namespace Supabase.Storage
     public class SortBy
     {
         [JsonProperty("column")]
-        public string Column { get; set; }
+        public string? Column { get; set; }
 
         [JsonProperty("order")]
-        public string Order { get; set; }
+        public string? Order { get; set; }
     }
 }

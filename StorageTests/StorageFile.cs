@@ -7,6 +7,7 @@ using System.Net;
 using System.Reflection;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Storage.Interfaces;
 using Supabase.Storage;
 namespace SupabaseTests
 {
@@ -18,7 +19,7 @@ namespace SupabaseTests
         Client storage => new Client("http://localhost:5000", new Dictionary<string, string> { { "Authorization", $"Bearer {SERVICE_KEY}" } });
 
         private string bucketId;
-        private StorageFileApi bucket;
+        private IStorageFileApi<FileObject> bucket;
 
         [TestInitialize]
         public async Task InitializeTest()

@@ -6,17 +6,18 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using Storage.Interfaces;
 using Supabase.Storage.Extensions;
 
 namespace Supabase.Storage
 {
-    public class StorageFileApi
+    public class StorageFileApi : IStorageFileApi<FileObject>
     {
         protected string Url { get; set; }
         protected Dictionary<string, string> Headers { get; set; }
-        protected string BucketId { get; set; }
+        protected string? BucketId { get; set; }
 
-        public StorageFileApi(string url, Dictionary<string, string> headers = null, string bucketId = null)
+        public StorageFileApi(string url, Dictionary<string, string>? headers = null, string? bucketId = null)
         {
             Url = url;
             BucketId = bucketId;
@@ -42,7 +43,7 @@ namespace Supabase.Storage
             var body = new Dictionary<string, object> { { "expiresIn", expiresIn } };
             var response = await Helpers.MakeRequest<CreateSignedUrlResponse>(HttpMethod.Post, $"{Url}/object/sign/{GetFinalPath(path)}", body, Headers);
 
-            return $"{Url}{response.SignedUrl}";
+            return $"{Url}{response?.SignedUrl}";
         }
 
         /// <summary>
@@ -51,14 +52,17 @@ namespace Supabase.Storage
         /// <param name="paths">paths The file paths to be downloaded, including the current file names. For example [`folder/image.png`, 'folder2/image2.png'].</param>
         /// <param name="expiresIn">The number of seconds until the signed URLs expire. For example, `60` for URLs which are valid for one minute.</param>
         /// <returns></returns>
-        public async Task<List<CreateSignedUrlsResponse>> CreateSignedUrls(List<string> paths, int expiresIn)
+        public async Task<List<CreateSignedUrlsResponse>?> CreateSignedUrls(List<string> paths, int expiresIn)
         {
             var body = new Dictionary<string, object> { { "expiresIn", expiresIn }, { "paths", paths } };
             var response = await Helpers.MakeRequest<List<CreateSignedUrlsResponse>>(HttpMethod.Post, $"{Url}/object/sign/{BucketId}", body, Headers);
 
-            foreach (var item in response)
+            if (response != null)
             {
-                item.SignedUrl = $"{Url}{item.SignedUrl}";
+                foreach (var item in response)
+                {
+                    item.SignedUrl = $"{Url}{item.SignedUrl}";
+                }
             }
 
             return response;
@@ -77,7 +81,7 @@ namespace Supabase.Storage
         /// <param name="path"></param>
         /// <param name="options"></param>
         /// <returns></returns>
-        public async Task<List<FileObject>> List(string path = "", SearchOptions options = null)
+        public async Task<List<FileObject>?> List(string path = "", SearchOptions? options = null)
         {
             if (options == null)
             {
@@ -86,7 +90,11 @@ namespace Supabase.Storage
 
             var json = JsonConvert.SerializeObject(options);
             var body = JsonConvert.DeserializeObject<Dictionary<string, object>>(json);
-            body.Add("prefix", string.IsNullOrEmpty(path) ? "" : path);
+
+            if (body != null)
+            {
+                body.Add("prefix", string.IsNullOrEmpty(path) ? "" : path);
+            }
 
             var response = await Helpers.MakeRequest<List<FileObject>>(HttpMethod.Post, $"{Url}/object/list/{BucketId}", body, Headers);
 
@@ -100,7 +108,7 @@ namespace Supabase.Storage
         /// <param name="supabasePath">The relative file path. Should be of the format `folder/subfolder/filename.png`. The bucket must already exist before attempting to upload.</param>
         /// <param name="options"></param>
         /// <returns></returns>
-        public async Task<string> Upload(string localFilePath, string supabasePath, FileOptions options = null, EventHandler<float> onProgress = null, bool inferContentType = true)
+        public async Task<string> Upload(string localFilePath, string supabasePath, FileOptions? options = null, EventHandler<float>? onProgress = null, bool inferContentType = true)
         {
             if (options == null)
             {
@@ -123,7 +131,7 @@ namespace Supabase.Storage
         /// <param name="supabasePath">The relative file path. Should be of the format `folder/subfolder/filename.png`. The bucket must already exist before attempting to upload.</param>
         /// <param name="options"></param>
         /// <returns></returns>
-        public async Task<string> Upload(byte[] data, string supabasePath, FileOptions options = null, EventHandler<float> onProgress = null, bool inferContentType = true)
+        public async Task<string> Upload(byte[] data, string supabasePath, FileOptions? options = null, EventHandler<float>? onProgress = null, bool inferContentType = true)
         {
             if (options == null)
             {
@@ -146,7 +154,7 @@ namespace Supabase.Storage
         /// <param name="supabasePath">The relative file path. Should be of the format `folder/subfolder/filename.png`. The bucket must already exist before attempting to upload.</param>
         /// <param name="options">HTTP headers.</param>
         /// <returns></returns>
-        public async Task<string> Update(string localFilePath, string supabasePath, FileOptions options = null, EventHandler<float> onProgress = null)
+        public async Task<string> Update(string localFilePath, string supabasePath, FileOptions? options = null, EventHandler<float>? onProgress = null)
         {
             if (options == null)
             {
@@ -164,7 +172,7 @@ namespace Supabase.Storage
         /// <param name="supabasePath">The relative file path. Should be of the format `folder/subfolder/filename.png`. The bucket must already exist before attempting to upload.</param>
         /// <param name="options">HTTP headers.</param>
         /// <returns></returns>
-        public async Task<string> Update(byte[] data, string supabasePath, FileOptions options = null, EventHandler<float> onProgress = null)
+        public async Task<string> Update(byte[] data, string supabasePath, FileOptions? options = null, EventHandler<float>? onProgress = null)
         {
             if (options == null)
             {
@@ -202,7 +210,7 @@ namespace Supabase.Storage
         /// <param name="localPath"></param>
         /// <param name="onProgress"></param>
         /// <returns></returns>
-        public async Task<string> Download(string supabasePath, string localPath, EventHandler<float> onProgress = null)
+        public async Task<string> Download(string supabasePath, string localPath, EventHandler<float>? onProgress = null)
         {
             using (HttpClient client = new HttpClient())
             {
@@ -232,7 +240,7 @@ namespace Supabase.Storage
         /// <param name="supabasePath"></param>
         /// <param name="onProgress"></param>
         /// <returns></returns>
-        public async Task<byte[]> Download(string supabasePath, EventHandler<float> onProgress = null)
+        public async Task<byte[]> Download(string supabasePath, EventHandler<float>? onProgress = null)
         {
             using (HttpClient client = new HttpClient())
             {
@@ -256,7 +264,7 @@ namespace Supabase.Storage
         /// </summary>
         /// <param name="paths">An array of files to be deletes, including the path and file name. For example [`folder/image.png`].</param>
         /// <returns></returns>
-        public async Task<List<FileObject>> Remove(List<string> paths)
+        public async Task<List<FileObject>?> Remove(List<string> paths)
         {
             var data = new Dictionary<string, object> { { "prefixes", paths } };
             var response = await Helpers.MakeRequest<List<FileObject>>(HttpMethod.Delete, $"{Url}/object/{BucketId}", data, Headers);
@@ -264,7 +272,7 @@ namespace Supabase.Storage
             return response;
         }
 
-        private async Task<string> UploadOrUpdate(string localPath, string supabasePath, FileOptions options, EventHandler<float> onProgress = null)
+        private async Task<string> UploadOrUpdate(string localPath, string supabasePath, FileOptions options, EventHandler<float>? onProgress = null)
         {
             using (var client = new HttpClient())
             {
@@ -293,7 +301,7 @@ namespace Supabase.Storage
             }
         }
 
-        private async Task<string> UploadOrUpdate(byte[] data, string supabasePath, FileOptions options, EventHandler<float> onProgress = null)
+        private async Task<string> UploadOrUpdate(byte[] data, string supabasePath, FileOptions options, EventHandler<float>? onProgress = null)
         {
             using (var client = new HttpClient())
             {

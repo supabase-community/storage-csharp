@@ -25,7 +25,7 @@ namespace Supabase.Storage
         /// <param name="reqParams"></param>
         /// <param name="headers"></param>
         /// <returns></returns>
-        public static async Task<T> MakeRequest<T>(HttpMethod method, string url, object data = null, Dictionary<string, string> headers = null)
+        public static async Task<T?> MakeRequest<T>(HttpMethod method, string url, object? data = null, Dictionary<string, string>? headers = null) where T : class
         {
             var response = await MakeRequest(method, url, data, headers);
             var content = await response.Content.ReadAsStringAsync();
@@ -33,7 +33,8 @@ namespace Supabase.Storage
             if (response.IsSuccessStatusCode)
             {
                 return JsonConvert.DeserializeObject<T>(content);
-            } else
+            }
+            else
             {
                 throw new BadRequestException(response, content);
             }
@@ -47,7 +48,7 @@ namespace Supabase.Storage
         /// <param name="reqParams"></param>
         /// <param name="headers"></param>
         /// <returns></returns>
-        public static async Task<HttpResponseMessage> MakeRequest(HttpMethod method, string url, object data = null, Dictionary<string, string> headers = null)
+        public static async Task<HttpResponseMessage> MakeRequest(HttpMethod method, string url, object? data = null, Dictionary<string, string>? headers = null)
         {
             var builder = new UriBuilder(url);
             var query = HttpUtility.ParseQueryString(builder.Query);
@@ -89,7 +90,7 @@ namespace Supabase.Storage
 
     public class BadRequestException : Exception
     {
-        public ErrorResponse ErrorResponse { get; private set; }
+        public ErrorResponse? ErrorResponse { get; private set; }
 
         public HttpResponseMessage HttpResponse { get; private set; }
 
@@ -103,15 +104,15 @@ namespace Supabase.Storage
     public class GenericResponse
     {
         [JsonProperty("message")]
-        public string Message { get; }
+        public string? Message { get; }
     }
 
     public class ErrorResponse
     {
         [JsonProperty("message")]
-        public string Message { get; }
+        public string? Message { get; }
 
         [JsonProperty("error")]
-        public string Error { get; set; }
+        public string? Error { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Storage.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.IO;
@@ -9,15 +10,15 @@ using System.Threading.Tasks;
 
 namespace Supabase.Storage.Extensions
 {
-    internal class ProgressableStreamContent : HttpContent
+    internal class ProgressableStreamContent : HttpContent, IProgressableStreamContent
     {
         private const int defaultBufferSize = 4096;
 
         private Stream content;
         private int bufferSize;
 
-        public EventHandler<UploadState> StateChanged;
-        public IProgress<float> Progress { get; private set; }
+        public EventHandler<UploadState>? StateChanged;
+        public IProgress<float>? Progress { get; private set; }
 
         public enum UploadState
         {
@@ -29,7 +30,7 @@ namespace Supabase.Storage.Extensions
 
         public ProgressableStreamContent(Stream content) : this(content, defaultBufferSize) { }
 
-        public ProgressableStreamContent(Stream content, int bufferSize, Progress<float> progress = null)
+        public ProgressableStreamContent(Stream content, int bufferSize, Progress<float>? progress = null)
         {
             if (content == null)
             {
@@ -71,9 +72,9 @@ namespace Supabase.Storage.Extensions
 
                         uploaded += length;
 
-                        Progress.Report((uploaded / size) * 100f);
+                        Progress?.Report((uploaded / size) * 100f);
 
-                        stream.Write(buffer, 0, length);
+                        stream!.Write(buffer, 0, length);
 
                         StateChanged?.Invoke(this, UploadState.InProgress);
                     }

@@ -6,13 +6,13 @@ namespace Supabase.Storage
     public class Bucket
     {
         [JsonProperty("id")]
-        public string Id { get; set; }
+        public string? Id { get; set; }
 
         [JsonProperty("name")]
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
         [JsonProperty("owner")]
-        public string Owner { get; set; }
+        public string? Owner { get; set; }
 
         [JsonProperty("created_at")]
         public DateTime CreatedAt { get; set; }

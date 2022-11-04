@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using Storage.Interfaces;
 
 namespace Supabase.Storage
 {
-    public class StorageBucketApi
+    public class StorageBucketApi : IStorageBucketApi<Bucket>
     {
         protected string Url { get; set; }
         protected Dictionary<string, string> Headers { get; set; }
 
-        public StorageBucketApi(string url, Dictionary<string, string> headers = null)
+        public StorageBucketApi(string url, Dictionary<string, string>? headers = null)
         {
             Url = url;
 
@@ -34,7 +35,7 @@ namespace Supabase.Storage
         /// Retrieves the details of all Storage buckets within an existing product.
         /// </summary>
         /// <returns></returns>
-        public async Task<List<Bucket>> ListBuckets()
+        public async Task<List<Bucket>?> ListBuckets()
         {
             var result = await Helpers.MakeRequest<List<Bucket>>(HttpMethod.Get, $"{Url}/bucket", null, Headers);
             return result;
@@ -45,7 +46,7 @@ namespace Supabase.Storage
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public async Task<Bucket> GetBucket(string id)
+        public async Task<Bucket?> GetBucket(string id)
         {
             try
             {
@@ -54,7 +55,7 @@ namespace Supabase.Storage
             }
             catch (BadRequestException ex)
             {
-                if (ex.ErrorResponse.Error == "Not found") return null;
+                if (ex.ErrorResponse?.Error == "Not found") return null;
                 else throw ex;
             }
         }
@@ -65,7 +66,7 @@ namespace Supabase.Storage
         /// <param name="id"></param>
         /// <param name="options"></param>
         /// <returns>Bucket Id</returns>
-        public async Task<string> CreateBucket(string id, BucketUpsertOptions options = null)
+        public async Task<string> CreateBucket(string id, BucketUpsertOptions? options = null)
         {
             if (options == null)
             {
@@ -74,7 +75,8 @@ namespace Supabase.Storage
 
             var data = new Bucket { Id = id, Name = id, Public = options.Public };
             var result = await Helpers.MakeRequest<Bucket>(HttpMethod.Post, $"{Url}/bucket", data, Headers);
-            return result.Name;
+
+            return result?.Name!;
         }
 
         /// <summary>
@@ -83,7 +85,7 @@ namespace Supabase.Storage
         /// <param name="id"></param>
         /// <param name="options"></param>
         /// <returns></returns>
-        public async Task<Bucket> UpdateBucket(string id, BucketUpsertOptions options = null)
+        public async Task<Bucket?> UpdateBucket(string id, BucketUpsertOptions? options = null)
         {
             if (options == null)
             {
@@ -92,6 +94,7 @@ namespace Supabase.Storage
 
             var data = new Bucket { Id = id, Public = options.Public };
             var result = await Helpers.MakeRequest<Bucket>(HttpMethod.Put, $"{Url}/bucket/{id}", data, Headers);
+
             return result;
         }
 
@@ -100,7 +103,7 @@ namespace Supabase.Storage
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public async Task<GenericResponse> EmptyBucket(string id)
+        public async Task<GenericResponse?> EmptyBucket(string id)
         {
             var result = await Helpers.MakeRequest<GenericResponse>(HttpMethod.Post, $"{Url}/bucket/{id}/empty", null, Headers);
             return result;
@@ -112,7 +115,7 @@ namespace Supabase.Storage
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public async Task<GenericResponse> DeleteBucket(string id)
+        public async Task<GenericResponse?> DeleteBucket(string id)
         {
             var result = await Helpers.MakeRequest<GenericResponse>(HttpMethod.Delete, $"{Url}/bucket/{id}", null, Headers);
             return result;
