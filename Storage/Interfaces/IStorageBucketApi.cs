@@ -7,6 +7,8 @@ namespace Storage.Interfaces
     public interface IStorageBucketApi<TBucket>
         where TBucket : Bucket
     {
+        Dictionary<string, string> Headers { get; set; }
+
         Task<string> CreateBucket(string id, BucketUpsertOptions? options = null);
         Task<GenericResponse?> DeleteBucket(string id);
         Task<GenericResponse?> EmptyBucket(string id);

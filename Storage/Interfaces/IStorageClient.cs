@@ -2,7 +2,7 @@
 
 namespace Storage.Interfaces
 {
-    public interface IStorageClient<TBucket, TFileObject>
+    public interface IStorageClient<TBucket, TFileObject> : IStorageBucketApi<TBucket>
         where TBucket : Bucket
         where TFileObject : FileObject
     {

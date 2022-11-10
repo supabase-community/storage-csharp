@@ -10,25 +10,26 @@ namespace Supabase.Storage
     public class StorageBucketApi : IStorageBucketApi<Bucket>
     {
         protected string Url { get; set; }
-        public Dictionary<string, string> Headers { get; private set; }
+
+        private Dictionary<string, string> _headers;
+        public Dictionary<string, string> Headers
+        {
+            get => _headers;
+            set
+            {
+                _headers = value;
+
+                if (_headers.ContainsKey("X-Client-Info"))
+                    _headers.Add("X-Client-Info", Util.GetAssemblyVersion());
+            }
+        }
 
         public StorageBucketApi(string url, Dictionary<string, string>? headers = null)
         {
             Url = url;
 
-            if (headers == null)
-            {
-                Headers = new Dictionary<string, string>();
-            }
-            else
-            {
-                Headers = headers;
-            }
-
-            if (!Headers.ContainsKey("X-Client-Info"))
-            {
-                Headers.Add("X-Client-Info", Util.GetAssemblyVersion());
-            }
+            headers ??= new Dictionary<string, string>();
+            _headers = headers;
         }
 
         /// <summary>
