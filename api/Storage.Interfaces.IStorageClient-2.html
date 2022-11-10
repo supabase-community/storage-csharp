@@ -75,12 +75,35 @@
   </h1>
   <div class="markdown level0 summary"></div>
   <div class="markdown level0 conceptual"></div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="Storage.Interfaces.IStorageBucketApi-1.html#Storage_Interfaces_IStorageBucketApi_1_Headers">IStorageBucketApi&lt;TBucket&gt;.Headers</a>
+    </div>
+    <div>
+      <a class="xref" href="Storage.Interfaces.IStorageBucketApi-1.html#Storage_Interfaces_IStorageBucketApi_1_CreateBucket_System_String_Supabase_Storage_BucketUpsertOptions_">IStorageBucketApi&lt;TBucket&gt;.CreateBucket(String, BucketUpsertOptions)</a>
+    </div>
+    <div>
+      <a class="xref" href="Storage.Interfaces.IStorageBucketApi-1.html#Storage_Interfaces_IStorageBucketApi_1_DeleteBucket_System_String_">IStorageBucketApi&lt;TBucket&gt;.DeleteBucket(String)</a>
+    </div>
+    <div>
+      <a class="xref" href="Storage.Interfaces.IStorageBucketApi-1.html#Storage_Interfaces_IStorageBucketApi_1_EmptyBucket_System_String_">IStorageBucketApi&lt;TBucket&gt;.EmptyBucket(String)</a>
+    </div>
+    <div>
+      <a class="xref" href="Storage.Interfaces.IStorageBucketApi-1.html#Storage_Interfaces_IStorageBucketApi_1_GetBucket_System_String_">IStorageBucketApi&lt;TBucket&gt;.GetBucket(String)</a>
+    </div>
+    <div>
+      <a class="xref" href="Storage.Interfaces.IStorageBucketApi-1.html#Storage_Interfaces_IStorageBucketApi_1_ListBuckets">IStorageBucketApi&lt;TBucket&gt;.ListBuckets()</a>
+    </div>
+    <div>
+      <a class="xref" href="Storage.Interfaces.IStorageBucketApi-1.html#Storage_Interfaces_IStorageBucketApi_1_UpdateBucket_System_String_Supabase_Storage_BucketUpsertOptions_">IStorageBucketApi&lt;TBucket&gt;.UpdateBucket(String, BucketUpsertOptions)</a>
+    </div>
+  </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="Storage.Interfaces.html">Storage.Interfaces</a></h6>
   <h6><strong>Assembly</strong>: Storage.dll</h6>
   <h5 id="Storage_Interfaces_IStorageClient_2_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public interface IStorageClient&lt;TBucket, TFileObject&gt;
-    where TBucket : Bucket where TFileObject : FileObject</code></pre>
+    <pre><code class="lang-csharp hljs">public interface IStorageClient&lt;TBucket, TFileObject&gt; : IStorageBucketApi&lt;TBucket&gt; where TBucket : Bucket where TFileObject : FileObject</code></pre>
   </div>
   <h5 class="typeParameters">Type Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">

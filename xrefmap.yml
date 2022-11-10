@@ -84,6 +84,23 @@ references:
   fullName.vb: Storage.Interfaces.IStorageBucketApi(Of TBucket).GetBucket
   nameWithType: IStorageBucketApi<TBucket>.GetBucket
   nameWithType.vb: IStorageBucketApi(Of TBucket).GetBucket
+- uid: Storage.Interfaces.IStorageBucketApi`1.Headers
+  name: Headers
+  href: api/Storage.Interfaces.IStorageBucketApi-1.html#Storage_Interfaces_IStorageBucketApi_1_Headers
+  commentId: P:Storage.Interfaces.IStorageBucketApi`1.Headers
+  fullName: Storage.Interfaces.IStorageBucketApi<TBucket>.Headers
+  fullName.vb: Storage.Interfaces.IStorageBucketApi(Of TBucket).Headers
+  nameWithType: IStorageBucketApi<TBucket>.Headers
+  nameWithType.vb: IStorageBucketApi(Of TBucket).Headers
+- uid: Storage.Interfaces.IStorageBucketApi`1.Headers*
+  name: Headers
+  href: api/Storage.Interfaces.IStorageBucketApi-1.html#Storage_Interfaces_IStorageBucketApi_1_Headers_
+  commentId: Overload:Storage.Interfaces.IStorageBucketApi`1.Headers
+  isSpec: "True"
+  fullName: Storage.Interfaces.IStorageBucketApi<TBucket>.Headers
+  fullName.vb: Storage.Interfaces.IStorageBucketApi(Of TBucket).Headers
+  nameWithType: IStorageBucketApi<TBucket>.Headers
+  nameWithType.vb: IStorageBucketApi(Of TBucket).Headers
 - uid: Storage.Interfaces.IStorageBucketApi`1.ListBuckets
   name: ListBuckets()
   href: api/Storage.Interfaces.IStorageBucketApi-1.html#Storage_Interfaces_IStorageBucketApi_1_ListBuckets
