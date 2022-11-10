@@ -10,7 +10,7 @@ namespace Supabase.Storage
     public class StorageBucketApi : IStorageBucketApi<Bucket>
     {
         protected string Url { get; set; }
-        protected Dictionary<string, string> Headers { get; set; }
+        public Dictionary<string, string> Headers { get; private set; }
 
         public StorageBucketApi(string url, Dictionary<string, string>? headers = null)
         {
