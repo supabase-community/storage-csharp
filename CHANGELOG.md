@@ -1,5 +1,9 @@
 ﻿# Changelog
 
+## 1.2.2 - 11-10-2022
+
+- Clarifies `IStorageClient` as implementing `IStorageBucket`
+
 ## 1.2.1 - 11-10-2022
 
 - Expose `StorageBucketApi.Headers` as a public property.
