@@ -16,7 +16,7 @@ namespace Supabase.Storage
             {
                 _headers = value;
 
-                if (_headers.ContainsKey("X-Client-Info"))
+                if (!_headers.ContainsKey("X-Client-Info"))
                     _headers.Add("X-Client-Info", Util.GetAssemblyVersion(typeof(Client)));
             }
         }
