@@ -515,15 +515,15 @@ references:
   commentId: T:Supabase.Storage.Client
   fullName: Supabase.Storage.Client
   nameWithType: Client
-- uid: Supabase.Storage.Client.#ctor(System.String,Dictionary{System.String,System.String})
-  name: Client(String, Dictionary<String, String>)
-  href: api/Supabase.Storage.Client.html#Supabase_Storage_Client__ctor_System_String_Dictionary_System_String_System_String__
-  commentId: M:Supabase.Storage.Client.#ctor(System.String,Dictionary{System.String,System.String})
-  name.vb: Client(String, Dictionary(Of String, String))
-  fullName: Supabase.Storage.Client.Client(System.String, Dictionary<System.String, System.String>)
-  fullName.vb: Supabase.Storage.Client.Client(System.String, Dictionary(Of System.String, System.String))
-  nameWithType: Client.Client(String, Dictionary<String, String>)
-  nameWithType.vb: Client.Client(String, Dictionary(Of String, String))
+- uid: Supabase.Storage.Client.#ctor(System.String,System.Nullable{Dictionary{System.String,System.String}})
+  name: Client(String, Nullable<Dictionary<String, String>>)
+  href: api/Supabase.Storage.Client.html#Supabase_Storage_Client__ctor_System_String_System_Nullable_Dictionary_System_String_System_String___
+  commentId: M:Supabase.Storage.Client.#ctor(System.String,System.Nullable{Dictionary{System.String,System.String}})
+  name.vb: Client(String, Nullable(Of Dictionary(Of String, String)))
+  fullName: Supabase.Storage.Client.Client(System.String, System.Nullable<Dictionary<System.String, System.String>>)
+  fullName.vb: Supabase.Storage.Client.Client(System.String, System.Nullable(Of Dictionary(Of System.String, System.String)))
+  nameWithType: Client.Client(String, Nullable<Dictionary<String, String>>)
+  nameWithType.vb: Client.Client(String, Nullable(Of Dictionary(Of String, String)))
 - uid: Supabase.Storage.Client.#ctor*
   name: Client
   href: api/Supabase.Storage.Client.html#Supabase_Storage_Client__ctor_
@@ -544,6 +544,32 @@ references:
   isSpec: "True"
   fullName: Supabase.Storage.Client.From
   nameWithType: Client.From
+- uid: Supabase.Storage.Client.GetHeaders
+  name: GetHeaders
+  href: api/Supabase.Storage.Client.html#Supabase_Storage_Client_GetHeaders
+  commentId: P:Supabase.Storage.Client.GetHeaders
+  fullName: Supabase.Storage.Client.GetHeaders
+  nameWithType: Client.GetHeaders
+- uid: Supabase.Storage.Client.GetHeaders*
+  name: GetHeaders
+  href: api/Supabase.Storage.Client.html#Supabase_Storage_Client_GetHeaders_
+  commentId: Overload:Supabase.Storage.Client.GetHeaders
+  isSpec: "True"
+  fullName: Supabase.Storage.Client.GetHeaders
+  nameWithType: Client.GetHeaders
+- uid: Supabase.Storage.Client.Headers
+  name: Headers
+  href: api/Supabase.Storage.Client.html#Supabase_Storage_Client_Headers
+  commentId: P:Supabase.Storage.Client.Headers
+  fullName: Supabase.Storage.Client.Headers
+  nameWithType: Client.Headers
+- uid: Supabase.Storage.Client.Headers*
+  name: Headers
+  href: api/Supabase.Storage.Client.html#Supabase_Storage_Client_Headers_
+  commentId: Overload:Supabase.Storage.Client.Headers
+  isSpec: "True"
+  fullName: Supabase.Storage.Client.Headers
+  nameWithType: Client.Headers
 - uid: Supabase.Storage.CreateSignedUrlResponse
   name: CreateSignedUrlResponse
   href: api/Supabase.Storage.CreateSignedUrlResponse.html
@@ -893,6 +919,12 @@ references:
   isSpec: "True"
   fullName: Supabase.Storage.StorageBucketApi.StorageBucketApi
   nameWithType: StorageBucketApi.StorageBucketApi
+- uid: Supabase.Storage.StorageBucketApi._headers
+  name: _headers
+  href: api/Supabase.Storage.StorageBucketApi.html#Supabase_Storage_StorageBucketApi__headers
+  commentId: F:Supabase.Storage.StorageBucketApi._headers
+  fullName: Supabase.Storage.StorageBucketApi._headers
+  nameWithType: StorageBucketApi._headers
 - uid: Supabase.Storage.StorageBucketApi.CreateBucket(System.String,Supabase.Storage.BucketUpsertOptions)
   name: CreateBucket(String, BucketUpsertOptions)
   href: api/Supabase.Storage.StorageBucketApi.html#Supabase_Storage_StorageBucketApi_CreateBucket_System_String_Supabase_Storage_BucketUpsertOptions_
@@ -1217,22 +1249,3 @@ references:
   isSpec: "True"
   fullName: Supabase.Storage.StorageFileApi.Url
   nameWithType: StorageFileApi.Url
-- uid: Supabase.Storage.Util
-  name: Util
-  href: api/Supabase.Storage.Util.html
-  commentId: T:Supabase.Storage.Util
-  fullName: Supabase.Storage.Util
-  nameWithType: Util
-- uid: Supabase.Storage.Util.GetAssemblyVersion
-  name: GetAssemblyVersion()
-  href: api/Supabase.Storage.Util.html#Supabase_Storage_Util_GetAssemblyVersion
-  commentId: M:Supabase.Storage.Util.GetAssemblyVersion
-  fullName: Supabase.Storage.Util.GetAssemblyVersion()
-  nameWithType: Util.GetAssemblyVersion()
-- uid: Supabase.Storage.Util.GetAssemblyVersion*
-  name: GetAssemblyVersion
-  href: api/Supabase.Storage.Util.html#Supabase_Storage_Util_GetAssemblyVersion_
-  commentId: Overload:Supabase.Storage.Util.GetAssemblyVersion
-  isSpec: "True"
-  fullName: Supabase.Storage.Util.GetAssemblyVersion
-  nameWithType: Util.GetAssemblyVersion
