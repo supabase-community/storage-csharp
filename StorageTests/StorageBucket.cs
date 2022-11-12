@@ -1,20 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Supabase;
 using Supabase.Storage;
 
-namespace SupabaseTests
+namespace StorageTests
 {
     [TestClass]
     public class StorageBucket
     {
         private static string SERVICE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoic2VydmljZV9yb2xlIiwiaWF0IjoxNjEzNTMxOTg1LCJleHAiOjE5MjkxMDc5ODV9.th84OKK0Iz8QchDyXZRrojmKSEZ-OuitQm_5DvLiSIc";
 
-        Client storage => new Client("http://localhost:5000", new Dictionary<string, string> { { "Authorization", $"Bearer {SERVICE_KEY}" } });
+        Supabase.Storage.Client storage => new Supabase.Storage.Client("http://localhost:5000", new Dictionary<string, string> { { "Authorization", $"Bearer {SERVICE_KEY}" } });
 
 
         [TestMethod("Bucket: List")]

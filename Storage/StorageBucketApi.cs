@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Storage.Interfaces;
+using Supabase.Core;
 
 namespace Supabase.Storage
 {
@@ -11,7 +12,7 @@ namespace Supabase.Storage
     {
         protected string Url { get; set; }
 
-        private Dictionary<string, string> _headers;
+        protected Dictionary<string, string> _headers;
         public Dictionary<string, string> Headers
         {
             get => _headers;
@@ -20,7 +21,7 @@ namespace Supabase.Storage
                 _headers = value;
 
                 if (_headers.ContainsKey("X-Client-Info"))
-                    _headers.Add("X-Client-Info", Util.GetAssemblyVersion());
+                    _headers.Add("X-Client-Info", Util.GetAssemblyVersion(typeof(Client)));
             }
         }
 
