@@ -1,5 +1,10 @@
 ﻿# Changelog
 
+## 1.2.3 - 11-12-2022
+
+- Use `supabase-core` and implement `IGettableHeaders` on `Client`
+- `Client` no longer has `headers` as a required parameter.
+
 ## 1.2.2 - 11-10-2022
 
 - Clarifies `IStorageClient` as implementing `IStorageBucket`
