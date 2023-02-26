@@ -1,5 +1,9 @@
 ﻿# Changelog
 
+## 1.2.4 - 02-26-2022
+
+- `UploadOrUpdate` now appropriately throws request exception if server returns a bad status code.
+
 ## 1.2.3 - 11-12-2022
 
 - Use `supabase-core` and implement `IGettableHeaders` on `Client`

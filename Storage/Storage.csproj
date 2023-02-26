@@ -15,8 +15,8 @@
 		<Title>Supabase Storage</Title>
 		<PackageIconUrl>https://avatars.githubusercontent.com/u/54469796?s=200&amp;v=4</PackageIconUrl>
 		<PackageTags>supabase, storage</PackageTags>
-		<ReleaseVersion>1.2.3</ReleaseVersion>
-		<PackageVersion>1.2.3</PackageVersion>
+		<ReleaseVersion>1.2.4</ReleaseVersion>
+		<PackageVersion>1.2.4</PackageVersion>
 	</PropertyGroup>
 	<PropertyGroup>
 		<Nullable>enable</Nullable>
@@ -24,7 +24,7 @@
 		<WarningsAsErrors>CS8600;CS8602;CS8603</WarningsAsErrors>
 	</PropertyGroup>
 	<PropertyGroup Condition=" '$(Version)' == '' ">
-		<VersionPrefix Condition=" '$(VersionPrefix)' == '' ">1.2.3</VersionPrefix>
+		<VersionPrefix Condition=" '$(VersionPrefix)' == '' ">1.2.4</VersionPrefix>
 		<Version Condition=" '$(Version)' == '' ">$(VersionPrefix)</Version>
 	</PropertyGroup>
 	<ItemGroup>
