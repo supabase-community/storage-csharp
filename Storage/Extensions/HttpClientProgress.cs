@@ -37,6 +37,7 @@ namespace Supabase.Storage.Extensions
                         await download.CopyToAsync(destination);
                         return destination;
                     }
+
                     // Such progress and contentLength much reporting Wow!
                     var progressWrapper = new Progress<long>(totalBytes => progress.Report(GetProgressPercentage(totalBytes, contentLength.Value)));
                     await download.CopyToAsync(destination, 81920, progressWrapper, cancellationToken);
@@ -64,6 +65,7 @@ namespace Supabase.Storage.Extensions
             var buffer = new byte[bufferSize];
             long totalBytesRead = 0;
             int bytesRead;
+
             while ((bytesRead = await source.ReadAsync(buffer, 0, buffer.Length, cancellationToken).ConfigureAwait(false)) != 0)
             {
                 await destination.WriteAsync(buffer, 0, bytesRead, cancellationToken).ConfigureAwait(false);
