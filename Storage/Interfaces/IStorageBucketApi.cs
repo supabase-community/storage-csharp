@@ -1,11 +1,12 @@
-﻿using Supabase.Storage;
+﻿using Supabase.Core.Interfaces;
+using Supabase.Storage;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Storage.Interfaces
 {
-    public interface IStorageBucketApi<TBucket>
-        where TBucket : Bucket
+    public interface IStorageBucketApi<TBucket> : IGettableHeaders
+		where TBucket : Bucket
     {
         Dictionary<string, string> Headers { get; set; }
 
