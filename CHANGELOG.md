@@ -1,6 +1,11 @@
 ﻿# Changelog
 
-## 1.2.4 - 02-26-2022
+## 1.2.5 - 02-28-2023
+
+- Provides fix for [supabase-community/supabase-csharp#54](https://github.com/supabase-community/supabase-csharp/issues/54) - Dynamic headers were always being overwritten by initialized headers, so the storage client would not receive user's access token as expected.
+- Provides fix for upload progress not reporting in [supabase-community/storage-csharp#3](https://github.com/supabase-community/storage-csharp/issues/3)
+
+## 1.2.4 - 02-26-2023
 
 - `UploadOrUpdate` now appropriately throws request exception if server returns a bad status code.
 
