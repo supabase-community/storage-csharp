@@ -1,6 +1,24 @@
 ### YamlMime:XRefMap
 sorted: true
 references:
+- uid: Storage
+  name: Storage
+  href: api/Storage.html
+  commentId: N:Storage
+  fullName: Storage
+  nameWithType: Storage
+- uid: Storage.ClientOptions
+  name: ClientOptions
+  href: api/Storage.ClientOptions.html
+  commentId: T:Storage.ClientOptions
+  fullName: Storage.ClientOptions
+  nameWithType: ClientOptions
+- uid: Storage.ClientOptions.HttpClientTimeout
+  name: HttpClientTimeout
+  href: api/Storage.ClientOptions.html#Storage_ClientOptions_HttpClientTimeout
+  commentId: F:Storage.ClientOptions.HttpClientTimeout
+  fullName: Storage.ClientOptions.HttpClientTimeout
+  nameWithType: ClientOptions.HttpClientTimeout
 - uid: Storage.Interfaces
   name: Storage.Interfaces
   href: api/Storage.Interfaces.html
@@ -118,6 +136,23 @@ references:
   fullName.vb: Storage.Interfaces.IStorageBucketApi(Of TBucket).ListBuckets
   nameWithType: IStorageBucketApi<TBucket>.ListBuckets
   nameWithType.vb: IStorageBucketApi(Of TBucket).ListBuckets
+- uid: Storage.Interfaces.IStorageBucketApi`1.Options
+  name: Options
+  href: api/Storage.Interfaces.IStorageBucketApi-1.html#Storage_Interfaces_IStorageBucketApi_1_Options
+  commentId: P:Storage.Interfaces.IStorageBucketApi`1.Options
+  fullName: Storage.Interfaces.IStorageBucketApi<TBucket>.Options
+  fullName.vb: Storage.Interfaces.IStorageBucketApi(Of TBucket).Options
+  nameWithType: IStorageBucketApi<TBucket>.Options
+  nameWithType.vb: IStorageBucketApi(Of TBucket).Options
+- uid: Storage.Interfaces.IStorageBucketApi`1.Options*
+  name: Options
+  href: api/Storage.Interfaces.IStorageBucketApi-1.html#Storage_Interfaces_IStorageBucketApi_1_Options_
+  commentId: Overload:Storage.Interfaces.IStorageBucketApi`1.Options
+  isSpec: "True"
+  fullName: Storage.Interfaces.IStorageBucketApi<TBucket>.Options
+  fullName.vb: Storage.Interfaces.IStorageBucketApi(Of TBucket).Options
+  nameWithType: IStorageBucketApi<TBucket>.Options
+  nameWithType.vb: IStorageBucketApi(Of TBucket).Options
 - uid: Storage.Interfaces.IStorageBucketApi`1.UpdateBucket(System.String,Supabase.Storage.BucketUpsertOptions)
   name: UpdateBucket(String, BucketUpsertOptions)
   href: api/Storage.Interfaces.IStorageBucketApi-1.html#Storage_Interfaces_IStorageBucketApi_1_UpdateBucket_System_String_Supabase_Storage_BucketUpsertOptions_
@@ -283,6 +318,23 @@ references:
   fullName.vb: Storage.Interfaces.IStorageFileApi(Of TFileObject).Move
   nameWithType: IStorageFileApi<TFileObject>.Move
   nameWithType.vb: IStorageFileApi(Of TFileObject).Move
+- uid: Storage.Interfaces.IStorageFileApi`1.Options
+  name: Options
+  href: api/Storage.Interfaces.IStorageFileApi-1.html#Storage_Interfaces_IStorageFileApi_1_Options
+  commentId: P:Storage.Interfaces.IStorageFileApi`1.Options
+  fullName: Storage.Interfaces.IStorageFileApi<TFileObject>.Options
+  fullName.vb: Storage.Interfaces.IStorageFileApi(Of TFileObject).Options
+  nameWithType: IStorageFileApi<TFileObject>.Options
+  nameWithType.vb: IStorageFileApi(Of TFileObject).Options
+- uid: Storage.Interfaces.IStorageFileApi`1.Options*
+  name: Options
+  href: api/Storage.Interfaces.IStorageFileApi-1.html#Storage_Interfaces_IStorageFileApi_1_Options_
+  commentId: Overload:Storage.Interfaces.IStorageFileApi`1.Options
+  isSpec: "True"
+  fullName: Storage.Interfaces.IStorageFileApi<TFileObject>.Options
+  fullName.vb: Storage.Interfaces.IStorageFileApi(Of TFileObject).Options
+  nameWithType: IStorageFileApi<TFileObject>.Options
+  nameWithType.vb: IStorageFileApi(Of TFileObject).Options
 - uid: Storage.Interfaces.IStorageFileApi`1.Remove(List{System.String})
   name: Remove(List<String>)
   href: api/Storage.Interfaces.IStorageFileApi-1.html#Storage_Interfaces_IStorageFileApi_1_Remove_List_System_String__
@@ -515,6 +567,15 @@ references:
   commentId: T:Supabase.Storage.Client
   fullName: Supabase.Storage.Client
   nameWithType: Client
+- uid: Supabase.Storage.Client.#ctor(System.String,Storage.ClientOptions,System.Nullable{Dictionary{System.String,System.String}})
+  name: Client(String, ClientOptions, Nullable<Dictionary<String, String>>)
+  href: api/Supabase.Storage.Client.html#Supabase_Storage_Client__ctor_System_String_Storage_ClientOptions_System_Nullable_Dictionary_System_String_System_String___
+  commentId: M:Supabase.Storage.Client.#ctor(System.String,Storage.ClientOptions,System.Nullable{Dictionary{System.String,System.String}})
+  name.vb: Client(String, ClientOptions, Nullable(Of Dictionary(Of String, String)))
+  fullName: Supabase.Storage.Client.Client(System.String, Storage.ClientOptions, System.Nullable<Dictionary<System.String, System.String>>)
+  fullName.vb: Supabase.Storage.Client.Client(System.String, Storage.ClientOptions, System.Nullable(Of Dictionary(Of System.String, System.String)))
+  nameWithType: Client.Client(String, ClientOptions, Nullable<Dictionary<String, String>>)
+  nameWithType.vb: Client.Client(String, ClientOptions, Nullable(Of Dictionary(Of String, String)))
 - uid: Supabase.Storage.Client.#ctor(System.String,System.Nullable{Dictionary{System.String,System.String}})
   name: Client(String, Nullable<Dictionary<String, String>>)
   href: api/Supabase.Storage.Client.html#Supabase_Storage_Client__ctor_System_String_System_Nullable_Dictionary_System_String_System_String___
@@ -890,6 +951,15 @@ references:
   commentId: T:Supabase.Storage.StorageBucketApi
   fullName: Supabase.Storage.StorageBucketApi
   nameWithType: StorageBucketApi
+- uid: Supabase.Storage.StorageBucketApi.#ctor(System.String,Storage.ClientOptions,System.Nullable{Dictionary{System.String,System.String}})
+  name: StorageBucketApi(String, ClientOptions, Nullable<Dictionary<String, String>>)
+  href: api/Supabase.Storage.StorageBucketApi.html#Supabase_Storage_StorageBucketApi__ctor_System_String_Storage_ClientOptions_System_Nullable_Dictionary_System_String_System_String___
+  commentId: M:Supabase.Storage.StorageBucketApi.#ctor(System.String,Storage.ClientOptions,System.Nullable{Dictionary{System.String,System.String}})
+  name.vb: StorageBucketApi(String, ClientOptions, Nullable(Of Dictionary(Of String, String)))
+  fullName: Supabase.Storage.StorageBucketApi.StorageBucketApi(System.String, Storage.ClientOptions, System.Nullable<Dictionary<System.String, System.String>>)
+  fullName.vb: Supabase.Storage.StorageBucketApi.StorageBucketApi(System.String, Storage.ClientOptions, System.Nullable(Of Dictionary(Of System.String, System.String)))
+  nameWithType: StorageBucketApi.StorageBucketApi(String, ClientOptions, Nullable<Dictionary<String, String>>)
+  nameWithType.vb: StorageBucketApi.StorageBucketApi(String, ClientOptions, Nullable(Of Dictionary(Of String, String)))
 - uid: Supabase.Storage.StorageBucketApi.#ctor(System.String,System.Nullable{Dictionary{System.String,System.String}})
   name: StorageBucketApi(String, Nullable<Dictionary<String, String>>)
   href: api/Supabase.Storage.StorageBucketApi.html#Supabase_Storage_StorageBucketApi__ctor_System_String_System_Nullable_Dictionary_System_String_System_String___
@@ -1009,6 +1079,19 @@ references:
   isSpec: "True"
   fullName: Supabase.Storage.StorageBucketApi.ListBuckets
   nameWithType: StorageBucketApi.ListBuckets
+- uid: Supabase.Storage.StorageBucketApi.Options
+  name: Options
+  href: api/Supabase.Storage.StorageBucketApi.html#Supabase_Storage_StorageBucketApi_Options
+  commentId: P:Supabase.Storage.StorageBucketApi.Options
+  fullName: Supabase.Storage.StorageBucketApi.Options
+  nameWithType: StorageBucketApi.Options
+- uid: Supabase.Storage.StorageBucketApi.Options*
+  name: Options
+  href: api/Supabase.Storage.StorageBucketApi.html#Supabase_Storage_StorageBucketApi_Options_
+  commentId: Overload:Supabase.Storage.StorageBucketApi.Options
+  isSpec: "True"
+  fullName: Supabase.Storage.StorageBucketApi.Options
+  nameWithType: StorageBucketApi.Options
 - uid: Supabase.Storage.StorageBucketApi.UpdateBucket(System.String,Supabase.Storage.BucketUpsertOptions)
   name: UpdateBucket(String, BucketUpsertOptions)
   href: api/Supabase.Storage.StorageBucketApi.html#Supabase_Storage_StorageBucketApi_UpdateBucket_System_String_Supabase_Storage_BucketUpsertOptions_
@@ -1050,6 +1133,15 @@ references:
   fullName.vb: Supabase.Storage.StorageFileApi.StorageFileApi(System.String, System.Nullable(Of Dictionary(Of System.String, System.String)), System.Nullable(Of System.String))
   nameWithType: StorageFileApi.StorageFileApi(String, Nullable<Dictionary<String, String>>, Nullable<String>)
   nameWithType.vb: StorageFileApi.StorageFileApi(String, Nullable(Of Dictionary(Of String, String)), Nullable(Of String))
+- uid: Supabase.Storage.StorageFileApi.#ctor(System.String,System.String,Storage.ClientOptions,System.Nullable{Dictionary{System.String,System.String}})
+  name: StorageFileApi(String, String, ClientOptions, Nullable<Dictionary<String, String>>)
+  href: api/Supabase.Storage.StorageFileApi.html#Supabase_Storage_StorageFileApi__ctor_System_String_System_String_Storage_ClientOptions_System_Nullable_Dictionary_System_String_System_String___
+  commentId: M:Supabase.Storage.StorageFileApi.#ctor(System.String,System.String,Storage.ClientOptions,System.Nullable{Dictionary{System.String,System.String}})
+  name.vb: StorageFileApi(String, String, ClientOptions, Nullable(Of Dictionary(Of String, String)))
+  fullName: Supabase.Storage.StorageFileApi.StorageFileApi(System.String, System.String, Storage.ClientOptions, System.Nullable<Dictionary<System.String, System.String>>)
+  fullName.vb: Supabase.Storage.StorageFileApi.StorageFileApi(System.String, System.String, Storage.ClientOptions, System.Nullable(Of Dictionary(Of System.String, System.String)))
+  nameWithType: StorageFileApi.StorageFileApi(String, String, ClientOptions, Nullable<Dictionary<String, String>>)
+  nameWithType.vb: StorageFileApi.StorageFileApi(String, String, ClientOptions, Nullable(Of Dictionary(Of String, String)))
 - uid: Supabase.Storage.StorageFileApi.#ctor*
   name: StorageFileApi
   href: api/Supabase.Storage.StorageFileApi.html#Supabase_Storage_StorageFileApi__ctor_
@@ -1176,6 +1268,19 @@ references:
   isSpec: "True"
   fullName: Supabase.Storage.StorageFileApi.Move
   nameWithType: StorageFileApi.Move
+- uid: Supabase.Storage.StorageFileApi.Options
+  name: Options
+  href: api/Supabase.Storage.StorageFileApi.html#Supabase_Storage_StorageFileApi_Options
+  commentId: P:Supabase.Storage.StorageFileApi.Options
+  fullName: Supabase.Storage.StorageFileApi.Options
+  nameWithType: StorageFileApi.Options
+- uid: Supabase.Storage.StorageFileApi.Options*
+  name: Options
+  href: api/Supabase.Storage.StorageFileApi.html#Supabase_Storage_StorageFileApi_Options_
+  commentId: Overload:Supabase.Storage.StorageFileApi.Options
+  isSpec: "True"
+  fullName: Supabase.Storage.StorageFileApi.Options
+  nameWithType: StorageFileApi.Options
 - uid: Supabase.Storage.StorageFileApi.Remove(List{System.String})
   name: Remove(List<String>)
   href: api/Supabase.Storage.StorageFileApi.html#Supabase_Storage_StorageFileApi_Remove_List_System_String__
