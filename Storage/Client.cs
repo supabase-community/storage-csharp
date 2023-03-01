@@ -1,4 +1,5 @@
-﻿using Storage.Interfaces;
+﻿using Storage;
+using Storage.Interfaces;
 using Supabase.Core;
 using Supabase.Core.Extensions;
 using Supabase.Core.Interfaces;
@@ -11,6 +12,9 @@ namespace Supabase.Storage
     {
         public Client(string url, Dictionary<string, string>? headers = null) : base(url, headers)
         { }
+
+        public Client(string url, ClientOptions options, Dictionary<string, string>? headers = null) : base(url, options, headers)
+        {}
 
         /// <summary>
         /// Perform a file operation in a bucket

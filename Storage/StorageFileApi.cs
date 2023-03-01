@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using Storage;
 using Storage.Interfaces;
 using Supabase.Storage.Extensions;
 
@@ -13,23 +14,22 @@ namespace Supabase.Storage
 {
 	public class StorageFileApi : IStorageFileApi<FileObject>
 	{
+		public ClientOptions Options { get; protected set; }
 		protected string Url { get; set; }
 		protected Dictionary<string, string> Headers { get; set; }
 		protected string? BucketId { get; set; }
+
+		public StorageFileApi(string url, string bucketId, ClientOptions options, Dictionary<string, string>? headers = null) : this(url, headers, bucketId)
+		{
+			Options = options ?? new ClientOptions();
+		}
 
 		public StorageFileApi(string url, Dictionary<string, string>? headers = null, string? bucketId = null)
 		{
 			Url = url;
 			BucketId = bucketId;
-
-			if (headers == null)
-			{
-				Headers = new Dictionary<string, string>();
-			}
-			else
-			{
-				Headers = headers;
-			}
+			Options ??= new ClientOptions();
+			Headers = headers ?? new Dictionary<string, string>();
 		}
 
 		/// <summary>
@@ -41,7 +41,7 @@ namespace Supabase.Storage
 		public async Task<string> CreateSignedUrl(string path, int expiresIn)
 		{
 			var body = new Dictionary<string, object> { { "expiresIn", expiresIn } };
-			var response = await Helpers.MakeRequest<CreateSignedUrlResponse>(HttpMethod.Post, $"{Url}/object/sign/{GetFinalPath(path)}", body, Headers);
+			var response = await Helpers.MakeRequest<CreateSignedUrlResponse>(HttpMethod.Post, $"{Url}/object/sign/{GetFinalPath(path)}", body, Headers, Options.HttpClientTimeout);
 
 			return $"{Url}{response?.SignedUrl}";
 		}
@@ -55,7 +55,7 @@ namespace Supabase.Storage
 		public async Task<List<CreateSignedUrlsResponse>?> CreateSignedUrls(List<string> paths, int expiresIn)
 		{
 			var body = new Dictionary<string, object> { { "expiresIn", expiresIn }, { "paths", paths } };
-			var response = await Helpers.MakeRequest<List<CreateSignedUrlsResponse>>(HttpMethod.Post, $"{Url}/object/sign/{BucketId}", body, Headers);
+			var response = await Helpers.MakeRequest<List<CreateSignedUrlsResponse>>(HttpMethod.Post, $"{Url}/object/sign/{BucketId}", body, Headers, Options.HttpClientTimeout);
 
 			if (response != null)
 			{
@@ -96,7 +96,7 @@ namespace Supabase.Storage
 				body.Add("prefix", string.IsNullOrEmpty(path) ? "" : path);
 			}
 
-			var response = await Helpers.MakeRequest<List<FileObject>>(HttpMethod.Post, $"{Url}/object/list/{BucketId}", body, Headers);
+			var response = await Helpers.MakeRequest<List<FileObject>>(HttpMethod.Post, $"{Url}/object/list/{BucketId}", body, Headers, Options.HttpClientTimeout);
 
 			return response;
 		}
@@ -195,7 +195,7 @@ namespace Supabase.Storage
 			try
 			{
 				var body = new Dictionary<string, string> { { "bucketId", BucketId }, { "sourceKey", fromPath }, { "destinationKey", toPath } };
-				await Helpers.MakeRequest<GenericResponse>(HttpMethod.Post, $"{Url}/object/move", body, Headers);
+				await Helpers.MakeRequest<GenericResponse>(HttpMethod.Post, $"{Url}/object/move", body, Headers, Options.HttpClientTimeout);
 				return true;
 			}
 			catch
@@ -213,7 +213,7 @@ namespace Supabase.Storage
 		/// <returns></returns>
 		public async Task<string> Download(string supabasePath, string localPath, EventHandler<float>? onProgress = null)
 		{
-			using (HttpClient client = new HttpClient())
+			using (HttpClient client = new HttpClient { Timeout = Options.HttpClientTimeout })
 			{
 				Uri uri = new Uri($"{Url}/object/{GetFinalPath(supabasePath)}");
 
@@ -243,7 +243,7 @@ namespace Supabase.Storage
 		/// <returns></returns>
 		public async Task<byte[]> Download(string supabasePath, EventHandler<float>? onProgress = null)
 		{
-			using (HttpClient client = new HttpClient())
+			using (HttpClient client = new HttpClient { Timeout = Options.HttpClientTimeout })
 			{
 				Uri uri = new Uri($"{Url}/object/{GetFinalPath(supabasePath)}");
 
@@ -268,14 +268,14 @@ namespace Supabase.Storage
 		public async Task<List<FileObject>?> Remove(List<string> paths)
 		{
 			var data = new Dictionary<string, object> { { "prefixes", paths } };
-			var response = await Helpers.MakeRequest<List<FileObject>>(HttpMethod.Delete, $"{Url}/object/{BucketId}", data, Headers);
+			var response = await Helpers.MakeRequest<List<FileObject>>(HttpMethod.Delete, $"{Url}/object/{BucketId}", data, Headers, Options.HttpClientTimeout);
 
 			return response;
 		}
 
 		private async Task<string> UploadOrUpdate(string localPath, string supabasePath, FileOptions options, EventHandler<float>? onProgress = null)
 		{
-			using (var client = new HttpClient())
+			using (var client = new HttpClient { Timeout = Options.HttpClientTimeout })
 			{
 				Uri uri = new Uri($"{Url}/object/{GetFinalPath(supabasePath)}");
 
@@ -311,7 +311,7 @@ namespace Supabase.Storage
 
 		private async Task<string> UploadOrUpdate(byte[] data, string supabasePath, FileOptions options, EventHandler<float>? onProgress = null)
 		{
-			using (var client = new HttpClient())
+			using (var client = new HttpClient { Timeout = Options.HttpClientTimeout })
 			{
 				Uri uri = new Uri($"{Url}/object/{GetFinalPath(supabasePath)}");
 

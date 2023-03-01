@@ -14,8 +14,6 @@ namespace Supabase.Storage
 {
 	internal static class Helpers
 	{
-		private static readonly HttpClient client = new HttpClient();
-
 		/// <summary>
 		/// Helper to make a request using the defined parameters to an API Endpoint and coerce into a model. 
 		/// </summary>
@@ -25,8 +23,10 @@ namespace Supabase.Storage
 		/// <param name="reqParams"></param>
 		/// <param name="headers"></param>
 		/// <returns></returns>
-		public static async Task<T?> MakeRequest<T>(HttpMethod method, string url, object? data = null, Dictionary<string, string>? headers = null) where T : class
+		public static async Task<T?> MakeRequest<T>(HttpMethod method, string url, object? data = null, Dictionary<string, string>? headers = null, TimeSpan? timeout = null) where T : class
 		{
+			timeout ??= TimeSpan.FromSeconds(100);
+
 			var response = await MakeRequest(method, url, data, headers);
 			var content = await response.Content.ReadAsStringAsync();
 
@@ -48,42 +48,47 @@ namespace Supabase.Storage
 		/// <param name="reqParams"></param>
 		/// <param name="headers"></param>
 		/// <returns></returns>
-		public static async Task<HttpResponseMessage> MakeRequest(HttpMethod method, string url, object? data = null, Dictionary<string, string>? headers = null)
+		public static async Task<HttpResponseMessage> MakeRequest(HttpMethod method, string url, object? data = null, Dictionary<string, string>? headers = null, TimeSpan? timeout = null)
 		{
-			var builder = new UriBuilder(url);
-			var query = HttpUtility.ParseQueryString(builder.Query);
+			var httpTimeout = timeout ?? TimeSpan.FromSeconds(100);
 
-			if (data != null && method != HttpMethod.Get)
+			using (HttpClient client = new HttpClient { Timeout = httpTimeout })
 			{
-				// Case if it's a Get request the data object is a dictionary<string,string>
-				if (data is Dictionary<string, string> reqParams)
-				{
-					foreach (var param in reqParams)
-						query[param.Key] = param.Value;
-				}
-			}
-
-			builder.Query = query.ToString();
-
-			using (var requestMessage = new HttpRequestMessage(method, builder.Uri))
-			{
+				var builder = new UriBuilder(url);
+				var query = HttpUtility.ParseQueryString(builder.Query);
 
 				if (data != null && method != HttpMethod.Get)
 				{
-					requestMessage.Content = new StringContent(JsonConvert.SerializeObject(data), Encoding.UTF8, "application/json");
-				}
-
-				if (headers != null)
-				{
-					foreach (var kvp in headers)
+					// Case if it's a Get request the data object is a dictionary<string,string>
+					if (data is Dictionary<string, string> reqParams)
 					{
-						requestMessage.Headers.TryAddWithoutValidation(kvp.Key, kvp.Value);
+						foreach (var param in reqParams)
+							query[param.Key] = param.Value;
 					}
 				}
 
-				var response = await client.SendAsync(requestMessage);
+				builder.Query = query.ToString();
 
-				return response;
+				using (var requestMessage = new HttpRequestMessage(method, builder.Uri))
+				{
+
+					if (data != null && method != HttpMethod.Get)
+					{
+						requestMessage.Content = new StringContent(JsonConvert.SerializeObject(data), Encoding.UTF8, "application/json");
+					}
+
+					if (headers != null)
+					{
+						foreach (var kvp in headers)
+						{
+							requestMessage.Headers.TryAddWithoutValidation(kvp.Key, kvp.Value);
+						}
+					}
+
+					var response = await client.SendAsync(requestMessage);
+
+					return response;
+				}
 			}
 		}
 	}

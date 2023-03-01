@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using Storage;
 using Storage.Interfaces;
 using Supabase.Core;
 using Supabase.Core.Extensions;
@@ -11,6 +12,7 @@ namespace Supabase.Storage
 {
 	public class StorageBucketApi : IStorageBucketApi<Bucket>
 	{
+		public ClientOptions Options { get; protected set; }
 		protected string Url { get; set; }
 
 		protected Dictionary<string, string> _initializedHeaders;
@@ -40,9 +42,15 @@ namespace Supabase.Storage
 		/// </summary>
 		public Func<Dictionary<string, string>>? GetHeaders { get; set; }
 
+		public StorageBucketApi(string url, ClientOptions options, Dictionary<string, string>? headers = null) : this(url, headers)
+		{
+			Options = options ?? new ClientOptions();
+		}
+
 		public StorageBucketApi(string url, Dictionary<string, string>? headers = null)
 		{
 			Url = url;
+			Options ??= new ClientOptions();
 
 			headers ??= new Dictionary<string, string>();
 			_headers = headers;
@@ -55,7 +63,7 @@ namespace Supabase.Storage
 		/// <returns></returns>
 		public async Task<List<Bucket>?> ListBuckets()
 		{
-			var result = await Helpers.MakeRequest<List<Bucket>>(HttpMethod.Get, $"{Url}/bucket", null, Headers);
+			var result = await Helpers.MakeRequest<List<Bucket>>(HttpMethod.Get, $"{Url}/bucket", null, Headers, Options.HttpClientTimeout);
 			return result;
 		}
 
@@ -68,7 +76,7 @@ namespace Supabase.Storage
 		{
 			try
 			{
-				var result = await Helpers.MakeRequest<Bucket>(HttpMethod.Get, $"{Url}/bucket/{id}", null, Headers);
+				var result = await Helpers.MakeRequest<Bucket>(HttpMethod.Get, $"{Url}/bucket/{id}", null, Headers, Options.HttpClientTimeout);
 				return result;
 			}
 			catch (BadRequestException ex)
@@ -92,7 +100,7 @@ namespace Supabase.Storage
 			}
 
 			var data = new Bucket { Id = id, Name = id, Public = options.Public };
-			var result = await Helpers.MakeRequest<Bucket>(HttpMethod.Post, $"{Url}/bucket", data, Headers);
+			var result = await Helpers.MakeRequest<Bucket>(HttpMethod.Post, $"{Url}/bucket", data, Headers, Options.HttpClientTimeout);
 
 			return result?.Name!;
 		}
@@ -111,7 +119,7 @@ namespace Supabase.Storage
 			}
 
 			var data = new Bucket { Id = id, Public = options.Public };
-			var result = await Helpers.MakeRequest<Bucket>(HttpMethod.Put, $"{Url}/bucket/{id}", data, Headers);
+			var result = await Helpers.MakeRequest<Bucket>(HttpMethod.Put, $"{Url}/bucket/{id}", data, Headers, Options.HttpClientTimeout);
 
 			return result;
 		}
@@ -123,7 +131,7 @@ namespace Supabase.Storage
 		/// <returns></returns>
 		public async Task<GenericResponse?> EmptyBucket(string id)
 		{
-			var result = await Helpers.MakeRequest<GenericResponse>(HttpMethod.Post, $"{Url}/bucket/{id}/empty", null, Headers);
+			var result = await Helpers.MakeRequest<GenericResponse>(HttpMethod.Post, $"{Url}/bucket/{id}/empty", null, Headers, Options.HttpClientTimeout);
 			return result;
 		}
 
@@ -135,7 +143,7 @@ namespace Supabase.Storage
 		/// <returns></returns>
 		public async Task<GenericResponse?> DeleteBucket(string id)
 		{
-			var result = await Helpers.MakeRequest<GenericResponse>(HttpMethod.Delete, $"{Url}/bucket/{id}", null, Headers);
+			var result = await Helpers.MakeRequest<GenericResponse>(HttpMethod.Delete, $"{Url}/bucket/{id}", null, Headers, Options.HttpClientTimeout);
 			return result;
 		}
 
