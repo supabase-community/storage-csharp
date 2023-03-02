@@ -15,8 +15,8 @@
 		<Title>Supabase Storage</Title>
 		<PackageIconUrl>https://avatars.githubusercontent.com/u/54469796?s=200&amp;v=4</PackageIconUrl>
 		<PackageTags>supabase, storage</PackageTags>
-		<ReleaseVersion>1.2.5</ReleaseVersion>
-		<PackageVersion>1.2.5</PackageVersion>
+		<ReleaseVersion>1.2.6</ReleaseVersion>
+		<PackageVersion>1.2.6</PackageVersion>
 	</PropertyGroup>
 	<PropertyGroup>
 		<Nullable>enable</Nullable>

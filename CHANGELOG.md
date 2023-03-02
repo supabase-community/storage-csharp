@@ -1,5 +1,9 @@
 ﻿# Changelog
 
+## 1.2.6 - 03-02-2023
+
+- Re: [#4](https://github.com/supabase-community/storage-csharp/issues/4) Implementation for `ClientOptions` which supports specifying Upload, Download, and Request timeouts.
+
 ## 1.2.5 - 02-28-2023
 
 - Provides fix for [supabase-community/supabase-csharp#54](https://github.com/supabase-community/supabase-csharp/issues/54) - Dynamic headers were always being overwritten by initialized headers, so the storage client would not receive user's access token as expected.
