@@ -13,12 +13,24 @@ references:
   commentId: T:Storage.ClientOptions
   fullName: Storage.ClientOptions
   nameWithType: ClientOptions
-- uid: Storage.ClientOptions.HttpClientTimeout
-  name: HttpClientTimeout
-  href: api/Storage.ClientOptions.html#Storage_ClientOptions_HttpClientTimeout
-  commentId: F:Storage.ClientOptions.HttpClientTimeout
-  fullName: Storage.ClientOptions.HttpClientTimeout
-  nameWithType: ClientOptions.HttpClientTimeout
+- uid: Storage.ClientOptions.HttpDownloadTimeout
+  name: HttpDownloadTimeout
+  href: api/Storage.ClientOptions.html#Storage_ClientOptions_HttpDownloadTimeout
+  commentId: F:Storage.ClientOptions.HttpDownloadTimeout
+  fullName: Storage.ClientOptions.HttpDownloadTimeout
+  nameWithType: ClientOptions.HttpDownloadTimeout
+- uid: Storage.ClientOptions.HttpRequestTimeout
+  name: HttpRequestTimeout
+  href: api/Storage.ClientOptions.html#Storage_ClientOptions_HttpRequestTimeout
+  commentId: F:Storage.ClientOptions.HttpRequestTimeout
+  fullName: Storage.ClientOptions.HttpRequestTimeout
+  nameWithType: ClientOptions.HttpRequestTimeout
+- uid: Storage.ClientOptions.HttpUploadTimeout
+  name: HttpUploadTimeout
+  href: api/Storage.ClientOptions.html#Storage_ClientOptions_HttpUploadTimeout
+  commentId: F:Storage.ClientOptions.HttpUploadTimeout
+  fullName: Storage.ClientOptions.HttpUploadTimeout
+  nameWithType: ClientOptions.HttpUploadTimeout
 - uid: Storage.Interfaces
   name: Storage.Interfaces
   href: api/Storage.Interfaces.html
