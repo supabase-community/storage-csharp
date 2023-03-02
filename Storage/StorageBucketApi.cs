@@ -63,7 +63,7 @@ namespace Supabase.Storage
 		/// <returns></returns>
 		public async Task<List<Bucket>?> ListBuckets()
 		{
-			var result = await Helpers.MakeRequest<List<Bucket>>(HttpMethod.Get, $"{Url}/bucket", null, Headers, Options.HttpClientTimeout);
+			var result = await Helpers.MakeRequest<List<Bucket>>(HttpMethod.Get, $"{Url}/bucket", null, Headers, Options.HttpRequestTimeout);
 			return result;
 		}
 
@@ -76,7 +76,7 @@ namespace Supabase.Storage
 		{
 			try
 			{
-				var result = await Helpers.MakeRequest<Bucket>(HttpMethod.Get, $"{Url}/bucket/{id}", null, Headers, Options.HttpClientTimeout);
+				var result = await Helpers.MakeRequest<Bucket>(HttpMethod.Get, $"{Url}/bucket/{id}", null, Headers, Options.HttpRequestTimeout);
 				return result;
 			}
 			catch (BadRequestException ex)
@@ -100,7 +100,7 @@ namespace Supabase.Storage
 			}
 
 			var data = new Bucket { Id = id, Name = id, Public = options.Public };
-			var result = await Helpers.MakeRequest<Bucket>(HttpMethod.Post, $"{Url}/bucket", data, Headers, Options.HttpClientTimeout);
+			var result = await Helpers.MakeRequest<Bucket>(HttpMethod.Post, $"{Url}/bucket", data, Headers, Options.HttpRequestTimeout);
 
 			return result?.Name!;
 		}
@@ -119,7 +119,7 @@ namespace Supabase.Storage
 			}
 
 			var data = new Bucket { Id = id, Public = options.Public };
-			var result = await Helpers.MakeRequest<Bucket>(HttpMethod.Put, $"{Url}/bucket/{id}", data, Headers, Options.HttpClientTimeout);
+			var result = await Helpers.MakeRequest<Bucket>(HttpMethod.Put, $"{Url}/bucket/{id}", data, Headers, Options.HttpRequestTimeout);
 
 			return result;
 		}
@@ -131,7 +131,7 @@ namespace Supabase.Storage
 		/// <returns></returns>
 		public async Task<GenericResponse?> EmptyBucket(string id)
 		{
-			var result = await Helpers.MakeRequest<GenericResponse>(HttpMethod.Post, $"{Url}/bucket/{id}/empty", null, Headers, Options.HttpClientTimeout);
+			var result = await Helpers.MakeRequest<GenericResponse>(HttpMethod.Post, $"{Url}/bucket/{id}/empty", null, Headers, Options.HttpRequestTimeout);
 			return result;
 		}
 
@@ -143,7 +143,7 @@ namespace Supabase.Storage
 		/// <returns></returns>
 		public async Task<GenericResponse?> DeleteBucket(string id)
 		{
-			var result = await Helpers.MakeRequest<GenericResponse>(HttpMethod.Delete, $"{Url}/bucket/{id}", null, Headers, Options.HttpClientTimeout);
+			var result = await Helpers.MakeRequest<GenericResponse>(HttpMethod.Delete, $"{Url}/bucket/{id}", null, Headers, Options.HttpRequestTimeout);
 			return result;
 		}
 

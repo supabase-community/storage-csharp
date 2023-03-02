@@ -1,15 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 
 namespace Storage
 {
+	/// <summary>
+	/// Options that can be passed into the Storage Client
+	/// </summary>
 	public class ClientOptions
 	{
+		/// <summary>
+		/// The timespan to wait before an HTTP Upload Timesout
+		/// See: https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httpclient.timeout?view=net-7.0
+		/// </summary>
+		public TimeSpan HttpUploadTimeout = Timeout.InfiniteTimeSpan;
+
+		/// <summary>
+		/// The timespan to wait before an HTTP Upload Timesout
+		/// See: https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httpclient.timeout?view=net-7.0
+		/// </summary>
+		public TimeSpan HttpDownloadTimeout = Timeout.InfiniteTimeSpan;
+
 		/// <summary>
 		/// The timespan to wait before an HTTP Client request times out.
 		/// See: https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httpclient.timeout?view=net-7.0
 		/// </summary>
-		public TimeSpan HttpClientTimeout = TimeSpan.FromMinutes(5);
+		public TimeSpan HttpRequestTimeout = TimeSpan.FromSeconds(100);
 	}
 }

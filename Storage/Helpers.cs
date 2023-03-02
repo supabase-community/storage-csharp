@@ -27,7 +27,7 @@ namespace Supabase.Storage
 		{
 			timeout ??= TimeSpan.FromSeconds(100);
 
-			var response = await MakeRequest(method, url, data, headers);
+			var response = await MakeRequest(method, url, data, headers, timeout);
 			var content = await response.Content.ReadAsStringAsync();
 
 			if (response.IsSuccessStatusCode)
