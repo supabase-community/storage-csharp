@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 
-namespace Storage
+namespace Supabase.Storage
 {
 	/// <summary>
 	/// Options that can be passed into the Storage Client

@@ -1,5 +1,9 @@
 ﻿# Changelog
 
+## 1.2.7 - 03-02-2023
+
+- Fix incorrect namespacing for Supabase.Storage.ClientOptions.
+
 ## 1.2.6 - 03-02-2023
 
 - Re: [#4](https://github.com/supabase-community/storage-csharp/issues/4) Implementation for `ClientOptions` which supports specifying Upload, Download, and Request timeouts.
