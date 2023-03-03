@@ -1,36 +1,6 @@
 ### YamlMime:XRefMap
 sorted: true
 references:
-- uid: Storage
-  name: Storage
-  href: api/Storage.html
-  commentId: N:Storage
-  fullName: Storage
-  nameWithType: Storage
-- uid: Storage.ClientOptions
-  name: ClientOptions
-  href: api/Storage.ClientOptions.html
-  commentId: T:Storage.ClientOptions
-  fullName: Storage.ClientOptions
-  nameWithType: ClientOptions
-- uid: Storage.ClientOptions.HttpDownloadTimeout
-  name: HttpDownloadTimeout
-  href: api/Storage.ClientOptions.html#Storage_ClientOptions_HttpDownloadTimeout
-  commentId: F:Storage.ClientOptions.HttpDownloadTimeout
-  fullName: Storage.ClientOptions.HttpDownloadTimeout
-  nameWithType: ClientOptions.HttpDownloadTimeout
-- uid: Storage.ClientOptions.HttpRequestTimeout
-  name: HttpRequestTimeout
-  href: api/Storage.ClientOptions.html#Storage_ClientOptions_HttpRequestTimeout
-  commentId: F:Storage.ClientOptions.HttpRequestTimeout
-  fullName: Storage.ClientOptions.HttpRequestTimeout
-  nameWithType: ClientOptions.HttpRequestTimeout
-- uid: Storage.ClientOptions.HttpUploadTimeout
-  name: HttpUploadTimeout
-  href: api/Storage.ClientOptions.html#Storage_ClientOptions_HttpUploadTimeout
-  commentId: F:Storage.ClientOptions.HttpUploadTimeout
-  fullName: Storage.ClientOptions.HttpUploadTimeout
-  nameWithType: ClientOptions.HttpUploadTimeout
 - uid: Storage.Interfaces
   name: Storage.Interfaces
   href: api/Storage.Interfaces.html
@@ -579,13 +549,13 @@ references:
   commentId: T:Supabase.Storage.Client
   fullName: Supabase.Storage.Client
   nameWithType: Client
-- uid: Supabase.Storage.Client.#ctor(System.String,Storage.ClientOptions,System.Nullable{Dictionary{System.String,System.String}})
+- uid: Supabase.Storage.Client.#ctor(System.String,Supabase.Storage.ClientOptions,System.Nullable{Dictionary{System.String,System.String}})
   name: Client(String, ClientOptions, Nullable<Dictionary<String, String>>)
-  href: api/Supabase.Storage.Client.html#Supabase_Storage_Client__ctor_System_String_Storage_ClientOptions_System_Nullable_Dictionary_System_String_System_String___
-  commentId: M:Supabase.Storage.Client.#ctor(System.String,Storage.ClientOptions,System.Nullable{Dictionary{System.String,System.String}})
+  href: api/Supabase.Storage.Client.html#Supabase_Storage_Client__ctor_System_String_Supabase_Storage_ClientOptions_System_Nullable_Dictionary_System_String_System_String___
+  commentId: M:Supabase.Storage.Client.#ctor(System.String,Supabase.Storage.ClientOptions,System.Nullable{Dictionary{System.String,System.String}})
   name.vb: Client(String, ClientOptions, Nullable(Of Dictionary(Of String, String)))
-  fullName: Supabase.Storage.Client.Client(System.String, Storage.ClientOptions, System.Nullable<Dictionary<System.String, System.String>>)
-  fullName.vb: Supabase.Storage.Client.Client(System.String, Storage.ClientOptions, System.Nullable(Of Dictionary(Of System.String, System.String)))
+  fullName: Supabase.Storage.Client.Client(System.String, Supabase.Storage.ClientOptions, System.Nullable<Dictionary<System.String, System.String>>)
+  fullName.vb: Supabase.Storage.Client.Client(System.String, Supabase.Storage.ClientOptions, System.Nullable(Of Dictionary(Of System.String, System.String)))
   nameWithType: Client.Client(String, ClientOptions, Nullable<Dictionary<String, String>>)
   nameWithType.vb: Client.Client(String, ClientOptions, Nullable(Of Dictionary(Of String, String)))
 - uid: Supabase.Storage.Client.#ctor(System.String,System.Nullable{Dictionary{System.String,System.String}})
@@ -617,6 +587,30 @@ references:
   isSpec: "True"
   fullName: Supabase.Storage.Client.From
   nameWithType: Client.From
+- uid: Supabase.Storage.ClientOptions
+  name: ClientOptions
+  href: api/Supabase.Storage.ClientOptions.html
+  commentId: T:Supabase.Storage.ClientOptions
+  fullName: Supabase.Storage.ClientOptions
+  nameWithType: ClientOptions
+- uid: Supabase.Storage.ClientOptions.HttpDownloadTimeout
+  name: HttpDownloadTimeout
+  href: api/Supabase.Storage.ClientOptions.html#Supabase_Storage_ClientOptions_HttpDownloadTimeout
+  commentId: F:Supabase.Storage.ClientOptions.HttpDownloadTimeout
+  fullName: Supabase.Storage.ClientOptions.HttpDownloadTimeout
+  nameWithType: ClientOptions.HttpDownloadTimeout
+- uid: Supabase.Storage.ClientOptions.HttpRequestTimeout
+  name: HttpRequestTimeout
+  href: api/Supabase.Storage.ClientOptions.html#Supabase_Storage_ClientOptions_HttpRequestTimeout
+  commentId: F:Supabase.Storage.ClientOptions.HttpRequestTimeout
+  fullName: Supabase.Storage.ClientOptions.HttpRequestTimeout
+  nameWithType: ClientOptions.HttpRequestTimeout
+- uid: Supabase.Storage.ClientOptions.HttpUploadTimeout
+  name: HttpUploadTimeout
+  href: api/Supabase.Storage.ClientOptions.html#Supabase_Storage_ClientOptions_HttpUploadTimeout
+  commentId: F:Supabase.Storage.ClientOptions.HttpUploadTimeout
+  fullName: Supabase.Storage.ClientOptions.HttpUploadTimeout
+  nameWithType: ClientOptions.HttpUploadTimeout
 - uid: Supabase.Storage.CreateSignedUrlResponse
   name: CreateSignedUrlResponse
   href: api/Supabase.Storage.CreateSignedUrlResponse.html
@@ -963,13 +957,13 @@ references:
   commentId: T:Supabase.Storage.StorageBucketApi
   fullName: Supabase.Storage.StorageBucketApi
   nameWithType: StorageBucketApi
-- uid: Supabase.Storage.StorageBucketApi.#ctor(System.String,Storage.ClientOptions,System.Nullable{Dictionary{System.String,System.String}})
+- uid: Supabase.Storage.StorageBucketApi.#ctor(System.String,Supabase.Storage.ClientOptions,System.Nullable{Dictionary{System.String,System.String}})
   name: StorageBucketApi(String, ClientOptions, Nullable<Dictionary<String, String>>)
-  href: api/Supabase.Storage.StorageBucketApi.html#Supabase_Storage_StorageBucketApi__ctor_System_String_Storage_ClientOptions_System_Nullable_Dictionary_System_String_System_String___
-  commentId: M:Supabase.Storage.StorageBucketApi.#ctor(System.String,Storage.ClientOptions,System.Nullable{Dictionary{System.String,System.String}})
+  href: api/Supabase.Storage.StorageBucketApi.html#Supabase_Storage_StorageBucketApi__ctor_System_String_Supabase_Storage_ClientOptions_System_Nullable_Dictionary_System_String_System_String___
+  commentId: M:Supabase.Storage.StorageBucketApi.#ctor(System.String,Supabase.Storage.ClientOptions,System.Nullable{Dictionary{System.String,System.String}})
   name.vb: StorageBucketApi(String, ClientOptions, Nullable(Of Dictionary(Of String, String)))
-  fullName: Supabase.Storage.StorageBucketApi.StorageBucketApi(System.String, Storage.ClientOptions, System.Nullable<Dictionary<System.String, System.String>>)
-  fullName.vb: Supabase.Storage.StorageBucketApi.StorageBucketApi(System.String, Storage.ClientOptions, System.Nullable(Of Dictionary(Of System.String, System.String)))
+  fullName: Supabase.Storage.StorageBucketApi.StorageBucketApi(System.String, Supabase.Storage.ClientOptions, System.Nullable<Dictionary<System.String, System.String>>)
+  fullName.vb: Supabase.Storage.StorageBucketApi.StorageBucketApi(System.String, Supabase.Storage.ClientOptions, System.Nullable(Of Dictionary(Of System.String, System.String)))
   nameWithType: StorageBucketApi.StorageBucketApi(String, ClientOptions, Nullable<Dictionary<String, String>>)
   nameWithType.vb: StorageBucketApi.StorageBucketApi(String, ClientOptions, Nullable(Of Dictionary(Of String, String)))
 - uid: Supabase.Storage.StorageBucketApi.#ctor(System.String,System.Nullable{Dictionary{System.String,System.String}})
@@ -1145,13 +1139,13 @@ references:
   fullName.vb: Supabase.Storage.StorageFileApi.StorageFileApi(System.String, System.Nullable(Of Dictionary(Of System.String, System.String)), System.Nullable(Of System.String))
   nameWithType: StorageFileApi.StorageFileApi(String, Nullable<Dictionary<String, String>>, Nullable<String>)
   nameWithType.vb: StorageFileApi.StorageFileApi(String, Nullable(Of Dictionary(Of String, String)), Nullable(Of String))
-- uid: Supabase.Storage.StorageFileApi.#ctor(System.String,System.String,Storage.ClientOptions,System.Nullable{Dictionary{System.String,System.String}})
+- uid: Supabase.Storage.StorageFileApi.#ctor(System.String,System.String,Supabase.Storage.ClientOptions,System.Nullable{Dictionary{System.String,System.String}})
   name: StorageFileApi(String, String, ClientOptions, Nullable<Dictionary<String, String>>)
-  href: api/Supabase.Storage.StorageFileApi.html#Supabase_Storage_StorageFileApi__ctor_System_String_System_String_Storage_ClientOptions_System_Nullable_Dictionary_System_String_System_String___
-  commentId: M:Supabase.Storage.StorageFileApi.#ctor(System.String,System.String,Storage.ClientOptions,System.Nullable{Dictionary{System.String,System.String}})
+  href: api/Supabase.Storage.StorageFileApi.html#Supabase_Storage_StorageFileApi__ctor_System_String_System_String_Supabase_Storage_ClientOptions_System_Nullable_Dictionary_System_String_System_String___
+  commentId: M:Supabase.Storage.StorageFileApi.#ctor(System.String,System.String,Supabase.Storage.ClientOptions,System.Nullable{Dictionary{System.String,System.String}})
   name.vb: StorageFileApi(String, String, ClientOptions, Nullable(Of Dictionary(Of String, String)))
-  fullName: Supabase.Storage.StorageFileApi.StorageFileApi(System.String, System.String, Storage.ClientOptions, System.Nullable<Dictionary<System.String, System.String>>)
-  fullName.vb: Supabase.Storage.StorageFileApi.StorageFileApi(System.String, System.String, Storage.ClientOptions, System.Nullable(Of Dictionary(Of System.String, System.String)))
+  fullName: Supabase.Storage.StorageFileApi.StorageFileApi(System.String, System.String, Supabase.Storage.ClientOptions, System.Nullable<Dictionary<System.String, System.String>>)
+  fullName.vb: Supabase.Storage.StorageFileApi.StorageFileApi(System.String, System.String, Supabase.Storage.ClientOptions, System.Nullable(Of Dictionary(Of System.String, System.String)))
   nameWithType: StorageFileApi.StorageFileApi(String, String, ClientOptions, Nullable<Dictionary<String, String>>)
   nameWithType.vb: StorageFileApi.StorageFileApi(String, String, ClientOptions, Nullable(Of Dictionary(Of String, String)))
 - uid: Supabase.Storage.StorageFileApi.#ctor*

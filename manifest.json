@@ -5,23 +5,11 @@
   "files": [
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/Storage.ClientOptions.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Storage.ClientOptions.html",
-          "hash": "pX1gP9y8gVapW3CDhYobAg=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
       "source_relative_path": "api/Storage.Interfaces.IStorageBucketApi-1.yml",
       "output": {
         ".html": {
           "relative_path": "api/Storage.Interfaces.IStorageBucketApi-1.html",
-          "hash": "qiJ6IVkWq0jkyfjda9uRkQ=="
+          "hash": "3SuslrgBR0gAUvu7l+0egA=="
         }
       },
       "is_incremental": false,
@@ -33,7 +21,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Storage.Interfaces.IStorageClient-2.html",
-          "hash": "53bIPSa4AXQPhp8flVQL0g=="
+          "hash": "hhdT+o66PtbSbheIEhP44g=="
         }
       },
       "is_incremental": false,
@@ -45,7 +33,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Storage.Interfaces.IStorageFileApi-1.html",
-          "hash": "l3IwlDRXg5pRyvTB/GE/Ew=="
+          "hash": "dm5dEEiym1smhXr5IRnmWA=="
         }
       },
       "is_incremental": false,
@@ -65,23 +53,11 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/Storage.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Storage.html",
-          "hash": "zUqowNOCkyU8Fr0/ln0ncQ=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
       "source_relative_path": "api/Supabase.Storage.BadRequestException.yml",
       "output": {
         ".html": {
           "relative_path": "api/Supabase.Storage.BadRequestException.html",
-          "hash": "nWWiRHOiGkmUT6rduaDZRQ=="
+          "hash": "oXQxK7gtGUjBUkgLiNys4w=="
         }
       },
       "is_incremental": false,
@@ -93,7 +69,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Supabase.Storage.Bucket.html",
-          "hash": "keSm+jg/Uozs6oB9oo/weA=="
+          "hash": "EsLg4A+5gPinIflAlZJIcg=="
         }
       },
       "is_incremental": false,
@@ -105,7 +81,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Supabase.Storage.BucketUpsertOptions.html",
-          "hash": "UBNudT6WPP2MB/Skfpb+GA=="
+          "hash": "P41U2lBWLydVki/cgS3KHw=="
         }
       },
       "is_incremental": false,
@@ -117,7 +93,19 @@
       "output": {
         ".html": {
           "relative_path": "api/Supabase.Storage.Client.html",
-          "hash": "t64sXzT85If+Tw5Iltwn6A=="
+          "hash": "IsZy0FsbDYqjg9V9FeI5+w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Supabase.Storage.ClientOptions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Supabase.Storage.ClientOptions.html",
+          "hash": "STwwIkI8kKTu+4g9xtEXFA=="
         }
       },
       "is_incremental": false,
@@ -129,7 +117,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Supabase.Storage.CreateSignedUrlResponse.html",
-          "hash": "EkVUclfN3ssGfEdc9tIQ/A=="
+          "hash": "bj3wihqDE1us4oU+ATAktQ=="
         }
       },
       "is_incremental": false,
@@ -141,7 +129,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Supabase.Storage.CreateSignedUrlsResponse.html",
-          "hash": "GpgfvGAKSk0ohJBMuM6rgg=="
+          "hash": "BLdE3fJ5MV1UANOiD6rwIw=="
         }
       },
       "is_incremental": false,
@@ -153,7 +141,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Supabase.Storage.ErrorResponse.html",
-          "hash": "ykLP3vspRHQDWWPwnYcOVQ=="
+          "hash": "Jwwi0iBza0Agb2YeAUJ16Q=="
         }
       },
       "is_incremental": false,
@@ -165,7 +153,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Supabase.Storage.FileObject.html",
-          "hash": "f+pgT4IaiYJqFr2xho7kug=="
+          "hash": "QXM5XrqGTknJnVYt9qKGig=="
         }
       },
       "is_incremental": false,
@@ -177,7 +165,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Supabase.Storage.FileOptions.html",
-          "hash": "6309fAuPmbEBlab86U1HGA=="
+          "hash": "oUiBPHvVOuKhVvxOgzvchQ=="
         }
       },
       "is_incremental": false,
@@ -189,7 +177,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Supabase.Storage.GenericResponse.html",
-          "hash": "Oa2oSmq990L9/knrt0NCdw=="
+          "hash": "jd9IeZ3TYUq1vXWsWBJBIQ=="
         }
       },
       "is_incremental": false,
@@ -201,7 +189,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Supabase.Storage.SearchOptions.html",
-          "hash": "RzFeurME578aFMHkFKEqTA=="
+          "hash": "itFGU1VgnJ1sEEwe23woaQ=="
         }
       },
       "is_incremental": false,
@@ -213,7 +201,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Supabase.Storage.SortBy.html",
-          "hash": "cf4+MQBTAu4i48yKg/k3yw=="
+          "hash": "NqLddqdSzvIBV7O7kcWeuA=="
         }
       },
       "is_incremental": false,
@@ -225,7 +213,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Supabase.Storage.StorageBucketApi.html",
-          "hash": "zkhs9J2TUq9NH996DaiaUQ=="
+          "hash": "OJi26JUxOGQIE7BpYdOi8w=="
         }
       },
       "is_incremental": false,
@@ -237,7 +225,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Supabase.Storage.StorageFileApi.html",
-          "hash": "Np390hKyzbGKC92SF8NfSg=="
+          "hash": "3PVe+oBL7CoyQ+IJzDIczQ=="
         }
       },
       "is_incremental": false,
@@ -249,7 +237,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Supabase.Storage.html",
-          "hash": "bQjYzcn7AhZxo/Jm7SQg9Q=="
+          "hash": "8FY1K/PzmuCaBH3pMTpB/g=="
         }
       },
       "is_incremental": false,
@@ -261,7 +249,7 @@
       "output": {
         ".html": {
           "relative_path": "api/index.html",
-          "hash": "c8aB51Aap/3vPh8ki9Mexw=="
+          "hash": "6X97mAMYefcXCyFMQrkTPw=="
         }
       },
       "is_incremental": false,
@@ -273,7 +261,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "9+D+H0gMmBuEBq+TR2OCjw=="
+          "hash": "FnmfuQc23e18a8+ASGq28Q=="
         }
       },
       "is_incremental": false,
@@ -285,7 +273,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/intro.html",
-          "hash": "EMBJ2pk8TtDLbRxvKBBskg=="
+          "hash": "5wj147FdUTQeywA5TI42zw=="
         }
       },
       "is_incremental": false,
@@ -309,7 +297,7 @@
       "output": {
         ".html": {
           "relative_path": "index.html",
-          "hash": "4Ex98iWzdNXNNEHY5L+BIA=="
+          "hash": "ji0AOb1JaiQpoiX0uqsQ4g=="
         }
       },
       "is_incremental": false,
@@ -348,7 +336,7 @@
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
-          "total_file_count": 21,
+          "total_file_count": 20,
           "skipped_file_count": 0
         },
         "TocDocumentProcessor": {
