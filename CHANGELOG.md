@@ -1,5 +1,9 @@
 ﻿# Changelog
 
+## 1.2.8 - 03-14-2023
+
+- [Merge #5](https://github.com/supabase-community/storage-csharp/pull/5) Added search string as an optional search parameter. Thanks [@ElectroKnight22](https://github.com/ElectroKnight22)!
+
 ## 1.2.7 - 03-02-2023
 
 - Fix incorrect namespacing for Supabase.Storage.ClientOptions.
