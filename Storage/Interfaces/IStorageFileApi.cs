@@ -9,11 +9,12 @@ namespace Storage.Interfaces
 		where TFileObject : FileObject
 	{
 		ClientOptions Options { get; }
-		Task<string> CreateSignedUrl(string path, int expiresIn);
+		Task<string> CreateSignedUrl(string path, int expiresIn, TransformOptions? transformOptions = null);
 		Task<List<CreateSignedUrlsResponse>?> CreateSignedUrls(List<string> paths, int expiresIn);
 		Task<byte[]> Download(string supabasePath, EventHandler<float>? onProgress = null);
 		Task<string> Download(string supabasePath, string localPath, EventHandler<float>? onProgress = null);
-		string GetPublicUrl(string path);
+        Task<string> Download(string supabasePath, string localPath, TransformOptions? transformOptions = null, EventHandler<float>? onProgress = null);
+        string GetPublicUrl(string path, TransformOptions? transformOptions = null);
 		Task<List<TFileObject>?> List(string path = "", SearchOptions? options = null);
 		Task<bool> Move(string fromPath, string toPath);
 		Task<List<TFileObject>?> Remove(List<string> paths);

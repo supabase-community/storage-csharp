@@ -42,7 +42,7 @@ namespace StorageTests
 
             var asset = "supabase-csharp.png";
             var name = $"{Guid.NewGuid()}.png";
-            var basePath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase).Replace("file:", "");
+            var basePath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location).Replace("file:", "");
             var imagePath = Path.Combine(basePath, "Assets", asset);
 
             EventHandler<float> onProgress = (sender, args) =>
@@ -94,7 +94,7 @@ namespace StorageTests
 
             var asset = "supabase-csharp.png";
             var name = $"{Guid.NewGuid()}.png";
-            var basePath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase).Replace("file:", "");
+            var basePath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location).Replace("file:", "");
             var imagePath = Path.Combine(basePath, "Assets", asset);
 
             await bucket.Upload(imagePath, name);
