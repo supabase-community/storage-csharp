@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class BadRequestException
+    <title>Class UploadSignedUrl
    </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class BadRequestException
+    <meta name="title" content="Class UploadSignedUrl
    ">
     <meta name="generator" content="docfx 2.56.7.0">
     
@@ -68,41 +68,41 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="Supabase.Storage.BadRequestException">
+            <article class="content wrap" id="_content" data-uid="Supabase.Storage.UploadSignedUrl">
   
   
-  <h1 id="Supabase_Storage_BadRequestException" data-uid="Supabase.Storage.BadRequestException" class="text-break">Class BadRequestException
+  <h1 id="Supabase_Storage_UploadSignedUrl" data-uid="Supabase.Storage.UploadSignedUrl" class="text-break">Class UploadSignedUrl
   </h1>
-  <div class="markdown level0 summary"><p>If you see this error, it is likely due to permissions. Verify the supplied token has access to the requested resource.</p>
+  <div class="markdown level0 summary"><p>Represents a Generated Upload Signed Url - can be used to upload a file without needing a logged in token or user.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><span class="xref">System.Object</span></div>
-    <div class="level1"><span class="xref">BadRequestException</span></div>
+    <div class="level1"><span class="xref">UploadSignedUrl</span></div>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="Supabase.Storage.html">Supabase.Storage</a></h6>
   <h6><strong>Assembly</strong>: Storage.dll</h6>
-  <h5 id="Supabase_Storage_BadRequestException_syntax">Syntax</h5>
+  <h5 id="Supabase_Storage_UploadSignedUrl_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class BadRequestException : Exception</code></pre>
+    <pre><code class="lang-csharp hljs">public class UploadSignedUrl : object</code></pre>
   </div>
   <h3 id="constructors">Constructors
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/supabase-community/storage-csharp/new/master/apiSpec/new?filename=Supabase_Storage_BadRequestException__ctor_HttpResponseMessage_System_String_.md&amp;value=---%0Auid%3A%20Supabase.Storage.BadRequestException.%23ctor(HttpResponseMessage%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/supabase-community/storage-csharp/new/master/apiSpec/new?filename=Supabase_Storage_UploadSignedUrl__ctor_Uri_System_String_System_String_.md&amp;value=---%0Auid%3A%20Supabase.Storage.UploadSignedUrl.%23ctor(Uri%2CSystem.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/supabase-community/storage-csharp/blob/master/Storage/Helpers.cs/#L105">View Source</a>
+    <a href="https://github.com/supabase-community/storage-csharp/blob/master/Storage/UploadSignedUrl.cs/#L24">View Source</a>
   </span>
-  <a id="Supabase_Storage_BadRequestException__ctor_" data-uid="Supabase.Storage.BadRequestException.#ctor*"></a>
-  <h4 id="Supabase_Storage_BadRequestException__ctor_HttpResponseMessage_System_String_" data-uid="Supabase.Storage.BadRequestException.#ctor(HttpResponseMessage,System.String)">BadRequestException(HttpResponseMessage, String)</h4>
+  <a id="Supabase_Storage_UploadSignedUrl__ctor_" data-uid="Supabase.Storage.UploadSignedUrl.#ctor*"></a>
+  <h4 id="Supabase_Storage_UploadSignedUrl__ctor_Uri_System_String_System_String_" data-uid="Supabase.Storage.UploadSignedUrl.#ctor(Uri,System.String,System.String)">UploadSignedUrl(Uri, String, String)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public BadRequestException(HttpResponseMessage httpResponse, string content)</code></pre>
+    <pre><code class="lang-csharp hljs">public UploadSignedUrl(Uri signedUrl, string token, string key)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -115,13 +115,18 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">HttpResponseMessage</span></td>
-        <td><span class="parametername">httpResponse</span></td>
+        <td><span class="xref">Uri</span></td>
+        <td><span class="parametername">signedUrl</span></td>
         <td></td>
       </tr>
       <tr>
         <td><span class="xref">System.String</span></td>
-        <td><span class="parametername">content</span></td>
+        <td><span class="parametername">token</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">key</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -130,18 +135,19 @@
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/supabase-community/storage-csharp/new/master/apiSpec/new?filename=Supabase_Storage_BadRequestException_ErrorResponse.md&amp;value=---%0Auid%3A%20Supabase.Storage.BadRequestException.ErrorResponse%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/supabase-community/storage-csharp/new/master/apiSpec/new?filename=Supabase_Storage_UploadSignedUrl_Key.md&amp;value=---%0Auid%3A%20Supabase.Storage.UploadSignedUrl.Key%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/supabase-community/storage-csharp/blob/master/Storage/Helpers.cs/#L101">View Source</a>
+    <a href="https://github.com/supabase-community/storage-csharp/blob/master/Storage/UploadSignedUrl.cs/#L22">View Source</a>
   </span>
-  <a id="Supabase_Storage_BadRequestException_ErrorResponse_" data-uid="Supabase.Storage.BadRequestException.ErrorResponse*"></a>
-  <h4 id="Supabase_Storage_BadRequestException_ErrorResponse" data-uid="Supabase.Storage.BadRequestException.ErrorResponse">ErrorResponse</h4>
-  <div class="markdown level1 summary"></div>
+  <a id="Supabase_Storage_UploadSignedUrl_Key_" data-uid="Supabase.Storage.UploadSignedUrl.Key*"></a>
+  <h4 id="Supabase_Storage_UploadSignedUrl_Key" data-uid="Supabase.Storage.UploadSignedUrl.Key">Key</h4>
+  <div class="markdown level1 summary"><p>The Key that can be uploaded to (the supabase filename)</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ErrorResponse ErrorResponse { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public string Key { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -153,25 +159,26 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="Supabase.Storage.ErrorResponse.html">ErrorResponse</a></td>
+        <td><span class="xref">System.String</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/supabase-community/storage-csharp/new/master/apiSpec/new?filename=Supabase_Storage_BadRequestException_HttpResponse.md&amp;value=---%0Auid%3A%20Supabase.Storage.BadRequestException.HttpResponse%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/supabase-community/storage-csharp/new/master/apiSpec/new?filename=Supabase_Storage_UploadSignedUrl_SignedUrl.md&amp;value=---%0Auid%3A%20Supabase.Storage.UploadSignedUrl.SignedUrl%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/supabase-community/storage-csharp/blob/master/Storage/Helpers.cs/#L103">View Source</a>
+    <a href="https://github.com/supabase-community/storage-csharp/blob/master/Storage/UploadSignedUrl.cs/#L12">View Source</a>
   </span>
-  <a id="Supabase_Storage_BadRequestException_HttpResponse_" data-uid="Supabase.Storage.BadRequestException.HttpResponse*"></a>
-  <h4 id="Supabase_Storage_BadRequestException_HttpResponse" data-uid="Supabase.Storage.BadRequestException.HttpResponse">HttpResponse</h4>
-  <div class="markdown level1 summary"></div>
+  <a id="Supabase_Storage_UploadSignedUrl_SignedUrl_" data-uid="Supabase.Storage.UploadSignedUrl.SignedUrl*"></a>
+  <h4 id="Supabase_Storage_UploadSignedUrl_SignedUrl" data-uid="Supabase.Storage.UploadSignedUrl.SignedUrl">SignedUrl</h4>
+  <div class="markdown level1 summary"><p>The Full Signed Url</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public HttpResponseMessage HttpResponse { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public Uri SignedUrl { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -183,7 +190,38 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">HttpResponseMessage</span></td>
+        <td><span class="xref">Uri</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/supabase-community/storage-csharp/new/master/apiSpec/new?filename=Supabase_Storage_UploadSignedUrl_Token.md&amp;value=---%0Auid%3A%20Supabase.Storage.UploadSignedUrl.Token%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/supabase-community/storage-csharp/blob/master/Storage/UploadSignedUrl.cs/#L17">View Source</a>
+  </span>
+  <a id="Supabase_Storage_UploadSignedUrl_Token_" data-uid="Supabase.Storage.UploadSignedUrl.Token*"></a>
+  <h4 id="Supabase_Storage_UploadSignedUrl_Token" data-uid="Supabase.Storage.UploadSignedUrl.Token">Token</h4>
+  <div class="markdown level1 summary"><p>The generated token</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Token { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -196,10 +234,10 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/supabase-community/storage-csharp/new/master/apiSpec/new?filename=Supabase_Storage_BadRequestException.md&amp;value=---%0Auid%3A%20Supabase.Storage.BadRequestException%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/supabase-community/storage-csharp/new/master/apiSpec/new?filename=Supabase_Storage_UploadSignedUrl.md&amp;value=---%0Auid%3A%20Supabase.Storage.UploadSignedUrl%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/supabase-community/storage-csharp/blob/master/Storage/Helpers.cs/#L99" class="contribution-link">View Source</a>
+                    <a href="https://github.com/supabase-community/storage-csharp/blob/master/Storage/UploadSignedUrl.cs/#L7" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

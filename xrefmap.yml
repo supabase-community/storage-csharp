@@ -784,6 +784,23 @@ references:
   fullName.vb: Supabase.Storage.Interfaces.IStorageFileApi(Of TFileObject).CreateSignedUrls
   nameWithType: IStorageFileApi<TFileObject>.CreateSignedUrls
   nameWithType.vb: IStorageFileApi(Of TFileObject).CreateSignedUrls
+- uid: Supabase.Storage.Interfaces.IStorageFileApi`1.CreateUploadSignedUrl(System.String)
+  name: CreateUploadSignedUrl(String)
+  href: api/Supabase.Storage.Interfaces.IStorageFileApi-1.html#Supabase_Storage_Interfaces_IStorageFileApi_1_CreateUploadSignedUrl_System_String_
+  commentId: M:Supabase.Storage.Interfaces.IStorageFileApi`1.CreateUploadSignedUrl(System.String)
+  fullName: Supabase.Storage.Interfaces.IStorageFileApi<TFileObject>.CreateUploadSignedUrl(System.String)
+  fullName.vb: Supabase.Storage.Interfaces.IStorageFileApi(Of TFileObject).CreateUploadSignedUrl(System.String)
+  nameWithType: IStorageFileApi<TFileObject>.CreateUploadSignedUrl(String)
+  nameWithType.vb: IStorageFileApi(Of TFileObject).CreateUploadSignedUrl(String)
+- uid: Supabase.Storage.Interfaces.IStorageFileApi`1.CreateUploadSignedUrl*
+  name: CreateUploadSignedUrl
+  href: api/Supabase.Storage.Interfaces.IStorageFileApi-1.html#Supabase_Storage_Interfaces_IStorageFileApi_1_CreateUploadSignedUrl_
+  commentId: Overload:Supabase.Storage.Interfaces.IStorageFileApi`1.CreateUploadSignedUrl
+  isSpec: "True"
+  fullName: Supabase.Storage.Interfaces.IStorageFileApi<TFileObject>.CreateUploadSignedUrl
+  fullName.vb: Supabase.Storage.Interfaces.IStorageFileApi(Of TFileObject).CreateUploadSignedUrl
+  nameWithType: IStorageFileApi<TFileObject>.CreateUploadSignedUrl
+  nameWithType.vb: IStorageFileApi(Of TFileObject).CreateUploadSignedUrl
 - uid: Supabase.Storage.Interfaces.IStorageFileApi`1.Download(System.String,System.Nullable{EventHandler{System.Single}})
   name: Download(String, Nullable<EventHandler<Single>>)
   href: api/Supabase.Storage.Interfaces.IStorageFileApi-1.html#Supabase_Storage_Interfaces_IStorageFileApi_1_Download_System_String_System_Nullable_EventHandler_System_Single___
@@ -897,6 +914,14 @@ references:
   fullName.vb: Supabase.Storage.Interfaces.IStorageFileApi(Of TFileObject).Remove(List(Of System.String))
   nameWithType: IStorageFileApi<TFileObject>.Remove(List<String>)
   nameWithType.vb: IStorageFileApi(Of TFileObject).Remove(List(Of String))
+- uid: Supabase.Storage.Interfaces.IStorageFileApi`1.Remove(System.String)
+  name: Remove(String)
+  href: api/Supabase.Storage.Interfaces.IStorageFileApi-1.html#Supabase_Storage_Interfaces_IStorageFileApi_1_Remove_System_String_
+  commentId: M:Supabase.Storage.Interfaces.IStorageFileApi`1.Remove(System.String)
+  fullName: Supabase.Storage.Interfaces.IStorageFileApi<TFileObject>.Remove(System.String)
+  fullName.vb: Supabase.Storage.Interfaces.IStorageFileApi(Of TFileObject).Remove(System.String)
+  nameWithType: IStorageFileApi<TFileObject>.Remove(String)
+  nameWithType.vb: IStorageFileApi(Of TFileObject).Remove(String)
 - uid: Supabase.Storage.Interfaces.IStorageFileApi`1.Remove*
   name: Remove
   href: api/Supabase.Storage.Interfaces.IStorageFileApi-1.html#Supabase_Storage_Interfaces_IStorageFileApi_1_Remove_
@@ -960,6 +985,33 @@ references:
   fullName.vb: Supabase.Storage.Interfaces.IStorageFileApi(Of TFileObject).Upload
   nameWithType: IStorageFileApi<TFileObject>.Upload
   nameWithType.vb: IStorageFileApi(Of TFileObject).Upload
+- uid: Supabase.Storage.Interfaces.IStorageFileApi`1.UploadToSignedUrl(System.Byte[],Supabase.Storage.UploadSignedUrl,Supabase.Storage.FileOptions,System.Nullable{EventHandler{System.Single}},System.Boolean)
+  name: UploadToSignedUrl(Byte[], UploadSignedUrl, FileOptions, Nullable<EventHandler<Single>>, Boolean)
+  href: api/Supabase.Storage.Interfaces.IStorageFileApi-1.html#Supabase_Storage_Interfaces_IStorageFileApi_1_UploadToSignedUrl_System_Byte___Supabase_Storage_UploadSignedUrl_Supabase_Storage_FileOptions_System_Nullable_EventHandler_System_Single___System_Boolean_
+  commentId: M:Supabase.Storage.Interfaces.IStorageFileApi`1.UploadToSignedUrl(System.Byte[],Supabase.Storage.UploadSignedUrl,Supabase.Storage.FileOptions,System.Nullable{EventHandler{System.Single}},System.Boolean)
+  name.vb: UploadToSignedUrl(Byte(), UploadSignedUrl, FileOptions, Nullable(Of EventHandler(Of Single)), Boolean)
+  fullName: Supabase.Storage.Interfaces.IStorageFileApi<TFileObject>.UploadToSignedUrl(System.Byte[], Supabase.Storage.UploadSignedUrl, Supabase.Storage.FileOptions, System.Nullable<EventHandler<System.Single>>, System.Boolean)
+  fullName.vb: Supabase.Storage.Interfaces.IStorageFileApi(Of TFileObject).UploadToSignedUrl(System.Byte(), Supabase.Storage.UploadSignedUrl, Supabase.Storage.FileOptions, System.Nullable(Of EventHandler(Of System.Single)), System.Boolean)
+  nameWithType: IStorageFileApi<TFileObject>.UploadToSignedUrl(Byte[], UploadSignedUrl, FileOptions, Nullable<EventHandler<Single>>, Boolean)
+  nameWithType.vb: IStorageFileApi(Of TFileObject).UploadToSignedUrl(Byte(), UploadSignedUrl, FileOptions, Nullable(Of EventHandler(Of Single)), Boolean)
+- uid: Supabase.Storage.Interfaces.IStorageFileApi`1.UploadToSignedUrl(System.String,Supabase.Storage.UploadSignedUrl,Supabase.Storage.FileOptions,System.Nullable{EventHandler{System.Single}},System.Boolean)
+  name: UploadToSignedUrl(String, UploadSignedUrl, FileOptions, Nullable<EventHandler<Single>>, Boolean)
+  href: api/Supabase.Storage.Interfaces.IStorageFileApi-1.html#Supabase_Storage_Interfaces_IStorageFileApi_1_UploadToSignedUrl_System_String_Supabase_Storage_UploadSignedUrl_Supabase_Storage_FileOptions_System_Nullable_EventHandler_System_Single___System_Boolean_
+  commentId: M:Supabase.Storage.Interfaces.IStorageFileApi`1.UploadToSignedUrl(System.String,Supabase.Storage.UploadSignedUrl,Supabase.Storage.FileOptions,System.Nullable{EventHandler{System.Single}},System.Boolean)
+  name.vb: UploadToSignedUrl(String, UploadSignedUrl, FileOptions, Nullable(Of EventHandler(Of Single)), Boolean)
+  fullName: Supabase.Storage.Interfaces.IStorageFileApi<TFileObject>.UploadToSignedUrl(System.String, Supabase.Storage.UploadSignedUrl, Supabase.Storage.FileOptions, System.Nullable<EventHandler<System.Single>>, System.Boolean)
+  fullName.vb: Supabase.Storage.Interfaces.IStorageFileApi(Of TFileObject).UploadToSignedUrl(System.String, Supabase.Storage.UploadSignedUrl, Supabase.Storage.FileOptions, System.Nullable(Of EventHandler(Of System.Single)), System.Boolean)
+  nameWithType: IStorageFileApi<TFileObject>.UploadToSignedUrl(String, UploadSignedUrl, FileOptions, Nullable<EventHandler<Single>>, Boolean)
+  nameWithType.vb: IStorageFileApi(Of TFileObject).UploadToSignedUrl(String, UploadSignedUrl, FileOptions, Nullable(Of EventHandler(Of Single)), Boolean)
+- uid: Supabase.Storage.Interfaces.IStorageFileApi`1.UploadToSignedUrl*
+  name: UploadToSignedUrl
+  href: api/Supabase.Storage.Interfaces.IStorageFileApi-1.html#Supabase_Storage_Interfaces_IStorageFileApi_1_UploadToSignedUrl_
+  commentId: Overload:Supabase.Storage.Interfaces.IStorageFileApi`1.UploadToSignedUrl
+  isSpec: "True"
+  fullName: Supabase.Storage.Interfaces.IStorageFileApi<TFileObject>.UploadToSignedUrl
+  fullName.vb: Supabase.Storage.Interfaces.IStorageFileApi(Of TFileObject).UploadToSignedUrl
+  nameWithType: IStorageFileApi<TFileObject>.UploadToSignedUrl
+  nameWithType.vb: IStorageFileApi(Of TFileObject).UploadToSignedUrl
 - uid: Supabase.Storage.SearchOptions
   name: SearchOptions
   href: api/Supabase.Storage.SearchOptions.html
@@ -1296,6 +1348,19 @@ references:
   isSpec: "True"
   fullName: Supabase.Storage.StorageFileApi.CreateSignedUrls
   nameWithType: StorageFileApi.CreateSignedUrls
+- uid: Supabase.Storage.StorageFileApi.CreateUploadSignedUrl(System.String)
+  name: CreateUploadSignedUrl(String)
+  href: api/Supabase.Storage.StorageFileApi.html#Supabase_Storage_StorageFileApi_CreateUploadSignedUrl_System_String_
+  commentId: M:Supabase.Storage.StorageFileApi.CreateUploadSignedUrl(System.String)
+  fullName: Supabase.Storage.StorageFileApi.CreateUploadSignedUrl(System.String)
+  nameWithType: StorageFileApi.CreateUploadSignedUrl(String)
+- uid: Supabase.Storage.StorageFileApi.CreateUploadSignedUrl*
+  name: CreateUploadSignedUrl
+  href: api/Supabase.Storage.StorageFileApi.html#Supabase_Storage_StorageFileApi_CreateUploadSignedUrl_
+  commentId: Overload:Supabase.Storage.StorageFileApi.CreateUploadSignedUrl
+  isSpec: "True"
+  fullName: Supabase.Storage.StorageFileApi.CreateUploadSignedUrl
+  nameWithType: StorageFileApi.CreateUploadSignedUrl
 - uid: Supabase.Storage.StorageFileApi.Download(System.String,System.Nullable{EventHandler{System.Single}})
   name: Download(String, Nullable<EventHandler<Single>>)
   href: api/Supabase.Storage.StorageFileApi.html#Supabase_Storage_StorageFileApi_Download_System_String_System_Nullable_EventHandler_System_Single___
@@ -1404,6 +1469,12 @@ references:
   fullName.vb: Supabase.Storage.StorageFileApi.Remove(List(Of System.String))
   nameWithType: StorageFileApi.Remove(List<String>)
   nameWithType.vb: StorageFileApi.Remove(List(Of String))
+- uid: Supabase.Storage.StorageFileApi.Remove(System.String)
+  name: Remove(String)
+  href: api/Supabase.Storage.StorageFileApi.html#Supabase_Storage_StorageFileApi_Remove_System_String_
+  commentId: M:Supabase.Storage.StorageFileApi.Remove(System.String)
+  fullName: Supabase.Storage.StorageFileApi.Remove(System.String)
+  nameWithType: StorageFileApi.Remove(String)
 - uid: Supabase.Storage.StorageFileApi.Remove*
   name: Remove
   href: api/Supabase.Storage.StorageFileApi.html#Supabase_Storage_StorageFileApi_Remove_
@@ -1461,6 +1532,31 @@ references:
   isSpec: "True"
   fullName: Supabase.Storage.StorageFileApi.Upload
   nameWithType: StorageFileApi.Upload
+- uid: Supabase.Storage.StorageFileApi.UploadToSignedUrl(System.Byte[],Supabase.Storage.UploadSignedUrl,Supabase.Storage.FileOptions,System.Nullable{EventHandler{System.Single}},System.Boolean)
+  name: UploadToSignedUrl(Byte[], UploadSignedUrl, FileOptions, Nullable<EventHandler<Single>>, Boolean)
+  href: api/Supabase.Storage.StorageFileApi.html#Supabase_Storage_StorageFileApi_UploadToSignedUrl_System_Byte___Supabase_Storage_UploadSignedUrl_Supabase_Storage_FileOptions_System_Nullable_EventHandler_System_Single___System_Boolean_
+  commentId: M:Supabase.Storage.StorageFileApi.UploadToSignedUrl(System.Byte[],Supabase.Storage.UploadSignedUrl,Supabase.Storage.FileOptions,System.Nullable{EventHandler{System.Single}},System.Boolean)
+  name.vb: UploadToSignedUrl(Byte(), UploadSignedUrl, FileOptions, Nullable(Of EventHandler(Of Single)), Boolean)
+  fullName: Supabase.Storage.StorageFileApi.UploadToSignedUrl(System.Byte[], Supabase.Storage.UploadSignedUrl, Supabase.Storage.FileOptions, System.Nullable<EventHandler<System.Single>>, System.Boolean)
+  fullName.vb: Supabase.Storage.StorageFileApi.UploadToSignedUrl(System.Byte(), Supabase.Storage.UploadSignedUrl, Supabase.Storage.FileOptions, System.Nullable(Of EventHandler(Of System.Single)), System.Boolean)
+  nameWithType: StorageFileApi.UploadToSignedUrl(Byte[], UploadSignedUrl, FileOptions, Nullable<EventHandler<Single>>, Boolean)
+  nameWithType.vb: StorageFileApi.UploadToSignedUrl(Byte(), UploadSignedUrl, FileOptions, Nullable(Of EventHandler(Of Single)), Boolean)
+- uid: Supabase.Storage.StorageFileApi.UploadToSignedUrl(System.String,Supabase.Storage.UploadSignedUrl,Supabase.Storage.FileOptions,System.Nullable{EventHandler{System.Single}},System.Boolean)
+  name: UploadToSignedUrl(String, UploadSignedUrl, FileOptions, Nullable<EventHandler<Single>>, Boolean)
+  href: api/Supabase.Storage.StorageFileApi.html#Supabase_Storage_StorageFileApi_UploadToSignedUrl_System_String_Supabase_Storage_UploadSignedUrl_Supabase_Storage_FileOptions_System_Nullable_EventHandler_System_Single___System_Boolean_
+  commentId: M:Supabase.Storage.StorageFileApi.UploadToSignedUrl(System.String,Supabase.Storage.UploadSignedUrl,Supabase.Storage.FileOptions,System.Nullable{EventHandler{System.Single}},System.Boolean)
+  name.vb: UploadToSignedUrl(String, UploadSignedUrl, FileOptions, Nullable(Of EventHandler(Of Single)), Boolean)
+  fullName: Supabase.Storage.StorageFileApi.UploadToSignedUrl(System.String, Supabase.Storage.UploadSignedUrl, Supabase.Storage.FileOptions, System.Nullable<EventHandler<System.Single>>, System.Boolean)
+  fullName.vb: Supabase.Storage.StorageFileApi.UploadToSignedUrl(System.String, Supabase.Storage.UploadSignedUrl, Supabase.Storage.FileOptions, System.Nullable(Of EventHandler(Of System.Single)), System.Boolean)
+  nameWithType: StorageFileApi.UploadToSignedUrl(String, UploadSignedUrl, FileOptions, Nullable<EventHandler<Single>>, Boolean)
+  nameWithType.vb: StorageFileApi.UploadToSignedUrl(String, UploadSignedUrl, FileOptions, Nullable(Of EventHandler(Of Single)), Boolean)
+- uid: Supabase.Storage.StorageFileApi.UploadToSignedUrl*
+  name: UploadToSignedUrl
+  href: api/Supabase.Storage.StorageFileApi.html#Supabase_Storage_StorageFileApi_UploadToSignedUrl_
+  commentId: Overload:Supabase.Storage.StorageFileApi.UploadToSignedUrl
+  isSpec: "True"
+  fullName: Supabase.Storage.StorageFileApi.UploadToSignedUrl
+  nameWithType: StorageFileApi.UploadToSignedUrl
 - uid: Supabase.Storage.StorageFileApi.Url
   name: Url
   href: api/Supabase.Storage.StorageFileApi.html#Supabase_Storage_StorageFileApi_Url
@@ -1569,3 +1665,61 @@ references:
   isSpec: "True"
   fullName: Supabase.Storage.TransformOptions.Width
   nameWithType: TransformOptions.Width
+- uid: Supabase.Storage.UploadSignedUrl
+  name: UploadSignedUrl
+  href: api/Supabase.Storage.UploadSignedUrl.html
+  commentId: T:Supabase.Storage.UploadSignedUrl
+  fullName: Supabase.Storage.UploadSignedUrl
+  nameWithType: UploadSignedUrl
+- uid: Supabase.Storage.UploadSignedUrl.#ctor(Uri,System.String,System.String)
+  name: UploadSignedUrl(Uri, String, String)
+  href: api/Supabase.Storage.UploadSignedUrl.html#Supabase_Storage_UploadSignedUrl__ctor_Uri_System_String_System_String_
+  commentId: M:Supabase.Storage.UploadSignedUrl.#ctor(Uri,System.String,System.String)
+  fullName: Supabase.Storage.UploadSignedUrl.UploadSignedUrl(Uri, System.String, System.String)
+  nameWithType: UploadSignedUrl.UploadSignedUrl(Uri, String, String)
+- uid: Supabase.Storage.UploadSignedUrl.#ctor*
+  name: UploadSignedUrl
+  href: api/Supabase.Storage.UploadSignedUrl.html#Supabase_Storage_UploadSignedUrl__ctor_
+  commentId: Overload:Supabase.Storage.UploadSignedUrl.#ctor
+  isSpec: "True"
+  fullName: Supabase.Storage.UploadSignedUrl.UploadSignedUrl
+  nameWithType: UploadSignedUrl.UploadSignedUrl
+- uid: Supabase.Storage.UploadSignedUrl.Key
+  name: Key
+  href: api/Supabase.Storage.UploadSignedUrl.html#Supabase_Storage_UploadSignedUrl_Key
+  commentId: P:Supabase.Storage.UploadSignedUrl.Key
+  fullName: Supabase.Storage.UploadSignedUrl.Key
+  nameWithType: UploadSignedUrl.Key
+- uid: Supabase.Storage.UploadSignedUrl.Key*
+  name: Key
+  href: api/Supabase.Storage.UploadSignedUrl.html#Supabase_Storage_UploadSignedUrl_Key_
+  commentId: Overload:Supabase.Storage.UploadSignedUrl.Key
+  isSpec: "True"
+  fullName: Supabase.Storage.UploadSignedUrl.Key
+  nameWithType: UploadSignedUrl.Key
+- uid: Supabase.Storage.UploadSignedUrl.SignedUrl
+  name: SignedUrl
+  href: api/Supabase.Storage.UploadSignedUrl.html#Supabase_Storage_UploadSignedUrl_SignedUrl
+  commentId: P:Supabase.Storage.UploadSignedUrl.SignedUrl
+  fullName: Supabase.Storage.UploadSignedUrl.SignedUrl
+  nameWithType: UploadSignedUrl.SignedUrl
+- uid: Supabase.Storage.UploadSignedUrl.SignedUrl*
+  name: SignedUrl
+  href: api/Supabase.Storage.UploadSignedUrl.html#Supabase_Storage_UploadSignedUrl_SignedUrl_
+  commentId: Overload:Supabase.Storage.UploadSignedUrl.SignedUrl
+  isSpec: "True"
+  fullName: Supabase.Storage.UploadSignedUrl.SignedUrl
+  nameWithType: UploadSignedUrl.SignedUrl
+- uid: Supabase.Storage.UploadSignedUrl.Token
+  name: Token
+  href: api/Supabase.Storage.UploadSignedUrl.html#Supabase_Storage_UploadSignedUrl_Token
+  commentId: P:Supabase.Storage.UploadSignedUrl.Token
+  fullName: Supabase.Storage.UploadSignedUrl.Token
+  nameWithType: UploadSignedUrl.Token
+- uid: Supabase.Storage.UploadSignedUrl.Token*
+  name: Token
+  href: api/Supabase.Storage.UploadSignedUrl.html#Supabase_Storage_UploadSignedUrl_Token_
+  commentId: Overload:Supabase.Storage.UploadSignedUrl.Token
+  isSpec: "True"
+  fullName: Supabase.Storage.UploadSignedUrl.Token
+  nameWithType: UploadSignedUrl.Token
