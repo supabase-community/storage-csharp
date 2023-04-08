@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Specialized;
+using System.Web;
 
 namespace Supabase.Storage.Extensions
 {
@@ -12,7 +13,7 @@ namespace Supabase.Storage.Extensions
         /// <returns></returns>
         public static NameValueCollection ToQueryCollection(this TransformOptions transform)
         {
-            var query = new NameValueCollection();
+            var query = HttpUtility.ParseQueryString(string.Empty);
 
             if (transform.Width != null)
                 query.Add("width", transform.Width.ToString());

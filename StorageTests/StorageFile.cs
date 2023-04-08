@@ -50,7 +50,7 @@ namespace StorageTests
         [TestMethod("File: Upload File")]
         public async Task UploadFile()
         {
-            var tsc = new TaskCompletionSource<bool>();
+            var didTriggerProgress = new TaskCompletionSource<bool>();
 
             var asset = "supabase-csharp.png";
             var name = $"{Guid.NewGuid()}.png";
@@ -59,7 +59,7 @@ namespace StorageTests
 
             EventHandler<float> onProgress = (sender, args) =>
             {
-                tsc.TrySetResult(true);
+                didTriggerProgress.TrySetResult(true);
             };
 
             await bucket.Upload(imagePath, name, null, onProgress);
@@ -69,7 +69,7 @@ namespace StorageTests
             var existing = list.Find(item => item.Name == name);
             Assert.IsNotNull(existing);
 
-            var sentProgressEvent = await tsc.Task;
+            var sentProgressEvent = await didTriggerProgress.Task;
             Assert.IsTrue(sentProgressEvent);
 
             await bucket.Remove(new List<string> { name });
@@ -134,7 +134,7 @@ namespace StorageTests
 
             var data = new Byte[] { 0x0 };
             var name = $"{Guid.NewGuid()}.bin";
-            var basePath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase).Replace("file:", "");
+            var basePath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location).Replace("file:", "");
 
             await bucket.Upload(data, name);
 
