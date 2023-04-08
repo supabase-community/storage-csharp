@@ -5,6 +5,30 @@
   "files": [
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/Storage.Extensions.TransformOptionsExtension.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Storage.Extensions.TransformOptionsExtension.html",
+          "hash": "taUK2X7dWWhQDmJpevXzFw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Storage.Extensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Storage.Extensions.html",
+          "hash": "UIeYvFyt76OsooG0zwgdrg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/Storage.Interfaces.IStorageBucketApi-1.yml",
       "output": {
         ".html": {
@@ -33,7 +57,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Storage.Interfaces.IStorageFileApi-1.html",
-          "hash": "3dYKAYmTuqulrDxDBH5GqA=="
+          "hash": "EcF/aeni4VSfF7zNIWFuIw=="
         }
       },
       "is_incremental": false,
@@ -46,6 +70,42 @@
         ".html": {
           "relative_path": "api/Storage.Interfaces.html",
           "hash": "mS7zjOlorEeFrD7lxtZSnw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Storage.TransformOptions.ResizeType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Storage.TransformOptions.ResizeType.html",
+          "hash": "3iSXGM1MemE+FsS+zkAUIw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Storage.TransformOptions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Storage.TransformOptions.html",
+          "hash": "zHpi43dzkp6csLAaUK8XNw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Storage.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Storage.html",
+          "hash": "bD8Vooh1QkWZ53sRhHfmGA=="
         }
       },
       "is_incremental": false,
@@ -69,7 +129,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Supabase.Storage.Bucket.html",
-          "hash": "keSm+jg/Uozs6oB9oo/weA=="
+          "hash": "v/Ni9YtoHGE9K4aDo6Zv1Q=="
         }
       },
       "is_incremental": false,
@@ -81,7 +141,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Supabase.Storage.BucketUpsertOptions.html",
-          "hash": "UBNudT6WPP2MB/Skfpb+GA=="
+          "hash": "AZlzVdvJpBioQSFrj0Ptyw=="
         }
       },
       "is_incremental": false,
@@ -213,7 +273,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Supabase.Storage.StorageBucketApi.html",
-          "hash": "RAdUHg62N7nXiPt76TzpUw=="
+          "hash": "xSb772zTppjlPlE9gctlnA=="
         }
       },
       "is_incremental": false,
@@ -225,7 +285,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Supabase.Storage.StorageFileApi.html",
-          "hash": "BLYpVy9LOzpzPtXZGdDRmg=="
+          "hash": "WKC8xwb3k6BtNK1J2pHcHA=="
         }
       },
       "is_incremental": false,
@@ -261,7 +321,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "FnmfuQc23e18a8+ASGq28Q=="
+          "hash": "58PaVzCr//8N4y2V+DdqyA=="
         }
       },
       "is_incremental": false,
@@ -336,7 +396,7 @@
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
-          "total_file_count": 20,
+          "total_file_count": 25,
           "skipped_file_count": 0
         },
         "TocDocumentProcessor": {

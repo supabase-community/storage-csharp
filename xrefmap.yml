@@ -1,6 +1,37 @@
 ### YamlMime:XRefMap
 sorted: true
 references:
+- uid: Storage
+  name: Storage
+  href: api/Storage.html
+  commentId: N:Storage
+  fullName: Storage
+  nameWithType: Storage
+- uid: Storage.Extensions
+  name: Storage.Extensions
+  href: api/Storage.Extensions.html
+  commentId: N:Storage.Extensions
+  fullName: Storage.Extensions
+  nameWithType: Storage.Extensions
+- uid: Storage.Extensions.TransformOptionsExtension
+  name: TransformOptionsExtension
+  href: api/Storage.Extensions.TransformOptionsExtension.html
+  commentId: T:Storage.Extensions.TransformOptionsExtension
+  fullName: Storage.Extensions.TransformOptionsExtension
+  nameWithType: TransformOptionsExtension
+- uid: Storage.Extensions.TransformOptionsExtension.ToQueryCollection(Storage.TransformOptions)
+  name: ToQueryCollection(TransformOptions)
+  href: api/Storage.Extensions.TransformOptionsExtension.html#Storage_Extensions_TransformOptionsExtension_ToQueryCollection_Storage_TransformOptions_
+  commentId: M:Storage.Extensions.TransformOptionsExtension.ToQueryCollection(Storage.TransformOptions)
+  fullName: Storage.Extensions.TransformOptionsExtension.ToQueryCollection(Storage.TransformOptions)
+  nameWithType: TransformOptionsExtension.ToQueryCollection(TransformOptions)
+- uid: Storage.Extensions.TransformOptionsExtension.ToQueryCollection*
+  name: ToQueryCollection
+  href: api/Storage.Extensions.TransformOptionsExtension.html#Storage_Extensions_TransformOptionsExtension_ToQueryCollection_
+  commentId: Overload:Storage.Extensions.TransformOptionsExtension.ToQueryCollection
+  isSpec: "True"
+  fullName: Storage.Extensions.TransformOptionsExtension.ToQueryCollection
+  nameWithType: TransformOptionsExtension.ToQueryCollection
 - uid: Storage.Interfaces
   name: Storage.Interfaces
   href: api/Storage.Interfaces.html
@@ -187,14 +218,14 @@ references:
   fullName.vb: Storage.Interfaces.IStorageFileApi(Of TFileObject)
   nameWithType: IStorageFileApi<TFileObject>
   nameWithType.vb: IStorageFileApi(Of TFileObject)
-- uid: Storage.Interfaces.IStorageFileApi`1.CreateSignedUrl(System.String,System.Int32)
-  name: CreateSignedUrl(String, Int32)
-  href: api/Storage.Interfaces.IStorageFileApi-1.html#Storage_Interfaces_IStorageFileApi_1_CreateSignedUrl_System_String_System_Int32_
-  commentId: M:Storage.Interfaces.IStorageFileApi`1.CreateSignedUrl(System.String,System.Int32)
-  fullName: Storage.Interfaces.IStorageFileApi<TFileObject>.CreateSignedUrl(System.String, System.Int32)
-  fullName.vb: Storage.Interfaces.IStorageFileApi(Of TFileObject).CreateSignedUrl(System.String, System.Int32)
-  nameWithType: IStorageFileApi<TFileObject>.CreateSignedUrl(String, Int32)
-  nameWithType.vb: IStorageFileApi(Of TFileObject).CreateSignedUrl(String, Int32)
+- uid: Storage.Interfaces.IStorageFileApi`1.CreateSignedUrl(System.String,System.Int32,Storage.TransformOptions)
+  name: CreateSignedUrl(String, Int32, TransformOptions)
+  href: api/Storage.Interfaces.IStorageFileApi-1.html#Storage_Interfaces_IStorageFileApi_1_CreateSignedUrl_System_String_System_Int32_Storage_TransformOptions_
+  commentId: M:Storage.Interfaces.IStorageFileApi`1.CreateSignedUrl(System.String,System.Int32,Storage.TransformOptions)
+  fullName: Storage.Interfaces.IStorageFileApi<TFileObject>.CreateSignedUrl(System.String, System.Int32, Storage.TransformOptions)
+  fullName.vb: Storage.Interfaces.IStorageFileApi(Of TFileObject).CreateSignedUrl(System.String, System.Int32, Storage.TransformOptions)
+  nameWithType: IStorageFileApi<TFileObject>.CreateSignedUrl(String, Int32, TransformOptions)
+  nameWithType.vb: IStorageFileApi(Of TFileObject).CreateSignedUrl(String, Int32, TransformOptions)
 - uid: Storage.Interfaces.IStorageFileApi`1.CreateSignedUrl*
   name: CreateSignedUrl
   href: api/Storage.Interfaces.IStorageFileApi-1.html#Storage_Interfaces_IStorageFileApi_1_CreateSignedUrl_
@@ -231,6 +262,15 @@ references:
   fullName.vb: Storage.Interfaces.IStorageFileApi(Of TFileObject).Download(System.String, System.Nullable(Of EventHandler(Of System.Single)))
   nameWithType: IStorageFileApi<TFileObject>.Download(String, Nullable<EventHandler<Single>>)
   nameWithType.vb: IStorageFileApi(Of TFileObject).Download(String, Nullable(Of EventHandler(Of Single)))
+- uid: Storage.Interfaces.IStorageFileApi`1.Download(System.String,System.String,Storage.TransformOptions,System.Nullable{EventHandler{System.Single}})
+  name: Download(String, String, TransformOptions, Nullable<EventHandler<Single>>)
+  href: api/Storage.Interfaces.IStorageFileApi-1.html#Storage_Interfaces_IStorageFileApi_1_Download_System_String_System_String_Storage_TransformOptions_System_Nullable_EventHandler_System_Single___
+  commentId: M:Storage.Interfaces.IStorageFileApi`1.Download(System.String,System.String,Storage.TransformOptions,System.Nullable{EventHandler{System.Single}})
+  name.vb: Download(String, String, TransformOptions, Nullable(Of EventHandler(Of Single)))
+  fullName: Storage.Interfaces.IStorageFileApi<TFileObject>.Download(System.String, System.String, Storage.TransformOptions, System.Nullable<EventHandler<System.Single>>)
+  fullName.vb: Storage.Interfaces.IStorageFileApi(Of TFileObject).Download(System.String, System.String, Storage.TransformOptions, System.Nullable(Of EventHandler(Of System.Single)))
+  nameWithType: IStorageFileApi<TFileObject>.Download(String, String, TransformOptions, Nullable<EventHandler<Single>>)
+  nameWithType.vb: IStorageFileApi(Of TFileObject).Download(String, String, TransformOptions, Nullable(Of EventHandler(Of Single)))
 - uid: Storage.Interfaces.IStorageFileApi`1.Download(System.String,System.String,System.Nullable{EventHandler{System.Single}})
   name: Download(String, String, Nullable<EventHandler<Single>>)
   href: api/Storage.Interfaces.IStorageFileApi-1.html#Storage_Interfaces_IStorageFileApi_1_Download_System_String_System_String_System_Nullable_EventHandler_System_Single___
@@ -249,14 +289,14 @@ references:
   fullName.vb: Storage.Interfaces.IStorageFileApi(Of TFileObject).Download
   nameWithType: IStorageFileApi<TFileObject>.Download
   nameWithType.vb: IStorageFileApi(Of TFileObject).Download
-- uid: Storage.Interfaces.IStorageFileApi`1.GetPublicUrl(System.String)
-  name: GetPublicUrl(String)
-  href: api/Storage.Interfaces.IStorageFileApi-1.html#Storage_Interfaces_IStorageFileApi_1_GetPublicUrl_System_String_
-  commentId: M:Storage.Interfaces.IStorageFileApi`1.GetPublicUrl(System.String)
-  fullName: Storage.Interfaces.IStorageFileApi<TFileObject>.GetPublicUrl(System.String)
-  fullName.vb: Storage.Interfaces.IStorageFileApi(Of TFileObject).GetPublicUrl(System.String)
-  nameWithType: IStorageFileApi<TFileObject>.GetPublicUrl(String)
-  nameWithType.vb: IStorageFileApi(Of TFileObject).GetPublicUrl(String)
+- uid: Storage.Interfaces.IStorageFileApi`1.GetPublicUrl(System.String,Storage.TransformOptions)
+  name: GetPublicUrl(String, TransformOptions)
+  href: api/Storage.Interfaces.IStorageFileApi-1.html#Storage_Interfaces_IStorageFileApi_1_GetPublicUrl_System_String_Storage_TransformOptions_
+  commentId: M:Storage.Interfaces.IStorageFileApi`1.GetPublicUrl(System.String,Storage.TransformOptions)
+  fullName: Storage.Interfaces.IStorageFileApi<TFileObject>.GetPublicUrl(System.String, Storage.TransformOptions)
+  fullName.vb: Storage.Interfaces.IStorageFileApi(Of TFileObject).GetPublicUrl(System.String, Storage.TransformOptions)
+  nameWithType: IStorageFileApi<TFileObject>.GetPublicUrl(String, TransformOptions)
+  nameWithType.vb: IStorageFileApi(Of TFileObject).GetPublicUrl(String, TransformOptions)
 - uid: Storage.Interfaces.IStorageFileApi`1.GetPublicUrl*
   name: GetPublicUrl
   href: api/Storage.Interfaces.IStorageFileApi-1.html#Storage_Interfaces_IStorageFileApi_1_GetPublicUrl_
@@ -389,6 +429,101 @@ references:
   fullName.vb: Storage.Interfaces.IStorageFileApi(Of TFileObject).Upload
   nameWithType: IStorageFileApi<TFileObject>.Upload
   nameWithType.vb: IStorageFileApi(Of TFileObject).Upload
+- uid: Storage.TransformOptions
+  name: TransformOptions
+  href: api/Storage.TransformOptions.html
+  commentId: T:Storage.TransformOptions
+  fullName: Storage.TransformOptions
+  nameWithType: TransformOptions
+- uid: Storage.TransformOptions.Format
+  name: Format
+  href: api/Storage.TransformOptions.html#Storage_TransformOptions_Format
+  commentId: P:Storage.TransformOptions.Format
+  fullName: Storage.TransformOptions.Format
+  nameWithType: TransformOptions.Format
+- uid: Storage.TransformOptions.Format*
+  name: Format
+  href: api/Storage.TransformOptions.html#Storage_TransformOptions_Format_
+  commentId: Overload:Storage.TransformOptions.Format
+  isSpec: "True"
+  fullName: Storage.TransformOptions.Format
+  nameWithType: TransformOptions.Format
+- uid: Storage.TransformOptions.Height
+  name: Height
+  href: api/Storage.TransformOptions.html#Storage_TransformOptions_Height
+  commentId: P:Storage.TransformOptions.Height
+  fullName: Storage.TransformOptions.Height
+  nameWithType: TransformOptions.Height
+- uid: Storage.TransformOptions.Height*
+  name: Height
+  href: api/Storage.TransformOptions.html#Storage_TransformOptions_Height_
+  commentId: Overload:Storage.TransformOptions.Height
+  isSpec: "True"
+  fullName: Storage.TransformOptions.Height
+  nameWithType: TransformOptions.Height
+- uid: Storage.TransformOptions.Quality
+  name: Quality
+  href: api/Storage.TransformOptions.html#Storage_TransformOptions_Quality
+  commentId: P:Storage.TransformOptions.Quality
+  fullName: Storage.TransformOptions.Quality
+  nameWithType: TransformOptions.Quality
+- uid: Storage.TransformOptions.Quality*
+  name: Quality
+  href: api/Storage.TransformOptions.html#Storage_TransformOptions_Quality_
+  commentId: Overload:Storage.TransformOptions.Quality
+  isSpec: "True"
+  fullName: Storage.TransformOptions.Quality
+  nameWithType: TransformOptions.Quality
+- uid: Storage.TransformOptions.Resize
+  name: Resize
+  href: api/Storage.TransformOptions.html#Storage_TransformOptions_Resize
+  commentId: P:Storage.TransformOptions.Resize
+  fullName: Storage.TransformOptions.Resize
+  nameWithType: TransformOptions.Resize
+- uid: Storage.TransformOptions.Resize*
+  name: Resize
+  href: api/Storage.TransformOptions.html#Storage_TransformOptions_Resize_
+  commentId: Overload:Storage.TransformOptions.Resize
+  isSpec: "True"
+  fullName: Storage.TransformOptions.Resize
+  nameWithType: TransformOptions.Resize
+- uid: Storage.TransformOptions.ResizeType
+  name: TransformOptions.ResizeType
+  href: api/Storage.TransformOptions.ResizeType.html
+  commentId: T:Storage.TransformOptions.ResizeType
+  fullName: Storage.TransformOptions.ResizeType
+  nameWithType: TransformOptions.ResizeType
+- uid: Storage.TransformOptions.ResizeType.Contain
+  name: Contain
+  href: api/Storage.TransformOptions.ResizeType.html#Storage_TransformOptions_ResizeType_Contain
+  commentId: F:Storage.TransformOptions.ResizeType.Contain
+  fullName: Storage.TransformOptions.ResizeType.Contain
+  nameWithType: TransformOptions.ResizeType.Contain
+- uid: Storage.TransformOptions.ResizeType.Cover
+  name: Cover
+  href: api/Storage.TransformOptions.ResizeType.html#Storage_TransformOptions_ResizeType_Cover
+  commentId: F:Storage.TransformOptions.ResizeType.Cover
+  fullName: Storage.TransformOptions.ResizeType.Cover
+  nameWithType: TransformOptions.ResizeType.Cover
+- uid: Storage.TransformOptions.ResizeType.Fill
+  name: Fill
+  href: api/Storage.TransformOptions.ResizeType.html#Storage_TransformOptions_ResizeType_Fill
+  commentId: F:Storage.TransformOptions.ResizeType.Fill
+  fullName: Storage.TransformOptions.ResizeType.Fill
+  nameWithType: TransformOptions.ResizeType.Fill
+- uid: Storage.TransformOptions.Width
+  name: Width
+  href: api/Storage.TransformOptions.html#Storage_TransformOptions_Width
+  commentId: P:Storage.TransformOptions.Width
+  fullName: Storage.TransformOptions.Width
+  nameWithType: TransformOptions.Width
+- uid: Storage.TransformOptions.Width*
+  name: Width
+  href: api/Storage.TransformOptions.html#Storage_TransformOptions_Width_
+  commentId: Overload:Storage.TransformOptions.Width
+  isSpec: "True"
+  fullName: Storage.TransformOptions.Width
+  nameWithType: TransformOptions.Width
 - uid: Supabase.Storage
   name: Supabase.Storage
   href: api/Supabase.Storage.html
@@ -446,6 +581,19 @@ references:
   commentId: T:Supabase.Storage.Bucket
   fullName: Supabase.Storage.Bucket
   nameWithType: Bucket
+- uid: Supabase.Storage.Bucket.AllowedMimes
+  name: AllowedMimes
+  href: api/Supabase.Storage.Bucket.html#Supabase_Storage_Bucket_AllowedMimes
+  commentId: P:Supabase.Storage.Bucket.AllowedMimes
+  fullName: Supabase.Storage.Bucket.AllowedMimes
+  nameWithType: Bucket.AllowedMimes
+- uid: Supabase.Storage.Bucket.AllowedMimes*
+  name: AllowedMimes
+  href: api/Supabase.Storage.Bucket.html#Supabase_Storage_Bucket_AllowedMimes_
+  commentId: Overload:Supabase.Storage.Bucket.AllowedMimes
+  isSpec: "True"
+  fullName: Supabase.Storage.Bucket.AllowedMimes
+  nameWithType: Bucket.AllowedMimes
 - uid: Supabase.Storage.Bucket.CreatedAt
   name: CreatedAt
   href: api/Supabase.Storage.Bucket.html#Supabase_Storage_Bucket_CreatedAt
@@ -459,6 +607,19 @@ references:
   isSpec: "True"
   fullName: Supabase.Storage.Bucket.CreatedAt
   nameWithType: Bucket.CreatedAt
+- uid: Supabase.Storage.Bucket.FileSizeLimit
+  name: FileSizeLimit
+  href: api/Supabase.Storage.Bucket.html#Supabase_Storage_Bucket_FileSizeLimit
+  commentId: P:Supabase.Storage.Bucket.FileSizeLimit
+  fullName: Supabase.Storage.Bucket.FileSizeLimit
+  nameWithType: Bucket.FileSizeLimit
+- uid: Supabase.Storage.Bucket.FileSizeLimit*
+  name: FileSizeLimit
+  href: api/Supabase.Storage.Bucket.html#Supabase_Storage_Bucket_FileSizeLimit_
+  commentId: Overload:Supabase.Storage.Bucket.FileSizeLimit
+  isSpec: "True"
+  fullName: Supabase.Storage.Bucket.FileSizeLimit
+  nameWithType: Bucket.FileSizeLimit
 - uid: Supabase.Storage.Bucket.Id
   name: Id
   href: api/Supabase.Storage.Bucket.html#Supabase_Storage_Bucket_Id
@@ -530,6 +691,32 @@ references:
   commentId: T:Supabase.Storage.BucketUpsertOptions
   fullName: Supabase.Storage.BucketUpsertOptions
   nameWithType: BucketUpsertOptions
+- uid: Supabase.Storage.BucketUpsertOptions.AllowedMimes
+  name: AllowedMimes
+  href: api/Supabase.Storage.BucketUpsertOptions.html#Supabase_Storage_BucketUpsertOptions_AllowedMimes
+  commentId: P:Supabase.Storage.BucketUpsertOptions.AllowedMimes
+  fullName: Supabase.Storage.BucketUpsertOptions.AllowedMimes
+  nameWithType: BucketUpsertOptions.AllowedMimes
+- uid: Supabase.Storage.BucketUpsertOptions.AllowedMimes*
+  name: AllowedMimes
+  href: api/Supabase.Storage.BucketUpsertOptions.html#Supabase_Storage_BucketUpsertOptions_AllowedMimes_
+  commentId: Overload:Supabase.Storage.BucketUpsertOptions.AllowedMimes
+  isSpec: "True"
+  fullName: Supabase.Storage.BucketUpsertOptions.AllowedMimes
+  nameWithType: BucketUpsertOptions.AllowedMimes
+- uid: Supabase.Storage.BucketUpsertOptions.FileSizeLimit
+  name: FileSizeLimit
+  href: api/Supabase.Storage.BucketUpsertOptions.html#Supabase_Storage_BucketUpsertOptions_FileSizeLimit
+  commentId: P:Supabase.Storage.BucketUpsertOptions.FileSizeLimit
+  fullName: Supabase.Storage.BucketUpsertOptions.FileSizeLimit
+  nameWithType: BucketUpsertOptions.FileSizeLimit
+- uid: Supabase.Storage.BucketUpsertOptions.FileSizeLimit*
+  name: FileSizeLimit
+  href: api/Supabase.Storage.BucketUpsertOptions.html#Supabase_Storage_BucketUpsertOptions_FileSizeLimit_
+  commentId: Overload:Supabase.Storage.BucketUpsertOptions.FileSizeLimit
+  isSpec: "True"
+  fullName: Supabase.Storage.BucketUpsertOptions.FileSizeLimit
+  nameWithType: BucketUpsertOptions.FileSizeLimit
 - uid: Supabase.Storage.BucketUpsertOptions.Public
   name: Public
   href: api/Supabase.Storage.BucketUpsertOptions.html#Supabase_Storage_BucketUpsertOptions_Public
@@ -1181,12 +1368,12 @@ references:
   isSpec: "True"
   fullName: Supabase.Storage.StorageFileApi.BucketId
   nameWithType: StorageFileApi.BucketId
-- uid: Supabase.Storage.StorageFileApi.CreateSignedUrl(System.String,System.Int32)
-  name: CreateSignedUrl(String, Int32)
-  href: api/Supabase.Storage.StorageFileApi.html#Supabase_Storage_StorageFileApi_CreateSignedUrl_System_String_System_Int32_
-  commentId: M:Supabase.Storage.StorageFileApi.CreateSignedUrl(System.String,System.Int32)
-  fullName: Supabase.Storage.StorageFileApi.CreateSignedUrl(System.String, System.Int32)
-  nameWithType: StorageFileApi.CreateSignedUrl(String, Int32)
+- uid: Supabase.Storage.StorageFileApi.CreateSignedUrl(System.String,System.Int32,Storage.TransformOptions)
+  name: CreateSignedUrl(String, Int32, TransformOptions)
+  href: api/Supabase.Storage.StorageFileApi.html#Supabase_Storage_StorageFileApi_CreateSignedUrl_System_String_System_Int32_Storage_TransformOptions_
+  commentId: M:Supabase.Storage.StorageFileApi.CreateSignedUrl(System.String,System.Int32,Storage.TransformOptions)
+  fullName: Supabase.Storage.StorageFileApi.CreateSignedUrl(System.String, System.Int32, Storage.TransformOptions)
+  nameWithType: StorageFileApi.CreateSignedUrl(String, Int32, TransformOptions)
 - uid: Supabase.Storage.StorageFileApi.CreateSignedUrl*
   name: CreateSignedUrl
   href: api/Supabase.Storage.StorageFileApi.html#Supabase_Storage_StorageFileApi_CreateSignedUrl_
@@ -1219,6 +1406,15 @@ references:
   fullName.vb: Supabase.Storage.StorageFileApi.Download(System.String, System.Nullable(Of EventHandler(Of System.Single)))
   nameWithType: StorageFileApi.Download(String, Nullable<EventHandler<Single>>)
   nameWithType.vb: StorageFileApi.Download(String, Nullable(Of EventHandler(Of Single)))
+- uid: Supabase.Storage.StorageFileApi.Download(System.String,System.String,Storage.TransformOptions,System.Nullable{EventHandler{System.Single}})
+  name: Download(String, String, TransformOptions, Nullable<EventHandler<Single>>)
+  href: api/Supabase.Storage.StorageFileApi.html#Supabase_Storage_StorageFileApi_Download_System_String_System_String_Storage_TransformOptions_System_Nullable_EventHandler_System_Single___
+  commentId: M:Supabase.Storage.StorageFileApi.Download(System.String,System.String,Storage.TransformOptions,System.Nullable{EventHandler{System.Single}})
+  name.vb: Download(String, String, TransformOptions, Nullable(Of EventHandler(Of Single)))
+  fullName: Supabase.Storage.StorageFileApi.Download(System.String, System.String, Storage.TransformOptions, System.Nullable<EventHandler<System.Single>>)
+  fullName.vb: Supabase.Storage.StorageFileApi.Download(System.String, System.String, Storage.TransformOptions, System.Nullable(Of EventHandler(Of System.Single)))
+  nameWithType: StorageFileApi.Download(String, String, TransformOptions, Nullable<EventHandler<Single>>)
+  nameWithType.vb: StorageFileApi.Download(String, String, TransformOptions, Nullable(Of EventHandler(Of Single)))
 - uid: Supabase.Storage.StorageFileApi.Download(System.String,System.String,System.Nullable{EventHandler{System.Single}})
   name: Download(String, String, Nullable<EventHandler<Single>>)
   href: api/Supabase.Storage.StorageFileApi.html#Supabase_Storage_StorageFileApi_Download_System_String_System_String_System_Nullable_EventHandler_System_Single___
@@ -1235,12 +1431,12 @@ references:
   isSpec: "True"
   fullName: Supabase.Storage.StorageFileApi.Download
   nameWithType: StorageFileApi.Download
-- uid: Supabase.Storage.StorageFileApi.GetPublicUrl(System.String)
-  name: GetPublicUrl(String)
-  href: api/Supabase.Storage.StorageFileApi.html#Supabase_Storage_StorageFileApi_GetPublicUrl_System_String_
-  commentId: M:Supabase.Storage.StorageFileApi.GetPublicUrl(System.String)
-  fullName: Supabase.Storage.StorageFileApi.GetPublicUrl(System.String)
-  nameWithType: StorageFileApi.GetPublicUrl(String)
+- uid: Supabase.Storage.StorageFileApi.GetPublicUrl(System.String,Storage.TransformOptions)
+  name: GetPublicUrl(String, TransformOptions)
+  href: api/Supabase.Storage.StorageFileApi.html#Supabase_Storage_StorageFileApi_GetPublicUrl_System_String_Storage_TransformOptions_
+  commentId: M:Supabase.Storage.StorageFileApi.GetPublicUrl(System.String,Storage.TransformOptions)
+  fullName: Supabase.Storage.StorageFileApi.GetPublicUrl(System.String, Storage.TransformOptions)
+  nameWithType: StorageFileApi.GetPublicUrl(String, TransformOptions)
 - uid: Supabase.Storage.StorageFileApi.GetPublicUrl*
   name: GetPublicUrl
   href: api/Supabase.Storage.StorageFileApi.html#Supabase_Storage_StorageFileApi_GetPublicUrl_
