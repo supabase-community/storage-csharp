@@ -5,114 +5,6 @@
   "files": [
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/Storage.Extensions.TransformOptionsExtension.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Storage.Extensions.TransformOptionsExtension.html",
-          "hash": "taUK2X7dWWhQDmJpevXzFw=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/Storage.Extensions.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Storage.Extensions.html",
-          "hash": "UIeYvFyt76OsooG0zwgdrg=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/Storage.Interfaces.IStorageBucketApi-1.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Storage.Interfaces.IStorageBucketApi-1.html",
-          "hash": "r4qkaV651pmVEWfkdRkV1w=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/Storage.Interfaces.IStorageClient-2.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Storage.Interfaces.IStorageClient-2.html",
-          "hash": "53bIPSa4AXQPhp8flVQL0g=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/Storage.Interfaces.IStorageFileApi-1.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Storage.Interfaces.IStorageFileApi-1.html",
-          "hash": "EcF/aeni4VSfF7zNIWFuIw=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/Storage.Interfaces.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Storage.Interfaces.html",
-          "hash": "mS7zjOlorEeFrD7lxtZSnw=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/Storage.TransformOptions.ResizeType.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Storage.TransformOptions.ResizeType.html",
-          "hash": "3iSXGM1MemE+FsS+zkAUIw=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/Storage.TransformOptions.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Storage.TransformOptions.html",
-          "hash": "zHpi43dzkp6csLAaUK8XNw=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/Storage.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Storage.html",
-          "hash": "bD8Vooh1QkWZ53sRhHfmGA=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
       "source_relative_path": "api/Supabase.Storage.BadRequestException.yml",
       "output": {
         ".html": {
@@ -153,7 +45,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Supabase.Storage.Client.html",
-          "hash": "frV0AXYIHUeY8msAOiL3lw=="
+          "hash": "U0vl3l+Yh3d1Enj1UXErMA=="
         }
       },
       "is_incremental": false,
@@ -209,6 +101,30 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/Supabase.Storage.Extensions.TransformOptionsExtension.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Supabase.Storage.Extensions.TransformOptionsExtension.html",
+          "hash": "7Z7f36Jc3GoAh14zmtQqCg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Supabase.Storage.Extensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Supabase.Storage.Extensions.html",
+          "hash": "scavdl+JQ1w5vn/ipzeT5g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/Supabase.Storage.FileObject.yml",
       "output": {
         ".html": {
@@ -245,6 +161,54 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/Supabase.Storage.Interfaces.IStorageBucketApi-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Supabase.Storage.Interfaces.IStorageBucketApi-1.html",
+          "hash": "jtdjc9lNitcjyWfxHv8ySA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Supabase.Storage.Interfaces.IStorageClient-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Supabase.Storage.Interfaces.IStorageClient-2.html",
+          "hash": "Se4NZ3L9F2V+rvAoZ81knw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Supabase.Storage.Interfaces.IStorageFileApi-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Supabase.Storage.Interfaces.IStorageFileApi-1.html",
+          "hash": "jY+OZsQ5mGRYMq+DPkfZDQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Supabase.Storage.Interfaces.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Supabase.Storage.Interfaces.html",
+          "hash": "UlR6bjQrq3OArayCRAKSpQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/Supabase.Storage.SearchOptions.yml",
       "output": {
         ".html": {
@@ -273,7 +237,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Supabase.Storage.StorageBucketApi.html",
-          "hash": "xSb772zTppjlPlE9gctlnA=="
+          "hash": "2uptrcaxy5a8XPye4PZUkA=="
         }
       },
       "is_incremental": false,
@@ -285,7 +249,31 @@
       "output": {
         ".html": {
           "relative_path": "api/Supabase.Storage.StorageFileApi.html",
-          "hash": "WKC8xwb3k6BtNK1J2pHcHA=="
+          "hash": "jOozTpg0rX3DFdnk1nIcBw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Supabase.Storage.TransformOptions.ResizeType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Supabase.Storage.TransformOptions.ResizeType.html",
+          "hash": "XDMuQGVqYKpVdnVgnL9nLg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Supabase.Storage.TransformOptions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Supabase.Storage.TransformOptions.html",
+          "hash": "zlWRqzUwjql040QQZ5RyAA=="
         }
       },
       "is_incremental": false,
@@ -297,7 +285,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Supabase.Storage.html",
-          "hash": "8FY1K/PzmuCaBH3pMTpB/g=="
+          "hash": "VCVw6bSgnOpKTEYB87Yhfg=="
         }
       },
       "is_incremental": false,
@@ -321,7 +309,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "58PaVzCr//8N4y2V+DdqyA=="
+          "hash": "BI0Yl09D1T7y63tirS9Uiw=="
         }
       },
       "is_incremental": false,
@@ -396,7 +384,7 @@
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
-          "total_file_count": 25,
+          "total_file_count": 24,
           "skipped_file_count": 0
         },
         "TocDocumentProcessor": {
