@@ -35,5 +35,9 @@
 	</ItemGroup>
 	<ItemGroup>
 		<None Remove="MimeMapping" />
+		<None Remove="Responses\" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="Responses\" />
 	</ItemGroup>
 </Project>

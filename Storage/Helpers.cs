@@ -93,6 +93,9 @@ namespace Supabase.Storage
 		}
 	}
 
+	/// <summary>
+	/// If you see this error, it is likely due to permissions. Verify the supplied token has access to the requested resource.
+	/// </summary>
 	public class BadRequestException : Exception
 	{
 		public ErrorResponse? ErrorResponse { get; private set; }

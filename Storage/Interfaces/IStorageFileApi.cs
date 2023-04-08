@@ -17,10 +17,14 @@ namespace Supabase.Storage.Interfaces
         string GetPublicUrl(string path, TransformOptions? transformOptions = null);
 		Task<List<TFileObject>?> List(string path = "", SearchOptions? options = null);
 		Task<bool> Move(string fromPath, string toPath);
+        Task<TFileObject?> Remove(string path);
 		Task<List<TFileObject>?> Remove(List<string> paths);
-		Task<string> Update(byte[] data, string supabasePath, FileOptions? options = null, EventHandler<float>? onProgress = null);
+        Task<string> Update(byte[] data, string supabasePath, FileOptions? options = null, EventHandler<float>? onProgress = null);
 		Task<string> Update(string localFilePath, string supabasePath, FileOptions? options = null, EventHandler<float>? onProgress = null);
 		Task<string> Upload(byte[] data, string supabasePath, FileOptions? options = null, EventHandler<float>? onProgress = null, bool inferContentType = true);
 		Task<string> Upload(string localFilePath, string supabasePath, FileOptions? options = null, EventHandler<float>? onProgress = null, bool inferContentType = true);
+        Task<string> UploadToSignedUrl(byte[] data, UploadSignedUrl url, FileOptions? options = null, EventHandler<float>? onProgress = null, bool inferContentType = true);
+        Task<string> UploadToSignedUrl(string localFilePath, UploadSignedUrl url, FileOptions? options = null, EventHandler<float>? onProgress = null, bool inferContentType = true);
+		Task<UploadSignedUrl> CreateUploadSignedUrl(string supabasePath);
 	}
 }

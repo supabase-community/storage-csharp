@@ -15,6 +15,12 @@ namespace StorageTests
                 { "Authorization", $"Bearer {key}" },
             });
         }
+
+        public static Supabase.Storage.Client GetUnauthenticatedClient()
+        {
+            var url = Environment.GetEnvironmentVariable("SUPABASE_URL");
+            return new Supabase.Storage.Client(string.Format("{0}/storage/v1", url));
+        }
     }
 }
 

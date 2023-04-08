@@ -207,5 +207,13 @@ namespace StorageTests
 
             await bucket.Remove(new List<string> { name1 });
         }
+
+        [TestMethod("File: Can Create Signed Upload Url")]
+        public async Task CanCreateSignedUploadUrl()
+        {
+            var result = await bucket.CreateUploadSignedUrl("test.png");
+            Assert.IsTrue(Uri.IsWellFormedUriString(result.SignedUrl.ToString(), UriKind.Absolute));
+        }
+
     }
 }
