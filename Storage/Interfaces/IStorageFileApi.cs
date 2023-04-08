@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Storage.Interfaces
+namespace Supabase.Storage.Interfaces
 {
 	public interface IStorageFileApi<TFileObject>
 		where TFileObject : FileObject

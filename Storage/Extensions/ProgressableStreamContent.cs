@@ -1,5 +1,4 @@
-﻿using Storage.Interfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Diagnostics.Contracts;
@@ -8,6 +7,7 @@ using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using Supabase.Storage.Interfaces;
 
 namespace Supabase.Storage.Extensions
 {

@@ -9,9 +9,7 @@ namespace StorageTests
     [TestClass]
     public class StorageBucket
     {
-        private static string SERVICE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoic2VydmljZV9yb2xlIiwiaWF0IjoxNjEzNTMxOTg1LCJleHAiOjE5MjkxMDc5ODV9.th84OKK0Iz8QchDyXZRrojmKSEZ-OuitQm_5DvLiSIc";
-
-        Supabase.Storage.Client storage => new Supabase.Storage.Client("http://localhost:5000", new Dictionary<string, string> { { "Authorization", $"Bearer {SERVICE_KEY}" } });
+        Supabase.Storage.Client storage => Helpers.GetClient();
 
 
         [TestMethod("Bucket: List")]
@@ -31,6 +29,8 @@ namespace StorageTests
             var bucket = await storage.GetBucket(id);
 
             Assert.IsInstanceOfType(bucket, typeof(Bucket));
+
+            await storage.DeleteBucket(id);
         }
 
         [TestMethod("Bucket: Create, Private")]
@@ -42,7 +42,10 @@ namespace StorageTests
             Assert.AreEqual(id, insertId);
 
             var bucket = await storage.GetBucket(id);
+
             Assert.IsFalse(bucket.Public);
+
+            await storage.DeleteBucket(id);
         }
 
         [TestMethod("Bucket: Create, Public")]
@@ -54,6 +57,8 @@ namespace StorageTests
             var bucket = await storage.GetBucket(id);
 
             Assert.IsTrue(bucket.Public);
+
+            await storage.DeleteBucket(id);
         }
 
         [TestMethod("Bucket: Update")]
@@ -69,6 +74,8 @@ namespace StorageTests
 
             var nowPublicBucket = await storage.GetBucket(id);
             Assert.IsTrue(nowPublicBucket.Public);
+
+            await storage.DeleteBucket(id);
         }
 
         [TestMethod("Bucket: Empty")]
@@ -91,6 +98,8 @@ namespace StorageTests
             var listAfterEmpty = await storage.From(id).List();
 
             Assert.IsTrue(listAfterEmpty.Count == 0);
+
+            await storage.DeleteBucket(id);
         }
 
         [TestMethod("Bucket: Delete, Throws Error if Not Empty")]

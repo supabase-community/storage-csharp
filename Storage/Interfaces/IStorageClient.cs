@@ -1,7 +1,7 @@
 ﻿using Supabase.Core.Interfaces;
 using Supabase.Storage;
 
-namespace Storage.Interfaces
+namespace Supabase.Storage.Interfaces
 {
     public interface IStorageClient<TBucket, TFileObject> : IStorageBucketApi<TBucket>, IGettableHeaders
         where TBucket : Bucket

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Storage.Interfaces
+namespace Supabase.Storage.Interfaces
 {
     internal interface IProgressableStreamContent
     {

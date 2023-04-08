@@ -7,7 +7,7 @@ using System.Web;
 using Newtonsoft.Json;
 using Supabase.Core.Attributes;
 
-namespace Storage
+namespace Supabase.Storage
 {
     public class TransformOptions
     {

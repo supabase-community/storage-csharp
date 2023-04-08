@@ -17,6 +17,7 @@
 		<PackageTags>supabase, storage</PackageTags>
 		<ReleaseVersion>1.2.8</ReleaseVersion>
 		<PackageVersion>1.2.8</PackageVersion>
+		<RootNamespace>Supabase.Storage</RootNamespace>
 	</PropertyGroup>
 	<PropertyGroup>
 		<Nullable>enable</Nullable>

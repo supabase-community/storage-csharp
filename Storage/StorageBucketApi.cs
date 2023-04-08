@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Storage;
-using Storage.Interfaces;
 using Supabase.Core;
 using Supabase.Core.Extensions;
+using Supabase.Storage.Interfaces;
 
 namespace Supabase.Storage
 {

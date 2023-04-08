@@ -1,8 +1,7 @@
-﻿using Storage;
-using Storage.Interfaces;
-using Supabase.Core;
+﻿using Supabase.Core;
 using Supabase.Core.Extensions;
 using Supabase.Core.Interfaces;
+using Supabase.Storage.Interfaces;
 using System;
 using System.Collections.Generic;
 

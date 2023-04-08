@@ -7,17 +7,15 @@ using System.Net;
 using System.Reflection;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Storage.Interfaces;
 using Supabase.Storage;
+using Supabase.Storage.Interfaces;
 
 namespace StorageTests
 {
     [TestClass]
     public class StorageFile
     {
-        private static string SERVICE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoic2VydmljZV9yb2xlIiwiaWF0IjoxNjEzNTMxOTg1LCJleHAiOjE5MjkxMDc5ODV9.th84OKK0Iz8QchDyXZRrojmKSEZ-OuitQm_5DvLiSIc";
-
-        Supabase.Storage.Client storage => new Supabase.Storage.Client("http://localhost:5000", new Dictionary<string, string> { { "Authorization", $"Bearer {SERVICE_KEY}" } });
+        Supabase.Storage.Client storage => Helpers.GetClient();
 
         private string bucketId;
         private IStorageFileApi<FileObject> bucket;
@@ -33,6 +31,20 @@ namespace StorageTests
             }
 
             bucket = storage.From(bucketId);
+        }
+
+        [TestCleanup]
+        public async Task TestCleanup()
+        {
+            if (bucket != null)
+            {
+                var files = await bucket.List();
+
+                foreach (var file in files)
+                    await bucket.Remove(new List<string> { file.Name });
+
+                await storage.DeleteBucket(bucketId);
+            }
         }
 
         [TestMethod("File: Upload File")]

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Specialized;
 
-namespace Storage.Extensions
+namespace Supabase.Storage.Extensions
 {
 	public static class TransformOptionsExtension
 	{

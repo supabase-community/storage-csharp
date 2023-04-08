@@ -3,7 +3,7 @@ using Supabase.Storage;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Storage.Interfaces
+namespace Supabase.Storage.Interfaces
 {
 	public interface IStorageBucketApi<TBucket> : IGettableHeaders
 		where TBucket : Bucket

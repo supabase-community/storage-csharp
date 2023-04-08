@@ -10,10 +10,8 @@ using System.Security.Cryptography;
 using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using Storage;
-using Storage.Extensions;
-using Storage.Interfaces;
 using Supabase.Storage.Extensions;
+using Supabase.Storage.Interfaces;
 
 namespace Supabase.Storage
 {
@@ -62,8 +60,11 @@ namespace Supabase.Storage
         /// <returns></returns>
         public async Task<string> CreateSignedUrl(string path, int expiresIn, TransformOptions? transformOptions = null)
         {
-            var body = new Dictionary<string, object?> { { "expiresIn", expiresIn }, { "transform", transformOptions } };
+            var body = new Dictionary<string, object?> { { "expiresIn", expiresIn } };
             var url = $"{Url}/object/sign/{GetFinalPath(path)}";
+
+            if (transformOptions != null)
+                body.Add("transform", transformOptions);
 
             var response = await Helpers.MakeRequest<CreateSignedUrlResponse>(HttpMethod.Post, url, body, Headers, Options.HttpRequestTimeout);
 
@@ -211,7 +212,7 @@ namespace Supabase.Storage
         {
             try
             {
-                var body = new Dictionary<string, string> { { "bucketId", BucketId }, { "sourceKey", fromPath }, { "destinationKey", toPath } };
+                var body = new Dictionary<string, string?> { { "bucketId", BucketId }, { "sourceKey", fromPath }, { "destinationKey", toPath } };
                 await Helpers.MakeRequest<GenericResponse>(HttpMethod.Post, $"{Url}/object/move", body, Headers, Options.HttpRequestTimeout);
                 return true;
             }
@@ -262,7 +263,7 @@ namespace Supabase.Storage
         /// <param name="onProgress"></param>
         /// <returns></returns>
         public Task<string> Download(string supabasePath, string localPath, EventHandler<float>? onProgress = null) =>
-            Download(supabasePath, localPath, onProgress: onProgress);
+            Download(supabasePath, localPath, null, onProgress: onProgress);
 
         /// <summary>
         /// Downloads a byte array to be used programmatically.
