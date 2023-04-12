@@ -1,5 +1,12 @@
 ﻿# Changelog
 
+## 1.2.9 - 04-12-2023
+
+Implements storage features from LW7:
+	- feat: custom file size limit and mime types at bucket level [supabase/storage-js#151](https://github.com/supabase/storage-js/pull/151) file size and mime type limits per bucket
+	- feat: quality option, image transformation [supabase/storage-js#145](https://github.com/supabase/storage-js/pull/152) quality option for image transformations
+	- feat: format option for webp support [supabase/storage-js#142](https://github.com/supabase/storage-js/pull/142) format option for image transformation
+
 ## 1.2.8 - 03-14-2023
 
 - [Merge #5](https://github.com/supabase-community/storage-csharp/pull/5) Added search string as an optional search parameter. Thanks [@ElectroKnight22](https://github.com/ElectroKnight22)!
