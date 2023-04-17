@@ -425,7 +425,7 @@
     <a href="https://github.com/supabase-community/storage-csharp/new/master/apiSpec/new?filename=Supabase_Storage_StorageFileApi_CreateUploadSignedUrl_System_String_.md&amp;value=---%0Auid%3A%20Supabase.Storage.StorageFileApi.CreateUploadSignedUrl(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/supabase-community/storage-csharp/blob/master/Storage/StorageFileApi.cs/#L377">View Source</a>
+    <a href="https://github.com/supabase-community/storage-csharp/blob/master/Storage/StorageFileApi.cs/#L384">View Source</a>
   </span>
   <a id="Supabase_Storage_StorageFileApi_CreateUploadSignedUrl_" data-uid="Supabase.Storage.StorageFileApi.CreateUploadSignedUrl*"></a>
   <h4 id="Supabase_Storage_StorageFileApi_CreateUploadSignedUrl_System_String_" data-uid="Supabase.Storage.StorageFileApi.CreateUploadSignedUrl(System.String)">CreateUploadSignedUrl(String)</h4>
@@ -471,14 +471,72 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/supabase-community/storage-csharp/new/master/apiSpec/new?filename=Supabase_Storage_StorageFileApi_Download_System_String_Supabase_Storage_TransformOptions_System_Nullable_EventHandler_System_Single___.md&amp;value=---%0Auid%3A%20Supabase.Storage.StorageFileApi.Download(System.String%2CSupabase.Storage.TransformOptions%2CSystem.Nullable%7BEventHandler%7BSystem.Single%7D%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/supabase-community/storage-csharp/blob/master/Storage/StorageFileApi.cs/#L312">View Source</a>
+  </span>
+  <a id="Supabase_Storage_StorageFileApi_Download_" data-uid="Supabase.Storage.StorageFileApi.Download*"></a>
+  <h4 id="Supabase_Storage_StorageFileApi_Download_System_String_Supabase_Storage_TransformOptions_System_Nullable_EventHandler_System_Single___" data-uid="Supabase.Storage.StorageFileApi.Download(System.String,Supabase.Storage.TransformOptions,System.Nullable{EventHandler{System.Single}})">Download(String, TransformOptions, Nullable&lt;EventHandler&lt;Single&gt;&gt;)</h4>
+  <div class="markdown level1 summary"><p>Downloads a byte array from a private bucket to be used programmatically. For public buckets <a class="xref" href="Supabase.Storage.StorageFileApi.html#Supabase_Storage_StorageFileApi_DownloadPublicFile_System_String_Supabase_Storage_TransformOptions_System_Nullable_EventHandler_System_Single___">DownloadPublicFile(String, TransformOptions, Nullable&lt;EventHandler&lt;Single&gt;&gt;)</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;byte[]&gt; Download(string supabasePath, TransformOptions transformOptions = null, EventHandler&lt;float&gt;? onProgress = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">supabasePath</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Supabase.Storage.TransformOptions.html">TransformOptions</a></td>
+        <td><span class="parametername">transformOptions</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">EventHandler</span>&lt;<span class="xref">System.Single</span>&gt;&gt;</td>
+        <td><span class="parametername">onProgress</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span>&lt;<span class="xref">System.Byte</span>[]&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/supabase-community/storage-csharp/new/master/apiSpec/new?filename=Supabase_Storage_StorageFileApi_Download_System_String_System_Nullable_EventHandler_System_Single___.md&amp;value=---%0Auid%3A%20Supabase.Storage.StorageFileApi.Download(System.String%2CSystem.Nullable%7BEventHandler%7BSystem.Single%7D%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/supabase-community/storage-csharp/blob/master/Storage/StorageFileApi.cs/#L331">View Source</a>
+    <a href="https://github.com/supabase-community/storage-csharp/blob/master/Storage/StorageFileApi.cs/#L324">View Source</a>
   </span>
   <a id="Supabase_Storage_StorageFileApi_Download_" data-uid="Supabase.Storage.StorageFileApi.Download*"></a>
   <h4 id="Supabase_Storage_StorageFileApi_Download_System_String_System_Nullable_EventHandler_System_Single___" data-uid="Supabase.Storage.StorageFileApi.Download(System.String,System.Nullable{EventHandler{System.Single}})">Download(String, Nullable&lt;EventHandler&lt;Single&gt;&gt;)</h4>
-  <div class="markdown level1 summary"><p>Downloads a byte array to be used programmatically.</p>
+  <div class="markdown level1 summary"><p>Downloads a byte array from a private bucket to be used programmatically. For public buckets <a class="xref" href="Supabase.Storage.StorageFileApi.html#Supabase_Storage_StorageFileApi_DownloadPublicFile_System_String_Supabase_Storage_TransformOptions_System_Nullable_EventHandler_System_Single___">DownloadPublicFile(String, TransformOptions, Nullable&lt;EventHandler&lt;Single&gt;&gt;)</a></p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -531,7 +589,7 @@
   </span>
   <a id="Supabase_Storage_StorageFileApi_Download_" data-uid="Supabase.Storage.StorageFileApi.Download*"></a>
   <h4 id="Supabase_Storage_StorageFileApi_Download_System_String_System_String_Supabase_Storage_TransformOptions_System_Nullable_EventHandler_System_Single___" data-uid="Supabase.Storage.StorageFileApi.Download(System.String,System.String,Supabase.Storage.TransformOptions,System.Nullable{EventHandler{System.Single}})">Download(String, String, TransformOptions, Nullable&lt;EventHandler&lt;Single&gt;&gt;)</h4>
-  <div class="markdown level1 summary"><p>Downloads a file and saves it to a local path.</p>
+  <div class="markdown level1 summary"><p>Downloads a file from a private bucket. For public buckets, use <a class="xref" href="Supabase.Storage.StorageFileApi.html#Supabase_Storage_StorageFileApi_DownloadPublicFile_System_String_System_String_Supabase_Storage_TransformOptions_System_Nullable_EventHandler_System_Single___">DownloadPublicFile(String, String, TransformOptions, Nullable&lt;EventHandler&lt;Single&gt;&gt;)</a></p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -590,11 +648,11 @@
     <a href="https://github.com/supabase-community/storage-csharp/new/master/apiSpec/new?filename=Supabase_Storage_StorageFileApi_Download_System_String_System_String_System_Nullable_EventHandler_System_Single___.md&amp;value=---%0Auid%3A%20Supabase.Storage.StorageFileApi.Download(System.String%2CSystem.String%2CSystem.Nullable%7BEventHandler%7BSystem.Single%7D%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/supabase-community/storage-csharp/blob/master/Storage/StorageFileApi.cs/#L322">View Source</a>
+    <a href="https://github.com/supabase-community/storage-csharp/blob/master/Storage/StorageFileApi.cs/#L303">View Source</a>
   </span>
   <a id="Supabase_Storage_StorageFileApi_Download_" data-uid="Supabase.Storage.StorageFileApi.Download*"></a>
   <h4 id="Supabase_Storage_StorageFileApi_Download_System_String_System_String_System_Nullable_EventHandler_System_Single___" data-uid="Supabase.Storage.StorageFileApi.Download(System.String,System.String,System.Nullable{EventHandler{System.Single}})">Download(String, String, Nullable&lt;EventHandler&lt;Single&gt;&gt;)</h4>
-  <div class="markdown level1 summary"><p>Downloads a file and saves it to a local path.</p>
+  <div class="markdown level1 summary"><p>Downloads a file from a private bucket. For public buckets, use <a class="xref" href="Supabase.Storage.StorageFileApi.html#Supabase_Storage_StorageFileApi_DownloadPublicFile_System_String_System_String_Supabase_Storage_TransformOptions_System_Nullable_EventHandler_System_Single___">DownloadPublicFile(String, String, TransformOptions, Nullable&lt;EventHandler&lt;Single&gt;&gt;)</a></p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -619,6 +677,127 @@
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">localPath</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">EventHandler</span>&lt;<span class="xref">System.Single</span>&gt;&gt;</td>
+        <td><span class="parametername">onProgress</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span>&lt;<span class="xref">System.String</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/supabase-community/storage-csharp/new/master/apiSpec/new?filename=Supabase_Storage_StorageFileApi_DownloadPublicFile_System_String_Supabase_Storage_TransformOptions_System_Nullable_EventHandler_System_Single___.md&amp;value=---%0Auid%3A%20Supabase.Storage.StorageFileApi.DownloadPublicFile(System.String%2CSupabase.Storage.TransformOptions%2CSystem.Nullable%7BEventHandler%7BSystem.Single%7D%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/supabase-community/storage-csharp/blob/master/Storage/StorageFileApi.cs/#L349">View Source</a>
+  </span>
+  <a id="Supabase_Storage_StorageFileApi_DownloadPublicFile_" data-uid="Supabase.Storage.StorageFileApi.DownloadPublicFile*"></a>
+  <h4 id="Supabase_Storage_StorageFileApi_DownloadPublicFile_System_String_Supabase_Storage_TransformOptions_System_Nullable_EventHandler_System_Single___" data-uid="Supabase.Storage.StorageFileApi.DownloadPublicFile(System.String,Supabase.Storage.TransformOptions,System.Nullable{EventHandler{System.Single}})">DownloadPublicFile(String, TransformOptions, Nullable&lt;EventHandler&lt;Single&gt;&gt;)</h4>
+  <div class="markdown level1 summary"><p>Downloads a byte array from a private bucket to be used programmatically. This method DOES NOT VERIFY that the file is actually public.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;byte[]&gt; DownloadPublicFile(string supabasePath, TransformOptions transformOptions = null, EventHandler&lt;float&gt;? onProgress = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">supabasePath</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Supabase.Storage.TransformOptions.html">TransformOptions</a></td>
+        <td><span class="parametername">transformOptions</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">EventHandler</span>&lt;<span class="xref">System.Single</span>&gt;&gt;</td>
+        <td><span class="parametername">onProgress</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span>&lt;<span class="xref">System.Byte</span>[]&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/supabase-community/storage-csharp/new/master/apiSpec/new?filename=Supabase_Storage_StorageFileApi_DownloadPublicFile_System_String_System_String_Supabase_Storage_TransformOptions_System_Nullable_EventHandler_System_Single___.md&amp;value=---%0Auid%3A%20Supabase.Storage.StorageFileApi.DownloadPublicFile(System.String%2CSystem.String%2CSupabase.Storage.TransformOptions%2CSystem.Nullable%7BEventHandler%7BSystem.Single%7D%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/supabase-community/storage-csharp/blob/master/Storage/StorageFileApi.cs/#L335">View Source</a>
+  </span>
+  <a id="Supabase_Storage_StorageFileApi_DownloadPublicFile_" data-uid="Supabase.Storage.StorageFileApi.DownloadPublicFile*"></a>
+  <h4 id="Supabase_Storage_StorageFileApi_DownloadPublicFile_System_String_System_String_Supabase_Storage_TransformOptions_System_Nullable_EventHandler_System_Single___" data-uid="Supabase.Storage.StorageFileApi.DownloadPublicFile(System.String,System.String,Supabase.Storage.TransformOptions,System.Nullable{EventHandler{System.Single}})">DownloadPublicFile(String, String, TransformOptions, Nullable&lt;EventHandler&lt;Single&gt;&gt;)</h4>
+  <div class="markdown level1 summary"><p>Downloads a public file to the filesystem. This method DOES NOT VERIFY that the file is actually public.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;string&gt; DownloadPublicFile(string supabasePath, string localPath, TransformOptions transformOptions = null, EventHandler&lt;float&gt;? onProgress = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">supabasePath</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">localPath</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Supabase.Storage.TransformOptions.html">TransformOptions</a></td>
+        <td><span class="parametername">transformOptions</span></td>
         <td></td>
       </tr>
       <tr>
@@ -810,7 +989,7 @@ This function does not verify if the bucket is public. If a public URL is create
     <a href="https://github.com/supabase-community/storage-csharp/new/master/apiSpec/new?filename=Supabase_Storage_StorageFileApi_Remove_List_System_String__.md&amp;value=---%0Auid%3A%20Supabase.Storage.StorageFileApi.Remove(List%7BSystem.String%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/supabase-community/storage-csharp/blob/master/Storage/StorageFileApi.cs/#L364">View Source</a>
+    <a href="https://github.com/supabase-community/storage-csharp/blob/master/Storage/StorageFileApi.cs/#L371">View Source</a>
   </span>
   <a id="Supabase_Storage_StorageFileApi_Remove_" data-uid="Supabase.Storage.StorageFileApi.Remove*"></a>
   <h4 id="Supabase_Storage_StorageFileApi_Remove_List_System_String__" data-uid="Supabase.Storage.StorageFileApi.Remove(List{System.String})">Remove(List&lt;String&gt;)</h4>
@@ -859,7 +1038,7 @@ This function does not verify if the bucket is public. If a public URL is create
     <a href="https://github.com/supabase-community/storage-csharp/new/master/apiSpec/new?filename=Supabase_Storage_StorageFileApi_Remove_System_String_.md&amp;value=---%0Auid%3A%20Supabase.Storage.StorageFileApi.Remove(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/supabase-community/storage-csharp/blob/master/Storage/StorageFileApi.cs/#L353">View Source</a>
+    <a href="https://github.com/supabase-community/storage-csharp/blob/master/Storage/StorageFileApi.cs/#L360">View Source</a>
   </span>
   <a id="Supabase_Storage_StorageFileApi_Remove_" data-uid="Supabase.Storage.StorageFileApi.Remove*"></a>
   <h4 id="Supabase_Storage_StorageFileApi_Remove_System_String_" data-uid="Supabase.Storage.StorageFileApi.Remove(System.String)">Remove(String)</h4>
