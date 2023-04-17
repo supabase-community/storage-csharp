@@ -1,5 +1,9 @@
 ﻿# Changelog
 
+## 1.2.10 - 04-17-2023
+
+- Re: [#7](https://github.com/supabase-community/storage-csharp/issues/7) Implements a `DownloadPublicFile` method.
+
 ## 1.2.9 - 04-12-2023
 
 Implements storage features from LW7:
