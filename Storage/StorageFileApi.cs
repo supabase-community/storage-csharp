@@ -322,7 +322,7 @@ namespace Supabase.Storage
         /// <param name="onProgress"></param>
         /// <returns></returns>
         public Task<byte[]> Download(string supabasePath, EventHandler<float>? onProgress = null) =>
-            Download(supabasePath, onProgress: onProgress);
+            Download(supabasePath, transformOptions: null, onProgress: onProgress);
 
         /// <summary>
         /// Downloads a public file to the filesystem. This method DOES NOT VERIFY that the file is actually public.
