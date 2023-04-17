@@ -280,40 +280,21 @@ namespace Supabase.Storage
         }
 
         /// <summary>
-        /// Downloads a file and saves it to a local path.
+        /// Downloads a file from a private bucket. For public buckets, use <see cref="DownloadPublicFile(string, string, TransformOptions?, EventHandler{float}?)"/>
         /// </summary>
         /// <param name="supabasePath"></param>
         /// <param name="localPath"></param>
         /// <param name="transformOptions"></param>
         /// <param name="onProgress"></param>
         /// <returns></returns>
-        public async Task<string> Download(string supabasePath, string localPath, TransformOptions? transformOptions = null, EventHandler<float>? onProgress = null)
+        public Task<string> Download(string supabasePath, string localPath, TransformOptions? transformOptions = null, EventHandler<float>? onProgress = null)
         {
-            using (HttpClient client = new HttpClient { Timeout = Options.HttpDownloadTimeout })
-            {
-                var url = transformOptions != null ? $"{Url}/render/image/authenticated/{GetFinalPath(supabasePath)}" : $"{Url}/object/{GetFinalPath(supabasePath)}";
-                var builder = new UriBuilder(url);
-                var progress = new Progress<float>();
-
-                if (transformOptions != null)
-                    builder.Query = transformOptions.ToQueryCollection().ToString();
-
-                if (onProgress != null)
-                    progress.ProgressChanged += onProgress;
-
-                var stream = await client.DownloadDataAsync(builder.Uri, Headers, progress);
-
-                using (var outstream = new FileStream(localPath, FileMode.OpenOrCreate, FileAccess.Write))
-                {
-                    stream.WriteTo(outstream);
-                }
-
-                return localPath;
-            }
+            var url = transformOptions != null ? $"{Url}/render/image/authenticated/{GetFinalPath(supabasePath)}" : $"{Url}/object/{GetFinalPath(supabasePath)}";
+            return DownloadFile(url, localPath, transformOptions, onProgress);
         }
 
         /// <summary>
-        /// Downloads a file and saves it to a local path.
+        /// Downloads a file from a private bucket. For public buckets, use <see cref="DownloadPublicFile(string, string, TransformOptions?, EventHandler{float}?)"/>
         /// </summary>
         /// <param name="supabasePath"></param>
         /// <param name="localPath"></param>
@@ -323,26 +304,52 @@ namespace Supabase.Storage
             Download(supabasePath, localPath, null, onProgress: onProgress);
 
         /// <summary>
-        /// Downloads a byte array to be used programmatically.
+        /// Downloads a byte array from a private bucket to be used programmatically. For public buckets <see cref="DownloadPublicFile(string, TransformOptions?, EventHandler{float}?)"/>
         /// </summary>
         /// <param name="supabasePath"></param>
         /// <param name="onProgress"></param>
         /// <returns></returns>
-        public async Task<byte[]> Download(string supabasePath, EventHandler<float>? onProgress = null)
+        public Task<byte[]> Download(string supabasePath, TransformOptions? transformOptions = null, EventHandler<float>? onProgress = null)
         {
-            using (HttpClient client = new HttpClient { Timeout = Options.HttpDownloadTimeout })
-            {
-                Uri uri = new Uri($"{Url}/object/{GetFinalPath(supabasePath)}");
+            var url = $"{Url}/object/{GetFinalPath(supabasePath)}";
+            return DownloadBytes(url, transformOptions, onProgress);
+        }
 
-                var progress = new Progress<float>();
+        /// <summary>
+        /// Downloads a byte array from a private bucket to be used programmatically. For public buckets <see cref="DownloadPublicFile(string, TransformOptions?, EventHandler{float}?)"/>
+        /// </summary>
+        /// <param name="supabasePath"></param>
+        /// <param name="onProgress"></param>
+        /// <returns></returns>
+        public Task<byte[]> Download(string supabasePath, EventHandler<float>? onProgress = null) =>
+            Download(supabasePath, onProgress: onProgress);
 
-                if (onProgress != null)
-                    progress.ProgressChanged += onProgress;
+        /// <summary>
+        /// Downloads a public file to the filesystem. This method DOES NOT VERIFY that the file is actually public.
+        /// </summary>
+        /// <param name="supabasePath"></param>
+        /// <param name="localPath"></param>
+        /// <param name="transformOptions"></param>
+        /// <param name="onProgress"></param>
+        /// <returns></returns>
+        public Task<string> DownloadPublicFile(string supabasePath, string localPath, TransformOptions? transformOptions = null, EventHandler<float>? onProgress = null)
+        {
+            var url = GetPublicUrl(supabasePath, transformOptions);
+            return DownloadFile(url, localPath, transformOptions, onProgress);
+        }
 
-                var stream = await client.DownloadDataAsync(uri, Headers, progress);
-
-                return stream.ToArray();
-            }
+        /// <summary>
+        /// Downloads a byte array from a private bucket to be used programmatically. This method DOES NOT VERIFY that the file is actually public.
+        /// </summary>
+        /// <param name="supabasePath"></param>
+        /// <param name="localPath"></param>
+        /// <param name="transformOptions"></param>
+        /// <param name="onProgress"></param>
+        /// <returns></returns>
+        public Task<byte[]> DownloadPublicFile(string supabasePath, TransformOptions? transformOptions = null, EventHandler<float>? onProgress = null)
+        {
+            var url = GetPublicUrl(supabasePath, transformOptions);
+            return DownloadBytes(url, transformOptions, onProgress);
         }
 
         /// <summary>
@@ -444,6 +451,49 @@ namespace Supabase.Storage
                     return GetFinalPath(supabasePath);
                 else
                     throw new BadRequestException(response, (await response.Content.ReadAsStringAsync()));
+            }
+        }
+
+        private async Task<string> DownloadFile(string url, string localPath, TransformOptions? transformOptions = null, EventHandler<float>? onProgress = null)
+        {
+            using (HttpClient client = new HttpClient { Timeout = Options.HttpDownloadTimeout })
+            {
+                var builder = new UriBuilder(url);
+                var progress = new Progress<float>();
+
+                if (transformOptions != null)
+                    builder.Query = transformOptions.ToQueryCollection().ToString();
+
+                if (onProgress != null)
+                    progress.ProgressChanged += onProgress;
+
+                var stream = await client.DownloadDataAsync(builder.Uri, Headers, progress);
+
+                using (var outstream = new FileStream(localPath, FileMode.OpenOrCreate, FileAccess.Write))
+                {
+                    stream.WriteTo(outstream);
+                }
+
+                return localPath;
+            }
+        }
+
+        private async Task<byte[]> DownloadBytes(string url, TransformOptions? transformOptions = null, EventHandler<float>? onProgress = null)
+        {
+            using (HttpClient client = new HttpClient { Timeout = Options.HttpDownloadTimeout })
+            {
+                var builder = new UriBuilder(url);
+                var progress = new Progress<float>();
+
+                if (transformOptions != null)
+                    builder.Query = transformOptions.ToQueryCollection().ToString();
+
+                if (onProgress != null)
+                    progress.ProgressChanged += onProgress;
+
+                var stream = await client.DownloadDataAsync(builder.Uri, Headers, progress);
+
+                return stream.ToArray();
             }
         }
 
