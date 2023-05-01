@@ -5,18 +5,6 @@
   "files": [
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/Supabase.Storage.BadRequestException.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Supabase.Storage.BadRequestException.html",
-          "hash": "PXYC8Y4mYm27Hk9UHRwxog=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
       "source_relative_path": "api/Supabase.Storage.Bucket.yml",
       "output": {
         ".html": {
@@ -93,7 +81,43 @@
       "output": {
         ".html": {
           "relative_path": "api/Supabase.Storage.ErrorResponse.html",
-          "hash": "ER75j3xXpp2t99LWkjVD7g=="
+          "hash": "hH9ZHsC9r0J2vBggoeZxUg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Supabase.Storage.Exceptions.BadRequestException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Supabase.Storage.Exceptions.BadRequestException.html",
+          "hash": "MdueWuQ3+37aDKVNyO4qPA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Supabase.Storage.Exceptions.SupabaseStorageException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Supabase.Storage.Exceptions.SupabaseStorageException.html",
+          "hash": "3O3A5h989j4fr/02LssJ5A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Supabase.Storage.Exceptions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Supabase.Storage.Exceptions.html",
+          "hash": "h7U+rxP1w5HTpadc/tV6qA=="
         }
       },
       "is_incremental": false,
@@ -153,7 +177,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Supabase.Storage.GenericResponse.html",
-          "hash": "kNodqrwItUtdEQv+pO8jUw=="
+          "hash": "ZPDPHmJ9vfTHpb5RoIUj9w=="
         }
       },
       "is_incremental": false,
@@ -237,7 +261,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Supabase.Storage.StorageBucketApi.html",
-          "hash": "2uptrcaxy5a8XPye4PZUkA=="
+          "hash": "q86NEPPR8BXgcgnIOCzd2w=="
         }
       },
       "is_incremental": false,
@@ -249,7 +273,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Supabase.Storage.StorageFileApi.html",
-          "hash": "VMPzkYUl4o8OLGjI8x2/JQ=="
+          "hash": "Afvm20JBvJyoiOiADXS2PA=="
         }
       },
       "is_incremental": false,
@@ -297,7 +321,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Supabase.Storage.html",
-          "hash": "S3yoOvhO910hhb0+6DW+sg=="
+          "hash": "FfDb8Luo1p3GgoFHLK4r+g=="
         }
       },
       "is_incremental": false,
@@ -321,7 +345,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "wKWrbZGI9zszbzq5fp0bGQ=="
+          "hash": "Z104RKhJVM+joOb6RyAobw=="
         }
       },
       "is_incremental": false,
@@ -396,7 +420,7 @@
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
-          "total_file_count": 25,
+          "total_file_count": 27,
           "skipped_file_count": 0
         },
         "TocDocumentProcessor": {
