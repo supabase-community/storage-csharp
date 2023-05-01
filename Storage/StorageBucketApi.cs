@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Supabase.Core;
 using Supabase.Core.Extensions;
+using Supabase.Storage.Exceptions;
 using Supabase.Storage.Interfaces;
 
 namespace Supabase.Storage
@@ -53,6 +54,10 @@ namespace Supabase.Storage
             headers ??= new Dictionary<string, string>();
             _headers = headers;
             _initializedHeaders = headers;
+
+            Helpers.HttpRequestClient.Timeout = Options.HttpRequestTimeout;
+            Helpers.HttpUploadClient.Timeout = Options.HttpUploadTimeout;
+            Helpers.HttpDownloadClient.Timeout = Options.HttpDownloadTimeout;
         }
 
         /// <summary>
@@ -60,7 +65,7 @@ namespace Supabase.Storage
         /// </summary>
         /// <returns></returns>
         public Task<List<Bucket>?> ListBuckets() =>
-             Helpers.MakeRequest<List<Bucket>>(HttpMethod.Get, $"{Url}/bucket", null, Headers, Options.HttpRequestTimeout);
+             Helpers.MakeRequest<List<Bucket>>(HttpMethod.Get, $"{Url}/bucket", null, Headers);
 
         /// <summary>
         /// Retrieves the details of an existing Storage bucket.
@@ -71,7 +76,7 @@ namespace Supabase.Storage
         {
             try
             {
-                var result = await Helpers.MakeRequest<Bucket>(HttpMethod.Get, $"{Url}/bucket/{id}", null, Headers, Options.HttpRequestTimeout);
+                var result = await Helpers.MakeRequest<Bucket>(HttpMethod.Get, $"{Url}/bucket/{id}", null, Headers);
                 return result;
             }
             catch (BadRequestException ex)
@@ -100,7 +105,7 @@ namespace Supabase.Storage
                 AllowedMimes = options.AllowedMimes
             };
 
-            var result = await Helpers.MakeRequest<Bucket>(HttpMethod.Post, $"{Url}/bucket", data, Headers, Options.HttpRequestTimeout);
+            var result = await Helpers.MakeRequest<Bucket>(HttpMethod.Post, $"{Url}/bucket", data, Headers);
 
             return result?.Name!;
         }
@@ -123,7 +128,7 @@ namespace Supabase.Storage
                 AllowedMimes = options.AllowedMimes
             };
 
-            var result = await Helpers.MakeRequest<Bucket>(HttpMethod.Put, $"{Url}/bucket/{id}", data, Headers, Options.HttpRequestTimeout);
+            var result = await Helpers.MakeRequest<Bucket>(HttpMethod.Put, $"{Url}/bucket/{id}", data, Headers);
 
             return result;
         }
@@ -134,7 +139,7 @@ namespace Supabase.Storage
         /// <param name="id"></param>
         /// <returns></returns>
         public Task<GenericResponse?> EmptyBucket(string id) =>
-            Helpers.MakeRequest<GenericResponse>(HttpMethod.Post, $"{Url}/bucket/{id}/empty", null, Headers, Options.HttpRequestTimeout);
+            Helpers.MakeRequest<GenericResponse>(HttpMethod.Post, $"{Url}/bucket/{id}/empty", null, Headers);
 
         /// <summary>
         /// Deletes an existing bucket. A bucket can't be deleted with existing objects inside it.
@@ -143,7 +148,7 @@ namespace Supabase.Storage
         /// <param name="id"></param>
         /// <returns></returns>
         public Task<GenericResponse?> DeleteBucket(string id) =>
-            Helpers.MakeRequest<GenericResponse>(HttpMethod.Delete, $"{Url}/bucket/{id}", null, Headers, Options.HttpRequestTimeout);
+            Helpers.MakeRequest<GenericResponse>(HttpMethod.Delete, $"{Url}/bucket/{id}", null, Headers);
 
     }
 }

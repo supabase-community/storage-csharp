@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using System.Web;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Supabase.Storage.Exceptions;
 using Supabase.Storage.Extensions;
 using Supabase.Storage.Interfaces;
 using Supabase.Storage.Responses;
@@ -70,7 +71,7 @@ namespace Supabase.Storage
             if (transformOptions != null)
                 body.Add("transform", transformOptions);
 
-            var response = await Helpers.MakeRequest<CreateSignedUrlResponse>(HttpMethod.Post, url, body, Headers, Options.HttpRequestTimeout);
+            var response = await Helpers.MakeRequest<CreateSignedUrlResponse>(HttpMethod.Post, url, body, Headers);
 
             return $"{Url}{response?.SignedUrl}";
         }
@@ -84,7 +85,7 @@ namespace Supabase.Storage
         public async Task<List<CreateSignedUrlsResponse>?> CreateSignedUrls(List<string> paths, int expiresIn)
         {
             var body = new Dictionary<string, object> { { "expiresIn", expiresIn }, { "paths", paths } };
-            var response = await Helpers.MakeRequest<List<CreateSignedUrlsResponse>>(HttpMethod.Post, $"{Url}/object/sign/{BucketId}", body, Headers, Options.HttpRequestTimeout);
+            var response = await Helpers.MakeRequest<List<CreateSignedUrlsResponse>>(HttpMethod.Post, $"{Url}/object/sign/{BucketId}", body, Headers);
 
             if (response != null)
             {
@@ -113,7 +114,7 @@ namespace Supabase.Storage
             if (body != null)
                 body.Add("prefix", string.IsNullOrEmpty(path) ? "" : path);
 
-            var response = await Helpers.MakeRequest<List<FileObject>>(HttpMethod.Post, $"{Url}/object/list/{BucketId}", body, Headers, Options.HttpRequestTimeout);
+            var response = await Helpers.MakeRequest<List<FileObject>>(HttpMethod.Post, $"{Url}/object/list/{BucketId}", body, Headers);
 
             return response;
         }
@@ -168,29 +169,26 @@ namespace Supabase.Storage
             if (inferContentType)
                 options.ContentType = MimeMapping.MimeUtility.GetMimeMapping(localFilePath);
 
-            using (var client = new HttpClient { Timeout = Options.HttpUploadTimeout })
-            {
-                var headers = new Dictionary<string, string>(Headers);
+            var headers = new Dictionary<string, string>(Headers);
 
-                headers["Authorization"] = $"Bearer {signedUrl.Token}";
-                headers.Add("cache-control", $"max-age={options.CacheControl}");
-                headers.Add("content-type", options.ContentType);
+            headers["Authorization"] = $"Bearer {signedUrl.Token}";
+            headers.Add("cache-control", $"max-age={options.CacheControl}");
+            headers.Add("content-type", options.ContentType);
 
-                if (options.Upsert)
-                    headers.Add("x-upsert", options.Upsert.ToString().ToLower());
+            if (options.Upsert)
+                headers.Add("x-upsert", options.Upsert.ToString().ToLower());
 
-                var progress = new Progress<float>();
+            var progress = new Progress<float>();
 
-                if (onProgress != null)
-                    progress.ProgressChanged += onProgress;
+            if (onProgress != null)
+                progress.ProgressChanged += onProgress;
 
-                var response = await client.UploadFileAsync(signedUrl.SignedUrl, localFilePath, headers, progress);
+            var response = await Helpers.HttpUploadClient.UploadFileAsync(signedUrl.SignedUrl, localFilePath, headers, progress);
 
-                if (response.IsSuccessStatusCode)
-                    return GetFinalPath(signedUrl.Key);
-                else
-                    throw new BadRequestException(response, (await response.Content.ReadAsStringAsync()));
-            }
+            if (response.IsSuccessStatusCode)
+                return GetFinalPath(signedUrl.Key);
+            else
+                throw new BadRequestException(response, (await response.Content.ReadAsStringAsync()));
         }
 
         /// <summary>
@@ -207,29 +205,26 @@ namespace Supabase.Storage
             if (inferContentType)
                 options.ContentType = MimeMapping.MimeUtility.GetMimeMapping(signedUrl.Key);
 
-            using (var client = new HttpClient { Timeout = Options.HttpUploadTimeout })
-            {
-                var headers = new Dictionary<string, string>(Headers);
+            var headers = new Dictionary<string, string>(Headers);
 
-                headers["Authorization"] = $"Bearer {signedUrl.Token}";
-                headers.Add("cache-control", $"max-age={options.CacheControl}");
-                headers.Add("content-type", options.ContentType);
+            headers["Authorization"] = $"Bearer {signedUrl.Token}";
+            headers.Add("cache-control", $"max-age={options.CacheControl}");
+            headers.Add("content-type", options.ContentType);
 
-                if (options.Upsert)
-                    headers.Add("x-upsert", options.Upsert.ToString().ToLower());
+            if (options.Upsert)
+                headers.Add("x-upsert", options.Upsert.ToString().ToLower());
 
-                var progress = new Progress<float>();
+            var progress = new Progress<float>();
 
-                if (onProgress != null)
-                    progress.ProgressChanged += onProgress;
+            if (onProgress != null)
+                progress.ProgressChanged += onProgress;
 
-                var response = await client.UploadBytesAsync(signedUrl.SignedUrl, data, headers, progress);
+            var response = await Helpers.HttpUploadClient.UploadBytesAsync(signedUrl.SignedUrl, data, headers, progress);
 
-                if (response.IsSuccessStatusCode)
-                    return GetFinalPath(signedUrl.Key);
-                else
-                    throw new BadRequestException(response, (await response.Content.ReadAsStringAsync()));
-            }
+            if (response.IsSuccessStatusCode)
+                return GetFinalPath(signedUrl.Key);
+            else
+                throw new BadRequestException(response, (await response.Content.ReadAsStringAsync()));
         }
 
 
@@ -270,7 +265,7 @@ namespace Supabase.Storage
             try
             {
                 var body = new Dictionary<string, string?> { { "bucketId", BucketId }, { "sourceKey", fromPath }, { "destinationKey", toPath } };
-                await Helpers.MakeRequest<GenericResponse>(HttpMethod.Post, $"{Url}/object/move", body, Headers, Options.HttpRequestTimeout);
+                await Helpers.MakeRequest<GenericResponse>(HttpMethod.Post, $"{Url}/object/move", body, Headers);
                 return true;
             }
             catch
@@ -371,7 +366,7 @@ namespace Supabase.Storage
         public async Task<List<FileObject>?> Remove(List<string> paths)
         {
             var data = new Dictionary<string, object> { { "prefixes", paths } };
-            var response = await Helpers.MakeRequest<List<FileObject>>(HttpMethod.Delete, $"{Url}/object/{BucketId}", data, Headers, Options.HttpRequestTimeout);
+            var response = await Helpers.MakeRequest<List<FileObject>>(HttpMethod.Delete, $"{Url}/object/{BucketId}", data, Headers);
 
             return response;
         }
@@ -386,7 +381,7 @@ namespace Supabase.Storage
             var path = GetFinalPath(supabasePath);
 
             var url = $"{Url}/object/upload/sign/{path}";
-            var response = await Helpers.MakeRequest<CreatedUploadSignedUrlResponse>(HttpMethod.Post, url, null, Headers, Options.HttpRequestTimeout);
+            var response = await Helpers.MakeRequest<CreatedUploadSignedUrlResponse>(HttpMethod.Post, url, null, Headers);
 
             if (response == null || string.IsNullOrEmpty(response.Url) || !response.Url!.Contains("token"))
                 throw new Exception("Response did not return with expected data. Does this token have proper permission to generate a url?");
@@ -400,101 +395,89 @@ namespace Supabase.Storage
 
         private async Task<string> UploadOrUpdate(string localPath, string supabasePath, FileOptions options, EventHandler<float>? onProgress = null)
         {
-            using (var client = new HttpClient { Timeout = Options.HttpUploadTimeout })
-            {
-                Uri uri = new Uri($"{Url}/object/{GetFinalPath(supabasePath)}");
+            Uri uri = new Uri($"{Url}/object/{GetFinalPath(supabasePath)}");
 
-                var headers = new Dictionary<string, string>(Headers);
+            var headers = new Dictionary<string, string>(Headers);
 
-                headers.Add("cache-control", $"max-age={options.CacheControl}");
-                headers.Add("content-type", options.ContentType);
+            headers.Add("cache-control", $"max-age={options.CacheControl}");
+            headers.Add("content-type", options.ContentType);
 
-                if (options.Upsert)
-                    headers.Add("x-upsert", options.Upsert.ToString().ToLower());
+            if (options.Upsert)
+                headers.Add("x-upsert", options.Upsert.ToString().ToLower());
 
-                var progress = new Progress<float>();
+            var progress = new Progress<float>();
 
-                if (onProgress != null)
-                    progress.ProgressChanged += onProgress;
+            if (onProgress != null)
+                progress.ProgressChanged += onProgress;
 
-                var response = await client.UploadFileAsync(uri, localPath, headers, progress);
+            var response = await Helpers.HttpUploadClient.UploadFileAsync(uri, localPath, headers, progress);
 
-                if (response.IsSuccessStatusCode)
-                    return GetFinalPath(supabasePath);
-                else
-                    throw new BadRequestException(response, (await response.Content.ReadAsStringAsync()));
-            }
+            if (response.IsSuccessStatusCode)
+                return GetFinalPath(supabasePath);
+            else
+                throw new BadRequestException(response, (await response.Content.ReadAsStringAsync()));
         }
 
         private async Task<string> UploadOrUpdate(byte[] data, string supabasePath, FileOptions options, EventHandler<float>? onProgress = null)
         {
-            using (var client = new HttpClient { Timeout = Options.HttpUploadTimeout })
-            {
-                Uri uri = new Uri($"{Url}/object/{GetFinalPath(supabasePath)}");
+            Uri uri = new Uri($"{Url}/object/{GetFinalPath(supabasePath)}");
 
-                var headers = new Dictionary<string, string>(Headers);
+            var headers = new Dictionary<string, string>(Headers);
 
-                headers.Add("cache-control", $"max-age={options.CacheControl}");
-                headers.Add("content-type", options.ContentType);
+            headers.Add("cache-control", $"max-age={options.CacheControl}");
+            headers.Add("content-type", options.ContentType);
 
-                if (options.Upsert)
-                    headers.Add("x-upsert", options.Upsert.ToString().ToLower());
+            if (options.Upsert)
+                headers.Add("x-upsert", options.Upsert.ToString().ToLower());
 
-                var progress = new Progress<float>();
+            var progress = new Progress<float>();
 
-                if (onProgress != null)
-                    progress.ProgressChanged += onProgress;
+            if (onProgress != null)
+                progress.ProgressChanged += onProgress;
 
-                var response = await client.UploadBytesAsync(uri, data, headers, progress);
+            var response = await Helpers.HttpUploadClient.UploadBytesAsync(uri, data, headers, progress);
 
-                if (response.IsSuccessStatusCode)
-                    return GetFinalPath(supabasePath);
-                else
-                    throw new BadRequestException(response, (await response.Content.ReadAsStringAsync()));
-            }
+            if (response.IsSuccessStatusCode)
+                return GetFinalPath(supabasePath);
+            else
+                throw new BadRequestException(response, (await response.Content.ReadAsStringAsync()));
         }
 
         private async Task<string> DownloadFile(string url, string localPath, TransformOptions? transformOptions = null, EventHandler<float>? onProgress = null)
         {
-            using (HttpClient client = new HttpClient { Timeout = Options.HttpDownloadTimeout })
+            var builder = new UriBuilder(url);
+            var progress = new Progress<float>();
+
+            if (transformOptions != null)
+                builder.Query = transformOptions.ToQueryCollection().ToString();
+
+            if (onProgress != null)
+                progress.ProgressChanged += onProgress;
+
+            var stream = await Helpers.HttpDownloadClient.DownloadDataAsync(builder.Uri, Headers, progress);
+
+            using (var outstream = new FileStream(localPath, FileMode.OpenOrCreate, FileAccess.Write))
             {
-                var builder = new UriBuilder(url);
-                var progress = new Progress<float>();
-
-                if (transformOptions != null)
-                    builder.Query = transformOptions.ToQueryCollection().ToString();
-
-                if (onProgress != null)
-                    progress.ProgressChanged += onProgress;
-
-                var stream = await client.DownloadDataAsync(builder.Uri, Headers, progress);
-
-                using (var outstream = new FileStream(localPath, FileMode.OpenOrCreate, FileAccess.Write))
-                {
-                    stream.WriteTo(outstream);
-                }
-
-                return localPath;
+                stream.WriteTo(outstream);
             }
+
+            return localPath;
         }
 
         private async Task<byte[]> DownloadBytes(string url, TransformOptions? transformOptions = null, EventHandler<float>? onProgress = null)
         {
-            using (HttpClient client = new HttpClient { Timeout = Options.HttpDownloadTimeout })
-            {
-                var builder = new UriBuilder(url);
-                var progress = new Progress<float>();
+            var builder = new UriBuilder(url);
+            var progress = new Progress<float>();
 
-                if (transformOptions != null)
-                    builder.Query = transformOptions.ToQueryCollection().ToString();
+            if (transformOptions != null)
+                builder.Query = transformOptions.ToQueryCollection().ToString();
 
-                if (onProgress != null)
-                    progress.ProgressChanged += onProgress;
+            if (onProgress != null)
+                progress.ProgressChanged += onProgress;
 
-                var stream = await client.DownloadDataAsync(builder.Uri, Headers, progress);
+            var stream = await Helpers.HttpDownloadClient.DownloadDataAsync(builder.Uri, Headers, progress);
 
-                return stream.ToArray();
-            }
+            return stream.ToArray();
         }
 
         private string GetFinalPath(string path) => $"{BucketId}/{path}";

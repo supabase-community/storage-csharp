@@ -36,8 +36,10 @@
 	<ItemGroup>
 		<None Remove="MimeMapping" />
 		<None Remove="Responses\" />
+		<None Remove="Exceptions\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Responses\" />
+	  <Folder Include="Exceptions\" />
 	</ItemGroup>
 </Project>
