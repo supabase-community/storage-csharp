@@ -81,7 +81,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Supabase.Storage.ErrorResponse.html",
-          "hash": "hH9ZHsC9r0J2vBggoeZxUg=="
+          "hash": "zn9CLVTS9VnqWDjt90A4Kw=="
         }
       },
       "is_incremental": false,
@@ -177,7 +177,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Supabase.Storage.GenericResponse.html",
-          "hash": "ZPDPHmJ9vfTHpb5RoIUj9w=="
+          "hash": "owW+XjPHUsFd/8I+KDgqfQ=="
         }
       },
       "is_incremental": false,
@@ -261,7 +261,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Supabase.Storage.StorageBucketApi.html",
-          "hash": "q86NEPPR8BXgcgnIOCzd2w=="
+          "hash": "O8I/zMWW5XljWOvPzaUyNA=="
         }
       },
       "is_incremental": false,
@@ -273,7 +273,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Supabase.Storage.StorageFileApi.html",
-          "hash": "Afvm20JBvJyoiOiADXS2PA=="
+          "hash": "+P2pcsydkETO2h01/jZpaw=="
         }
       },
       "is_incremental": false,
