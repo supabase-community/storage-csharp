@@ -1,12 +1,13 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Text;
 
 namespace StorageTests
 {
     [TestClass]
-    public class Client
+    public class StorageClient
     {
         [TestMethod("Can use gettable headers")]
         public void CanUseGettableHeaders()
@@ -17,6 +18,6 @@ namespace StorageTests
 
             Assert.AreEqual("1234", client.Headers["Testing"]);
             Assert.AreEqual("4567", client.Headers["Dynamic"]);
-        }
+		}
     }
 }

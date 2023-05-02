@@ -51,13 +51,12 @@ namespace Supabase.Storage
             Url = url;
             Options ??= new ClientOptions();
 
+			// Initializes HttpClients with Timeouts to be Reused [Re: #8](https://github.com/supabase-community/storage-csharp/issues/8)
+			Helpers.Initialize(Options);
+
             headers ??= new Dictionary<string, string>();
             _headers = headers;
             _initializedHeaders = headers;
-
-            Helpers.HttpRequestClient.Timeout = Options.HttpRequestTimeout;
-            Helpers.HttpUploadClient.Timeout = Options.HttpUploadTimeout;
-            Helpers.HttpDownloadClient.Timeout = Options.HttpDownloadTimeout;
         }
 
         /// <summary>
