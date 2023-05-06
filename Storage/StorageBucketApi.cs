@@ -14,8 +14,8 @@ namespace Supabase.Storage
         public ClientOptions Options { get; protected set; }
         protected string Url { get; set; }
 
-        protected Dictionary<string, string> _initializedHeaders;
-        protected Dictionary<string, string> _headers;
+        private readonly Dictionary<string, string> _initializedHeaders;
+        private Dictionary<string, string> _headers;
         public Dictionary<string, string> Headers
         {
             get
@@ -41,12 +41,12 @@ namespace Supabase.Storage
         /// </summary>
         public Func<Dictionary<string, string>>? GetHeaders { get; set; }
 
-        public StorageBucketApi(string url, ClientOptions options, Dictionary<string, string>? headers = null) : this(url, headers)
+        protected StorageBucketApi(string url, ClientOptions? options, Dictionary<string, string>? headers = null) : this(url, headers)
         {
             Options = options ?? new ClientOptions();
         }
 
-        public StorageBucketApi(string url, Dictionary<string, string>? headers = null)
+        protected StorageBucketApi(string url, Dictionary<string, string>? headers = null)
         {
             Url = url;
             Options ??= new ClientOptions();
@@ -78,10 +78,12 @@ namespace Supabase.Storage
                 var result = await Helpers.MakeRequest<Bucket>(HttpMethod.Get, $"{Url}/bucket/{id}", null, Headers);
                 return result;
             }
-            catch (BadRequestException ex)
+            catch (SupabaseStorageException ex)
             {
-                if (ex.ErrorResponse?.Error == "Not found") return null;
-                else throw ex;
+                if (ex.Reason == FailureHint.Reason.NotFound)
+                    return null;
+                else
+                    throw;
             }
         }
 

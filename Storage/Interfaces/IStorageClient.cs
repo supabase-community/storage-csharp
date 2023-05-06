@@ -1,5 +1,4 @@
 ﻿using Supabase.Core.Interfaces;
-using Supabase.Storage;
 
 namespace Supabase.Storage.Interfaces
 {

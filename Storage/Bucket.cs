@@ -16,10 +16,10 @@ namespace Supabase.Storage
         public string? Owner { get; set; }
 
         [JsonProperty("created_at")]
-        public DateTime CreatedAt { get; set; }
+        public DateTime? CreatedAt { get; set; }
 
         [JsonProperty("updated_at")]
-        public DateTime UpdatedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
 
         /// <summary>
         /// The visibility of the bucket. Public buckets don't require an authorization token to download objects,

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Specialized;
-using System.ComponentModel;
-using System.Drawing;
-using System.Runtime.ConstrainedExecution;
-using System.Web;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Supabase.Core.Attributes;
 
 namespace Supabase.Storage

@@ -1,5 +1,4 @@
-﻿using System;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
 namespace Supabase.Storage
 {
@@ -12,6 +11,6 @@ namespace Supabase.Storage
         public string ContentType { get; set; } = "text/plain;charset=UTF-8";
 
         [JsonProperty("upsert")]
-        public bool Upsert { get; set; } = false;
+        public bool Upsert { get; set; }
     }
 }

@@ -1,8 +1,4 @@
-﻿using Supabase.Core;
-using Supabase.Core.Extensions;
-using Supabase.Core.Interfaces;
-using Supabase.Storage.Interfaces;
-using System;
+﻿using Supabase.Storage.Interfaces;
 using System.Collections.Generic;
 
 namespace Supabase.Storage
@@ -12,7 +8,7 @@ namespace Supabase.Storage
         public Client(string url, Dictionary<string, string>? headers = null) : base(url, headers)
         { }
 
-        public Client(string url, ClientOptions options, Dictionary<string, string>? headers = null) : base(url, options, headers)
+        public Client(string url, ClientOptions? options, Dictionary<string, string>? headers = null) : base(url, options, headers)
         {}
 
         /// <summary>

@@ -9,17 +9,17 @@ namespace Supabase.Storage
         /// <summary>
         /// The Full Signed Url
         /// </summary>
-        public Uri SignedUrl { get; set; }
+        public Uri SignedUrl { get; }
 
         /// <summary>
         /// The generated token
         /// </summary>
-        public string Token { get; set; }
+        public string Token { get; }
 
         /// <summary>
         /// The Key that can be uploaded to (the supabase filename)
         /// </summary>
-        public string Key { get; set; }
+        public string Key { get; }
 
         public UploadSignedUrl(Uri signedUrl, string token, string key)
         {
