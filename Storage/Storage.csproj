@@ -15,13 +15,13 @@
 		<Title>Supabase Storage</Title>
 		<PackageIconUrl>https://avatars.githubusercontent.com/u/54469796?s=200&amp;v=4</PackageIconUrl>
 		<PackageTags>supabase, storage</PackageTags>
-		<ReleaseVersion>1.2.10</ReleaseVersion>
-		<PackageVersion>1.2.10</PackageVersion>
+		<ReleaseVersion>1.3.0</ReleaseVersion>
+		<PackageVersion>1.3.0</PackageVersion>
 		<RootNamespace>Supabase.Storage</RootNamespace>
 	</PropertyGroup>
 	<PropertyGroup>
 		<Nullable>enable</Nullable>
-		<LangVersion>8.0</LangVersion>
+		<LangVersion>latest</LangVersion>
 		<WarningsAsErrors>CS8600;CS8602;CS8603</WarningsAsErrors>
 	</PropertyGroup>
 	<PropertyGroup Condition=" '$(Version)' == '' ">
