@@ -274,19 +274,6 @@ references:
   commentId: T:Supabase.Storage.ErrorResponse
   fullName: Supabase.Storage.ErrorResponse
   nameWithType: ErrorResponse
-- uid: Supabase.Storage.ErrorResponse.Error
-  name: Error
-  href: api/Supabase.Storage.ErrorResponse.html#Supabase_Storage_ErrorResponse_Error
-  commentId: P:Supabase.Storage.ErrorResponse.Error
-  fullName: Supabase.Storage.ErrorResponse.Error
-  nameWithType: ErrorResponse.Error
-- uid: Supabase.Storage.ErrorResponse.Error*
-  name: Error
-  href: api/Supabase.Storage.ErrorResponse.html#Supabase_Storage_ErrorResponse_Error_
-  commentId: Overload:Supabase.Storage.ErrorResponse.Error
-  isSpec: "True"
-  fullName: Supabase.Storage.ErrorResponse.Error
-  nameWithType: ErrorResponse.Error
 - uid: Supabase.Storage.ErrorResponse.Message
   name: Message
   href: api/Supabase.Storage.ErrorResponse.html#Supabase_Storage_ErrorResponse_Message
@@ -319,75 +306,91 @@ references:
   commentId: N:Supabase.Storage.Exceptions
   fullName: Supabase.Storage.Exceptions
   nameWithType: Supabase.Storage.Exceptions
-- uid: Supabase.Storage.Exceptions.BadRequestException
-  name: BadRequestException
-  href: api/Supabase.Storage.Exceptions.BadRequestException.html
-  commentId: T:Supabase.Storage.Exceptions.BadRequestException
-  fullName: Supabase.Storage.Exceptions.BadRequestException
-  nameWithType: BadRequestException
-- uid: Supabase.Storage.Exceptions.BadRequestException.#ctor(HttpResponseMessage,System.String)
-  name: BadRequestException(HttpResponseMessage, String)
-  href: api/Supabase.Storage.Exceptions.BadRequestException.html#Supabase_Storage_Exceptions_BadRequestException__ctor_HttpResponseMessage_System_String_
-  commentId: M:Supabase.Storage.Exceptions.BadRequestException.#ctor(HttpResponseMessage,System.String)
-  fullName: Supabase.Storage.Exceptions.BadRequestException.BadRequestException(HttpResponseMessage, System.String)
-  nameWithType: BadRequestException.BadRequestException(HttpResponseMessage, String)
-- uid: Supabase.Storage.Exceptions.BadRequestException.#ctor*
-  name: BadRequestException
-  href: api/Supabase.Storage.Exceptions.BadRequestException.html#Supabase_Storage_Exceptions_BadRequestException__ctor_
-  commentId: Overload:Supabase.Storage.Exceptions.BadRequestException.#ctor
+- uid: Supabase.Storage.Exceptions.FailureHint
+  name: FailureHint
+  href: api/Supabase.Storage.Exceptions.FailureHint.html
+  commentId: T:Supabase.Storage.Exceptions.FailureHint
+  fullName: Supabase.Storage.Exceptions.FailureHint
+  nameWithType: FailureHint
+- uid: Supabase.Storage.Exceptions.FailureHint.DetectReason(Supabase.Storage.Exceptions.SupabaseStorageException)
+  name: DetectReason(SupabaseStorageException)
+  href: api/Supabase.Storage.Exceptions.FailureHint.html#Supabase_Storage_Exceptions_FailureHint_DetectReason_Supabase_Storage_Exceptions_SupabaseStorageException_
+  commentId: M:Supabase.Storage.Exceptions.FailureHint.DetectReason(Supabase.Storage.Exceptions.SupabaseStorageException)
+  fullName: Supabase.Storage.Exceptions.FailureHint.DetectReason(Supabase.Storage.Exceptions.SupabaseStorageException)
+  nameWithType: FailureHint.DetectReason(SupabaseStorageException)
+- uid: Supabase.Storage.Exceptions.FailureHint.DetectReason*
+  name: DetectReason
+  href: api/Supabase.Storage.Exceptions.FailureHint.html#Supabase_Storage_Exceptions_FailureHint_DetectReason_
+  commentId: Overload:Supabase.Storage.Exceptions.FailureHint.DetectReason
   isSpec: "True"
-  fullName: Supabase.Storage.Exceptions.BadRequestException.BadRequestException
-  nameWithType: BadRequestException.BadRequestException
-- uid: Supabase.Storage.Exceptions.BadRequestException.ErrorResponse
-  name: ErrorResponse
-  href: api/Supabase.Storage.Exceptions.BadRequestException.html#Supabase_Storage_Exceptions_BadRequestException_ErrorResponse
-  commentId: P:Supabase.Storage.Exceptions.BadRequestException.ErrorResponse
-  fullName: Supabase.Storage.Exceptions.BadRequestException.ErrorResponse
-  nameWithType: BadRequestException.ErrorResponse
-- uid: Supabase.Storage.Exceptions.BadRequestException.ErrorResponse*
-  name: ErrorResponse
-  href: api/Supabase.Storage.Exceptions.BadRequestException.html#Supabase_Storage_Exceptions_BadRequestException_ErrorResponse_
-  commentId: Overload:Supabase.Storage.Exceptions.BadRequestException.ErrorResponse
-  isSpec: "True"
-  fullName: Supabase.Storage.Exceptions.BadRequestException.ErrorResponse
-  nameWithType: BadRequestException.ErrorResponse
-- uid: Supabase.Storage.Exceptions.BadRequestException.HttpResponse
-  name: HttpResponse
-  href: api/Supabase.Storage.Exceptions.BadRequestException.html#Supabase_Storage_Exceptions_BadRequestException_HttpResponse
-  commentId: P:Supabase.Storage.Exceptions.BadRequestException.HttpResponse
-  fullName: Supabase.Storage.Exceptions.BadRequestException.HttpResponse
-  nameWithType: BadRequestException.HttpResponse
-- uid: Supabase.Storage.Exceptions.BadRequestException.HttpResponse*
-  name: HttpResponse
-  href: api/Supabase.Storage.Exceptions.BadRequestException.html#Supabase_Storage_Exceptions_BadRequestException_HttpResponse_
-  commentId: Overload:Supabase.Storage.Exceptions.BadRequestException.HttpResponse
-  isSpec: "True"
-  fullName: Supabase.Storage.Exceptions.BadRequestException.HttpResponse
-  nameWithType: BadRequestException.HttpResponse
+  fullName: Supabase.Storage.Exceptions.FailureHint.DetectReason
+  nameWithType: FailureHint.DetectReason
+- uid: Supabase.Storage.Exceptions.FailureHint.Reason
+  name: FailureHint.Reason
+  href: api/Supabase.Storage.Exceptions.FailureHint.Reason.html
+  commentId: T:Supabase.Storage.Exceptions.FailureHint.Reason
+  fullName: Supabase.Storage.Exceptions.FailureHint.Reason
+  nameWithType: FailureHint.Reason
+- uid: Supabase.Storage.Exceptions.FailureHint.Reason.AlreadyExists
+  name: AlreadyExists
+  href: api/Supabase.Storage.Exceptions.FailureHint.Reason.html#Supabase_Storage_Exceptions_FailureHint_Reason_AlreadyExists
+  commentId: F:Supabase.Storage.Exceptions.FailureHint.Reason.AlreadyExists
+  fullName: Supabase.Storage.Exceptions.FailureHint.Reason.AlreadyExists
+  nameWithType: FailureHint.Reason.AlreadyExists
+- uid: Supabase.Storage.Exceptions.FailureHint.Reason.Internal
+  name: Internal
+  href: api/Supabase.Storage.Exceptions.FailureHint.Reason.html#Supabase_Storage_Exceptions_FailureHint_Reason_Internal
+  commentId: F:Supabase.Storage.Exceptions.FailureHint.Reason.Internal
+  fullName: Supabase.Storage.Exceptions.FailureHint.Reason.Internal
+  nameWithType: FailureHint.Reason.Internal
+- uid: Supabase.Storage.Exceptions.FailureHint.Reason.InvalidInput
+  name: InvalidInput
+  href: api/Supabase.Storage.Exceptions.FailureHint.Reason.html#Supabase_Storage_Exceptions_FailureHint_Reason_InvalidInput
+  commentId: F:Supabase.Storage.Exceptions.FailureHint.Reason.InvalidInput
+  fullName: Supabase.Storage.Exceptions.FailureHint.Reason.InvalidInput
+  nameWithType: FailureHint.Reason.InvalidInput
+- uid: Supabase.Storage.Exceptions.FailureHint.Reason.NotAuthorized
+  name: NotAuthorized
+  href: api/Supabase.Storage.Exceptions.FailureHint.Reason.html#Supabase_Storage_Exceptions_FailureHint_Reason_NotAuthorized
+  commentId: F:Supabase.Storage.Exceptions.FailureHint.Reason.NotAuthorized
+  fullName: Supabase.Storage.Exceptions.FailureHint.Reason.NotAuthorized
+  nameWithType: FailureHint.Reason.NotAuthorized
+- uid: Supabase.Storage.Exceptions.FailureHint.Reason.NotFound
+  name: NotFound
+  href: api/Supabase.Storage.Exceptions.FailureHint.Reason.html#Supabase_Storage_Exceptions_FailureHint_Reason_NotFound
+  commentId: F:Supabase.Storage.Exceptions.FailureHint.Reason.NotFound
+  fullName: Supabase.Storage.Exceptions.FailureHint.Reason.NotFound
+  nameWithType: FailureHint.Reason.NotFound
+- uid: Supabase.Storage.Exceptions.FailureHint.Reason.Unknown
+  name: Unknown
+  href: api/Supabase.Storage.Exceptions.FailureHint.Reason.html#Supabase_Storage_Exceptions_FailureHint_Reason_Unknown
+  commentId: F:Supabase.Storage.Exceptions.FailureHint.Reason.Unknown
+  fullName: Supabase.Storage.Exceptions.FailureHint.Reason.Unknown
+  nameWithType: FailureHint.Reason.Unknown
 - uid: Supabase.Storage.Exceptions.SupabaseStorageException
   name: SupabaseStorageException
   href: api/Supabase.Storage.Exceptions.SupabaseStorageException.html
   commentId: T:Supabase.Storage.Exceptions.SupabaseStorageException
   fullName: Supabase.Storage.Exceptions.SupabaseStorageException
   nameWithType: SupabaseStorageException
-- uid: Supabase.Storage.Exceptions.SupabaseStorageException.#ctor
-  name: SupabaseStorageException()
-  href: api/Supabase.Storage.Exceptions.SupabaseStorageException.html#Supabase_Storage_Exceptions_SupabaseStorageException__ctor
-  commentId: M:Supabase.Storage.Exceptions.SupabaseStorageException.#ctor
-  fullName: Supabase.Storage.Exceptions.SupabaseStorageException.SupabaseStorageException()
-  nameWithType: SupabaseStorageException.SupabaseStorageException()
-- uid: Supabase.Storage.Exceptions.SupabaseStorageException.#ctor(System.String)
-  name: SupabaseStorageException(String)
-  href: api/Supabase.Storage.Exceptions.SupabaseStorageException.html#Supabase_Storage_Exceptions_SupabaseStorageException__ctor_System_String_
-  commentId: M:Supabase.Storage.Exceptions.SupabaseStorageException.#ctor(System.String)
-  fullName: Supabase.Storage.Exceptions.SupabaseStorageException.SupabaseStorageException(System.String)
-  nameWithType: SupabaseStorageException.SupabaseStorageException(String)
-- uid: Supabase.Storage.Exceptions.SupabaseStorageException.#ctor(System.String,Exception)
-  name: SupabaseStorageException(String, Exception)
-  href: api/Supabase.Storage.Exceptions.SupabaseStorageException.html#Supabase_Storage_Exceptions_SupabaseStorageException__ctor_System_String_Exception_
-  commentId: M:Supabase.Storage.Exceptions.SupabaseStorageException.#ctor(System.String,Exception)
-  fullName: Supabase.Storage.Exceptions.SupabaseStorageException.SupabaseStorageException(System.String, Exception)
-  nameWithType: SupabaseStorageException.SupabaseStorageException(String, Exception)
+- uid: Supabase.Storage.Exceptions.SupabaseStorageException.#ctor(System.Nullable{System.String})
+  name: SupabaseStorageException(Nullable<String>)
+  href: api/Supabase.Storage.Exceptions.SupabaseStorageException.html#Supabase_Storage_Exceptions_SupabaseStorageException__ctor_System_Nullable_System_String__
+  commentId: M:Supabase.Storage.Exceptions.SupabaseStorageException.#ctor(System.Nullable{System.String})
+  name.vb: SupabaseStorageException(Nullable(Of String))
+  fullName: Supabase.Storage.Exceptions.SupabaseStorageException.SupabaseStorageException(System.Nullable<System.String>)
+  fullName.vb: Supabase.Storage.Exceptions.SupabaseStorageException.SupabaseStorageException(System.Nullable(Of System.String))
+  nameWithType: SupabaseStorageException.SupabaseStorageException(Nullable<String>)
+  nameWithType.vb: SupabaseStorageException.SupabaseStorageException(Nullable(Of String))
+- uid: Supabase.Storage.Exceptions.SupabaseStorageException.#ctor(System.Nullable{System.String},System.Nullable{Exception})
+  name: SupabaseStorageException(Nullable<String>, Nullable<Exception>)
+  href: api/Supabase.Storage.Exceptions.SupabaseStorageException.html#Supabase_Storage_Exceptions_SupabaseStorageException__ctor_System_Nullable_System_String__System_Nullable_Exception__
+  commentId: M:Supabase.Storage.Exceptions.SupabaseStorageException.#ctor(System.Nullable{System.String},System.Nullable{Exception})
+  name.vb: SupabaseStorageException(Nullable(Of String), Nullable(Of Exception))
+  fullName: Supabase.Storage.Exceptions.SupabaseStorageException.SupabaseStorageException(System.Nullable<System.String>, System.Nullable<Exception>)
+  fullName.vb: Supabase.Storage.Exceptions.SupabaseStorageException.SupabaseStorageException(System.Nullable(Of System.String), System.Nullable(Of Exception))
+  nameWithType: SupabaseStorageException.SupabaseStorageException(Nullable<String>, Nullable<Exception>)
+  nameWithType.vb: SupabaseStorageException.SupabaseStorageException(Nullable(Of String), Nullable(Of Exception))
 - uid: Supabase.Storage.Exceptions.SupabaseStorageException.#ctor*
   name: SupabaseStorageException
   href: api/Supabase.Storage.Exceptions.SupabaseStorageException.html#Supabase_Storage_Exceptions_SupabaseStorageException__ctor_
@@ -395,6 +398,71 @@ references:
   isSpec: "True"
   fullName: Supabase.Storage.Exceptions.SupabaseStorageException.SupabaseStorageException
   nameWithType: SupabaseStorageException.SupabaseStorageException
+- uid: Supabase.Storage.Exceptions.SupabaseStorageException.AddReason
+  name: AddReason()
+  href: api/Supabase.Storage.Exceptions.SupabaseStorageException.html#Supabase_Storage_Exceptions_SupabaseStorageException_AddReason
+  commentId: M:Supabase.Storage.Exceptions.SupabaseStorageException.AddReason
+  fullName: Supabase.Storage.Exceptions.SupabaseStorageException.AddReason()
+  nameWithType: SupabaseStorageException.AddReason()
+- uid: Supabase.Storage.Exceptions.SupabaseStorageException.AddReason*
+  name: AddReason
+  href: api/Supabase.Storage.Exceptions.SupabaseStorageException.html#Supabase_Storage_Exceptions_SupabaseStorageException_AddReason_
+  commentId: Overload:Supabase.Storage.Exceptions.SupabaseStorageException.AddReason
+  isSpec: "True"
+  fullName: Supabase.Storage.Exceptions.SupabaseStorageException.AddReason
+  nameWithType: SupabaseStorageException.AddReason
+- uid: Supabase.Storage.Exceptions.SupabaseStorageException.Content
+  name: Content
+  href: api/Supabase.Storage.Exceptions.SupabaseStorageException.html#Supabase_Storage_Exceptions_SupabaseStorageException_Content
+  commentId: P:Supabase.Storage.Exceptions.SupabaseStorageException.Content
+  fullName: Supabase.Storage.Exceptions.SupabaseStorageException.Content
+  nameWithType: SupabaseStorageException.Content
+- uid: Supabase.Storage.Exceptions.SupabaseStorageException.Content*
+  name: Content
+  href: api/Supabase.Storage.Exceptions.SupabaseStorageException.html#Supabase_Storage_Exceptions_SupabaseStorageException_Content_
+  commentId: Overload:Supabase.Storage.Exceptions.SupabaseStorageException.Content
+  isSpec: "True"
+  fullName: Supabase.Storage.Exceptions.SupabaseStorageException.Content
+  nameWithType: SupabaseStorageException.Content
+- uid: Supabase.Storage.Exceptions.SupabaseStorageException.Reason
+  name: Reason
+  href: api/Supabase.Storage.Exceptions.SupabaseStorageException.html#Supabase_Storage_Exceptions_SupabaseStorageException_Reason
+  commentId: P:Supabase.Storage.Exceptions.SupabaseStorageException.Reason
+  fullName: Supabase.Storage.Exceptions.SupabaseStorageException.Reason
+  nameWithType: SupabaseStorageException.Reason
+- uid: Supabase.Storage.Exceptions.SupabaseStorageException.Reason*
+  name: Reason
+  href: api/Supabase.Storage.Exceptions.SupabaseStorageException.html#Supabase_Storage_Exceptions_SupabaseStorageException_Reason_
+  commentId: Overload:Supabase.Storage.Exceptions.SupabaseStorageException.Reason
+  isSpec: "True"
+  fullName: Supabase.Storage.Exceptions.SupabaseStorageException.Reason
+  nameWithType: SupabaseStorageException.Reason
+- uid: Supabase.Storage.Exceptions.SupabaseStorageException.Response
+  name: Response
+  href: api/Supabase.Storage.Exceptions.SupabaseStorageException.html#Supabase_Storage_Exceptions_SupabaseStorageException_Response
+  commentId: P:Supabase.Storage.Exceptions.SupabaseStorageException.Response
+  fullName: Supabase.Storage.Exceptions.SupabaseStorageException.Response
+  nameWithType: SupabaseStorageException.Response
+- uid: Supabase.Storage.Exceptions.SupabaseStorageException.Response*
+  name: Response
+  href: api/Supabase.Storage.Exceptions.SupabaseStorageException.html#Supabase_Storage_Exceptions_SupabaseStorageException_Response_
+  commentId: Overload:Supabase.Storage.Exceptions.SupabaseStorageException.Response
+  isSpec: "True"
+  fullName: Supabase.Storage.Exceptions.SupabaseStorageException.Response
+  nameWithType: SupabaseStorageException.Response
+- uid: Supabase.Storage.Exceptions.SupabaseStorageException.StatusCode
+  name: StatusCode
+  href: api/Supabase.Storage.Exceptions.SupabaseStorageException.html#Supabase_Storage_Exceptions_SupabaseStorageException_StatusCode
+  commentId: P:Supabase.Storage.Exceptions.SupabaseStorageException.StatusCode
+  fullName: Supabase.Storage.Exceptions.SupabaseStorageException.StatusCode
+  nameWithType: SupabaseStorageException.StatusCode
+- uid: Supabase.Storage.Exceptions.SupabaseStorageException.StatusCode*
+  name: StatusCode
+  href: api/Supabase.Storage.Exceptions.SupabaseStorageException.html#Supabase_Storage_Exceptions_SupabaseStorageException_StatusCode_
+  commentId: Overload:Supabase.Storage.Exceptions.SupabaseStorageException.StatusCode
+  isSpec: "True"
+  fullName: Supabase.Storage.Exceptions.SupabaseStorageException.StatusCode
+  nameWithType: SupabaseStorageException.StatusCode
 - uid: Supabase.Storage.Extensions
   name: Supabase.Storage.Extensions
   href: api/Supabase.Storage.Extensions.html
@@ -478,6 +546,19 @@ references:
   isSpec: "True"
   fullName: Supabase.Storage.FileObject.Id
   nameWithType: FileObject.Id
+- uid: Supabase.Storage.FileObject.IsFolder
+  name: IsFolder
+  href: api/Supabase.Storage.FileObject.html#Supabase_Storage_FileObject_IsFolder
+  commentId: P:Supabase.Storage.FileObject.IsFolder
+  fullName: Supabase.Storage.FileObject.IsFolder
+  nameWithType: FileObject.IsFolder
+- uid: Supabase.Storage.FileObject.IsFolder*
+  name: IsFolder
+  href: api/Supabase.Storage.FileObject.html#Supabase_Storage_FileObject_IsFolder_
+  commentId: Overload:Supabase.Storage.FileObject.IsFolder
+  isSpec: "True"
+  fullName: Supabase.Storage.FileObject.IsFolder
+  nameWithType: FileObject.IsFolder
 - uid: Supabase.Storage.FileObject.LastAccessedAt
   name: LastAccessedAt
   href: api/Supabase.Storage.FileObject.html#Supabase_Storage_FileObject_LastAccessedAt
@@ -1206,18 +1287,6 @@ references:
   isSpec: "True"
   fullName: Supabase.Storage.StorageBucketApi.StorageBucketApi
   nameWithType: StorageBucketApi.StorageBucketApi
-- uid: Supabase.Storage.StorageBucketApi._headers
-  name: _headers
-  href: api/Supabase.Storage.StorageBucketApi.html#Supabase_Storage_StorageBucketApi__headers
-  commentId: F:Supabase.Storage.StorageBucketApi._headers
-  fullName: Supabase.Storage.StorageBucketApi._headers
-  nameWithType: StorageBucketApi._headers
-- uid: Supabase.Storage.StorageBucketApi._initializedHeaders
-  name: _initializedHeaders
-  href: api/Supabase.Storage.StorageBucketApi.html#Supabase_Storage_StorageBucketApi__initializedHeaders
-  commentId: F:Supabase.Storage.StorageBucketApi._initializedHeaders
-  fullName: Supabase.Storage.StorageBucketApi._initializedHeaders
-  nameWithType: StorageBucketApi._initializedHeaders
 - uid: Supabase.Storage.StorageBucketApi.CreateBucket(System.String,Supabase.Storage.BucketUpsertOptions)
   name: CreateBucket(String, BucketUpsertOptions)
   href: api/Supabase.Storage.StorageBucketApi.html#Supabase_Storage_StorageBucketApi_CreateBucket_System_String_Supabase_Storage_BucketUpsertOptions_
