@@ -1,5 +1,10 @@
 ﻿# Changelog
 
+## 1.3.2 - 06-10-2023
+
+- Uses new `Supabase.Core` assembly name.
+- Renames output assembly to `Supabase.Storage`.
+
 ## 1.3.0 - 05-06-2023
 - Re: [supabase-community/gotrue-csharp#57](https://github.com/supabase-community/gotrue-csharp/pull/57) - cleaner exception handling + expanded tests. 
 - Re: [#9](https://github.com/supabase-community/storage-csharp/issues/9) - `FileObject` supports the return of folders (use `IsFolder`) property to distinguish
