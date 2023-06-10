@@ -1,45 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
-	<PropertyGroup>
-		<TargetFramework>netstandard2.0</TargetFramework>
-		<PackOnBuild>true</PackOnBuild>
-		<PackageId>supabase-storage-csharp</PackageId>
-		<Authors>Joseph Schultz &lt;joseph@acupofjose.com&gt;</Authors>
-		<Description>A C# implementation of the Supabase Storage client</Description>
-		<Copyright>MIT</Copyright>
-		<NeutralLanguage>en-US</NeutralLanguage>
-		<PackageLicenseUrl>https://github.com/supabase-community/storage-csharp/blob/master/LICENSE</PackageLicenseUrl>
-		<Owners>Joseph Schultz &lt;joseph@acupofjose.com&gt;</Owners>
-		<PackageProjectUrl>https://github.com/supabase-community/storage-csharp</PackageProjectUrl>
-		<Summary>A C# implementation of the Supabase Storage client</Summary>
-		<Title>Supabase Storage</Title>
-		<PackageIconUrl>https://avatars.githubusercontent.com/u/54469796?s=200&amp;v=4</PackageIconUrl>
-		<PackageTags>supabase, storage</PackageTags>
-		<ReleaseVersion>1.3.0</ReleaseVersion>
-		<PackageVersion>1.3.0</PackageVersion>
-		<RootNamespace>Supabase.Storage</RootNamespace>
-	</PropertyGroup>
-	<PropertyGroup>
-		<Nullable>enable</Nullable>
-		<LangVersion>latest</LangVersion>
-		<WarningsAsErrors>CS8600;CS8602;CS8603</WarningsAsErrors>
-	</PropertyGroup>
-	<PropertyGroup Condition=" '$(Version)' == '' ">
-		<VersionPrefix Condition=" '$(VersionPrefix)' == '' ">1.2.9</VersionPrefix>
-		<Version Condition=" '$(Version)' == '' ">$(VersionPrefix)</Version>
-	</PropertyGroup>
-	<ItemGroup>
-		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-		<PackageReference Include="MimeMapping" Version="2.0.0" />
-		<PackageReference Include="supabase-core" Version="0.0.2" />
-	</ItemGroup>
-	<ItemGroup>
-		<None Remove="MimeMapping" />
-		<None Remove="Responses\" />
-		<None Remove="Exceptions\" />
-	</ItemGroup>
-	<ItemGroup>
-	  <Folder Include="Responses\" />
-	  <Folder Include="Exceptions\" />
-	</ItemGroup>
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <PackOnBuild>true</PackOnBuild>
+        <PackageId>supabase-storage-csharp</PackageId>
+        <Authors>Joseph Schultz &lt;joseph@acupofjose.com&gt;</Authors>
+        <Description>A C# implementation of the Supabase Storage client</Description>
+        <Copyright>MIT</Copyright>
+        <NeutralLanguage>en-US</NeutralLanguage>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <Owners>Joseph Schultz &lt;joseph@acupofjose.com&gt;</Owners>
+        <PackageProjectUrl>https://github.com/supabase-community/storage-csharp</PackageProjectUrl>
+        <Summary>A C# implementation of the Supabase Storage client</Summary>
+        <Title>Supabase Storage</Title>
+        <PackageIconUrl>https://avatars.githubusercontent.com/u/54469796?s=200&amp;v=4</PackageIconUrl>
+        <PackageTags>supabase, storage</PackageTags>
+        <ReleaseVersion>1.3.1</ReleaseVersion>
+        <PackageVersion>1.3.1</PackageVersion>
+        <RepositoryUrl>https://github.com/supabase-community/storage-csharp</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <RootNamespace>Supabase.Storage</RootNamespace>
+        <AssemblyName>Supabase.Storage</AssemblyName>
+    </PropertyGroup>
+    <PropertyGroup>
+        <IncludeSymbols>true</IncludeSymbols>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    </PropertyGroup>
+    <PropertyGroup>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    </PropertyGroup>
+    <PropertyGroup>
+        <Nullable>enable</Nullable>
+        <LangVersion>latest</LangVersion>
+        <WarningsAsErrors>CS8600;CS8602;CS8603</WarningsAsErrors>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Version)' == '' ">
+        <VersionPrefix Condition=" '$(VersionPrefix)' == '' ">1.3.1</VersionPrefix>
+        <Version Condition=" '$(Version)' == '' ">$(VersionPrefix)</Version>
+    </PropertyGroup>
+    <ItemGroup>
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.3"/>
+        <PackageReference Include="MimeMapping" Version="2.0.0"/>
+        <PackageReference Include="supabase-core" Version="0.0.2"/>
+    </ItemGroup>
+    <ItemGroup>
+        <None Remove="MimeMapping"/>
+        <None Remove="Responses\"/>
+        <None Remove="Exceptions\"/>
+    </ItemGroup>
+    <ItemGroup>
+        <Folder Include="Responses\"/>
+        <Folder Include="Exceptions\"/>
+    </ItemGroup>
+    <ItemGroup>
+        <None Include="..\.github\icon.png" Pack="true" Link="icon.png" PackagePath="\" />
+        <None Include="..\README.md" Pack="true" Link="README.md" PackagePath="\" />
+    </ItemGroup>
 </Project>
