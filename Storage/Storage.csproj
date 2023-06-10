@@ -21,6 +21,9 @@
         <RepositoryType>git</RepositoryType>
         <RootNamespace>Supabase.Storage</RootNamespace>
         <AssemblyName>Supabase.Storage</AssemblyName>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <PackageIcon>icon.png</PackageIcon>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
     </PropertyGroup>
     <PropertyGroup>
         <IncludeSymbols>true</IncludeSymbols>
@@ -39,18 +42,18 @@
         <Version Condition=" '$(Version)' == '' ">$(VersionPrefix)</Version>
     </PropertyGroup>
     <ItemGroup>
-        <PackageReference Include="Newtonsoft.Json" Version="13.0.3"/>
-        <PackageReference Include="MimeMapping" Version="2.0.0"/>
-        <PackageReference Include="supabase-core" Version="0.0.2"/>
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+        <PackageReference Include="MimeMapping" Version="2.0.0" />
+        <PackageReference Include="supabase-core" Version="0.0.2" />
     </ItemGroup>
     <ItemGroup>
-        <None Remove="MimeMapping"/>
-        <None Remove="Responses\"/>
-        <None Remove="Exceptions\"/>
+        <None Remove="MimeMapping" />
+        <None Remove="Responses\" />
+        <None Remove="Exceptions\" />
     </ItemGroup>
     <ItemGroup>
-        <Folder Include="Responses\"/>
-        <Folder Include="Exceptions\"/>
+        <Folder Include="Responses\" />
+        <Folder Include="Exceptions\" />
     </ItemGroup>
     <ItemGroup>
         <None Include="..\.github\icon.png" Pack="true" Link="icon.png" PackagePath="\" />
