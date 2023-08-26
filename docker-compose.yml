@@ -96,34 +96,34 @@ services:
       REGION: us-east-1
       
       # Minio Configuration (if using Minio)
-      GLOBAL_S3_FORCE_PATH_STYLE: true
+      GLOBAL_S3_FORCE_PATH_STYLE: "true"
       AWS_DEFAULT_REGION: us-east-1
       
       # Local File Storage Configuration
       FILE_STORAGE_BACKEND_PATH: ./data
       
       # Multitenant
-      IS_MULTITENANT: false
+      IS_MULTITENANT: "false"
       MULTITENANT_DATABASE_URL: postgresql://postgres:postgres@db:5433/postgres
       X_FORWARDED_HOST_REGEXP:
       ADMIN_API_KEYS: apikey
       ENCRYPTION_KEY: encryptionkey
       
       # Logs
-      LOGFLARE_ENABLED: false
+      LOGFLARE_ENABLED: "false"
       LOGFLARE_API_KEY: api_key
       LOGFLARE_SOURCE_TOKEN: source_token
       
       # Image Transformation
-      ENABLE_IMAGE_TRANSFORMATION: true
+      ENABLE_IMAGE_TRANSFORMATION: "true"
       IMGPROXY_URL: http://localhost:50020
       
       # Queue
       WEBHOOK_URL:
-      ENABLE_QUEUE_EVENTS: false
+      ENABLE_QUEUE_EVENTS: "false"
       
       # Rate Limiter
-      ENABLE_RATE_LIMITER: true
+      ENABLE_RATE_LIMITER: "true"
       RATE_LIMITER_DRIVER: redis
       RATE_LIMITER_REDIS_URL: redis:6379
 
