@@ -22,9 +22,12 @@ jobs:
         with:
           dotnet-version: '7.0.x'
       
+      - name: Setup Testing Environment
+        run: docker-compose up -d
+      
       - name: Install dependencies
         run: dotnet restore
-      
+
       - name: Build
         run: dotnet build --configuration Release --no-restore
       

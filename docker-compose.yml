@@ -19,7 +19,7 @@ services:
       POSTGRES_PORT: 5432
 
   rest:
-    image: postgrest/postgrest:v7.0.1
+    image: postgrest/postgrest:latest
     restart: unless-stopped
     ports:
       - "3000:3000"
@@ -31,30 +31,102 @@ services:
       PGRST_JWT_SECRET: 'f023d3db-39dc-4ac9-87b2-b2be72e9162b'
     depends_on:
       - db
+  
+  minio:
+    image: minio/minio
+    restart: unless-stopped
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    volumes:
+      - minio_storage:/data
+    environment:
+      MINIO_ROOT_USER: root
+      MINIO_ROOT_PASSWORD: supastrong-password
+    command: server --console-address ":9001" /data
 
+  imgproxy:
+    image: darthsim/imgproxy
+    restart: unless-stopped
+    ports:
+      - "50020:8080"
+  
+  redis:
+    image: redis:6.2-alpine
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+      
   storage:
-    image: supabase/storage-api
+    image: ghcr.io/supabase/storage-api:v0.41.5
     restart: unless-stopped
     depends_on:
       - db
+      - minio
+      - redis
+      - imgproxy
     ports:
       - "5000:5000"
+    volumes:
+      - storage_data:/app/data
     environment:
-      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
-      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+      POSTGREST_URL: http://rest:3000
+      # Tenant Configuration
       ANON_KEY: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYxMzUzMTk4NSwiZXhwIjoxOTI5MTA3OTg1fQ.mqfi__KnQB4v6PkIjkhzfwWrYyF94MEbSC6LnuvVniE
       SERVICE_KEY: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoic2VydmljZV9yb2xlIiwiaWF0IjoxNjEzNTMxOTg1LCJleHAiOjE5MjkxMDc5ODV9.th84OKK0Iz8QchDyXZRrojmKSEZ-OuitQm_5DvLiSIc
-      PROJECT_REF: bjhaohmqunupljrqypxz
-      REGION: ${AWS_REGION}
-      GLOBAL_S3_BUCKET: ${AWS_BUCKET}
-      POSTGREST_URL: http://rest:3000
+      TENANT_ID: bjhaohmqunupljrqypxz
       PGRST_JWT_SECRET: f023d3db-39dc-4ac9-87b2-b2be72e9162b
+      
+      # Database configuration
       DATABASE_URL: postgresql://postgres:postgres@db/postgres
-      PGOPTIONS: "-c search_path=storage,public"
+      DATABASE_POOL_URL: postgresql://postgres:postgres@db:6453/postgres
+      
+      # Upload configuration
       FILE_SIZE_LIMIT: 52428800
-      STORAGE_BACKEND: s3
+      
+      # Storage
+      STORAGE_BACKEND: file
+      GLOBAL_S3_BUCKET: storage-csharp
+      
+      # S3 Configuration
+      GLOBAL_S3_ENDPOINT: http://minio:9000
+      GLOBAL_S3_PROTOCOL: http
+      AWS_ACCESS_KEY_ID: root
+      AWS_SECRET_ACCESS_KEY: supastrong-password
+      REGION: us-east-1
+      
+      # Minio Configuration (if using Minio)
+      GLOBAL_S3_FORCE_PATH_STYLE: true
+      AWS_DEFAULT_REGION: us-east-1
+      
+      # Local File Storage Configuration
       FILE_STORAGE_BACKEND_PATH: ./data
-      X_FORWARDED_HOST_REGEXP: 
-      POSTGREST_URL_SUFFIX: /rest/v1
+      
+      # Multitenant
+      IS_MULTITENANT: false
+      MULTITENANT_DATABASE_URL: postgresql://postgres:postgres@db:5433/postgres
+      X_FORWARDED_HOST_REGEXP:
       ADMIN_API_KEYS: apikey
       ENCRYPTION_KEY: encryptionkey
+      
+      # Logs
+      LOGFLARE_ENABLED: false
+      LOGFLARE_API_KEY: api_key
+      LOGFLARE_SOURCE_TOKEN: source_token
+      
+      # Image Transformation
+      ENABLE_IMAGE_TRANSFORMATION: true
+      IMGPROXY_URL: http://localhost:50020
+      
+      # Queue
+      WEBHOOK_URL:
+      ENABLE_QUEUE_EVENTS: false
+      
+      # Rate Limiter
+      ENABLE_RATE_LIMITER: true
+      RATE_LIMITER_DRIVER: redis
+      RATE_LIMITER_REDIS_URL: redis:6379
+
+volumes:
+  minio_storage:
+  storage_data:
