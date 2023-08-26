@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web;
 using Newtonsoft.Json;
+using Supabase.Storage.Exceptions;
 using Supabase.Storage.Extensions;
 using Supabase.Storage.Interfaces;
 using Supabase.Storage.Responses;
@@ -70,6 +71,10 @@ namespace Supabase.Storage
 
             var response = await Helpers.MakeRequest<CreateSignedUrlResponse>(HttpMethod.Post, url, body, Headers);
 
+            if (response == null || string.IsNullOrEmpty(response.SignedUrl))
+                throw new SupabaseStorageException(
+                    $"Signed Url for {path} returned empty, do you have permission?");
+
             return $"{Url}{response?.SignedUrl}";
         }
 
@@ -86,8 +91,16 @@ namespace Supabase.Storage
                 $"{Url}/object/sign/{BucketId}", body, Headers);
 
             if (response != null)
+            {
                 foreach (var item in response)
+                {
+                    if (string.IsNullOrEmpty(item.SignedUrl))
+                        throw new SupabaseStorageException(
+                            $"Signed Url for {item.Path} returned empty, do you have permission?");
+
                     item.SignedUrl = $"{Url}{item.SignedUrl}";
+                }
+            }
 
             return response;
         }
@@ -270,17 +283,14 @@ namespace Supabase.Storage
         /// <returns></returns>
         public async Task<bool> Move(string fromPath, string toPath)
         {
-            try
+            var body = new Dictionary<string, string?>
             {
-                var body = new Dictionary<string, string?>
-                    { { "bucketId", BucketId }, { "sourceKey", fromPath }, { "destinationKey", toPath } };
-                await Helpers.MakeRequest<GenericResponse>(HttpMethod.Post, $"{Url}/object/move", body, Headers);
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
+                { "bucketId", BucketId },
+                { "sourceKey", fromPath },
+                { "destinationKey", toPath }
+            };
+            await Helpers.MakeRequest<GenericResponse>(HttpMethod.Post, $"{Url}/object/move", body, Headers);
+            return true;
         }
 
         /// <summary>
@@ -402,7 +412,7 @@ namespace Supabase.Storage
                 await Helpers.MakeRequest<CreatedUploadSignedUrlResponse>(HttpMethod.Post, url, null, Headers);
 
             if (response == null || string.IsNullOrEmpty(response.Url) || !response.Url!.Contains("token"))
-                throw new Exception(
+                throw new SupabaseStorageException(
                     "Response did not return with expected data. Does this token have proper permission to generate a url?");
 
             var generatedUri = new Uri($"{Url}{response.Url}");
@@ -475,7 +485,7 @@ namespace Supabase.Storage
             var stream = await Helpers.HttpDownloadClient!.DownloadDataAsync(builder.Uri, Headers, progress);
 
             using var fileStream = new FileStream(localPath, FileMode.OpenOrCreate, FileAccess.Write);
-            
+
             stream.WriteTo(fileStream);
 
             return localPath;

@@ -4,6 +4,8 @@ using System.IO;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
+using Supabase.Storage.Exceptions;
 
 namespace Supabase.Storage.Extensions
 {
@@ -27,6 +29,21 @@ namespace Supabase.Storage.Extensions
 
 			using (var response = await client.SendAsync(message, HttpCompletionOption.ResponseHeadersRead))
 			{
+				if (!response.IsSuccessStatusCode)
+				{
+					var content = await response.Content.ReadAsStringAsync();
+					var errorResponse = JsonConvert.DeserializeObject<ErrorResponse>(content);
+					var e = new SupabaseStorageException(errorResponse?.Message ?? content)
+					{
+						Content = content,
+						Response = response,
+						StatusCode = errorResponse?.StatusCode ?? (int)response.StatusCode
+					};
+					
+					e.AddReason();
+					throw e;
+				}
+				
 				var contentLength = response.Content.Headers.ContentLength;
 				using (var download = await response.Content.ReadAsStreamAsync())
 				{
@@ -104,6 +121,21 @@ namespace Supabase.Storage.Extensions
 
 			var response = await client.PostAsync(uri, content);
 
+			if (!response.IsSuccessStatusCode)
+			{
+				var httpContent = await response.Content.ReadAsStringAsync();
+				var errorResponse = JsonConvert.DeserializeObject<ErrorResponse>(httpContent);
+				var e = new SupabaseStorageException(errorResponse?.Message ?? httpContent)
+				{
+					Content = httpContent,
+					Response = response,
+					StatusCode = errorResponse?.StatusCode ?? (int)response.StatusCode
+				};
+					
+				e.AddReason();
+				throw e;
+			}
+			
 			return response;
 		}
 	}
