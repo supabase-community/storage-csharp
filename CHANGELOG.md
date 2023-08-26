@@ -1,14 +1,24 @@
 ﻿# Changelog
 
+## 1.4.0 - 08-26-2023
+
+- Fixes [#11](https://github.com/supabase-community/storage-csharp/issues/11) - Which implements
+  missing `SupabaseStorageException` on failure status codes for `Upload`, `Download`, `Move`, `CreateSignedUrl`
+  and `CreateSignedUrls`.
+
 ## 1.3.2 - 06-10-2023
 
 - Uses new `Supabase.Core` assembly name.
 - Renames output assembly to `Supabase.Storage`.
 
 ## 1.3.0 - 05-06-2023
-- Re: [supabase-community/gotrue-csharp#57](https://github.com/supabase-community/gotrue-csharp/pull/57) - cleaner exception handling + expanded tests. 
-- Re: [#9](https://github.com/supabase-community/storage-csharp/issues/9) - `FileObject` supports the return of folders (use `IsFolder`) property to distinguish
-- Re: [#8](https://github.com/supabase-community/storage-csharp/issues/8) - Fixes Socket Starvation issue by using static `HttpClient`s
+
+- Re: [supabase-community/gotrue-csharp#57](https://github.com/supabase-community/gotrue-csharp/pull/57) - cleaner
+  exception handling + expanded tests.
+- Re: [#9](https://github.com/supabase-community/storage-csharp/issues/9) - `FileObject` supports the return of
+  folders (use `IsFolder`) property to distinguish
+- Re: [#8](https://github.com/supabase-community/storage-csharp/issues/8) - Fixes Socket Starvation issue by using
+  static `HttpClient`s
 
 ## 1.2.10 - 04-17-2023
 
@@ -17,13 +27,19 @@
 ## 1.2.9 - 04-12-2023
 
 Implements storage features from LW7:
-  - feat: custom file size limit and mime types at bucket level [supabase/storage-js#151](https://github.com/supabase/storage-js/pull/151) file size and mime type limits per bucket
-  - feat: quality option, image transformation [supabase/storage-js#145](https://github.com/supabase/storage-js/pull/152) quality option for image transformations
-  - feat: format option for webp support [supabase/storage-js#142](https://github.com/supabase/storage-js/pull/142) format option for image transformation
+
+- feat: custom file size limit and mime types at bucket
+  level [supabase/storage-js#151](https://github.com/supabase/storage-js/pull/151) file size and mime type limits per
+  bucket
+- feat: quality option, image transformation [supabase/storage-js#145](https://github.com/supabase/storage-js/pull/152)
+  quality option for image transformations
+- feat: format option for webp support [supabase/storage-js#142](https://github.com/supabase/storage-js/pull/142) format
+  option for image transformation
 
 ## 1.2.8 - 03-14-2023
 
-- [Merge #5](https://github.com/supabase-community/storage-csharp/pull/5) Added search string as an optional search parameter. Thanks [@ElectroKnight22](https://github.com/ElectroKnight22)!
+- [Merge #5](https://github.com/supabase-community/storage-csharp/pull/5) Added search string as an optional search
+  parameter. Thanks [@ElectroKnight22](https://github.com/ElectroKnight22)!
 
 ## 1.2.7 - 03-02-2023
 
@@ -31,12 +47,17 @@ Implements storage features from LW7:
 
 ## 1.2.6 - 03-02-2023
 
-- Re: [#4](https://github.com/supabase-community/storage-csharp/issues/4) Implementation for `ClientOptions` which supports specifying Upload, Download, and Request timeouts.
+- Re: [#4](https://github.com/supabase-community/storage-csharp/issues/4) Implementation for `ClientOptions` which
+  supports specifying Upload, Download, and Request timeouts.
 
 ## 1.2.5 - 02-28-2023
 
-- Provides fix for [supabase-community/supabase-csharp#54](https://github.com/supabase-community/supabase-csharp/issues/54) - Dynamic headers were always being overwritten by initialized headers, so the storage client would not receive user's access token as expected.
-- Provides fix for upload progress not reporting in [supabase-community/storage-csharp#3](https://github.com/supabase-community/storage-csharp/issues/3)
+- Provides fix
+  for [supabase-community/supabase-csharp#54](https://github.com/supabase-community/supabase-csharp/issues/54) - Dynamic
+  headers were always being overwritten by initialized headers, so the storage client would not receive user's access
+  token as expected.
+- Provides fix for upload progress not reporting
+  in [supabase-community/storage-csharp#3](https://github.com/supabase-community/storage-csharp/issues/3)
 
 ## 1.2.4 - 02-26-2023
 
@@ -57,7 +78,8 @@ Implements storage features from LW7:
 
 ## 1.2.0 - 11-4-2022
 
-- [#2](https://github.com/supabase-community/storage-csharp/issues/2) Restructure Library to support Dependency Injection (DI)
+- [#2](https://github.com/supabase-community/storage-csharp/issues/2) Restructure Library to support Dependency
+  Injection (DI)
 - Enable nullability in the project and make use of nullable reference types.
 
 ## 1.1.1 - 07-17-2022
@@ -66,7 +88,8 @@ Implements storage features from LW7:
 
 ## 1.1.0 - 07-17-2022
 
-- API Change [Breaking/Minor] Library no longer uses `WebClient` and instead leverages `HttpClient`. Progress events on `Upload` and `Download` are now handled with `EventHandler<float>` instead of `WebClient` EventHandlers.
+- API Change [Breaking/Minor] Library no longer uses `WebClient` and instead leverages `HttpClient`. Progress events
+  on `Upload` and `Download` are now handled with `EventHandler<float>` instead of `WebClient` EventHandlers.
 
 ## 1.0.2 - 02-27-2022
 
