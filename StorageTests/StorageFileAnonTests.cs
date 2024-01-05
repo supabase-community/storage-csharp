@@ -17,9 +17,9 @@ public class StorageFileAnonTests
     Client AdminStorage => Helpers.GetClient();
     private Client Storage => Helpers.GetPublicClient();
 
-    private string _bucketId;
-    private IStorageFileApi<FileObject> _adminBucket;
-    private IStorageFileApi<FileObject> _bucket;
+    private string _bucketId = string.Empty;
+    private IStorageFileApi<FileObject> _adminBucket = null!;
+    private IStorageFileApi<FileObject> _bucket = null!;
 
     [TestInitialize]
     public async Task InitializeTest()
@@ -43,7 +43,10 @@ public class StorageFileAnonTests
         Assert.IsNotNull(files);
 
         foreach (var file in files)
-            await _adminBucket.Remove(new List<string> { file.Name });
+        {
+            if (file.Name is not null)
+                await _adminBucket.Remove(new List<string> { file.Name });
+        }
 
         await AdminStorage.DeleteBucket(_bucketId);
     }
