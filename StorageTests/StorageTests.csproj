@@ -1,10 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
-
+    <TargetFramework>net8.0</TargetFramework>
     <IsPackable>false</IsPackable>
-    <ReleaseVersion>1.0.2</ReleaseVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -17,19 +15,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="db\" />
-    <Folder Include="Assets\" />
+    <ProjectReference Include="..\Storage\Storage.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <None Remove="Assets\" />
-    <None Remove="postgrest-csharp" />
-  </ItemGroup>
+
   <ItemGroup>
     <None Update="Assets\supabase-csharp.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Storage\Storage.csproj" />
   </ItemGroup>
 </Project>
