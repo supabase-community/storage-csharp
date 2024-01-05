@@ -1,27 +1,27 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34330.188
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F94175FC-DE2B-4DBC-9C79-2A97B8489412}"
 	ProjectSection(SolutionItems) = preProject
-		docker-compose.yml = docker-compose.yml
-		README.md = README.md
-		.env = .env
 		.gitignore = .gitignore
 		CHANGELOG.md = CHANGELOG.md
+		docker-compose.yml = docker-compose.yml
+		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{43FFFE0C-91D2-43AB-913F-B3824702AE49}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{5B805377-7615-441C-86B1-4BE203B0289B}"
 	ProjectSection(SolutionItems) = preProject
+		.github\workflows\build-and-test.yml = .github\workflows\build-and-test.yml
 		.github\workflows\build-documentation.yaml = .github\workflows\build-documentation.yaml
 		.github\workflows\release.yml = .github\workflows\release.yml
-		.github\workflows\dotnet-core.yml = .github\workflows\dotnet-core.yml
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Storage", "Storage\Storage.csproj", "{4D1E857D-133C-4BF9-82C6-414416D69ACD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Storage", "Storage\Storage.csproj", "{4D1E857D-133C-4BF9-82C6-414416D69ACD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StorageTests", "StorageTests\StorageTests.csproj", "{B23C82F8-01DF-4982-A13B-7CC27A2F7CF5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StorageTests", "StorageTests\StorageTests.csproj", "{B23C82F8-01DF-4982-A13B-7CC27A2F7CF5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -38,11 +38,14 @@ Global
 		{B23C82F8-01DF-4982-A13B-7CC27A2F7CF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B23C82F8-01DF-4982-A13B-7CC27A2F7CF5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
-	GlobalSection(MonoDevelopProperties) = preSolution
-		version = 1.0.2
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{43FFFE0C-91D2-43AB-913F-B3824702AE49} = {F94175FC-DE2B-4DBC-9C79-2A97B8489412}
 		{5B805377-7615-441C-86B1-4BE203B0289B} = {43FFFE0C-91D2-43AB-913F-B3824702AE49}
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		version = 1.0.2
 	EndGlobalSection
 EndGlobal
