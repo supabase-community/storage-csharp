@@ -38,9 +38,15 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="coverlet.collector" Version="6.0.2">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Microsoft.CodeCoverage" Version="17.9.0" />
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.9.0" />
         <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-        <PackageReference Include="MimeMapping" Version="2.0.0" />
-        <PackageReference Include="supabase-core" Version="0.0.3" />
+        <PackageReference Include="MimeMapping" Version="3.0.1" />
+        <PackageReference Include="Supabase.Core" Version="1.0.0" />
     </ItemGroup>
 
     <ItemGroup>
