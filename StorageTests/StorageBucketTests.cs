@@ -11,7 +11,7 @@ namespace StorageTests;
 [TestClass]
 public class StorageBucketTests
 {
-    Client Storage => Helpers.GetClient();
+    Client Storage => Helpers.GetServiceClient();
 
     [TestMethod("Bucket: List")]
     public async Task List()

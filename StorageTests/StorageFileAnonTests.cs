@@ -14,7 +14,7 @@ namespace StorageTests;
 [TestClass]
 public class StorageFileAnonTests
 {
-    Client AdminStorage => Helpers.GetClient();
+    Client AdminStorage => Helpers.GetServiceClient();
     private Client Storage => Helpers.GetPublicClient();
 
     private string _bucketId = string.Empty;

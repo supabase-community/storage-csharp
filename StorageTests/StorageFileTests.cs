@@ -13,7 +13,7 @@ namespace StorageTests;
 [TestClass]
 public class StorageFileTests
 {
-    Client Storage => Helpers.GetClient();
+    Client Storage => Helpers.GetServiceClient();
 
     private string _bucketId = string.Empty;
     private IStorageFileApi<FileObject> _bucket = null!;
@@ -23,7 +23,8 @@ public class StorageFileTests
     {
         _bucketId = Guid.NewGuid().ToString();
 
-        if (_bucket == null && await Storage.GetBucket(_bucketId) == null)
+        var exists = await Storage.GetBucket(_bucketId);
+        if (exists == null)
         {
             await Storage.CreateBucket(_bucketId, new BucketUpsertOptions { Public = true });
         }
@@ -34,20 +35,17 @@ public class StorageFileTests
     [TestCleanup]
     public async Task TestCleanup()
     {
-        if (_bucket != null)
+        var files = await _bucket.List();
+
+        Assert.IsNotNull(files);
+
+        foreach (var file in files)
         {
-            var files = await _bucket.List();
-
-            Assert.IsNotNull(files);
-
-            foreach (var file in files)
-            {
-                if (file.Name is not null)
-                    await _bucket.Remove(new List<string> { file.Name });
-            }
-
-            await Storage.DeleteBucket(_bucketId);
+            if (file.Name is not null)
+                await _bucket.Remove(new List<string> { file.Name });
         }
+
+        await Storage.DeleteBucket(_bucketId);
     }
 
     [TestMethod("File: Upload File")]

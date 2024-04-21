@@ -11,6 +11,7 @@ autom4te.cache/
 tarballs/
 test-results/
 
+.storage-server
 .env
 
 # Mac bundle stuff

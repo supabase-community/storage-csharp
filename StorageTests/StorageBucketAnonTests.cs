@@ -11,7 +11,7 @@ namespace StorageTests;
 [TestClass]
 public class StorageBucketAnonTests
 {
-    private Client AdminStorage => Helpers.GetClient();
+    private Client AdminStorage => Helpers.GetServiceClient();
     private Client Storage => Helpers.GetPublicClient();
 
     [TestMethod("Bucket: Returns empty when attempting to List")]
