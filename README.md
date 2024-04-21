@@ -10,8 +10,7 @@
 
 Integrate your [Supabase](https://supabase.io) projects with C#.
 
-**NOTICE, As of v1.1.0**
-**API Change [Breaking/Minor] Library no longer uses `WebClient` and instead leverages `HttpClient`. Progress events on `Upload` and `Download` are now handled with `EventHandler<float>` instead of `WebClient` EventHandlers.**
+## [Notice]: v2.0.0 renames this package from `storage-csharp` to `Supabase.Storage`. The depreciation notice has been set in NuGet. The API remains the same.
 
 ## Examples (using supabase-csharp)
 

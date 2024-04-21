@@ -1,5 +1,9 @@
 ﻿# Changelog
 
+## 2.0.0 - 04-21-2024
+
+- Re: [#135](https://github.com/supabase-community/supabase-csharp/issues/135) Update nuget package name `storage-csharp` to `Supabase.Storage`
+
 ## 1.4.0 - 08-26-2023
 
 - Fixes [#11](https://github.com/supabase-community/storage-csharp/issues/11) - Which implements
