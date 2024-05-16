@@ -1,8 +1,15 @@
 ﻿# Changelog
 
+## 2.0.1 - 05-16-2024
+
+- Re: [#15](https://github.com/supabase-community/storage-csharp/issues/15)
+  and [#16](https://github.com/supabase-community/storage-csharp/pull/16)
+  Fix CreateSignedUrl with TransformOptions. Thanks [@alustrement-bob](https://github.com/alustrement-bob)!
+
 ## 2.0.0 - 04-21-2024
 
-- Re: [#135](https://github.com/supabase-community/supabase-csharp/issues/135) Update nuget package name `storage-csharp` to `Supabase.Storage`
+- Re: [#135](https://github.com/supabase-community/supabase-csharp/issues/135) Update nuget package
+  name `storage-csharp` to `Supabase.Storage`
 
 ## 1.4.0 - 08-26-2023
 
