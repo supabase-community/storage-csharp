@@ -179,6 +179,18 @@ public class StorageFileTests
         await _bucket.Remove(new List<string> { name });
     }
 
+    [TestMethod("File: Get Signed Link with transform options")]
+    public async Task GetSignedLinkWithTransformOptions()
+    {
+        var name = $"{Guid.NewGuid()}.bin";
+        await _bucket.Upload(new Byte[] { 0x0, 0x1 }, name);
+
+        var url = await _bucket.CreateSignedUrl(name, 3600, new TransformOptions { Width = 100, Height = 100 });
+        Assert.IsTrue(Uri.IsWellFormedUriString(url, UriKind.Absolute));
+
+        await _bucket.Remove(new List<string> { name });
+    }
+
     [TestMethod("File: Get Multiple Signed Links")]
     public async Task GetMultipleSignedLinks()
     {

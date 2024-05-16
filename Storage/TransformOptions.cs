@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System.Runtime.Serialization;
+using Newtonsoft.Json;
 using Supabase.Core.Attributes;
 
 namespace Supabase.Storage
@@ -13,11 +14,11 @@ namespace Supabase.Storage
         /// </summary>
         public enum ResizeType
         {
-            [MapTo("cover")]
+            [MapTo("cover"), EnumMember(Value = "cover")]
             Cover,
-            [MapTo("contain")]
+            [MapTo("contain"), EnumMember(Value = "contain")]
             Contain,
-            [MapTo("fill")]
+            [MapTo("fill"), EnumMember(Value = "fill")]
             Fill
         }
 

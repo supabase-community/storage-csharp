@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using Supabase.Storage.Exceptions;
 using Supabase.Storage.Extensions;
 using Supabase.Storage.Interfaces;
@@ -67,7 +68,11 @@ namespace Supabase.Storage
             var url = $"{Url}/object/sign/{GetFinalPath(path)}";
 
             if (transformOptions != null)
-                body.Add("transform", transformOptions);
+            {
+                var transformOptionsJson = JsonConvert.SerializeObject(transformOptions, new StringEnumConverter());
+                var transformOptionsObj = JsonConvert.DeserializeObject<Dictionary<string, object>>(transformOptionsJson);
+                body.Add("transform", transformOptionsObj);
+            }
 
             var response = await Helpers.MakeRequest<CreateSignedUrlResponse>(HttpMethod.Post, url, body, Headers);
 
