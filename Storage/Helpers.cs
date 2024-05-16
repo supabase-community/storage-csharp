@@ -86,7 +86,7 @@ namespace Supabase.Storage
 					requestMessage.Headers.TryAddWithoutValidation(kvp.Key, kvp.Value);
 			}
 
-			using var response = await HttpRequestClient!.SendAsync(requestMessage, cancellationToken).ConfigureAwait(false);
+			var response = await HttpRequestClient!.SendAsync(requestMessage, cancellationToken);
 
 			var content = await response.Content.ReadAsStringAsync();
 

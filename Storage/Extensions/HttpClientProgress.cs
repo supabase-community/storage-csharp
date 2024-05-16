@@ -27,35 +27,38 @@ namespace Supabase.Storage.Extensions
 				}
 			}
 
-			using var response = await client.SendAsync(message, HttpCompletionOption.ResponseHeadersRead).ConfigureAwait(false);
-			if (!response.IsSuccessStatusCode)
+			using (var response = await client.SendAsync(message, HttpCompletionOption.ResponseHeadersRead))
 			{
-				var content = await response.Content.ReadAsStringAsync();
-				var errorResponse = JsonConvert.DeserializeObject<ErrorResponse>(content);
-				var e = new SupabaseStorageException(errorResponse?.Message ?? content)
+				if (!response.IsSuccessStatusCode)
 				{
-					Content = content,
-					Response = response,
-					StatusCode = errorResponse?.StatusCode ?? (int)response.StatusCode
-				};
+					var content = await response.Content.ReadAsStringAsync();
+					var errorResponse = JsonConvert.DeserializeObject<ErrorResponse>(content);
+					var e = new SupabaseStorageException(errorResponse?.Message ?? content)
+					{
+						Content = content,
+						Response = response,
+						StatusCode = errorResponse?.StatusCode ?? (int)response.StatusCode
+					};
 					
-				e.AddReason();
-				throw e;
-			}
+					e.AddReason();
+					throw e;
+				}
 				
-			var contentLength = response.Content.Headers.ContentLength;
-			using var download = await response.Content.ReadAsStreamAsync();
-			
-			// no progress... no contentLength... very sad
-			if (progress is null || !contentLength.HasValue)
-			{
-				await download.CopyToAsync(destination);
-				return destination;
-			}
+				var contentLength = response.Content.Headers.ContentLength;
+				using (var download = await response.Content.ReadAsStreamAsync())
+				{
+					// no progress... no contentLength... very sad
+					if (progress is null || !contentLength.HasValue)
+					{
+						await download.CopyToAsync(destination);
+						return destination;
+					}
 
-			// Such progress and contentLength much reporting Wow!
-			var progressWrapper = new Progress<long>(totalBytes => progress.Report(GetProgressPercentage(totalBytes, contentLength.Value)));
-			await download.CopyToAsync(destination, 81920, progressWrapper, cancellationToken);
+					// Such progress and contentLength much reporting Wow!
+					var progressWrapper = new Progress<long>(totalBytes => progress.Report(GetProgressPercentage(totalBytes, contentLength.Value)));
+					await download.CopyToAsync(destination, 81920, progressWrapper, cancellationToken);
+				}
+			}
 
 			float GetProgressPercentage(float totalBytes, float currentBytes) => (totalBytes / currentBytes) * 100f;
 
