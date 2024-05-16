@@ -1,5 +1,10 @@
 ﻿# Changelog
 
+## 2.0.2 - 05-16-2024
+
+- Re: [#96](https://github.com/supabase-community/postgrest-csharp/pull/96) Sets `ConfigureAwait(false)` to prevent
+  application deadlocks for users of this library.
+
 ## 2.0.1 - 05-16-2024
 
 - Re: [#15](https://github.com/supabase-community/storage-csharp/issues/15)
