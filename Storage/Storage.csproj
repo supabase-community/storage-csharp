@@ -16,8 +16,8 @@
         <Title>Supabase Storage</Title>
         <PackageIconUrl>https://avatars.githubusercontent.com/u/54469796?s=200&amp;v=4</PackageIconUrl>
         <PackageTags>supabase, storage</PackageTags>
-        <ReleaseVersion>2.0.1</ReleaseVersion>
-        <PackageVersion>2.0.1</PackageVersion>
+        <ReleaseVersion>2.0.2</ReleaseVersion>
+        <PackageVersion>2.0.2</PackageVersion>
         <RepositoryUrl>https://github.com/supabase-community/storage-csharp</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -33,17 +33,11 @@
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Version)' == '' ">
-        <VersionPrefix Condition=" '$(VersionPrefix)' == '' ">2.0.1</VersionPrefix>
+        <VersionPrefix Condition=" '$(VersionPrefix)' == '' ">2.0.2</VersionPrefix>
         <Version Condition=" '$(Version)' == '' ">$(VersionPrefix)</Version>
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="coverlet.collector" Version="6.0.2">
-          <PrivateAssets>all</PrivateAssets>
-          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-        </PackageReference>
-        <PackageReference Include="Microsoft.CodeCoverage" Version="17.9.0" />
-        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.9.0" />
         <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
         <PackageReference Include="MimeMapping" Version="3.0.1" />
         <PackageReference Include="Supabase.Core" Version="1.0.0" />

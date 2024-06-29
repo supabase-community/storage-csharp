@@ -1,5 +1,9 @@
 ﻿# Changelog
 
+## 2.0.2 - 06-29-2024
+
+- Removes unused testing dependencies from `Storage.csproj` that may have caused build errors for projects.
+
 ## 2.0.1 - 05-16-2024
 
 - Re: [#15](https://github.com/supabase-community/storage-csharp/issues/15)
