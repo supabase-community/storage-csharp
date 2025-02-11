@@ -208,6 +208,30 @@ public class StorageFileTests
 
         Assert.IsNotNull(url);
     }
+    
+    [TestMethod("File: Get Public Link with download options")]
+    public async Task GetPublicLinkWithDownloadOptions()
+    {
+        var name = $"{Guid.NewGuid()}.bin";
+        await _bucket.Upload(new Byte[] { 0x0, 0x1 }, name);
+        var url = _bucket.GetPublicUrl(name, null, new DownloadOptions { FileName = "custom-file.png"});
+        await _bucket.Remove(new List<string> { name });
+
+        Assert.IsNotNull(url);
+        StringAssert.Contains(url, "download=custom-file.png");
+    }
+    
+    [TestMethod("File: Get Public Link with download and transform options")]
+    public async Task GetPublicLinkWithDownloadAndTransformOptions()
+    {
+        var name = $"{Guid.NewGuid()}.bin";
+        await _bucket.Upload(new Byte[] { 0x0, 0x1 }, name);
+        var url = _bucket.GetPublicUrl(name, new TransformOptions { Height = 100, Width = 100}, DownloadOptions.UseOriginalFileName);
+        await _bucket.Remove(new List<string> { name });
+
+        Assert.IsNotNull(url);
+        StringAssert.Contains(url, "download=true");
+    }
 
     [TestMethod("File: Get Signed Link")]
     public async Task GetSignedLink()
@@ -232,6 +256,19 @@ public class StorageFileTests
 
         await _bucket.Remove(new List<string> { name });
     }
+    
+    [TestMethod("File: Get Signed Link with download options")]
+    public async Task GetSignedLinkWithDownloadOptions()
+    {
+        var name = $"{Guid.NewGuid()}.bin";
+        await _bucket.Upload(new Byte[] { 0x0, 0x1 }, name);
+
+        var url = await _bucket.CreateSignedUrl(name, 3600, null, new DownloadOptions { FileName = "custom-file.png"});
+        Assert.IsTrue(Uri.IsWellFormedUriString(url, UriKind.Absolute));
+        StringAssert.Contains(url, "download=custom-file.png");
+
+        await _bucket.Remove(new List<string> { name });
+    }
 
     [TestMethod("File: Get Multiple Signed Links")]
     public async Task GetMultipleSignedLinks()
@@ -242,13 +279,14 @@ public class StorageFileTests
         var name2 = $"{Guid.NewGuid()}.bin";
         await _bucket.Upload(new Byte[] { 0x0, 0x1 }, name2);
 
-        var urls = await _bucket.CreateSignedUrls(new List<string> { name1, name2 }, 3600);
+        var urls = await _bucket.CreateSignedUrls(new List<string> { name1, name2 }, 3600, DownloadOptions.UseOriginalFileName);
 
         Assert.IsNotNull(urls);
 
         foreach (var response in urls)
         {
-            Assert.IsTrue(Uri.IsWellFormedUriString(response.SignedUrl, UriKind.Absolute));
+            Assert.IsTrue(Uri.IsWellFormedUriString($"{response.SignedUrl}", UriKind.Absolute));
+            StringAssert.Contains(response.SignedUrl, "download=true");
         }
 
         await _bucket.Remove(new List<string> { name1 });
