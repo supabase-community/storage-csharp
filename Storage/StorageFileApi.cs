@@ -281,20 +281,43 @@ namespace Supabase.Storage
         }
 
         /// <summary>
-        /// Moves an existing file, optionally renaming it at the same time.
+        /// Moves an existing file to a new location, optionally allowing renaming.
         /// </summary>
-        /// <param name="fromPath">The original file path, including the current file name. For example `folder/image.png`.</param>
-        /// <param name="toPath">The new file path, including the new file name. For example `folder/image-copy.png`.</param>
-        /// <returns></returns>
-        public async Task<bool> Move(string fromPath, string toPath)
+        /// <param name="fromPath">The original file path, including the current file name (e.g., `folder/image.png`).</param>
+        /// <param name="toPath">The target file path, including the new file name (e.g., `folder/image-copy.png`).</param>
+        /// <param name="options">Optional parameters for specifying the destination bucket and other settings.</param>
+        /// <returns>Returns a boolean value indicating whether the operation was successful.</returns>
+        public async Task<bool> Move(string fromPath, string toPath, DestinationOptions? options = null)
         {
             var body = new Dictionary<string, string?>
             {
                 { "bucketId", BucketId },
                 { "sourceKey", fromPath },
-                { "destinationKey", toPath }
+                { "destinationKey", toPath },
+                { "destinationBucket", options?.DestinationBucket }
             };
             await Helpers.MakeRequest<GenericResponse>(HttpMethod.Post, $"{Url}/object/move", body, Headers);
+            return true;
+        }
+
+        /// <summary>
+        /// Copies a file/object from one path to another within a bucket or across buckets.
+        /// </summary>
+        /// <param name="fromPath">The source path of the file/object to copy.</param>
+        /// <param name="toPath">The destination path for the copied file/object.</param>
+        /// <param name="options">Optional parameters such as the destination bucket.</param>
+        /// <returns>True if the copy operation was successful.</returns>
+        public async Task<bool> Copy(string fromPath, string toPath, DestinationOptions? options = null)
+        {
+            var body = new Dictionary<string, string?>
+            {
+                { "bucketId", BucketId },
+                { "sourceKey", fromPath },
+                { "destinationKey", toPath },
+                { "destinationBucket", options?.DestinationBucket }
+            };
+
+            await Helpers.MakeRequest<GenericResponse>(HttpMethod.Post, $"{Url}/object/copy", body, Headers);
             return true;
         }
 

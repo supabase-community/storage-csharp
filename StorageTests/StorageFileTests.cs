@@ -155,6 +155,20 @@ public class StorageFileTests
         Assert.IsNotNull(items.Find((f) => f.Name == "new-file.bin"));
         Assert.IsNull(items.Find((f) => f.Name == name));
     }
+    
+    [TestMethod("File: Copy")]
+    public async Task Copy()
+    {
+        var name = $"{Guid.NewGuid()}.bin";
+        await _bucket.Upload([0x0, 0x1], name);
+        await _bucket.Copy(name, "new-file.bin");
+        var items = await _bucket.List();
+
+        Assert.IsNotNull(items);
+
+        Assert.IsNotNull(items.Find((f) => f.Name == "new-file.bin"));
+        Assert.IsNotNull(items.Find((f) => f.Name == name));
+    }
 
     [TestMethod("File: Get Public Link")]
     public async Task GetPublicLink()

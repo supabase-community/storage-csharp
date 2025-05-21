@@ -5,9 +5,9 @@ namespace StorageTests
 {
     public static class Helpers
     {
-        public static string SupabaseUrl => "http://localhost:5000";
-        public static string ServiceKey => "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoic2VydmljZV9yb2xlIiwiaWF0IjoxNjEzNTMxOTg1LCJleHAiOjE5MjkxMDc5ODV9.th84OKK0Iz8QchDyXZRrojmKSEZ-OuitQm_5DvLiSIc";
-        public static string PublicKey => "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJhdXRoZW50aWNhdGVkIiwic3ViIjoiMzE3ZWFkY2UtNjMxYS00NDI5LWEwYmItZjE5YTdhNTE3YjRhIiwiZW1haWwiOiJpbmlhbit0ZXN0MUBzdXBhYmFzZS5pbyIsImV4cCI6MTkzOTEwNzk4NSwiYXBwX21ldGFkYXRhIjp7InByb3ZpZGVyIjoiZW1haWwifSwidXNlcl9tZXRhZGF0YSI6e30sInJvbGUiOiJhdXRoZW50aWNhdGVkIn0.E-x3oYcHIjFCdUO1M3wKDl1Ln32mik0xdHT2PjrvN70";
+        public static string SupabaseUrl => "http://127.0.0.1:54321/storage/v1";
+        public static string PublicKey => "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6ImFub24iLCJleHAiOjE5ODM4MTI5OTZ9.CRXP1A7WOeoJeXxjNni43kdQwgnWNReilDMblYTn_I0";
+        public static string ServiceKey => "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImV4cCI6MTk4MzgxMjk5Nn0.EGIM96RAZx35lJzdJsyH-qQwv8Hdp7fsn3W0YpN81IU";
 
         public static string StorageUrl => $"{SupabaseUrl}";
         

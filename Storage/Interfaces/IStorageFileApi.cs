@@ -18,7 +18,8 @@ namespace Supabase.Storage.Interfaces
 		Task<string> DownloadPublicFile(string supabasePath, string localPath, TransformOptions? transformOptions = null, EventHandler<float>? onProgress = null);
         string GetPublicUrl(string path, TransformOptions? transformOptions = null);
 		Task<List<TFileObject>?> List(string path = "", SearchOptions? options = null);
-		Task<bool> Move(string fromPath, string toPath);
+		Task<bool> Move(string fromPath, string toPath, DestinationOptions? options = null);
+		Task<bool> Copy(string fromPath, string toPath, DestinationOptions? options = null);
         Task<TFileObject?> Remove(string path);
 		Task<List<TFileObject>?> Remove(List<string> paths);
         Task<string> Update(byte[] data, string supabasePath, FileOptions? options = null, EventHandler<float>? onProgress = null);

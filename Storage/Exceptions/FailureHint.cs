@@ -27,6 +27,8 @@ namespace Supabase.Storage.Exceptions
                     400 when storageException.Content.ToLower().Contains("invalid signature") => NotAuthorized,
 	                400 when storageException.Content.ToLower().Contains("invalid") => InvalidInput,
     				401 => NotAuthorized,
+				    403 when storageException.Content.ToLower().Contains("invalid compact jws") => NotAuthorized,
+				    403 when storageException.Content.ToLower().Contains("signature verification failed") => NotAuthorized,
                     404 when storageException.Content.ToLower().Contains("not found") => NotFound,
 	                409 when storageException.Content.ToLower().Contains("exists") => AlreadyExists,
     				500 => Internal,
