@@ -28,9 +28,16 @@ jobs:
 
       - name: Build
         run: dotnet build --configuration Release --no-restore
+        
+      - uses: supabase/setup-cli@v1
+        with:
+          version: latest
 
-      - name: Initialize Testing Stack
-        run: chmod +x ./prepare-infra.sh && ./prepare-infra.sh && sleep 5
+      - name: Start supabase
+        run: supabase start
+
+#      - name: Initialize Testing Stack
+#        run: chmod +x ./prepare-infra.sh && ./prepare-infra.sh && sleep 5
 
       - name: Test
         run: dotnet test --no-restore
