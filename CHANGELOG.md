@@ -1,4 +1,11 @@
-﻿# Changelog
+# Changelog
+
+## [2.1.0](https://github.com/supabase-community/storage-csharp/compare/v2.0.2...v2.1.0) (2025-05-25)
+
+
+### Miscellaneous Chores
+
+* release 2.1.0 ([d037a54](https://github.com/supabase-community/storage-csharp/commit/d037a54a55dae8f4d7f13d57bcfb0d6c166472a9))
 
 ## 2.0.2 - 06-29-2024
 
