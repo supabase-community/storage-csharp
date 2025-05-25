@@ -18,7 +18,11 @@
           "relative_path": "api/Supabase.Storage.Bucket.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Supabase.Storage.Bucket",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -28,7 +32,11 @@
           "relative_path": "api/Supabase.Storage.BucketUpsertOptions.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Supabase.Storage.BucketUpsertOptions",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -38,7 +46,11 @@
           "relative_path": "api/Supabase.Storage.Client.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Supabase.Storage.Client",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -48,7 +60,11 @@
           "relative_path": "api/Supabase.Storage.ClientOptions.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Supabase.Storage.ClientOptions",
+      "Summary": "<p sourcefile=\"api/Supabase.Storage.ClientOptions.yml\" sourcestartlinenumber=\"1\">Options that can be passed into the Storage Client</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -58,7 +74,11 @@
           "relative_path": "api/Supabase.Storage.CreateSignedUrlResponse.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Supabase.Storage.CreateSignedUrlResponse",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -68,7 +88,25 @@
           "relative_path": "api/Supabase.Storage.CreateSignedUrlsResponse.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Supabase.Storage.CreateSignedUrlsResponse",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Supabase.Storage.DestinationOptions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Supabase.Storage.DestinationOptions.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Supabase.Storage.DestinationOptions",
+      "Summary": "<p sourcefile=\"api/Supabase.Storage.DestinationOptions.yml\" sourcestartlinenumber=\"1\">Represents the options for a destination in the context of Supabase Storage.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -78,7 +116,11 @@
           "relative_path": "api/Supabase.Storage.ErrorResponse.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Supabase.Storage.ErrorResponse",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -88,7 +130,11 @@
           "relative_path": "api/Supabase.Storage.Exceptions.FailureHint.Reason.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Supabase.Storage.Exceptions.FailureHint.Reason",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -98,7 +144,11 @@
           "relative_path": "api/Supabase.Storage.Exceptions.FailureHint.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Supabase.Storage.Exceptions.FailureHint",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -108,7 +158,11 @@
           "relative_path": "api/Supabase.Storage.Exceptions.SupabaseStorageException.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Supabase.Storage.Exceptions.SupabaseStorageException",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -118,7 +172,11 @@
           "relative_path": "api/Supabase.Storage.Exceptions.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Supabase.Storage.Exceptions",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -128,7 +186,11 @@
           "relative_path": "api/Supabase.Storage.Extensions.TransformOptionsExtension.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Supabase.Storage.Extensions.TransformOptionsExtension",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -138,7 +200,11 @@
           "relative_path": "api/Supabase.Storage.Extensions.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Supabase.Storage.Extensions",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -148,7 +214,11 @@
           "relative_path": "api/Supabase.Storage.FileObject.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Supabase.Storage.FileObject",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -158,7 +228,11 @@
           "relative_path": "api/Supabase.Storage.FileOptions.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Supabase.Storage.FileOptions",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -168,7 +242,11 @@
           "relative_path": "api/Supabase.Storage.GenericResponse.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Supabase.Storage.GenericResponse",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -178,7 +256,11 @@
           "relative_path": "api/Supabase.Storage.Interfaces.IStorageBucketApi-1.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Supabase.Storage.Interfaces.IStorageBucketApi<TBucket>",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -188,7 +270,11 @@
           "relative_path": "api/Supabase.Storage.Interfaces.IStorageClient-2.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Supabase.Storage.Interfaces.IStorageClient<TBucket, TFileObject>",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -198,7 +284,11 @@
           "relative_path": "api/Supabase.Storage.Interfaces.IStorageFileApi-1.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Supabase.Storage.Interfaces.IStorageFileApi<TFileObject>",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -208,7 +298,11 @@
           "relative_path": "api/Supabase.Storage.Interfaces.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Supabase.Storage.Interfaces",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -218,7 +312,11 @@
           "relative_path": "api/Supabase.Storage.SearchOptions.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Supabase.Storage.SearchOptions",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -228,7 +326,11 @@
           "relative_path": "api/Supabase.Storage.SortBy.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Supabase.Storage.SortBy",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -238,7 +340,11 @@
           "relative_path": "api/Supabase.Storage.StorageBucketApi.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Supabase.Storage.StorageBucketApi",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -248,7 +354,11 @@
           "relative_path": "api/Supabase.Storage.StorageFileApi.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Supabase.Storage.StorageFileApi",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -258,7 +368,11 @@
           "relative_path": "api/Supabase.Storage.TransformOptions.ResizeType.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Supabase.Storage.TransformOptions.ResizeType",
+      "Summary": "<p sourcefile=\"api/Supabase.Storage.TransformOptions.ResizeType.yml\" sourcestartlinenumber=\"1\">The resize mode can be cover, contain or fill. Defaults to cover.</p>\n<ul sourcefile=\"api/Supabase.Storage.TransformOptions.ResizeType.yml\" sourcestartlinenumber=\"2\">\n<li sourcefile=\"api/Supabase.Storage.TransformOptions.ResizeType.yml\" sourcestartlinenumber=\"2\">Cover resizes the image to maintain it's aspect ratio while filling the entire width and height.</li>\n<li sourcefile=\"api/Supabase.Storage.TransformOptions.ResizeType.yml\" sourcestartlinenumber=\"3\">Contain resizes the image to maintain it's aspect ratio while fitting the entire image within the width and height.</li>\n<li sourcefile=\"api/Supabase.Storage.TransformOptions.ResizeType.yml\" sourcestartlinenumber=\"4\">Fill resizes the image to fill the entire width and height.If the object's aspect ratio does not match the width and height, the image will be stretched to fit.</li>\n</ul>\n"
     },
     {
       "type": "ManagedReference",
@@ -268,7 +382,11 @@
           "relative_path": "api/Supabase.Storage.TransformOptions.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Supabase.Storage.TransformOptions",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -278,7 +396,11 @@
           "relative_path": "api/Supabase.Storage.UploadSignedUrl.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Supabase.Storage.UploadSignedUrl",
+      "Summary": "<p sourcefile=\"api/Supabase.Storage.UploadSignedUrl.yml\" sourcestartlinenumber=\"1\">Represents a Generated Upload Signed Url - can be used to upload a file without needing a logged in token or user.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -288,17 +410,21 @@
           "relative_path": "api/Supabase.Storage.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Supabase.Storage",
+      "Summary": null
     },
     {
       "type": "Toc",
       "source_relative_path": "api/toc.yml",
       "output": {
-        ".json": {
-          "relative_path": "api/toc.json"
-        },
         ".html": {
           "relative_path": "api/toc.html"
+        },
+        ".json": {
+          "relative_path": "api/toc.json"
         }
       },
       "version": ""
@@ -317,11 +443,11 @@
       "type": "Toc",
       "source_relative_path": "toc.yml",
       "output": {
-        ".json": {
-          "relative_path": "toc.json"
-        },
         ".html": {
           "relative_path": "toc.html"
+        },
+        ".json": {
+          "relative_path": "toc.json"
         }
       },
       "version": ""

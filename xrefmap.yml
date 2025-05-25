@@ -274,6 +274,25 @@ references:
   isSpec: "True"
   fullName: Supabase.Storage.CreateSignedUrlsResponse.Path
   nameWithType: CreateSignedUrlsResponse.Path
+- uid: Supabase.Storage.DestinationOptions
+  name: DestinationOptions
+  href: api/Supabase.Storage.DestinationOptions.html
+  commentId: T:Supabase.Storage.DestinationOptions
+  fullName: Supabase.Storage.DestinationOptions
+  nameWithType: DestinationOptions
+- uid: Supabase.Storage.DestinationOptions.DestinationBucket
+  name: DestinationBucket
+  href: api/Supabase.Storage.DestinationOptions.html#Supabase_Storage_DestinationOptions_DestinationBucket
+  commentId: P:Supabase.Storage.DestinationOptions.DestinationBucket
+  fullName: Supabase.Storage.DestinationOptions.DestinationBucket
+  nameWithType: DestinationOptions.DestinationBucket
+- uid: Supabase.Storage.DestinationOptions.DestinationBucket*
+  name: DestinationBucket
+  href: api/Supabase.Storage.DestinationOptions.html#Supabase_Storage_DestinationOptions_DestinationBucket_
+  commentId: Overload:Supabase.Storage.DestinationOptions.DestinationBucket
+  isSpec: "True"
+  fullName: Supabase.Storage.DestinationOptions.DestinationBucket
+  nameWithType: DestinationOptions.DestinationBucket
 - uid: Supabase.Storage.ErrorResponse
   name: ErrorResponse
   href: api/Supabase.Storage.ErrorResponse.html
@@ -882,6 +901,24 @@ references:
   fullName.vb: Supabase.Storage.Interfaces.IStorageFileApi(Of TFileObject)
   nameWithType: IStorageFileApi<TFileObject>
   nameWithType.vb: IStorageFileApi(Of TFileObject)
+- uid: Supabase.Storage.Interfaces.IStorageFileApi`1.Copy(System.String,System.String,Supabase.Storage.DestinationOptions)
+  name: Copy(string, string, DestinationOptions?)
+  href: api/Supabase.Storage.Interfaces.IStorageFileApi-1.html#Supabase_Storage_Interfaces_IStorageFileApi_1_Copy_System_String_System_String_Supabase_Storage_DestinationOptions_
+  commentId: M:Supabase.Storage.Interfaces.IStorageFileApi`1.Copy(System.String,System.String,Supabase.Storage.DestinationOptions)
+  name.vb: Copy(String, String, DestinationOptions)
+  fullName: Supabase.Storage.Interfaces.IStorageFileApi<TFileObject>.Copy(string, string, Supabase.Storage.DestinationOptions?)
+  fullName.vb: Supabase.Storage.Interfaces.IStorageFileApi(Of TFileObject).Copy(String, String, Supabase.Storage.DestinationOptions)
+  nameWithType: IStorageFileApi<TFileObject>.Copy(string, string, DestinationOptions?)
+  nameWithType.vb: IStorageFileApi(Of TFileObject).Copy(String, String, DestinationOptions)
+- uid: Supabase.Storage.Interfaces.IStorageFileApi`1.Copy*
+  name: Copy
+  href: api/Supabase.Storage.Interfaces.IStorageFileApi-1.html#Supabase_Storage_Interfaces_IStorageFileApi_1_Copy_
+  commentId: Overload:Supabase.Storage.Interfaces.IStorageFileApi`1.Copy
+  isSpec: "True"
+  fullName: Supabase.Storage.Interfaces.IStorageFileApi<TFileObject>.Copy
+  fullName.vb: Supabase.Storage.Interfaces.IStorageFileApi(Of TFileObject).Copy
+  nameWithType: IStorageFileApi<TFileObject>.Copy
+  nameWithType.vb: IStorageFileApi(Of TFileObject).Copy
 - uid: Supabase.Storage.Interfaces.IStorageFileApi`1.CreateSignedUrl(System.String,System.Int32,Supabase.Storage.TransformOptions)
   name: CreateSignedUrl(string, int, TransformOptions?)
   href: api/Supabase.Storage.Interfaces.IStorageFileApi-1.html#Supabase_Storage_Interfaces_IStorageFileApi_1_CreateSignedUrl_System_String_System_Int32_Supabase_Storage_TransformOptions_
@@ -1044,15 +1081,15 @@ references:
   fullName.vb: Supabase.Storage.Interfaces.IStorageFileApi(Of TFileObject).List
   nameWithType: IStorageFileApi<TFileObject>.List
   nameWithType.vb: IStorageFileApi(Of TFileObject).List
-- uid: Supabase.Storage.Interfaces.IStorageFileApi`1.Move(System.String,System.String)
-  name: Move(string, string)
-  href: api/Supabase.Storage.Interfaces.IStorageFileApi-1.html#Supabase_Storage_Interfaces_IStorageFileApi_1_Move_System_String_System_String_
-  commentId: M:Supabase.Storage.Interfaces.IStorageFileApi`1.Move(System.String,System.String)
-  name.vb: Move(String, String)
-  fullName: Supabase.Storage.Interfaces.IStorageFileApi<TFileObject>.Move(string, string)
-  fullName.vb: Supabase.Storage.Interfaces.IStorageFileApi(Of TFileObject).Move(String, String)
-  nameWithType: IStorageFileApi<TFileObject>.Move(string, string)
-  nameWithType.vb: IStorageFileApi(Of TFileObject).Move(String, String)
+- uid: Supabase.Storage.Interfaces.IStorageFileApi`1.Move(System.String,System.String,Supabase.Storage.DestinationOptions)
+  name: Move(string, string, DestinationOptions?)
+  href: api/Supabase.Storage.Interfaces.IStorageFileApi-1.html#Supabase_Storage_Interfaces_IStorageFileApi_1_Move_System_String_System_String_Supabase_Storage_DestinationOptions_
+  commentId: M:Supabase.Storage.Interfaces.IStorageFileApi`1.Move(System.String,System.String,Supabase.Storage.DestinationOptions)
+  name.vb: Move(String, String, DestinationOptions)
+  fullName: Supabase.Storage.Interfaces.IStorageFileApi<TFileObject>.Move(string, string, Supabase.Storage.DestinationOptions?)
+  fullName.vb: Supabase.Storage.Interfaces.IStorageFileApi(Of TFileObject).Move(String, String, Supabase.Storage.DestinationOptions)
+  nameWithType: IStorageFileApi<TFileObject>.Move(string, string, DestinationOptions?)
+  nameWithType.vb: IStorageFileApi(Of TFileObject).Move(String, String, DestinationOptions)
 - uid: Supabase.Storage.Interfaces.IStorageFileApi`1.Move*
   name: Move
   href: api/Supabase.Storage.Interfaces.IStorageFileApi-1.html#Supabase_Storage_Interfaces_IStorageFileApi_1_Move_
@@ -1503,6 +1540,22 @@ references:
   isSpec: "True"
   fullName: Supabase.Storage.StorageFileApi.BucketId
   nameWithType: StorageFileApi.BucketId
+- uid: Supabase.Storage.StorageFileApi.Copy(System.String,System.String,Supabase.Storage.DestinationOptions)
+  name: Copy(string, string, DestinationOptions?)
+  href: api/Supabase.Storage.StorageFileApi.html#Supabase_Storage_StorageFileApi_Copy_System_String_System_String_Supabase_Storage_DestinationOptions_
+  commentId: M:Supabase.Storage.StorageFileApi.Copy(System.String,System.String,Supabase.Storage.DestinationOptions)
+  name.vb: Copy(String, String, DestinationOptions)
+  fullName: Supabase.Storage.StorageFileApi.Copy(string, string, Supabase.Storage.DestinationOptions?)
+  fullName.vb: Supabase.Storage.StorageFileApi.Copy(String, String, Supabase.Storage.DestinationOptions)
+  nameWithType: StorageFileApi.Copy(string, string, DestinationOptions?)
+  nameWithType.vb: StorageFileApi.Copy(String, String, DestinationOptions)
+- uid: Supabase.Storage.StorageFileApi.Copy*
+  name: Copy
+  href: api/Supabase.Storage.StorageFileApi.html#Supabase_Storage_StorageFileApi_Copy_
+  commentId: Overload:Supabase.Storage.StorageFileApi.Copy
+  isSpec: "True"
+  fullName: Supabase.Storage.StorageFileApi.Copy
+  nameWithType: StorageFileApi.Copy
 - uid: Supabase.Storage.StorageFileApi.CreateSignedUrl(System.String,System.Int32,Supabase.Storage.TransformOptions)
   name: CreateSignedUrl(string, int, TransformOptions?)
   href: api/Supabase.Storage.StorageFileApi.html#Supabase_Storage_StorageFileApi_CreateSignedUrl_System_String_System_Int32_Supabase_Storage_TransformOptions_
@@ -1664,15 +1717,15 @@ references:
   isSpec: "True"
   fullName: Supabase.Storage.StorageFileApi.List
   nameWithType: StorageFileApi.List
-- uid: Supabase.Storage.StorageFileApi.Move(System.String,System.String)
-  name: Move(string, string)
-  href: api/Supabase.Storage.StorageFileApi.html#Supabase_Storage_StorageFileApi_Move_System_String_System_String_
-  commentId: M:Supabase.Storage.StorageFileApi.Move(System.String,System.String)
-  name.vb: Move(String, String)
-  fullName: Supabase.Storage.StorageFileApi.Move(string, string)
-  fullName.vb: Supabase.Storage.StorageFileApi.Move(String, String)
-  nameWithType: StorageFileApi.Move(string, string)
-  nameWithType.vb: StorageFileApi.Move(String, String)
+- uid: Supabase.Storage.StorageFileApi.Move(System.String,System.String,Supabase.Storage.DestinationOptions)
+  name: Move(string, string, DestinationOptions?)
+  href: api/Supabase.Storage.StorageFileApi.html#Supabase_Storage_StorageFileApi_Move_System_String_System_String_Supabase_Storage_DestinationOptions_
+  commentId: M:Supabase.Storage.StorageFileApi.Move(System.String,System.String,Supabase.Storage.DestinationOptions)
+  name.vb: Move(String, String, DestinationOptions)
+  fullName: Supabase.Storage.StorageFileApi.Move(string, string, Supabase.Storage.DestinationOptions?)
+  fullName.vb: Supabase.Storage.StorageFileApi.Move(String, String, Supabase.Storage.DestinationOptions)
+  nameWithType: StorageFileApi.Move(string, string, DestinationOptions?)
+  nameWithType.vb: StorageFileApi.Move(String, String, DestinationOptions)
 - uid: Supabase.Storage.StorageFileApi.Move*
   name: Move
   href: api/Supabase.Storage.StorageFileApi.html#Supabase_Storage_StorageFileApi_Move_
