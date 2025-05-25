@@ -28,7 +28,7 @@ public class StorageFileAnonTests
 
         if (_bucket == null && await Storage.GetBucket(_bucketId) == null)
         {
-            await AdminStorage.CreateBucket(_bucketId, new BucketUpsertOptions { Public = true });
+            await AdminStorage.CreateBucket(_bucketId, new BucketUpsertOptions { Public = false });
         }
 
         _adminBucket = AdminStorage.From(_bucketId);
@@ -131,6 +131,18 @@ public class StorageFileAnonTests
         });
     }
 
+    [TestMethod("File: Throws attempting to Copy")]
+    public async Task Copy()
+    {
+        var name = $"{Guid.NewGuid()}.bin";
+        await _adminBucket.Upload(new Byte[] { 0x0, 0x1 }, name);
+
+        await Assert.ThrowsExceptionAsync<SupabaseStorageException>(async () =>
+        {
+            await _bucket.Copy(name, "new-file.bin");
+        });
+    }
+    
     [TestMethod("File: Get Public Link")]
     public async Task GetPublicLink()
     {
