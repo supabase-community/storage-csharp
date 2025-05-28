@@ -138,7 +138,7 @@ namespace Supabase.Storage
         /// </summary>
         /// <param name="path"></param>
         /// <returns></returns>
-        public async Task<FileObjectV2?> Find(string path)
+        public async Task<FileObjectV2?> Info(string path)
         {
             var response =
                 await Helpers.MakeRequest<FileObjectV2>(HttpMethod.Get, $"{Url}/object/info/{BucketId}/{path}", null, Headers);

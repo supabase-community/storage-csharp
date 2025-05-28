@@ -109,7 +109,7 @@ public class StorageFileTests
         };
         await _bucket.Upload(imagePath, name, options, (_, _) => { didTriggerProgress.TrySetResult(true); });
 
-        var item = await _bucket.Find(name);
+        var item = await _bucket.Info(name);
 
         Assert.IsNotNull(item);
         Assert.IsNotNull(item.Metadata);
