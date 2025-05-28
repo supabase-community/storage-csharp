@@ -132,6 +132,19 @@ namespace Supabase.Storage
 
             return response;
         }
+        
+        /// <summary>
+        /// Retrieves the details of an existing file.
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        public async Task<FileObjectV2?> Find(string path)
+        {
+            var response =
+                await Helpers.MakeRequest<FileObjectV2>(HttpMethod.Get, $"{Url}/object/info/{BucketId}/{path}", null, Headers);
+
+            return response;
+        }
 
         /// <summary>
         /// Uploads a file to an existing bucket.
@@ -464,6 +477,14 @@ namespace Supabase.Storage
             if (options.Upsert)
                 headers.Add("x-upsert", options.Upsert.ToString().ToLower());
 
+            if (options.Metadata != null)
+                headers.Add("x-metadata", ParseMetadata(options.Metadata));
+            
+            options.Headers?.ToList().ForEach(x => headers.Add(x.Key, x.Value));
+            
+            // if (options.Duplex != null)
+                // headers.Add("x-duplex", options.Duplex.ToLower());
+            
             var progress = new Progress<float>();
 
             if (onProgress != null)
@@ -472,6 +493,14 @@ namespace Supabase.Storage
             await Helpers.HttpUploadClient!.UploadFileAsync(uri, localPath, headers, progress);
 
             return GetFinalPath(supabasePath);
+        }
+
+        private static string ParseMetadata(Dictionary<string, string> metadata)
+        {
+            var json = JsonConvert.SerializeObject(metadata);
+            var base64 = Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(json));
+            
+            return base64;
         }
 
         private async Task<string> UploadOrUpdate(byte[] data, string supabasePath, FileOptions options,
@@ -488,6 +517,14 @@ namespace Supabase.Storage
             if (options.Upsert)
                 headers.Add("x-upsert", options.Upsert.ToString().ToLower());
 
+            if (options.Metadata != null)
+                headers.Add("x-metadata", ParseMetadata(options.Metadata));
+            
+            options.Headers?.ToList().ForEach(x => headers.Add(x.Key, x.Value));
+            
+            if (options.Duplex != null)
+                headers.Add("x-duplex", options.Duplex.ToLower());
+            
             var progress = new Progress<float>();
 
             if (onProgress != null)
