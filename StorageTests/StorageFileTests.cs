@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Supabase.Storage;
 using Supabase.Storage.Interfaces;
+using FileOptions = Supabase.Storage.FileOptions;
 
 namespace StorageTests;
 
@@ -74,6 +75,51 @@ public class StorageFileTests
         Assert.IsTrue(sentProgressEvent);
 
         await _bucket.Remove(new List<string> { name });
+    }
+    
+    [TestMethod("File: Upload File With FileOptions")]
+    public async Task UploadFileWithFileOptions()
+    {
+        var didTriggerProgress = new TaskCompletionSource<bool>();
+
+        var asset = "supabase-csharp.png";
+        var name = $"{Guid.NewGuid()}.png";
+        var basePath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)?.Replace("file:", "");
+
+        Assert.IsNotNull(basePath);
+
+        var imagePath = Path.Combine(basePath, "Assets", asset);
+
+        var metadata = new Dictionary<string, string>
+        {
+            ["custom"] = "metadata",
+            ["local_file"] = "local_file"
+        };
+
+        var headers = new Dictionary<string, string>
+        {
+            ["x-version"] = "123"
+        };
+
+        var options = new FileOptions
+        {
+            Duplex = "duplex",
+            Metadata = metadata,
+            Headers = headers,
+        };
+        await _bucket.Upload(imagePath, name, options, (_, _) => { didTriggerProgress.TrySetResult(true); });
+
+        var item = await _bucket.Find(name);
+
+        Assert.IsNotNull(item);
+        Assert.IsNotNull(item.Metadata);
+        Assert.AreEqual(metadata["custom"], item.Metadata["custom"]);
+        Assert.AreEqual(metadata["local_file"], item.Metadata["local_file"]);
+
+        var sentProgressEvent = await didTriggerProgress.Task;
+        Assert.IsTrue(sentProgressEvent);
+
+        await _bucket.Remove([name]);
     }
 
     [TestMethod("File: Upload Arbitrary Byte Array")]
@@ -192,7 +238,7 @@ public class StorageFileTests
         foreach (var file in copied)
         {
             if (file.Name is not null)
-                await localBucket.Remove(new List<string> { file.Name });
+                await localBucket.Remove([file.Name]);
         }
 
         await Storage.DeleteBucket("copyfile");
