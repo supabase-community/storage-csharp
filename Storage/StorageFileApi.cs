@@ -482,8 +482,8 @@ namespace Supabase.Storage
             
             options.Headers?.ToList().ForEach(x => headers.Add(x.Key, x.Value));
             
-            // if (options.Duplex != null)
-                // headers.Add("x-duplex", options.Duplex.ToLower());
+            if (options.Duplex != null)
+                headers.Add("x-duplex", options.Duplex.ToLower());
             
             var progress = new Progress<float>();
 
