@@ -110,6 +110,20 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/Supabase.Storage.DownloadOptions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Supabase.Storage.DownloadOptions.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Supabase.Storage.DownloadOptions",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/Supabase.Storage.ErrorResponse.yml",
       "output": {
         ".html": {
@@ -176,6 +190,20 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "Supabase.Storage.Exceptions",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Supabase.Storage.Extensions.DownloadOptionsExtension.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Supabase.Storage.Extensions.DownloadOptionsExtension.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Supabase.Storage.Extensions.DownloadOptionsExtension",
       "Summary": null
     },
     {

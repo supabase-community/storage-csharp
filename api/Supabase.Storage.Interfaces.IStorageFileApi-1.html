@@ -202,8 +202,8 @@ Interface IStorageFileApi&lt;TFileObject&gt;  <a class="header-action link-secon
 
   <a id="Supabase_Storage_Interfaces_IStorageFileApi_1_CreateSignedUrl_" data-uid="Supabase.Storage.Interfaces.IStorageFileApi`1.CreateSignedUrl*"></a>
 
-  <h3 id="Supabase_Storage_Interfaces_IStorageFileApi_1_CreateSignedUrl_System_String_System_Int32_Supabase_Storage_TransformOptions_" data-uid="Supabase.Storage.Interfaces.IStorageFileApi`1.CreateSignedUrl(System.String,System.Int32,Supabase.Storage.TransformOptions)">
-  CreateSignedUrl(string, int, TransformOptions?)
+  <h3 id="Supabase_Storage_Interfaces_IStorageFileApi_1_CreateSignedUrl_System_String_System_Int32_Supabase_Storage_TransformOptions_Supabase_Storage_DownloadOptions_" data-uid="Supabase.Storage.Interfaces.IStorageFileApi`1.CreateSignedUrl(System.String,System.Int32,Supabase.Storage.TransformOptions,Supabase.Storage.DownloadOptions)">
+  CreateSignedUrl(string, int, TransformOptions?, DownloadOptions?)
   <a class="header-action link-secondary" title="View source" href="https://github.com/supabase-community/storage-csharp/blob/master/Storage/Interfaces/IStorageFileApi.cs/#L11"><i class="bi bi-code-slash"></i></a>
   </h3>
 
@@ -211,7 +211,7 @@ Interface IStorageFileApi&lt;TFileObject&gt;  <a class="header-action link-secon
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task&lt;string&gt; CreateSignedUrl(string path, int expiresIn, TransformOptions? transformOptions = null)</code></pre>
+    <pre><code class="lang-csharp hljs">Task&lt;string&gt; CreateSignedUrl(string path, int expiresIn, TransformOptions? transformOptions = null, DownloadOptions? options = null)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -221,6 +221,8 @@ Interface IStorageFileApi&lt;TFileObject&gt;  <a class="header-action link-secon
     <dt><code>expiresIn</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
     <dd></dd>
     <dt><code>transformOptions</code> <a class="xref" href="Supabase.Storage.TransformOptions.html">TransformOptions</a></dt>
+    <dd></dd>
+    <dt><code>options</code> <a class="xref" href="Supabase.Storage.DownloadOptions.html">DownloadOptions</a></dt>
     <dd></dd>
   </dl>
 
@@ -242,8 +244,8 @@ Interface IStorageFileApi&lt;TFileObject&gt;  <a class="header-action link-secon
 
   <a id="Supabase_Storage_Interfaces_IStorageFileApi_1_CreateSignedUrls_" data-uid="Supabase.Storage.Interfaces.IStorageFileApi`1.CreateSignedUrls*"></a>
 
-  <h3 id="Supabase_Storage_Interfaces_IStorageFileApi_1_CreateSignedUrls_System_Collections_Generic_List_System_String__System_Int32_" data-uid="Supabase.Storage.Interfaces.IStorageFileApi`1.CreateSignedUrls(System.Collections.Generic.List{System.String},System.Int32)">
-  CreateSignedUrls(List&lt;string&gt;, int)
+  <h3 id="Supabase_Storage_Interfaces_IStorageFileApi_1_CreateSignedUrls_System_Collections_Generic_List_System_String__System_Int32_Supabase_Storage_DownloadOptions_" data-uid="Supabase.Storage.Interfaces.IStorageFileApi`1.CreateSignedUrls(System.Collections.Generic.List{System.String},System.Int32,Supabase.Storage.DownloadOptions)">
+  CreateSignedUrls(List&lt;string&gt;, int, DownloadOptions?)
   <a class="header-action link-secondary" title="View source" href="https://github.com/supabase-community/storage-csharp/blob/master/Storage/Interfaces/IStorageFileApi.cs/#L12"><i class="bi bi-code-slash"></i></a>
   </h3>
 
@@ -251,7 +253,7 @@ Interface IStorageFileApi&lt;TFileObject&gt;  <a class="header-action link-secon
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task&lt;List&lt;CreateSignedUrlsResponse&gt;?&gt; CreateSignedUrls(List&lt;string&gt; paths, int expiresIn)</code></pre>
+    <pre><code class="lang-csharp hljs">Task&lt;List&lt;CreateSignedUrlsResponse&gt;?&gt; CreateSignedUrls(List&lt;string&gt; paths, int expiresIn, DownloadOptions? options = null)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -259,6 +261,8 @@ Interface IStorageFileApi&lt;TFileObject&gt;  <a class="header-action link-secon
     <dt><code>paths</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
     <dd></dd>
     <dt><code>expiresIn</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>options</code> <a class="xref" href="Supabase.Storage.DownloadOptions.html">DownloadOptions</a></dt>
     <dd></dd>
   </dl>
 
@@ -558,8 +562,8 @@ Interface IStorageFileApi&lt;TFileObject&gt;  <a class="header-action link-secon
 
   <a id="Supabase_Storage_Interfaces_IStorageFileApi_1_GetPublicUrl_" data-uid="Supabase.Storage.Interfaces.IStorageFileApi`1.GetPublicUrl*"></a>
 
-  <h3 id="Supabase_Storage_Interfaces_IStorageFileApi_1_GetPublicUrl_System_String_Supabase_Storage_TransformOptions_" data-uid="Supabase.Storage.Interfaces.IStorageFileApi`1.GetPublicUrl(System.String,Supabase.Storage.TransformOptions)">
-  GetPublicUrl(string, TransformOptions?)
+  <h3 id="Supabase_Storage_Interfaces_IStorageFileApi_1_GetPublicUrl_System_String_Supabase_Storage_TransformOptions_Supabase_Storage_DownloadOptions_" data-uid="Supabase.Storage.Interfaces.IStorageFileApi`1.GetPublicUrl(System.String,Supabase.Storage.TransformOptions,Supabase.Storage.DownloadOptions)">
+  GetPublicUrl(string, TransformOptions?, DownloadOptions?)
   <a class="header-action link-secondary" title="View source" href="https://github.com/supabase-community/storage-csharp/blob/master/Storage/Interfaces/IStorageFileApi.cs/#L19"><i class="bi bi-code-slash"></i></a>
   </h3>
 
@@ -567,7 +571,7 @@ Interface IStorageFileApi&lt;TFileObject&gt;  <a class="header-action link-secon
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">string GetPublicUrl(string path, TransformOptions? transformOptions = null)</code></pre>
+    <pre><code class="lang-csharp hljs">string GetPublicUrl(string path, TransformOptions? transformOptions = null, DownloadOptions? options = null)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -575,6 +579,8 @@ Interface IStorageFileApi&lt;TFileObject&gt;  <a class="header-action link-secon
     <dt><code>path</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
     <dd></dd>
     <dt><code>transformOptions</code> <a class="xref" href="Supabase.Storage.TransformOptions.html">TransformOptions</a></dt>
+    <dd></dd>
+    <dt><code>options</code> <a class="xref" href="Supabase.Storage.DownloadOptions.html">DownloadOptions</a></dt>
     <dd></dd>
   </dl>
 

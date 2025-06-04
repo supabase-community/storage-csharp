@@ -293,6 +293,31 @@ references:
   isSpec: "True"
   fullName: Supabase.Storage.DestinationOptions.DestinationBucket
   nameWithType: DestinationOptions.DestinationBucket
+- uid: Supabase.Storage.DownloadOptions
+  name: DownloadOptions
+  href: api/Supabase.Storage.DownloadOptions.html
+  commentId: T:Supabase.Storage.DownloadOptions
+  fullName: Supabase.Storage.DownloadOptions
+  nameWithType: DownloadOptions
+- uid: Supabase.Storage.DownloadOptions.FileName
+  name: FileName
+  href: api/Supabase.Storage.DownloadOptions.html#Supabase_Storage_DownloadOptions_FileName
+  commentId: P:Supabase.Storage.DownloadOptions.FileName
+  fullName: Supabase.Storage.DownloadOptions.FileName
+  nameWithType: DownloadOptions.FileName
+- uid: Supabase.Storage.DownloadOptions.FileName*
+  name: FileName
+  href: api/Supabase.Storage.DownloadOptions.html#Supabase_Storage_DownloadOptions_FileName_
+  commentId: Overload:Supabase.Storage.DownloadOptions.FileName
+  isSpec: "True"
+  fullName: Supabase.Storage.DownloadOptions.FileName
+  nameWithType: DownloadOptions.FileName
+- uid: Supabase.Storage.DownloadOptions.UseOriginalFileName
+  name: UseOriginalFileName
+  href: api/Supabase.Storage.DownloadOptions.html#Supabase_Storage_DownloadOptions_UseOriginalFileName
+  commentId: F:Supabase.Storage.DownloadOptions.UseOriginalFileName
+  fullName: Supabase.Storage.DownloadOptions.UseOriginalFileName
+  nameWithType: DownloadOptions.UseOriginalFileName
 - uid: Supabase.Storage.ErrorResponse
   name: ErrorResponse
   href: api/Supabase.Storage.ErrorResponse.html
@@ -497,6 +522,25 @@ references:
   commentId: N:Supabase.Storage.Extensions
   fullName: Supabase.Storage.Extensions
   nameWithType: Supabase.Storage.Extensions
+- uid: Supabase.Storage.Extensions.DownloadOptionsExtension
+  name: DownloadOptionsExtension
+  href: api/Supabase.Storage.Extensions.DownloadOptionsExtension.html
+  commentId: T:Supabase.Storage.Extensions.DownloadOptionsExtension
+  fullName: Supabase.Storage.Extensions.DownloadOptionsExtension
+  nameWithType: DownloadOptionsExtension
+- uid: Supabase.Storage.Extensions.DownloadOptionsExtension.ToQueryCollection(Supabase.Storage.DownloadOptions)
+  name: ToQueryCollection(DownloadOptions)
+  href: api/Supabase.Storage.Extensions.DownloadOptionsExtension.html#Supabase_Storage_Extensions_DownloadOptionsExtension_ToQueryCollection_Supabase_Storage_DownloadOptions_
+  commentId: M:Supabase.Storage.Extensions.DownloadOptionsExtension.ToQueryCollection(Supabase.Storage.DownloadOptions)
+  fullName: Supabase.Storage.Extensions.DownloadOptionsExtension.ToQueryCollection(Supabase.Storage.DownloadOptions)
+  nameWithType: DownloadOptionsExtension.ToQueryCollection(DownloadOptions)
+- uid: Supabase.Storage.Extensions.DownloadOptionsExtension.ToQueryCollection*
+  name: ToQueryCollection
+  href: api/Supabase.Storage.Extensions.DownloadOptionsExtension.html#Supabase_Storage_Extensions_DownloadOptionsExtension_ToQueryCollection_
+  commentId: Overload:Supabase.Storage.Extensions.DownloadOptionsExtension.ToQueryCollection
+  isSpec: "True"
+  fullName: Supabase.Storage.Extensions.DownloadOptionsExtension.ToQueryCollection
+  nameWithType: DownloadOptionsExtension.ToQueryCollection
 - uid: Supabase.Storage.Extensions.TransformOptionsExtension
   name: TransformOptionsExtension
   href: api/Supabase.Storage.Extensions.TransformOptionsExtension.html
@@ -919,15 +963,15 @@ references:
   fullName.vb: Supabase.Storage.Interfaces.IStorageFileApi(Of TFileObject).Copy
   nameWithType: IStorageFileApi<TFileObject>.Copy
   nameWithType.vb: IStorageFileApi(Of TFileObject).Copy
-- uid: Supabase.Storage.Interfaces.IStorageFileApi`1.CreateSignedUrl(System.String,System.Int32,Supabase.Storage.TransformOptions)
-  name: CreateSignedUrl(string, int, TransformOptions?)
-  href: api/Supabase.Storage.Interfaces.IStorageFileApi-1.html#Supabase_Storage_Interfaces_IStorageFileApi_1_CreateSignedUrl_System_String_System_Int32_Supabase_Storage_TransformOptions_
-  commentId: M:Supabase.Storage.Interfaces.IStorageFileApi`1.CreateSignedUrl(System.String,System.Int32,Supabase.Storage.TransformOptions)
-  name.vb: CreateSignedUrl(String, Integer, TransformOptions)
-  fullName: Supabase.Storage.Interfaces.IStorageFileApi<TFileObject>.CreateSignedUrl(string, int, Supabase.Storage.TransformOptions?)
-  fullName.vb: Supabase.Storage.Interfaces.IStorageFileApi(Of TFileObject).CreateSignedUrl(String, Integer, Supabase.Storage.TransformOptions)
-  nameWithType: IStorageFileApi<TFileObject>.CreateSignedUrl(string, int, TransformOptions?)
-  nameWithType.vb: IStorageFileApi(Of TFileObject).CreateSignedUrl(String, Integer, TransformOptions)
+- uid: Supabase.Storage.Interfaces.IStorageFileApi`1.CreateSignedUrl(System.String,System.Int32,Supabase.Storage.TransformOptions,Supabase.Storage.DownloadOptions)
+  name: CreateSignedUrl(string, int, TransformOptions?, DownloadOptions?)
+  href: api/Supabase.Storage.Interfaces.IStorageFileApi-1.html#Supabase_Storage_Interfaces_IStorageFileApi_1_CreateSignedUrl_System_String_System_Int32_Supabase_Storage_TransformOptions_Supabase_Storage_DownloadOptions_
+  commentId: M:Supabase.Storage.Interfaces.IStorageFileApi`1.CreateSignedUrl(System.String,System.Int32,Supabase.Storage.TransformOptions,Supabase.Storage.DownloadOptions)
+  name.vb: CreateSignedUrl(String, Integer, TransformOptions, DownloadOptions)
+  fullName: Supabase.Storage.Interfaces.IStorageFileApi<TFileObject>.CreateSignedUrl(string, int, Supabase.Storage.TransformOptions?, Supabase.Storage.DownloadOptions?)
+  fullName.vb: Supabase.Storage.Interfaces.IStorageFileApi(Of TFileObject).CreateSignedUrl(String, Integer, Supabase.Storage.TransformOptions, Supabase.Storage.DownloadOptions)
+  nameWithType: IStorageFileApi<TFileObject>.CreateSignedUrl(string, int, TransformOptions?, DownloadOptions?)
+  nameWithType.vb: IStorageFileApi(Of TFileObject).CreateSignedUrl(String, Integer, TransformOptions, DownloadOptions)
 - uid: Supabase.Storage.Interfaces.IStorageFileApi`1.CreateSignedUrl*
   name: CreateSignedUrl
   href: api/Supabase.Storage.Interfaces.IStorageFileApi-1.html#Supabase_Storage_Interfaces_IStorageFileApi_1_CreateSignedUrl_
@@ -937,15 +981,15 @@ references:
   fullName.vb: Supabase.Storage.Interfaces.IStorageFileApi(Of TFileObject).CreateSignedUrl
   nameWithType: IStorageFileApi<TFileObject>.CreateSignedUrl
   nameWithType.vb: IStorageFileApi(Of TFileObject).CreateSignedUrl
-- uid: Supabase.Storage.Interfaces.IStorageFileApi`1.CreateSignedUrls(System.Collections.Generic.List{System.String},System.Int32)
-  name: CreateSignedUrls(List<string>, int)
-  href: api/Supabase.Storage.Interfaces.IStorageFileApi-1.html#Supabase_Storage_Interfaces_IStorageFileApi_1_CreateSignedUrls_System_Collections_Generic_List_System_String__System_Int32_
-  commentId: M:Supabase.Storage.Interfaces.IStorageFileApi`1.CreateSignedUrls(System.Collections.Generic.List{System.String},System.Int32)
-  name.vb: CreateSignedUrls(List(Of String), Integer)
-  fullName: Supabase.Storage.Interfaces.IStorageFileApi<TFileObject>.CreateSignedUrls(System.Collections.Generic.List<string>, int)
-  fullName.vb: Supabase.Storage.Interfaces.IStorageFileApi(Of TFileObject).CreateSignedUrls(System.Collections.Generic.List(Of String), Integer)
-  nameWithType: IStorageFileApi<TFileObject>.CreateSignedUrls(List<string>, int)
-  nameWithType.vb: IStorageFileApi(Of TFileObject).CreateSignedUrls(List(Of String), Integer)
+- uid: Supabase.Storage.Interfaces.IStorageFileApi`1.CreateSignedUrls(System.Collections.Generic.List{System.String},System.Int32,Supabase.Storage.DownloadOptions)
+  name: CreateSignedUrls(List<string>, int, DownloadOptions?)
+  href: api/Supabase.Storage.Interfaces.IStorageFileApi-1.html#Supabase_Storage_Interfaces_IStorageFileApi_1_CreateSignedUrls_System_Collections_Generic_List_System_String__System_Int32_Supabase_Storage_DownloadOptions_
+  commentId: M:Supabase.Storage.Interfaces.IStorageFileApi`1.CreateSignedUrls(System.Collections.Generic.List{System.String},System.Int32,Supabase.Storage.DownloadOptions)
+  name.vb: CreateSignedUrls(List(Of String), Integer, DownloadOptions)
+  fullName: Supabase.Storage.Interfaces.IStorageFileApi<TFileObject>.CreateSignedUrls(System.Collections.Generic.List<string>, int, Supabase.Storage.DownloadOptions?)
+  fullName.vb: Supabase.Storage.Interfaces.IStorageFileApi(Of TFileObject).CreateSignedUrls(System.Collections.Generic.List(Of String), Integer, Supabase.Storage.DownloadOptions)
+  nameWithType: IStorageFileApi<TFileObject>.CreateSignedUrls(List<string>, int, DownloadOptions?)
+  nameWithType.vb: IStorageFileApi(Of TFileObject).CreateSignedUrls(List(Of String), Integer, DownloadOptions)
 - uid: Supabase.Storage.Interfaces.IStorageFileApi`1.CreateSignedUrls*
   name: CreateSignedUrls
   href: api/Supabase.Storage.Interfaces.IStorageFileApi-1.html#Supabase_Storage_Interfaces_IStorageFileApi_1_CreateSignedUrls_
@@ -1045,15 +1089,15 @@ references:
   fullName.vb: Supabase.Storage.Interfaces.IStorageFileApi(Of TFileObject).DownloadPublicFile
   nameWithType: IStorageFileApi<TFileObject>.DownloadPublicFile
   nameWithType.vb: IStorageFileApi(Of TFileObject).DownloadPublicFile
-- uid: Supabase.Storage.Interfaces.IStorageFileApi`1.GetPublicUrl(System.String,Supabase.Storage.TransformOptions)
-  name: GetPublicUrl(string, TransformOptions?)
-  href: api/Supabase.Storage.Interfaces.IStorageFileApi-1.html#Supabase_Storage_Interfaces_IStorageFileApi_1_GetPublicUrl_System_String_Supabase_Storage_TransformOptions_
-  commentId: M:Supabase.Storage.Interfaces.IStorageFileApi`1.GetPublicUrl(System.String,Supabase.Storage.TransformOptions)
-  name.vb: GetPublicUrl(String, TransformOptions)
-  fullName: Supabase.Storage.Interfaces.IStorageFileApi<TFileObject>.GetPublicUrl(string, Supabase.Storage.TransformOptions?)
-  fullName.vb: Supabase.Storage.Interfaces.IStorageFileApi(Of TFileObject).GetPublicUrl(String, Supabase.Storage.TransformOptions)
-  nameWithType: IStorageFileApi<TFileObject>.GetPublicUrl(string, TransformOptions?)
-  nameWithType.vb: IStorageFileApi(Of TFileObject).GetPublicUrl(String, TransformOptions)
+- uid: Supabase.Storage.Interfaces.IStorageFileApi`1.GetPublicUrl(System.String,Supabase.Storage.TransformOptions,Supabase.Storage.DownloadOptions)
+  name: GetPublicUrl(string, TransformOptions?, DownloadOptions?)
+  href: api/Supabase.Storage.Interfaces.IStorageFileApi-1.html#Supabase_Storage_Interfaces_IStorageFileApi_1_GetPublicUrl_System_String_Supabase_Storage_TransformOptions_Supabase_Storage_DownloadOptions_
+  commentId: M:Supabase.Storage.Interfaces.IStorageFileApi`1.GetPublicUrl(System.String,Supabase.Storage.TransformOptions,Supabase.Storage.DownloadOptions)
+  name.vb: GetPublicUrl(String, TransformOptions, DownloadOptions)
+  fullName: Supabase.Storage.Interfaces.IStorageFileApi<TFileObject>.GetPublicUrl(string, Supabase.Storage.TransformOptions?, Supabase.Storage.DownloadOptions?)
+  fullName.vb: Supabase.Storage.Interfaces.IStorageFileApi(Of TFileObject).GetPublicUrl(String, Supabase.Storage.TransformOptions, Supabase.Storage.DownloadOptions)
+  nameWithType: IStorageFileApi<TFileObject>.GetPublicUrl(string, TransformOptions?, DownloadOptions?)
+  nameWithType.vb: IStorageFileApi(Of TFileObject).GetPublicUrl(String, TransformOptions, DownloadOptions)
 - uid: Supabase.Storage.Interfaces.IStorageFileApi`1.GetPublicUrl*
   name: GetPublicUrl
   href: api/Supabase.Storage.Interfaces.IStorageFileApi-1.html#Supabase_Storage_Interfaces_IStorageFileApi_1_GetPublicUrl_
@@ -1556,15 +1600,15 @@ references:
   isSpec: "True"
   fullName: Supabase.Storage.StorageFileApi.Copy
   nameWithType: StorageFileApi.Copy
-- uid: Supabase.Storage.StorageFileApi.CreateSignedUrl(System.String,System.Int32,Supabase.Storage.TransformOptions)
-  name: CreateSignedUrl(string, int, TransformOptions?)
-  href: api/Supabase.Storage.StorageFileApi.html#Supabase_Storage_StorageFileApi_CreateSignedUrl_System_String_System_Int32_Supabase_Storage_TransformOptions_
-  commentId: M:Supabase.Storage.StorageFileApi.CreateSignedUrl(System.String,System.Int32,Supabase.Storage.TransformOptions)
-  name.vb: CreateSignedUrl(String, Integer, TransformOptions)
-  fullName: Supabase.Storage.StorageFileApi.CreateSignedUrl(string, int, Supabase.Storage.TransformOptions?)
-  fullName.vb: Supabase.Storage.StorageFileApi.CreateSignedUrl(String, Integer, Supabase.Storage.TransformOptions)
-  nameWithType: StorageFileApi.CreateSignedUrl(string, int, TransformOptions?)
-  nameWithType.vb: StorageFileApi.CreateSignedUrl(String, Integer, TransformOptions)
+- uid: Supabase.Storage.StorageFileApi.CreateSignedUrl(System.String,System.Int32,Supabase.Storage.TransformOptions,Supabase.Storage.DownloadOptions)
+  name: CreateSignedUrl(string, int, TransformOptions?, DownloadOptions?)
+  href: api/Supabase.Storage.StorageFileApi.html#Supabase_Storage_StorageFileApi_CreateSignedUrl_System_String_System_Int32_Supabase_Storage_TransformOptions_Supabase_Storage_DownloadOptions_
+  commentId: M:Supabase.Storage.StorageFileApi.CreateSignedUrl(System.String,System.Int32,Supabase.Storage.TransformOptions,Supabase.Storage.DownloadOptions)
+  name.vb: CreateSignedUrl(String, Integer, TransformOptions, DownloadOptions)
+  fullName: Supabase.Storage.StorageFileApi.CreateSignedUrl(string, int, Supabase.Storage.TransformOptions?, Supabase.Storage.DownloadOptions?)
+  fullName.vb: Supabase.Storage.StorageFileApi.CreateSignedUrl(String, Integer, Supabase.Storage.TransformOptions, Supabase.Storage.DownloadOptions)
+  nameWithType: StorageFileApi.CreateSignedUrl(string, int, TransformOptions?, DownloadOptions?)
+  nameWithType.vb: StorageFileApi.CreateSignedUrl(String, Integer, TransformOptions, DownloadOptions)
 - uid: Supabase.Storage.StorageFileApi.CreateSignedUrl*
   name: CreateSignedUrl
   href: api/Supabase.Storage.StorageFileApi.html#Supabase_Storage_StorageFileApi_CreateSignedUrl_
@@ -1572,15 +1616,15 @@ references:
   isSpec: "True"
   fullName: Supabase.Storage.StorageFileApi.CreateSignedUrl
   nameWithType: StorageFileApi.CreateSignedUrl
-- uid: Supabase.Storage.StorageFileApi.CreateSignedUrls(System.Collections.Generic.List{System.String},System.Int32)
-  name: CreateSignedUrls(List<string>, int)
-  href: api/Supabase.Storage.StorageFileApi.html#Supabase_Storage_StorageFileApi_CreateSignedUrls_System_Collections_Generic_List_System_String__System_Int32_
-  commentId: M:Supabase.Storage.StorageFileApi.CreateSignedUrls(System.Collections.Generic.List{System.String},System.Int32)
-  name.vb: CreateSignedUrls(List(Of String), Integer)
-  fullName: Supabase.Storage.StorageFileApi.CreateSignedUrls(System.Collections.Generic.List<string>, int)
-  fullName.vb: Supabase.Storage.StorageFileApi.CreateSignedUrls(System.Collections.Generic.List(Of String), Integer)
-  nameWithType: StorageFileApi.CreateSignedUrls(List<string>, int)
-  nameWithType.vb: StorageFileApi.CreateSignedUrls(List(Of String), Integer)
+- uid: Supabase.Storage.StorageFileApi.CreateSignedUrls(System.Collections.Generic.List{System.String},System.Int32,Supabase.Storage.DownloadOptions)
+  name: CreateSignedUrls(List<string>, int, DownloadOptions?)
+  href: api/Supabase.Storage.StorageFileApi.html#Supabase_Storage_StorageFileApi_CreateSignedUrls_System_Collections_Generic_List_System_String__System_Int32_Supabase_Storage_DownloadOptions_
+  commentId: M:Supabase.Storage.StorageFileApi.CreateSignedUrls(System.Collections.Generic.List{System.String},System.Int32,Supabase.Storage.DownloadOptions)
+  name.vb: CreateSignedUrls(List(Of String), Integer, DownloadOptions)
+  fullName: Supabase.Storage.StorageFileApi.CreateSignedUrls(System.Collections.Generic.List<string>, int, Supabase.Storage.DownloadOptions?)
+  fullName.vb: Supabase.Storage.StorageFileApi.CreateSignedUrls(System.Collections.Generic.List(Of String), Integer, Supabase.Storage.DownloadOptions)
+  nameWithType: StorageFileApi.CreateSignedUrls(List<string>, int, DownloadOptions?)
+  nameWithType.vb: StorageFileApi.CreateSignedUrls(List(Of String), Integer, DownloadOptions)
 - uid: Supabase.Storage.StorageFileApi.CreateSignedUrls*
   name: CreateSignedUrls
   href: api/Supabase.Storage.StorageFileApi.html#Supabase_Storage_StorageFileApi_CreateSignedUrls_
@@ -1672,15 +1716,15 @@ references:
   isSpec: "True"
   fullName: Supabase.Storage.StorageFileApi.DownloadPublicFile
   nameWithType: StorageFileApi.DownloadPublicFile
-- uid: Supabase.Storage.StorageFileApi.GetPublicUrl(System.String,Supabase.Storage.TransformOptions)
-  name: GetPublicUrl(string, TransformOptions?)
-  href: api/Supabase.Storage.StorageFileApi.html#Supabase_Storage_StorageFileApi_GetPublicUrl_System_String_Supabase_Storage_TransformOptions_
-  commentId: M:Supabase.Storage.StorageFileApi.GetPublicUrl(System.String,Supabase.Storage.TransformOptions)
-  name.vb: GetPublicUrl(String, TransformOptions)
-  fullName: Supabase.Storage.StorageFileApi.GetPublicUrl(string, Supabase.Storage.TransformOptions?)
-  fullName.vb: Supabase.Storage.StorageFileApi.GetPublicUrl(String, Supabase.Storage.TransformOptions)
-  nameWithType: StorageFileApi.GetPublicUrl(string, TransformOptions?)
-  nameWithType.vb: StorageFileApi.GetPublicUrl(String, TransformOptions)
+- uid: Supabase.Storage.StorageFileApi.GetPublicUrl(System.String,Supabase.Storage.TransformOptions,Supabase.Storage.DownloadOptions)
+  name: GetPublicUrl(string, TransformOptions?, DownloadOptions?)
+  href: api/Supabase.Storage.StorageFileApi.html#Supabase_Storage_StorageFileApi_GetPublicUrl_System_String_Supabase_Storage_TransformOptions_Supabase_Storage_DownloadOptions_
+  commentId: M:Supabase.Storage.StorageFileApi.GetPublicUrl(System.String,Supabase.Storage.TransformOptions,Supabase.Storage.DownloadOptions)
+  name.vb: GetPublicUrl(String, TransformOptions, DownloadOptions)
+  fullName: Supabase.Storage.StorageFileApi.GetPublicUrl(string, Supabase.Storage.TransformOptions?, Supabase.Storage.DownloadOptions?)
+  fullName.vb: Supabase.Storage.StorageFileApi.GetPublicUrl(String, Supabase.Storage.TransformOptions, Supabase.Storage.DownloadOptions)
+  nameWithType: StorageFileApi.GetPublicUrl(string, TransformOptions?, DownloadOptions?)
+  nameWithType.vb: StorageFileApi.GetPublicUrl(String, TransformOptions, DownloadOptions)
 - uid: Supabase.Storage.StorageFileApi.GetPublicUrl*
   name: GetPublicUrl
   href: api/Supabase.Storage.StorageFileApi.html#Supabase_Storage_StorageFileApi_GetPublicUrl_
