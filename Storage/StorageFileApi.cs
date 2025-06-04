@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
@@ -41,15 +42,25 @@ namespace Supabase.Storage
         /// </summary>
         /// <param name="path"></param>
         /// <param name="transformOptions"></param>
+        /// <param name="downloadOptions"></param>
         /// <returns></returns>
-        public string GetPublicUrl(string path, TransformOptions? transformOptions)
+        public string GetPublicUrl(string path, TransformOptions? transformOptions, DownloadOptions? downloadOptions = null)
         {
-            if (transformOptions == null)
-                return $"{Url}/object/public/{GetFinalPath(path)}";
+            var queryParams = HttpUtility.ParseQueryString(string.Empty);
+            
+            if (downloadOptions != null) 
+                queryParams.Add(downloadOptions.ToQueryCollection());
 
+            if (transformOptions == null)
+            {
+                var queryParamsString = queryParams.ToString();
+                return $"{Url}/object/public/{GetFinalPath(path)}?{queryParamsString}";
+            }
+
+            queryParams.Add(transformOptions.ToQueryCollection());
             var builder = new UriBuilder($"{Url}/render/image/public/{GetFinalPath(path)}")
             {
-                Query = transformOptions.ToQueryCollection().ToString()
+                Query = queryParams.ToString()
             };
 
             return builder.ToString();
@@ -61,8 +72,9 @@ namespace Supabase.Storage
         /// <param name="path">The file path to be downloaded, including the current file name. For example `folder/image.png`.</param>
         /// <param name="expiresIn">The number of seconds until the signed URL expires. For example, `60` for a URL which is valid for one minute.</param>
         /// <param name="transformOptions"></param>
+        /// <param name="downloadOptions"></param>
         /// <returns></returns>
-        public async Task<string> CreateSignedUrl(string path, int expiresIn, TransformOptions? transformOptions = null)
+        public async Task<string> CreateSignedUrl(string path, int expiresIn, TransformOptions? transformOptions = null, DownloadOptions? downloadOptions = null)
         {
             var body = new Dictionary<string, object?> { { "expiresIn", expiresIn } };
             var url = $"{Url}/object/sign/{GetFinalPath(path)}";
@@ -79,8 +91,10 @@ namespace Supabase.Storage
             if (response == null || string.IsNullOrEmpty(response.SignedUrl))
                 throw new SupabaseStorageException(
                     $"Signed Url for {path} returned empty, do you have permission?");
+            
+            var downloadQueryParams = downloadOptions?.ToQueryCollection().ToString();
 
-            return $"{Url}{response?.SignedUrl}";
+            return $"{Url}{response.SignedUrl}?{downloadQueryParams}";
         }
 
         /// <summary>
@@ -88,13 +102,15 @@ namespace Supabase.Storage
         /// </summary>
         /// <param name="paths">paths The file paths to be downloaded, including the current file names. For example [`folder/image.png`, 'folder2/image2.png'].</param>
         /// <param name="expiresIn">The number of seconds until the signed URLs expire. For example, `60` for URLs which are valid for one minute.</param>
+        /// <param name="downloadOptions"></param>
         /// <returns></returns>
-        public async Task<List<CreateSignedUrlsResponse>?> CreateSignedUrls(List<string> paths, int expiresIn)
+        public async Task<List<CreateSignedUrlsResponse>?> CreateSignedUrls(List<string> paths, int expiresIn, DownloadOptions? downloadOptions = null)
         {
             var body = new Dictionary<string, object> { { "expiresIn", expiresIn }, { "paths", paths } };
             var response = await Helpers.MakeRequest<List<CreateSignedUrlsResponse>>(HttpMethod.Post,
                 $"{Url}/object/sign/{BucketId}", body, Headers);
 
+            var downloadQueryParams = downloadOptions?.ToQueryCollection().ToString();
             if (response != null)
             {
                 foreach (var item in response)
@@ -103,7 +119,7 @@ namespace Supabase.Storage
                         throw new SupabaseStorageException(
                             $"Signed Url for {item.Path} returned empty, do you have permission?");
 
-                    item.SignedUrl = $"{Url}{item.SignedUrl}";
+                    item.SignedUrl = $"{Url}{item.SignedUrl}?{downloadQueryParams}";
                 }
             }
 
