@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.2.0](https://github.com/supabase-community/storage-csharp/compare/v2.1.0...v2.2.0) (2025-06-06)
+
+
+### Miscellaneous Chores
+
+* update readme title ([83dcdfe](https://github.com/supabase-community/storage-csharp/commit/83dcdfe6c3f153b63b1c493cfaf1d53b3ae9f737))
+
 ## [2.1.0](https://github.com/supabase-community/storage-csharp/compare/v2.0.2...v2.1.0) (2025-05-25)
 
 
