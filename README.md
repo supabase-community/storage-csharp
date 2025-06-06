@@ -1,12 +1,9 @@
-<p align="center">
-<img width="300" src=".github/supabase-storage.png"/>
-</p>
-<p align="center">
-  <img src="https://github.com/supabase-community/storage-csharp/workflows/Build%20And%20Test/badge.svg"/>
-  <a href="https://www.nuget.org/packages/Supabase.Storage/">
-    <img src="https://img.shields.io/nuget/vpre/Supabase.Storage"/>
-  </a>
-</p>
+# Supabase.Storage
+
+[![Build and Test](https://github.com/supabase-community/storage-csharp/actions/workflows/build-and-test.yml/badge.svg)](https://github.com/supabase-community/storage-csharp/acionts/workflows/build-and-test.yml)
+[![NuGet](https://img.shields.io/nuget/vpre/Supabase.Storage")](https://www.nuget.org/packages/Supabase.Storage/)
+
+---
 
 Integrate your [Supabase](https://supabase.io) projects with C#.
 
