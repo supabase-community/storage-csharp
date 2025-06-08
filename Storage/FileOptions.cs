@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace Supabase.Storage
 {
@@ -12,5 +13,14 @@ namespace Supabase.Storage
 
         [JsonProperty("upsert")]
         public bool Upsert { get; set; }
+        
+        [JsonProperty("duplex")]
+        public string? Duplex { get; set; }
+        
+        [JsonProperty("metadata")]
+        public Dictionary<string, string>? Metadata { get; set; }
+        
+        [JsonProperty("headers")]
+        public Dictionary<string, string>? Headers { get; set; }
     }
 }
