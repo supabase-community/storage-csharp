@@ -89,7 +89,7 @@
 
 
   <h1 id="Supabase_Storage_FileOptions" data-uid="Supabase.Storage.FileOptions" class="text-break">
-Class FileOptions  <a class="header-action link-secondary" title="View source" href="https://github.com/supabase-community/storage-csharp/blob/master/Storage/FileOptions.cs/#L5"><i class="bi bi-code-slash"></i></a>
+Class FileOptions  <a class="header-action link-secondary" title="View source" href="https://github.com/supabase-community/storage-csharp/blob/master/Storage/FileOptions.cs/#L6"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -156,7 +156,7 @@ Class FileOptions  <a class="header-action link-secondary" title="View source" h
 
   <h3 id="Supabase_Storage_FileOptions_CacheControl" data-uid="Supabase.Storage.FileOptions.CacheControl">
   CacheControl
-  <a class="header-action link-secondary" title="View source" href="https://github.com/supabase-community/storage-csharp/blob/master/Storage/FileOptions.cs/#L7"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/supabase-community/storage-csharp/blob/master/Storage/FileOptions.cs/#L8"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -188,7 +188,7 @@ public string CacheControl { get; set; }</code></pre>
 
   <h3 id="Supabase_Storage_FileOptions_ContentType" data-uid="Supabase.Storage.FileOptions.ContentType">
   ContentType
-  <a class="header-action link-secondary" title="View source" href="https://github.com/supabase-community/storage-csharp/blob/master/Storage/FileOptions.cs/#L10"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/supabase-community/storage-csharp/blob/master/Storage/FileOptions.cs/#L11"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -216,11 +216,107 @@ public string ContentType { get; set; }</code></pre>
 
 
 
+  <a id="Supabase_Storage_FileOptions_Duplex_" data-uid="Supabase.Storage.FileOptions.Duplex*"></a>
+
+  <h3 id="Supabase_Storage_FileOptions_Duplex" data-uid="Supabase.Storage.FileOptions.Duplex">
+  Duplex
+  <a class="header-action link-secondary" title="View source" href="https://github.com/supabase-community/storage-csharp/blob/master/Storage/FileOptions.cs/#L17"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[JsonProperty(&quot;duplex&quot;)]
+public string? Duplex { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="Supabase_Storage_FileOptions_Headers_" data-uid="Supabase.Storage.FileOptions.Headers*"></a>
+
+  <h3 id="Supabase_Storage_FileOptions_Headers" data-uid="Supabase.Storage.FileOptions.Headers">
+  Headers
+  <a class="header-action link-secondary" title="View source" href="https://github.com/supabase-community/storage-csharp/blob/master/Storage/FileOptions.cs/#L23"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[JsonProperty(&quot;headers&quot;)]
+public Dictionary&lt;string, string&gt;? Headers { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="Supabase_Storage_FileOptions_Metadata_" data-uid="Supabase.Storage.FileOptions.Metadata*"></a>
+
+  <h3 id="Supabase_Storage_FileOptions_Metadata" data-uid="Supabase.Storage.FileOptions.Metadata">
+  Metadata
+  <a class="header-action link-secondary" title="View source" href="https://github.com/supabase-community/storage-csharp/blob/master/Storage/FileOptions.cs/#L20"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[JsonProperty(&quot;metadata&quot;)]
+public Dictionary&lt;string, string&gt;? Metadata { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <a id="Supabase_Storage_FileOptions_Upsert_" data-uid="Supabase.Storage.FileOptions.Upsert*"></a>
 
   <h3 id="Supabase_Storage_FileOptions_Upsert" data-uid="Supabase.Storage.FileOptions.Upsert">
   Upsert
-  <a class="header-action link-secondary" title="View source" href="https://github.com/supabase-community/storage-csharp/blob/master/Storage/FileOptions.cs/#L13"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/supabase-community/storage-csharp/blob/master/Storage/FileOptions.cs/#L14"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -252,7 +348,7 @@ public bool Upsert { get; set; }</code></pre>
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/supabase-community/storage-csharp/blob/master/Storage/FileOptions.cs/#L5" class="edit-link">Edit this page</a>
+          <a href="https://github.com/supabase-community/storage-csharp/blob/master/Storage/FileOptions.cs/#L6" class="edit-link">Edit this page</a>
         </div>
 
 
