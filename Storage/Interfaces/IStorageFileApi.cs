@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Supabase.Storage.Interfaces
@@ -27,6 +28,8 @@ namespace Supabase.Storage.Interfaces
 		Task<string> Update(string localFilePath, string supabasePath, FileOptions? options = null, EventHandler<float>? onProgress = null);
 		Task<string> Upload(byte[] data, string supabasePath, FileOptions? options = null, EventHandler<float>? onProgress = null, bool inferContentType = true);
 		Task<string> Upload(string localFilePath, string supabasePath, FileOptions? options = null, EventHandler<float>? onProgress = null, bool inferContentType = true);
+		Task UploadOrResume(string localPath, string supabasePath, FileOptions options, EventHandler<float>? onProgress = null, CancellationToken cancellationToken = default);
+		Task UploadOrResume(byte[] data, string supabasePath, FileOptions options, EventHandler<float>? onProgress = null, CancellationToken cancellationToken = default);
         Task<string> UploadToSignedUrl(byte[] data, UploadSignedUrl url, FileOptions? options = null, EventHandler<float>? onProgress = null, bool inferContentType = true);
         Task<string> UploadToSignedUrl(string localFilePath, UploadSignedUrl url, FileOptions? options = null, EventHandler<float>? onProgress = null, bool inferContentType = true);
 		Task<UploadSignedUrl> CreateUploadSignedUrl(string supabasePath);

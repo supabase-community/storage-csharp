@@ -4,8 +4,10 @@ using System.Collections.Specialized;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
+using BirdMessenger.Collections;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Supabase.Storage.Exceptions;
@@ -310,6 +312,47 @@ namespace Supabase.Storage
         }
 
         /// <summary>
+        /// Attempts to upload a file to Supabase storage. If the upload process is interrupted or incomplete, it will attempt to resume the upload.
+        /// </summary>
+        /// <param name="localPath">The local file path of the file to be uploaded.</param>
+        /// <param name="supabasePath">The destination path in Supabase Storage where the file will be stored.</param>
+        /// <param name="options">Optional file options to specify metadata or other upload configurations.</param>
+        /// <param name="onProgress">An optional event handler for tracking and reporting upload progress as a percentage.</param>
+        /// <returns>Returns a task that resolves to a string representing the URL or path of the uploaded file in the storage.</returns>
+        public Task UploadOrResume(
+            string localPath,
+            string supabasePath,
+            FileOptions? options,
+            EventHandler<float>? onProgress = null,
+            CancellationToken cancellationToken = default
+        )
+        {
+            options ??= new FileOptions();
+            return UploadOrContinue(localPath, supabasePath, options, onProgress, cancellationToken);
+        }
+
+        /// <summary>
+        /// Uploads a file to the provided Supabase path or resumes an interrupted upload.
+        /// Uses provided options and allows for a progress event handler to be specified.
+        /// </summary>
+        /// <param name="data">The byte array representing the file data to be uploaded.</param>
+        /// <param name="supabasePath">The path in Supabase where the file should be stored.</param>
+        /// <param name="options">The file upload options determining any specific behaviors or settings for the upload.</param>
+        /// <param name="onProgress">An optional event handler to monitor and report upload progress as a float percentage.</param>
+        /// <returns>A task that resolves to the file's path once the upload is complete.</returns>
+        public Task UploadOrResume(
+            byte[] data,
+            string supabasePath,
+            FileOptions? options,
+            EventHandler<float>? onProgress = null,
+            CancellationToken cancellationToken = default
+        )
+        {
+            options ??= new FileOptions();
+            return UploadOrContinue(data, supabasePath, options, onProgress, cancellationToken);
+        }
+
+        /// <summary>
         /// Moves an existing file to a new location, optionally allowing renaming.
         /// </summary>
         /// <param name="fromPath">The original file path, including the current file name (e.g., `folder/image.png`).</param>
@@ -509,6 +552,103 @@ namespace Supabase.Storage
             await Helpers.HttpUploadClient!.UploadFileAsync(uri, localPath, headers, progress);
 
             return GetFinalPath(supabasePath);
+        }
+
+        private async Task UploadOrContinue(
+            string localPath,
+            string supabasePath,
+            FileOptions options,
+            EventHandler<float>? onProgress = null,
+            CancellationToken cancellationToken = default
+        )
+        {
+            
+            var uri = new Uri($"{Url}/upload/resumable");
+
+            var headers = new Dictionary<string, string>(Headers)
+            {
+                { "cache-control", $"max-age={options.CacheControl}" },
+            };
+
+            var metadata = new MetadataCollection
+            {
+                ["bucketName"] = BucketId,
+                ["objectName"] = supabasePath,
+                ["contentType"] = options.ContentType
+            };
+
+            if (options.Upsert)
+                headers.Add("x-upsert", options.Upsert.ToString().ToLower());
+
+            if (options.Metadata != null)
+                headers.Add("x-metadata", ParseMetadata(options.Metadata));
+
+            options.Headers?.ToList().ForEach(x => headers.Add(x.Key, x.Value));
+
+            if (options.Duplex != null)
+                headers.Add("x-duplex", options.Duplex.ToLower());
+
+            var progress = new Progress<float>();
+
+            if (onProgress != null)
+                progress.ProgressChanged += onProgress;
+
+            await Helpers.HttpUploadClient!.UploadOrContinueFileAsync(
+                uri,
+                localPath,
+                headers,
+                metadata,
+                progress,
+                cancellationToken
+            );
+        }
+
+        private async Task UploadOrContinue(
+            byte[] data,
+            string supabasePath,
+            FileOptions options,
+            EventHandler<float>? onProgress = null,
+            CancellationToken cancellationToken = default
+        )
+        {
+            var uri = new Uri($"{Url}/upload/resumable");
+
+            var headers = new Dictionary<string, string>(Headers)
+            {
+                { "cache-control", $"max-age={options.CacheControl}" },
+            };
+
+            var metadata = new MetadataCollection
+            {
+                ["bucketName"] = BucketId,
+                ["objectName"] = supabasePath,
+                ["contentType"] = options.ContentType,
+            };
+
+            if (options.Upsert)
+                headers.Add("x-upsert", options.Upsert.ToString().ToLower());
+
+            if (options.Metadata != null)
+                metadata["metadata"] = JsonConvert.SerializeObject(options.Metadata);
+
+            options.Headers?.ToList().ForEach(x => headers.Add(x.Key, x.Value));
+
+            if (options.Duplex != null)
+                headers.Add("x-duplex", options.Duplex.ToLower());
+
+            var progress = new Progress<float>();
+
+            if (onProgress != null)
+                progress.ProgressChanged += onProgress;
+
+            await Helpers.HttpUploadClient!.UploadOrContinueByteAsync(
+                uri,
+                data,
+                headers,
+                metadata,
+                progress,
+                cancellationToken
+            );
         }
 
         private static string ParseMetadata(Dictionary<string, string> metadata)

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Supabase.Storage;
@@ -76,7 +77,232 @@ public class StorageFileTests
 
         await _bucket.Remove(new List<string> { name });
     }
+
+    [TestMethod]
+    public async Task UploadResumableFile()
+    {
+        var didTriggerProgress = new TaskCompletionSource<bool>();
+        var name = $"{Guid.NewGuid()}.png";
+        var tempFilePath = Path.Combine(Path.GetTempPath(), $"{Guid.NewGuid()}.png");
+
+        // Create a PNG file with minimum 1MB size
+        var data = new byte[20 * 1024 * 1024]; // 1MB
+        var rng = new Random();
+        rng.NextBytes(data);
+        await File.WriteAllBytesAsync(tempFilePath, data);
+
+        try
+        {
+            var metadata = new Dictionary<string, string>
+            {
+                ["custom"] = "metadata",
+                ["local_file"] = "local_file"
+            };
+
+            var headers = new Dictionary<string, string>
+            {
+                ["x-version"] = "123"
+            };
+
+            var options = new FileOptions
+            {
+                Duplex = "duplex",
+                Metadata = metadata,
+                Headers = headers,
+            };
+
+            await _bucket.UploadOrResume(tempFilePath, name, options, (x, y) =>
+            {
+                Console.WriteLine($"Progress {y}");
+                didTriggerProgress.TrySetResult(true);
+            });
+
+            var list = await _bucket.List();
+
+            Assert.IsNotNull(list);
+
+            var existing = list.Find(item => item.Name == name);
+            Assert.IsNotNull(existing);
+
+            var sentProgressEvent = await didTriggerProgress.Task;
+            Assert.IsTrue(sentProgressEvent);
+
+            await _bucket.Remove([name]);
+        }
+        finally
+        {
+            if (File.Exists(tempFilePath))
+            {
+                File.Delete(tempFilePath);
+            }
+        }
+    }
     
+    [TestMethod]
+    public async Task UploadResumableByte()
+    {
+        var didTriggerProgress = new TaskCompletionSource<bool>();
+        var data = new byte[1 * 1024 * 1024];
+        var rng = new Random();
+        rng.NextBytes(data);
+        var name = $"{Guid.NewGuid()}.png";
+        var metadata = new Dictionary<string, string>
+        {
+            ["custom"] = "metadata",
+            ["local_file"] = "local_file"
+        };
+
+        var headers = new Dictionary<string, string>
+        {
+            ["x-version"] = "123"
+        };
+
+        var options = new FileOptions
+        {
+            Duplex = "duplex",
+            Metadata = metadata,
+            Headers = headers,
+        };
+
+        await _bucket.UploadOrResume(data, name, options, (x, y) =>
+        {
+            Console.WriteLine($"Progress {y}");
+            didTriggerProgress.TrySetResult(true);
+        });
+
+        var list = await _bucket.List();
+
+        Assert.IsNotNull(list);
+
+        var existing = list.Find(item => item.Name == name);
+        Assert.IsNotNull(existing);
+
+        var sentProgressEvent = await didTriggerProgress.Task;
+        Assert.IsTrue(sentProgressEvent);
+
+        await _bucket.Remove([name]);
+    }
+    
+    
+    [TestMethod("File: UploadOrResume override existing file")]
+    public async Task UploadResumableByteDuplicate()
+    {
+        var didTriggerProgress = new TaskCompletionSource<bool>();
+        var data = new byte[1 * 1024 * 1024];
+        var rng = new Random();
+        rng.NextBytes(data);
+        var name = $"{Guid.NewGuid()}.png";
+        var metadata = new Dictionary<string, string>
+        {
+            ["custom"] = "metadata",
+            ["local_file"] = "local_file"
+        };
+
+        var options = new FileOptions
+        {
+            Duplex = "duplex",
+            Metadata = metadata,
+            Upsert = true
+        };
+
+        await _bucket.UploadOrResume(data, name, options, (x, y) =>
+        {
+            Console.WriteLine($"Progress {y}");
+            didTriggerProgress.TrySetResult(true);
+        });
+
+        await _bucket.UploadOrResume(data, name, options, (x, y) =>
+        {
+            Console.WriteLine($"Progress {y}");
+            didTriggerProgress.TrySetResult(true);
+        });
+        
+        var list = await _bucket.List();
+
+        Assert.IsNotNull(list);
+
+        var existing = list.Find(item => item.Name == name);
+        Assert.IsNotNull(existing);
+
+        var sentProgressEvent = await didTriggerProgress.Task;
+        Assert.IsTrue(sentProgressEvent);
+
+        await _bucket.Remove([name]);
+    }
+    
+    [TestMethod("File: UploadOrResume with interruption and resume using CancellationToken")]
+    public async Task UploadOrResumeByteWithInterruptionAndResume()
+    {
+        var firstUploadProgressTriggered = new TaskCompletionSource<bool>();
+        var resumeUploadProgressTriggered = new TaskCompletionSource<bool>();
+        
+        var data = new byte[200 * 1024 * 1024];
+        var rng = new Random();
+        rng.NextBytes(data);
+        var name = $"{Guid.NewGuid()}.bin";
+        
+        var metadata = new Dictionary<string, string>
+        {
+            ["custom"] = "metadata",
+            ["local_file"] = "local_file"
+        };
+
+        var options = new FileOptions
+        {
+            Duplex = "duplex",
+            Metadata = metadata,
+        };
+
+        // Create a cancellation token source with a 1 second timeout
+        using var cts = new CancellationTokenSource(TimeSpan.FromSeconds(1));
+        
+        try 
+        {
+            // First upload attempt with cancellation token
+            await _bucket.UploadOrResume(data, name, options, (_, progress) => 
+            {
+                Console.WriteLine($"First upload progress: {progress}");
+                firstUploadProgressTriggered.TrySetResult(true);
+            }, cts.Token);
+        }
+        catch (OperationCanceledException) 
+        {
+            Console.WriteLine("First upload was cancelled as expected");
+        }
+        catch (Exception ex) 
+        {
+            Console.WriteLine($"First upload failed with unexpected error: {ex.Message}");
+            Assert.Fail($"First upload should have been cancelled, but failed with: {ex.Message}");
+        }
+        
+        // Wait for the first upload progress to be triggered before continuing
+        var firstProgressTriggered = await Task.WhenAny(
+            firstUploadProgressTriggered.Task,
+            Task.Delay(TimeSpan.FromSeconds(2))
+        ) == firstUploadProgressTriggered.Task;
+        
+        Assert.IsTrue(firstProgressTriggered, "First upload progress event should have been triggered");
+        
+        // Resume the upload without a cancellation token
+        await _bucket.UploadOrResume(data, name, options, (_, progress) => 
+        {
+            Console.WriteLine($"Resume progress: {progress}");
+            resumeUploadProgressTriggered.TrySetResult(true);
+        });
+        
+        var resumeProgressTriggered = await resumeUploadProgressTriggered.Task;
+        Assert.IsTrue(resumeProgressTriggered, "Resume progress event should have been triggered");
+        
+        var list = await _bucket.List();
+        Assert.IsNotNull(list);
+        
+        var existing = list.Find(item => item.Name == name);
+        Assert.IsNotNull(existing, "File should exist in bucket after resumed upload");
+        
+        await _bucket.Remove([name]);
+    }
+    
+
     [TestMethod("File: Upload File With FileOptions")]
     public async Task UploadFileWithFileOptions()
     {
