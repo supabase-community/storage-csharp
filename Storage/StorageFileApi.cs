@@ -24,13 +24,22 @@ namespace Supabase.Storage
         protected Dictionary<string, string> Headers { get; set; }
         protected string? BucketId { get; set; }
 
-        public StorageFileApi(string url, string bucketId, ClientOptions? options,
-            Dictionary<string, string>? headers = null) : this(url, headers, bucketId)
+        public StorageFileApi(
+            string url,
+            string bucketId,
+            ClientOptions? options,
+            Dictionary<string, string>? headers = null
+        )
+            : this(url, headers, bucketId)
         {
             Options = options ?? new ClientOptions();
         }
 
-        public StorageFileApi(string url, Dictionary<string, string>? headers = null, string? bucketId = null)
+        public StorageFileApi(
+            string url,
+            Dictionary<string, string>? headers = null,
+            string? bucketId = null
+        )
         {
             Url = url;
             BucketId = bucketId;
@@ -46,11 +55,15 @@ namespace Supabase.Storage
         /// <param name="transformOptions"></param>
         /// <param name="downloadOptions"></param>
         /// <returns></returns>
-        public string GetPublicUrl(string path, TransformOptions? transformOptions, DownloadOptions? downloadOptions = null)
+        public string GetPublicUrl(
+            string path,
+            TransformOptions? transformOptions,
+            DownloadOptions? downloadOptions = null
+        )
         {
             var queryParams = HttpUtility.ParseQueryString(string.Empty);
-            
-            if (downloadOptions != null) 
+
+            if (downloadOptions != null)
                 queryParams.Add(downloadOptions.ToQueryCollection());
 
             if (transformOptions == null)
@@ -62,7 +75,7 @@ namespace Supabase.Storage
             queryParams.Add(transformOptions.ToQueryCollection());
             var builder = new UriBuilder($"{Url}/render/image/public/{GetFinalPath(path)}")
             {
-                Query = queryParams.ToString()
+                Query = queryParams.ToString(),
             };
 
             return builder.ToString();
@@ -76,24 +89,40 @@ namespace Supabase.Storage
         /// <param name="transformOptions"></param>
         /// <param name="downloadOptions"></param>
         /// <returns></returns>
-        public async Task<string> CreateSignedUrl(string path, int expiresIn, TransformOptions? transformOptions = null, DownloadOptions? downloadOptions = null)
+        public async Task<string> CreateSignedUrl(
+            string path,
+            int expiresIn,
+            TransformOptions? transformOptions = null,
+            DownloadOptions? downloadOptions = null
+        )
         {
             var body = new Dictionary<string, object?> { { "expiresIn", expiresIn } };
             var url = $"{Url}/object/sign/{GetFinalPath(path)}";
 
             if (transformOptions != null)
             {
-                var transformOptionsJson = JsonConvert.SerializeObject(transformOptions, new StringEnumConverter());
-                var transformOptionsObj = JsonConvert.DeserializeObject<Dictionary<string, object>>(transformOptionsJson);
+                var transformOptionsJson = JsonConvert.SerializeObject(
+                    transformOptions,
+                    new StringEnumConverter()
+                );
+                var transformOptionsObj = JsonConvert.DeserializeObject<Dictionary<string, object>>(
+                    transformOptionsJson
+                );
                 body.Add("transform", transformOptionsObj);
             }
 
-            var response = await Helpers.MakeRequest<CreateSignedUrlResponse>(HttpMethod.Post, url, body, Headers);
+            var response = await Helpers.MakeRequest<CreateSignedUrlResponse>(
+                HttpMethod.Post,
+                url,
+                body,
+                Headers
+            );
 
             if (response == null || string.IsNullOrEmpty(response.SignedUrl))
                 throw new SupabaseStorageException(
-                    $"Signed Url for {path} returned empty, do you have permission?");
-            
+                    $"Signed Url for {path} returned empty, do you have permission?"
+                );
+
             var downloadQueryParams = downloadOptions?.ToQueryCollection().ToString();
 
             return $"{Url}{response.SignedUrl}?{downloadQueryParams}";
@@ -106,11 +135,23 @@ namespace Supabase.Storage
         /// <param name="expiresIn">The number of seconds until the signed URLs expire. For example, `60` for URLs which are valid for one minute.</param>
         /// <param name="downloadOptions"></param>
         /// <returns></returns>
-        public async Task<List<CreateSignedUrlsResponse>?> CreateSignedUrls(List<string> paths, int expiresIn, DownloadOptions? downloadOptions = null)
+        public async Task<List<CreateSignedUrlsResponse>?> CreateSignedUrls(
+            List<string> paths,
+            int expiresIn,
+            DownloadOptions? downloadOptions = null
+        )
         {
-            var body = new Dictionary<string, object> { { "expiresIn", expiresIn }, { "paths", paths } };
-            var response = await Helpers.MakeRequest<List<CreateSignedUrlsResponse>>(HttpMethod.Post,
-                $"{Url}/object/sign/{BucketId}", body, Headers);
+            var body = new Dictionary<string, object>
+            {
+                { "expiresIn", expiresIn },
+                { "paths", paths },
+            };
+            var response = await Helpers.MakeRequest<List<CreateSignedUrlsResponse>>(
+                HttpMethod.Post,
+                $"{Url}/object/sign/{BucketId}",
+                body,
+                Headers
+            );
 
             var downloadQueryParams = downloadOptions?.ToQueryCollection().ToString();
             if (response != null)
@@ -119,7 +160,8 @@ namespace Supabase.Storage
                 {
                     if (string.IsNullOrEmpty(item.SignedUrl))
                         throw new SupabaseStorageException(
-                            $"Signed Url for {item.Path} returned empty, do you have permission?");
+                            $"Signed Url for {item.Path} returned empty, do you have permission?"
+                        );
 
                     item.SignedUrl = $"{Url}{item.SignedUrl}?{downloadQueryParams}";
                 }
@@ -144,13 +186,16 @@ namespace Supabase.Storage
             if (body != null)
                 body.Add("prefix", string.IsNullOrEmpty(path) ? "" : path);
 
-            var response =
-                await Helpers.MakeRequest<List<FileObject>>(HttpMethod.Post, $"{Url}/object/list/{BucketId}", body,
-                    Headers);
+            var response = await Helpers.MakeRequest<List<FileObject>>(
+                HttpMethod.Post,
+                $"{Url}/object/list/{BucketId}",
+                body,
+                Headers
+            );
 
             return response;
         }
-        
+
         /// <summary>
         /// Retrieves the details of an existing file.
         /// </summary>
@@ -158,8 +203,12 @@ namespace Supabase.Storage
         /// <returns></returns>
         public async Task<FileObjectV2?> Info(string path)
         {
-            var response =
-                await Helpers.MakeRequest<FileObjectV2>(HttpMethod.Get, $"{Url}/object/info/{BucketId}/{path}", null, Headers);
+            var response = await Helpers.MakeRequest<FileObjectV2>(
+                HttpMethod.Get,
+                $"{Url}/object/info/{BucketId}/{path}",
+                null,
+                Headers
+            );
 
             return response;
         }
@@ -173,8 +222,13 @@ namespace Supabase.Storage
         /// <param name="onProgress"></param>
         /// <param name="inferContentType"></param>
         /// <returns></returns>
-        public async Task<string> Upload(string localFilePath, string supabasePath, FileOptions? options = null,
-            EventHandler<float>? onProgress = null, bool inferContentType = true)
+        public async Task<string> Upload(
+            string localFilePath,
+            string supabasePath,
+            FileOptions? options = null,
+            EventHandler<float>? onProgress = null,
+            bool inferContentType = true
+        )
         {
             options ??= new FileOptions();
 
@@ -194,8 +248,13 @@ namespace Supabase.Storage
         /// <param name="onProgress"></param>
         /// <param name="inferContentType"></param>
         /// <returns></returns>
-        public async Task<string> Upload(byte[] data, string supabasePath, FileOptions? options = null,
-            EventHandler<float>? onProgress = null, bool inferContentType = true)
+        public async Task<string> Upload(
+            byte[] data,
+            string supabasePath,
+            FileOptions? options = null,
+            EventHandler<float>? onProgress = null,
+            bool inferContentType = true
+        )
         {
             options ??= new FileOptions();
 
@@ -215,8 +274,13 @@ namespace Supabase.Storage
         /// <param name="onProgress"></param>
         /// <param name="inferContentType"></param>
         /// <returns></returns>
-        public async Task<string> UploadToSignedUrl(string localFilePath, UploadSignedUrl signedUrl,
-            FileOptions? options = null, EventHandler<float>? onProgress = null, bool inferContentType = true)
+        public async Task<string> UploadToSignedUrl(
+            string localFilePath,
+            UploadSignedUrl signedUrl,
+            FileOptions? options = null,
+            EventHandler<float>? onProgress = null,
+            bool inferContentType = true
+        )
         {
             options ??= new FileOptions();
 
@@ -227,7 +291,7 @@ namespace Supabase.Storage
             {
                 ["Authorization"] = $"Bearer {signedUrl.Token}",
                 ["cache-control"] = $"max-age={options.CacheControl}",
-                ["content-type"] = options.ContentType
+                ["content-type"] = options.ContentType,
             };
 
             if (options.Upsert)
@@ -238,7 +302,12 @@ namespace Supabase.Storage
             if (onProgress != null)
                 progress.ProgressChanged += onProgress;
 
-            await Helpers.HttpUploadClient!.UploadFileAsync(signedUrl.SignedUrl, localFilePath, headers, progress);
+            await Helpers.HttpUploadClient!.UploadFileAsync(
+                signedUrl.SignedUrl,
+                localFilePath,
+                headers,
+                progress
+            );
 
             return GetFinalPath(signedUrl.Key);
         }
@@ -252,8 +321,13 @@ namespace Supabase.Storage
         /// <param name="onProgress"></param>
         /// <param name="inferContentType"></param>
         /// <returns></returns>
-        public async Task<string> UploadToSignedUrl(byte[] data, UploadSignedUrl signedUrl, FileOptions? options = null,
-            EventHandler<float>? onProgress = null, bool inferContentType = true)
+        public async Task<string> UploadToSignedUrl(
+            byte[] data,
+            UploadSignedUrl signedUrl,
+            FileOptions? options = null,
+            EventHandler<float>? onProgress = null,
+            bool inferContentType = true
+        )
         {
             options ??= new FileOptions();
 
@@ -264,7 +338,7 @@ namespace Supabase.Storage
             {
                 ["Authorization"] = $"Bearer {signedUrl.Token}",
                 ["cache-control"] = $"max-age={options.CacheControl}",
-                ["content-type"] = options.ContentType
+                ["content-type"] = options.ContentType,
             };
 
             if (options.Upsert)
@@ -275,11 +349,15 @@ namespace Supabase.Storage
             if (onProgress != null)
                 progress.ProgressChanged += onProgress;
 
-            await Helpers.HttpUploadClient!.UploadBytesAsync(signedUrl.SignedUrl, data, headers, progress);
+            await Helpers.HttpUploadClient!.UploadBytesAsync(
+                signedUrl.SignedUrl,
+                data,
+                headers,
+                progress
+            );
 
             return GetFinalPath(signedUrl.Key);
         }
-
 
         /// <summary>
         /// Replaces an existing file at the specified path with a new one.
@@ -289,8 +367,12 @@ namespace Supabase.Storage
         /// <param name="options">HTTP headers.</param>
         /// <param name="onProgress"></param>
         /// <returns></returns>
-        public Task<string> Update(string localFilePath, string supabasePath, FileOptions? options = null,
-            EventHandler<float>? onProgress = null)
+        public Task<string> Update(
+            string localFilePath,
+            string supabasePath,
+            FileOptions? options = null,
+            EventHandler<float>? onProgress = null
+        )
         {
             options ??= new FileOptions();
             return UploadOrUpdate(localFilePath, supabasePath, options, onProgress);
@@ -304,8 +386,12 @@ namespace Supabase.Storage
         /// <param name="options">HTTP headers.</param>
         /// <param name="onProgress"></param>
         /// <returns></returns>
-        public Task<string> Update(byte[] data, string supabasePath, FileOptions? options = null,
-            EventHandler<float>? onProgress = null)
+        public Task<string> Update(
+            byte[] data,
+            string supabasePath,
+            FileOptions? options = null,
+            EventHandler<float>? onProgress = null
+        )
         {
             options ??= new FileOptions();
             return UploadOrUpdate(data, supabasePath, options, onProgress);
@@ -315,41 +401,49 @@ namespace Supabase.Storage
         /// Attempts to upload a file to Supabase storage. If the upload process is interrupted or incomplete, it will attempt to resume the upload.
         /// </summary>
         /// <param name="localPath">The local file path of the file to be uploaded.</param>
-        /// <param name="supabasePath">The destination path in Supabase Storage where the file will be stored.</param>
+        /// <param name="fileName">The destination path in Supabase Storage where the file will be stored.</param>
         /// <param name="options">Optional file options to specify metadata or other upload configurations.</param>
         /// <param name="onProgress">An optional event handler for tracking and reporting upload progress as a percentage.</param>
+        /// <param name="cancellationToken">Cancellation token to observe while waiting for the task to complete.</param>
         /// <returns>Returns a task that resolves to a string representing the URL or path of the uploaded file in the storage.</returns>
         public Task UploadOrResume(
             string localPath,
-            string supabasePath,
+            string fileName,
             FileOptions? options,
             EventHandler<float>? onProgress = null,
             CancellationToken cancellationToken = default
         )
         {
             options ??= new FileOptions();
-            return UploadOrContinue(localPath, supabasePath, options, onProgress, cancellationToken);
+            return UploadOrContinue(
+                localPath,
+                fileName,
+                options,
+                onProgress,
+                cancellationToken
+            );
         }
 
         /// <summary>
-        /// Uploads a file to the provided Supabase path or resumes an interrupted upload.
-        /// Uses provided options and allows for a progress event handler to be specified.
+        /// Uploads a file to the specified path in Supabase storage or resumes an interrupted upload process.
+        /// Allows customization through provided file options and supports tracking upload progress via an event handler.
         /// </summary>
-        /// <param name="data">The byte array representing the file data to be uploaded.</param>
-        /// <param name="supabasePath">The path in Supabase where the file should be stored.</param>
-        /// <param name="options">The file upload options determining any specific behaviors or settings for the upload.</param>
-        /// <param name="onProgress">An optional event handler to monitor and report upload progress as a float percentage.</param>
-        /// <returns>A task that resolves to the file's path once the upload is complete.</returns>
+        /// <param name="data">The byte array containing the file data to upload.</param>
+        /// <param name="fileName">The destination path within Supabase storage where the file should be stored.</param>
+        /// <param name="options">Optional configuration settings for the upload process.</param>
+        /// <param name="onProgress">An optional event handler for monitoring the upload progress, reporting it as a percentage.</param>
+        /// <param name="cancellationToken">A cancellation token to observe while awaiting the task, allowing the operation to be canceled.</param>
+        /// <returns>A task representing the asynchronous operation, resolving to the path of the uploaded file upon successful completion.</returns>
         public Task UploadOrResume(
             byte[] data,
-            string supabasePath,
+            string fileName,
             FileOptions? options,
             EventHandler<float>? onProgress = null,
             CancellationToken cancellationToken = default
         )
         {
             options ??= new FileOptions();
-            return UploadOrContinue(data, supabasePath, options, onProgress, cancellationToken);
+            return UploadOrContinue(data, fileName, options, onProgress, cancellationToken);
         }
 
         /// <summary>
@@ -359,16 +453,25 @@ namespace Supabase.Storage
         /// <param name="toPath">The target file path, including the new file name (e.g., `folder/image-copy.png`).</param>
         /// <param name="options">Optional parameters for specifying the destination bucket and other settings.</param>
         /// <returns>Returns a boolean value indicating whether the operation was successful.</returns>
-        public async Task<bool> Move(string fromPath, string toPath, DestinationOptions? options = null)
+        public async Task<bool> Move(
+            string fromPath,
+            string toPath,
+            DestinationOptions? options = null
+        )
         {
             var body = new Dictionary<string, string?>
             {
                 { "bucketId", BucketId },
                 { "sourceKey", fromPath },
                 { "destinationKey", toPath },
-                { "destinationBucket", options?.DestinationBucket }
+                { "destinationBucket", options?.DestinationBucket },
             };
-            await Helpers.MakeRequest<GenericResponse>(HttpMethod.Post, $"{Url}/object/move", body, Headers);
+            await Helpers.MakeRequest<GenericResponse>(
+                HttpMethod.Post,
+                $"{Url}/object/move",
+                body,
+                Headers
+            );
             return true;
         }
 
@@ -379,17 +482,26 @@ namespace Supabase.Storage
         /// <param name="toPath">The destination path for the copied file/object.</param>
         /// <param name="options">Optional parameters such as the destination bucket.</param>
         /// <returns>True if the copy operation was successful.</returns>
-        public async Task<bool> Copy(string fromPath, string toPath, DestinationOptions? options = null)
+        public async Task<bool> Copy(
+            string fromPath,
+            string toPath,
+            DestinationOptions? options = null
+        )
         {
             var body = new Dictionary<string, string?>
             {
                 { "bucketId", BucketId },
                 { "sourceKey", fromPath },
                 { "destinationKey", toPath },
-                { "destinationBucket", options?.DestinationBucket }
+                { "destinationBucket", options?.DestinationBucket },
             };
 
-            await Helpers.MakeRequest<GenericResponse>(HttpMethod.Post, $"{Url}/object/copy", body, Headers);
+            await Helpers.MakeRequest<GenericResponse>(
+                HttpMethod.Post,
+                $"{Url}/object/copy",
+                body,
+                Headers
+            );
             return true;
         }
 
@@ -401,12 +513,17 @@ namespace Supabase.Storage
         /// <param name="transformOptions"></param>
         /// <param name="onProgress"></param>
         /// <returns></returns>
-        public Task<string> Download(string supabasePath, string localPath, TransformOptions? transformOptions = null,
-            EventHandler<float>? onProgress = null)
+        public Task<string> Download(
+            string supabasePath,
+            string localPath,
+            TransformOptions? transformOptions = null,
+            EventHandler<float>? onProgress = null
+        )
         {
-            var url = transformOptions != null
-                ? $"{Url}/render/image/authenticated/{GetFinalPath(supabasePath)}"
-                : $"{Url}/object/{GetFinalPath(supabasePath)}";
+            var url =
+                transformOptions != null
+                    ? $"{Url}/render/image/authenticated/{GetFinalPath(supabasePath)}"
+                    : $"{Url}/object/{GetFinalPath(supabasePath)}";
             return DownloadFile(url, localPath, transformOptions, onProgress);
         }
 
@@ -417,8 +534,11 @@ namespace Supabase.Storage
         /// <param name="localPath"></param>
         /// <param name="onProgress"></param>
         /// <returns></returns>
-        public Task<string> Download(string supabasePath, string localPath, EventHandler<float>? onProgress = null) =>
-            Download(supabasePath, localPath, null, onProgress: onProgress);
+        public Task<string> Download(
+            string supabasePath,
+            string localPath,
+            EventHandler<float>? onProgress = null
+        ) => Download(supabasePath, localPath, null, onProgress: onProgress);
 
         /// <summary>
         /// Downloads a byte array from a private bucket to be used programmatically. For public buckets <see cref="DownloadPublicFile(string, TransformOptions?, EventHandler{float}?)"/>
@@ -427,8 +547,11 @@ namespace Supabase.Storage
         /// <param name="transformOptions"></param>
         /// <param name="onProgress"></param>
         /// <returns></returns>
-        public Task<byte[]> Download(string supabasePath, TransformOptions? transformOptions = null,
-            EventHandler<float>? onProgress = null)
+        public Task<byte[]> Download(
+            string supabasePath,
+            TransformOptions? transformOptions = null,
+            EventHandler<float>? onProgress = null
+        )
         {
             var url = $"{Url}/object/{GetFinalPath(supabasePath)}";
             return DownloadBytes(url, transformOptions, onProgress);
@@ -451,8 +574,12 @@ namespace Supabase.Storage
         /// <param name="transformOptions"></param>
         /// <param name="onProgress"></param>
         /// <returns></returns>
-        public Task<string> DownloadPublicFile(string supabasePath, string localPath,
-            TransformOptions? transformOptions = null, EventHandler<float>? onProgress = null)
+        public Task<string> DownloadPublicFile(
+            string supabasePath,
+            string localPath,
+            TransformOptions? transformOptions = null,
+            EventHandler<float>? onProgress = null
+        )
         {
             var url = GetPublicUrl(supabasePath, transformOptions);
             return DownloadFile(url, localPath, transformOptions, onProgress);
@@ -465,8 +592,11 @@ namespace Supabase.Storage
         /// <param name="transformOptions"></param>
         /// <param name="onProgress"></param>
         /// <returns></returns>
-        public Task<byte[]> DownloadPublicFile(string supabasePath, TransformOptions? transformOptions = null,
-            EventHandler<float>? onProgress = null)
+        public Task<byte[]> DownloadPublicFile(
+            string supabasePath,
+            TransformOptions? transformOptions = null,
+            EventHandler<float>? onProgress = null
+        )
         {
             var url = GetPublicUrl(supabasePath, transformOptions);
             return DownloadBytes(url, transformOptions, onProgress);
@@ -491,9 +621,12 @@ namespace Supabase.Storage
         public async Task<List<FileObject>?> Remove(List<string> paths)
         {
             var data = new Dictionary<string, object> { { "prefixes", paths } };
-            var response =
-                await Helpers.MakeRequest<List<FileObject>>(HttpMethod.Delete, $"{Url}/object/{BucketId}", data,
-                    Headers);
+            var response = await Helpers.MakeRequest<List<FileObject>>(
+                HttpMethod.Delete,
+                $"{Url}/object/{BucketId}",
+                data,
+                Headers
+            );
 
             return response;
         }
@@ -508,12 +641,21 @@ namespace Supabase.Storage
             var path = GetFinalPath(supabasePath);
 
             var url = $"{Url}/object/upload/sign/{path}";
-            var response =
-                await Helpers.MakeRequest<CreatedUploadSignedUrlResponse>(HttpMethod.Post, url, null, Headers);
+            var response = await Helpers.MakeRequest<CreatedUploadSignedUrlResponse>(
+                HttpMethod.Post,
+                url,
+                null,
+                Headers
+            );
 
-            if (response == null || string.IsNullOrEmpty(response.Url) || !response.Url!.Contains("token"))
+            if (
+                response == null
+                || string.IsNullOrEmpty(response.Url)
+                || !response.Url!.Contains("token")
+            )
                 throw new SupabaseStorageException(
-                    "Response did not return with expected data. Does this token have proper permission to generate a url?");
+                    "Response did not return with expected data. Does this token have proper permission to generate a url?"
+                );
 
             var generatedUri = new Uri($"{Url}{response.Url}");
             var query = HttpUtility.ParseQueryString(generatedUri.Query);
@@ -522,15 +664,19 @@ namespace Supabase.Storage
             return new UploadSignedUrl(generatedUri, token, supabasePath);
         }
 
-        private async Task<string> UploadOrUpdate(string localPath, string supabasePath, FileOptions options,
-            EventHandler<float>? onProgress = null)
+        private async Task<string> UploadOrUpdate(
+            string localPath,
+            string supabasePath,
+            FileOptions options,
+            EventHandler<float>? onProgress = null
+        )
         {
             Uri uri = new Uri($"{Url}/object/{GetFinalPath(supabasePath)}");
 
             var headers = new Dictionary<string, string>(Headers)
             {
                 { "cache-control", $"max-age={options.CacheControl}" },
-                { "content-type", options.ContentType }
+                { "content-type", options.ContentType },
             };
 
             if (options.Upsert)
@@ -538,12 +684,12 @@ namespace Supabase.Storage
 
             if (options.Metadata != null)
                 headers.Add("x-metadata", ParseMetadata(options.Metadata));
-            
+
             options.Headers?.ToList().ForEach(x => headers.Add(x.Key, x.Value));
-            
+
             if (options.Duplex != null)
                 headers.Add("x-duplex", options.Duplex.ToLower());
-            
+
             var progress = new Progress<float>();
 
             if (onProgress != null)
@@ -556,13 +702,12 @@ namespace Supabase.Storage
 
         private async Task UploadOrContinue(
             string localPath,
-            string supabasePath,
+            string fileName,
             FileOptions options,
             EventHandler<float>? onProgress = null,
             CancellationToken cancellationToken = default
         )
         {
-            
             var uri = new Uri($"{Url}/upload/resumable");
 
             var headers = new Dictionary<string, string>(Headers)
@@ -573,8 +718,8 @@ namespace Supabase.Storage
             var metadata = new MetadataCollection
             {
                 ["bucketName"] = BucketId,
-                ["objectName"] = supabasePath,
-                ["contentType"] = options.ContentType
+                ["objectName"] = fileName,
+                ["contentType"] = options.ContentType,
             };
 
             if (options.Upsert)
@@ -605,7 +750,7 @@ namespace Supabase.Storage
 
         private async Task UploadOrContinue(
             byte[] data,
-            string supabasePath,
+            string fileName,
             FileOptions options,
             EventHandler<float>? onProgress = null,
             CancellationToken cancellationToken = default
@@ -621,7 +766,7 @@ namespace Supabase.Storage
             var metadata = new MetadataCollection
             {
                 ["bucketName"] = BucketId,
-                ["objectName"] = supabasePath,
+                ["objectName"] = fileName,
                 ["contentType"] = options.ContentType,
             };
 
@@ -655,19 +800,23 @@ namespace Supabase.Storage
         {
             var json = JsonConvert.SerializeObject(metadata);
             var base64 = Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(json));
-            
+
             return base64;
         }
 
-        private async Task<string> UploadOrUpdate(byte[] data, string supabasePath, FileOptions options,
-            EventHandler<float>? onProgress = null)
+        private async Task<string> UploadOrUpdate(
+            byte[] data,
+            string supabasePath,
+            FileOptions options,
+            EventHandler<float>? onProgress = null
+        )
         {
             Uri uri = new Uri($"{Url}/object/{GetFinalPath(supabasePath)}");
 
             var headers = new Dictionary<string, string>(Headers)
             {
                 { "cache-control", $"max-age={options.CacheControl}" },
-                { "content-type", options.ContentType }
+                { "content-type", options.ContentType },
             };
 
             if (options.Upsert)
@@ -675,12 +824,12 @@ namespace Supabase.Storage
 
             if (options.Metadata != null)
                 headers.Add("x-metadata", ParseMetadata(options.Metadata));
-            
+
             options.Headers?.ToList().ForEach(x => headers.Add(x.Key, x.Value));
-            
+
             if (options.Duplex != null)
                 headers.Add("x-duplex", options.Duplex.ToLower());
-            
+
             var progress = new Progress<float>();
 
             if (onProgress != null)
@@ -691,8 +840,12 @@ namespace Supabase.Storage
             return GetFinalPath(supabasePath);
         }
 
-        private async Task<string> DownloadFile(string url, string localPath, TransformOptions? transformOptions = null,
-            EventHandler<float>? onProgress = null)
+        private async Task<string> DownloadFile(
+            string url,
+            string localPath,
+            TransformOptions? transformOptions = null,
+            EventHandler<float>? onProgress = null
+        )
         {
             var builder = new UriBuilder(url);
             var progress = new Progress<float>();
@@ -703,17 +856,28 @@ namespace Supabase.Storage
             if (onProgress != null)
                 progress.ProgressChanged += onProgress;
 
-            var stream = await Helpers.HttpDownloadClient!.DownloadDataAsync(builder.Uri, Headers, progress);
+            var stream = await Helpers.HttpDownloadClient!.DownloadDataAsync(
+                builder.Uri,
+                Headers,
+                progress
+            );
 
-            using var fileStream = new FileStream(localPath, FileMode.OpenOrCreate, FileAccess.Write);
+            using var fileStream = new FileStream(
+                localPath,
+                FileMode.OpenOrCreate,
+                FileAccess.Write
+            );
 
             stream.WriteTo(fileStream);
 
             return localPath;
         }
 
-        private async Task<byte[]> DownloadBytes(string url, TransformOptions? transformOptions = null,
-            EventHandler<float>? onProgress = null)
+        private async Task<byte[]> DownloadBytes(
+            string url,
+            TransformOptions? transformOptions = null,
+            EventHandler<float>? onProgress = null
+        )
         {
             var builder = new UriBuilder(url);
             var progress = new Progress<float>();
@@ -724,7 +888,11 @@ namespace Supabase.Storage
             if (onProgress != null)
                 progress.ProgressChanged += onProgress;
 
-            var stream = await Helpers.HttpDownloadClient!.DownloadDataAsync(builder.Uri, Headers, progress);
+            var stream = await Helpers.HttpDownloadClient!.DownloadDataAsync(
+                builder.Uri,
+                Headers,
+                progress
+            );
 
             return stream.ToArray();
         }
@@ -732,3 +900,4 @@ namespace Supabase.Storage
         private string GetFinalPath(string path) => $"{BucketId}/{path}";
     }
 }
+

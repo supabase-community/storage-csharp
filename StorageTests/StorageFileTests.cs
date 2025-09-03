@@ -57,13 +57,22 @@ public class StorageFileTests
 
         var asset = "supabase-csharp.png";
         var name = $"{Guid.NewGuid()}.png";
-        var basePath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)?.Replace("file:", "");
+        var basePath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)
+            ?.Replace("file:", "");
 
         Assert.IsNotNull(basePath);
 
         var imagePath = Path.Combine(basePath, "Assets", asset);
 
-        await _bucket.Upload(imagePath, name, null, (_, _) => { didTriggerProgress.TrySetResult(true); });
+        await _bucket.Upload(
+            imagePath,
+            name,
+            null,
+            (_, _) =>
+            {
+                didTriggerProgress.TrySetResult(true);
+            }
+        );
 
         var list = await _bucket.List();
 
@@ -78,15 +87,14 @@ public class StorageFileTests
         await _bucket.Remove(new List<string> { name });
     }
 
-    [TestMethod]
+    [TestMethod("File: Resume Upload File")]
     public async Task UploadResumableFile()
     {
         var didTriggerProgress = new TaskCompletionSource<bool>();
         var name = $"{Guid.NewGuid()}.png";
         var tempFilePath = Path.Combine(Path.GetTempPath(), $"{Guid.NewGuid()}.png");
 
-        // Create a PNG file with minimum 1MB size
-        var data = new byte[20 * 1024 * 1024]; // 1MB
+        var data = new byte[2 * 1024 * 1024]; 
         var rng = new Random();
         rng.NextBytes(data);
         await File.WriteAllBytesAsync(tempFilePath, data);
@@ -96,13 +104,10 @@ public class StorageFileTests
             var metadata = new Dictionary<string, string>
             {
                 ["custom"] = "metadata",
-                ["local_file"] = "local_file"
+                ["local_file"] = "local_file",
             };
 
-            var headers = new Dictionary<string, string>
-            {
-                ["x-version"] = "123"
-            };
+            var headers = new Dictionary<string, string> { ["x-version"] = "123" };
 
             var options = new FileOptions
             {
@@ -111,11 +116,16 @@ public class StorageFileTests
                 Headers = headers,
             };
 
-            await _bucket.UploadOrResume(tempFilePath, name, options, (x, y) =>
-            {
-                Console.WriteLine($"Progress {y}");
-                didTriggerProgress.TrySetResult(true);
-            });
+            await _bucket.UploadOrResume(
+                tempFilePath,
+                name,
+                options,
+                (x, y) =>
+                {
+                    Console.WriteLine($"Progress {y}");
+                    didTriggerProgress.TrySetResult(true);
+                }
+            );
 
             var list = await _bucket.List();
 
@@ -137,8 +147,8 @@ public class StorageFileTests
             }
         }
     }
-    
-    [TestMethod]
+
+    [TestMethod("File Resume Upload File as Byte")]
     public async Task UploadResumableByte()
     {
         var didTriggerProgress = new TaskCompletionSource<bool>();
@@ -149,13 +159,10 @@ public class StorageFileTests
         var metadata = new Dictionary<string, string>
         {
             ["custom"] = "metadata",
-            ["local_file"] = "local_file"
+            ["local_file"] = "local_file",
         };
 
-        var headers = new Dictionary<string, string>
-        {
-            ["x-version"] = "123"
-        };
+        var headers = new Dictionary<string, string> { ["x-version"] = "123" };
 
         var options = new FileOptions
         {
@@ -164,11 +171,16 @@ public class StorageFileTests
             Headers = headers,
         };
 
-        await _bucket.UploadOrResume(data, name, options, (x, y) =>
-        {
-            Console.WriteLine($"Progress {y}");
-            didTriggerProgress.TrySetResult(true);
-        });
+        await _bucket.UploadOrResume(
+            data,
+            name,
+            options,
+            (x, y) =>
+            {
+                Console.WriteLine($"Progress {y}");
+                didTriggerProgress.TrySetResult(true);
+            }
+        );
 
         var list = await _bucket.List();
 
@@ -182,9 +194,8 @@ public class StorageFileTests
 
         await _bucket.Remove([name]);
     }
-    
-    
-    [TestMethod("File: UploadOrResume override existing file")]
+
+    [TestMethod("File: Resume Upload as Byte override existing one")]
     public async Task UploadResumableByteDuplicate()
     {
         var didTriggerProgress = new TaskCompletionSource<bool>();
@@ -195,28 +206,38 @@ public class StorageFileTests
         var metadata = new Dictionary<string, string>
         {
             ["custom"] = "metadata",
-            ["local_file"] = "local_file"
+            ["local_file"] = "local_file",
         };
 
         var options = new FileOptions
         {
             Duplex = "duplex",
             Metadata = metadata,
-            Upsert = true
+            Upsert = true,
         };
 
-        await _bucket.UploadOrResume(data, name, options, (x, y) =>
-        {
-            Console.WriteLine($"Progress {y}");
-            didTriggerProgress.TrySetResult(true);
-        });
+        await _bucket.UploadOrResume(
+            data,
+            name,
+            options,
+            (x, y) =>
+            {
+                Console.WriteLine($"Progress {y}");
+                didTriggerProgress.TrySetResult(true);
+            }
+        );
 
-        await _bucket.UploadOrResume(data, name, options, (x, y) =>
-        {
-            Console.WriteLine($"Progress {y}");
-            didTriggerProgress.TrySetResult(true);
-        });
-        
+        await _bucket.UploadOrResume(
+            data,
+            name,
+            options,
+            (x, y) =>
+            {
+                Console.WriteLine($"Progress {y}");
+                didTriggerProgress.TrySetResult(true);
+            }
+        );
+
         var list = await _bucket.List();
 
         Assert.IsNotNull(list);
@@ -229,79 +250,85 @@ public class StorageFileTests
 
         await _bucket.Remove([name]);
     }
-    
-    [TestMethod("File: UploadOrResume with interruption and resume using CancellationToken")]
+
+    [TestMethod("File: Resume Upload with interruption and resume using CancellationToken")]
     public async Task UploadOrResumeByteWithInterruptionAndResume()
     {
         var firstUploadProgressTriggered = new TaskCompletionSource<bool>();
         var resumeUploadProgressTriggered = new TaskCompletionSource<bool>();
-        
+
         var data = new byte[200 * 1024 * 1024];
         var rng = new Random();
         rng.NextBytes(data);
         var name = $"{Guid.NewGuid()}.bin";
-        
+
         var metadata = new Dictionary<string, string>
         {
             ["custom"] = "metadata",
-            ["local_file"] = "local_file"
+            ["local_file"] = "local_file",
         };
 
-        var options = new FileOptions
-        {
-            Duplex = "duplex",
-            Metadata = metadata,
-        };
+        var options = new FileOptions { Duplex = "duplex", Metadata = metadata };
 
-        // Create a cancellation token source with a 1 second timeout
         using var cts = new CancellationTokenSource(TimeSpan.FromSeconds(1));
-        
-        try 
+
+        try
         {
-            // First upload attempt with cancellation token
-            await _bucket.UploadOrResume(data, name, options, (_, progress) => 
-            {
-                Console.WriteLine($"First upload progress: {progress}");
-                firstUploadProgressTriggered.TrySetResult(true);
-            }, cts.Token);
+            await _bucket.UploadOrResume(
+                data,
+                name,
+                options,
+                (_, progress) =>
+                {
+                    Console.WriteLine($"First upload progress: {progress}");
+                    firstUploadProgressTriggered.TrySetResult(true);
+                },
+                cts.Token
+            );
         }
-        catch (OperationCanceledException) 
+        catch (OperationCanceledException)
         {
             Console.WriteLine("First upload was cancelled as expected");
         }
-        catch (Exception ex) 
+        catch (Exception ex)
         {
             Console.WriteLine($"First upload failed with unexpected error: {ex.Message}");
             Assert.Fail($"First upload should have been cancelled, but failed with: {ex.Message}");
         }
-        
-        // Wait for the first upload progress to be triggered before continuing
-        var firstProgressTriggered = await Task.WhenAny(
-            firstUploadProgressTriggered.Task,
-            Task.Delay(TimeSpan.FromSeconds(2))
-        ) == firstUploadProgressTriggered.Task;
-        
-        Assert.IsTrue(firstProgressTriggered, "First upload progress event should have been triggered");
-        
-        // Resume the upload without a cancellation token
-        await _bucket.UploadOrResume(data, name, options, (_, progress) => 
-        {
-            Console.WriteLine($"Resume progress: {progress}");
-            resumeUploadProgressTriggered.TrySetResult(true);
-        });
-        
+
+        var firstProgressTriggered =
+            await Task.WhenAny(
+                firstUploadProgressTriggered.Task,
+                Task.Delay(TimeSpan.FromSeconds(2))
+            ) == firstUploadProgressTriggered.Task;
+
+        Assert.IsTrue(
+            firstProgressTriggered,
+            "First upload progress event should have been triggered"
+        );
+
+        await _bucket.UploadOrResume(
+            data,
+            name,
+            options,
+            (_, progress) =>
+            {
+                Console.WriteLine($"Resume progress: {progress}");
+                resumeUploadProgressTriggered.TrySetResult(true);
+            }
+        );
+
         var resumeProgressTriggered = await resumeUploadProgressTriggered.Task;
         Assert.IsTrue(resumeProgressTriggered, "Resume progress event should have been triggered");
-        
+
         var list = await _bucket.List();
         Assert.IsNotNull(list);
-        
+
         var existing = list.Find(item => item.Name == name);
         Assert.IsNotNull(existing, "File should exist in bucket after resumed upload");
-        
+
         await _bucket.Remove([name]);
     }
-    
 
     [TestMethod("File: Upload File With FileOptions")]
     public async Task UploadFileWithFileOptions()
@@ -310,7 +337,8 @@ public class StorageFileTests
 
         var asset = "supabase-csharp.png";
         var name = $"{Guid.NewGuid()}.png";
-        var basePath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)?.Replace("file:", "");
+        var basePath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)
+            ?.Replace("file:", "");
 
         Assert.IsNotNull(basePath);
 
@@ -319,13 +347,10 @@ public class StorageFileTests
         var metadata = new Dictionary<string, string>
         {
             ["custom"] = "metadata",
-            ["local_file"] = "local_file"
+            ["local_file"] = "local_file",
         };
 
-        var headers = new Dictionary<string, string>
-        {
-            ["x-version"] = "123"
-        };
+        var headers = new Dictionary<string, string> { ["x-version"] = "123" };
 
         var options = new FileOptions
         {
@@ -333,7 +358,15 @@ public class StorageFileTests
             Metadata = metadata,
             Headers = headers,
         };
-        await _bucket.Upload(imagePath, name, options, (_, _) => { didTriggerProgress.TrySetResult(true); });
+        await _bucket.Upload(
+            imagePath,
+            name,
+            options,
+            (_, _) =>
+            {
+                didTriggerProgress.TrySetResult(true);
+            }
+        );
 
         var item = await _bucket.Info(name);
 
@@ -355,7 +388,12 @@ public class StorageFileTests
 
         var name = $"{Guid.NewGuid()}.bin";
 
-        await _bucket.Upload(new Byte[] { 0x0, 0x0, 0x0 }, name, null, (_, _) => tsc.TrySetResult(true));
+        await _bucket.Upload(
+            new Byte[] { 0x0, 0x0, 0x0 },
+            name,
+            null,
+            (_, _) => tsc.TrySetResult(true)
+        );
 
         var list = await _bucket.List();
         Assert.IsNotNull(list);
@@ -376,7 +414,8 @@ public class StorageFileTests
 
         var asset = "supabase-csharp.png";
         var name = $"{Guid.NewGuid()}.png";
-        var basePath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)?.Replace("file:", "");
+        var basePath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)
+            ?.Replace("file:", "");
         Assert.IsNotNull(basePath);
 
         var imagePath = Path.Combine(basePath, "Assets", asset);
@@ -427,7 +466,7 @@ public class StorageFileTests
         Assert.IsNotNull(items.Find((f) => f.Name == "new-file.bin"));
         Assert.IsNull(items.Find((f) => f.Name == name));
     }
-    
+
     [TestMethod("File: Copy")]
     public async Task Copy()
     {
@@ -441,17 +480,21 @@ public class StorageFileTests
         Assert.IsNotNull(items.Find((f) => f.Name == "new-file.bin"));
         Assert.IsNotNull(items.Find((f) => f.Name == name));
     }
-    
+
     [TestMethod("File: Copy to another Bucket")]
     public async Task CopyToAnotherBucket()
     {
         await Storage.CreateBucket("copyfile", new BucketUpsertOptions { Public = true });
         var localBucket = Storage.From("copyfile");
-        
+
         var name = $"{Guid.NewGuid()}.bin";
         await _bucket.Upload([0x0, 0x1], name);
-        
-        await _bucket.Copy(name, "new-file.bin", new DestinationOptions { DestinationBucket = "copyfile" });
+
+        await _bucket.Copy(
+            name,
+            "new-file.bin",
+            new DestinationOptions { DestinationBucket = "copyfile" }
+        );
         var items = await _bucket.List();
         var copied = await localBucket.List();
 
@@ -480,25 +523,33 @@ public class StorageFileTests
 
         Assert.IsNotNull(url);
     }
-    
+
     [TestMethod("File: Get Public Link with download options")]
     public async Task GetPublicLinkWithDownloadOptions()
     {
         var name = $"{Guid.NewGuid()}.bin";
         await _bucket.Upload(new Byte[] { 0x0, 0x1 }, name);
-        var url = _bucket.GetPublicUrl(name, null, new DownloadOptions { FileName = "custom-file.png"});
+        var url = _bucket.GetPublicUrl(
+            name,
+            null,
+            new DownloadOptions { FileName = "custom-file.png" }
+        );
         await _bucket.Remove(new List<string> { name });
 
         Assert.IsNotNull(url);
         StringAssert.Contains(url, "download=custom-file.png");
     }
-    
+
     [TestMethod("File: Get Public Link with download and transform options")]
     public async Task GetPublicLinkWithDownloadAndTransformOptions()
     {
         var name = $"{Guid.NewGuid()}.bin";
         await _bucket.Upload(new Byte[] { 0x0, 0x1 }, name);
-        var url = _bucket.GetPublicUrl(name, new TransformOptions { Height = 100, Width = 100}, DownloadOptions.UseOriginalFileName);
+        var url = _bucket.GetPublicUrl(
+            name,
+            new TransformOptions { Height = 100, Width = 100 },
+            DownloadOptions.UseOriginalFileName
+        );
         await _bucket.Remove(new List<string> { name });
 
         Assert.IsNotNull(url);
@@ -523,19 +574,28 @@ public class StorageFileTests
         var name = $"{Guid.NewGuid()}.bin";
         await _bucket.Upload(new Byte[] { 0x0, 0x1 }, name);
 
-        var url = await _bucket.CreateSignedUrl(name, 3600, new TransformOptions { Width = 100, Height = 100 });
+        var url = await _bucket.CreateSignedUrl(
+            name,
+            3600,
+            new TransformOptions { Width = 100, Height = 100 }
+        );
         Assert.IsTrue(Uri.IsWellFormedUriString(url, UriKind.Absolute));
 
         await _bucket.Remove(new List<string> { name });
     }
-    
+
     [TestMethod("File: Get Signed Link with download options")]
     public async Task GetSignedLinkWithDownloadOptions()
     {
         var name = $"{Guid.NewGuid()}.bin";
         await _bucket.Upload(new Byte[] { 0x0, 0x1 }, name);
 
-        var url = await _bucket.CreateSignedUrl(name, 3600, null, new DownloadOptions { FileName = "custom-file.png"});
+        var url = await _bucket.CreateSignedUrl(
+            name,
+            3600,
+            null,
+            new DownloadOptions { FileName = "custom-file.png" }
+        );
         Assert.IsTrue(Uri.IsWellFormedUriString(url, UriKind.Absolute));
         StringAssert.Contains(url, "download=custom-file.png");
 
@@ -551,7 +611,11 @@ public class StorageFileTests
         var name2 = $"{Guid.NewGuid()}.bin";
         await _bucket.Upload(new Byte[] { 0x0, 0x1 }, name2);
 
-        var urls = await _bucket.CreateSignedUrls(new List<string> { name1, name2 }, 3600, DownloadOptions.UseOriginalFileName);
+        var urls = await _bucket.CreateSignedUrls(
+            new List<string> { name1, name2 },
+            3600,
+            DownloadOptions.UseOriginalFileName
+        );
 
         Assert.IsNotNull(urls);
 
@@ -571,3 +635,4 @@ public class StorageFileTests
         Assert.IsTrue(Uri.IsWellFormedUriString(result.SignedUrl.ToString(), UriKind.Absolute));
     }
 }
+
