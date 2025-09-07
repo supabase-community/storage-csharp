@@ -90,19 +90,19 @@ namespace Supabase.Storage.Extensions
 			}
 		}
 
-		public static Task<HttpResponseMessage> UploadFileAsync(this HttpClient client, Uri uri, string filePath, Dictionary<string, string>? headers = null, Progress<float>? progress = null)
+		public static Task<HttpResponseMessage> UploadFileAsync(this HttpClient client, Uri uri, string filePath, Dictionary<string, string>? headers = null, Progress<float>? progress = null, CancellationToken cancellationToken = default)
 		{
 			var fileStream = new FileStream(filePath, mode: FileMode.Open, FileAccess.Read);
-			return UploadAsync(client, uri, fileStream, headers, progress);
+			return UploadAsync(client, uri, fileStream, headers, progress, cancellationToken);
 		}
 
-		public static Task<HttpResponseMessage> UploadBytesAsync(this HttpClient client, Uri uri, byte[] data, Dictionary<string, string>? headers = null, Progress<float>? progress = null)
+		public static Task<HttpResponseMessage> UploadBytesAsync(this HttpClient client, Uri uri, byte[] data, Dictionary<string, string>? headers = null, Progress<float>? progress = null, CancellationToken cancellationToken = default)
 		{
 			var stream = new MemoryStream(data);
-			return UploadAsync(client, uri, stream, headers, progress);
+			return UploadAsync(client, uri, stream, headers, progress, cancellationToken);
 		}
 
-		public static async Task<HttpResponseMessage> UploadAsync(this HttpClient client, Uri uri, Stream stream, Dictionary<string, string>? headers = null, Progress<float>? progress = null)
+		public static async Task<HttpResponseMessage> UploadAsync(this HttpClient client, Uri uri, Stream stream, Dictionary<string, string>? headers = null, Progress<float>? progress = null, CancellationToken cancellationToken = default)
 		{
 			var content = new ProgressableStreamContent(stream, 4096, progress);
 
@@ -119,7 +119,7 @@ namespace Supabase.Storage.Extensions
 				}
 			}
 
-			var response = await client.PostAsync(uri, content);
+			var response = await client.PostAsync(uri, content, cancellationToken);
 
 			if (!response.IsSuccessStatusCode)
 			{

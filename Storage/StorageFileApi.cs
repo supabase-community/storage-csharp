@@ -4,6 +4,7 @@ using System.Collections.Specialized;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
 using Newtonsoft.Json;
@@ -172,14 +173,14 @@ namespace Supabase.Storage
         /// <param name="inferContentType"></param>
         /// <returns></returns>
         public async Task<string> Upload(string localFilePath, string supabasePath, FileOptions? options = null,
-            EventHandler<float>? onProgress = null, bool inferContentType = true)
+            EventHandler<float>? onProgress = null, bool inferContentType = true, CancellationToken cancellationToken = default)
         {
             options ??= new FileOptions();
 
             if (inferContentType)
                 options.ContentType = MimeMapping.MimeUtility.GetMimeMapping(localFilePath);
 
-            var result = await UploadOrUpdate(localFilePath, supabasePath, options, onProgress);
+            var result = await UploadOrUpdate(localFilePath, supabasePath, options, onProgress, cancellationToken);
             return result;
         }
 
@@ -193,14 +194,14 @@ namespace Supabase.Storage
         /// <param name="inferContentType"></param>
         /// <returns></returns>
         public async Task<string> Upload(byte[] data, string supabasePath, FileOptions? options = null,
-            EventHandler<float>? onProgress = null, bool inferContentType = true)
+            EventHandler<float>? onProgress = null, bool inferContentType = true, CancellationToken cancellationToken = default)
         {
             options ??= new FileOptions();
 
             if (inferContentType)
                 options.ContentType = MimeMapping.MimeUtility.GetMimeMapping(supabasePath);
 
-            var result = await UploadOrUpdate(data, supabasePath, options, onProgress);
+            var result = await UploadOrUpdate(data, supabasePath, options, onProgress, cancellationToken);
             return result;
         }
 
@@ -288,10 +289,10 @@ namespace Supabase.Storage
         /// <param name="onProgress"></param>
         /// <returns></returns>
         public Task<string> Update(string localFilePath, string supabasePath, FileOptions? options = null,
-            EventHandler<float>? onProgress = null)
+            EventHandler<float>? onProgress = null, CancellationToken cancellationToken = default)
         {
             options ??= new FileOptions();
-            return UploadOrUpdate(localFilePath, supabasePath, options, onProgress);
+            return UploadOrUpdate(localFilePath, supabasePath, options, onProgress, cancellationToken);
         }
 
         /// <summary>
@@ -303,10 +304,10 @@ namespace Supabase.Storage
         /// <param name="onProgress"></param>
         /// <returns></returns>
         public Task<string> Update(byte[] data, string supabasePath, FileOptions? options = null,
-            EventHandler<float>? onProgress = null)
+            EventHandler<float>? onProgress = null, CancellationToken cancellationToken = default)
         {
             options ??= new FileOptions();
-            return UploadOrUpdate(data, supabasePath, options, onProgress);
+            return UploadOrUpdate(data, supabasePath, options, onProgress, cancellationToken);
         }
 
         /// <summary>
@@ -480,7 +481,7 @@ namespace Supabase.Storage
         }
 
         private async Task<string> UploadOrUpdate(string localPath, string supabasePath, FileOptions options,
-            EventHandler<float>? onProgress = null)
+            EventHandler<float>? onProgress = null, CancellationToken cancellationToken = default)
         {
             Uri uri = new Uri($"{Url}/object/{GetFinalPath(supabasePath)}");
 
@@ -506,7 +507,7 @@ namespace Supabase.Storage
             if (onProgress != null)
                 progress.ProgressChanged += onProgress;
 
-            await Helpers.HttpUploadClient!.UploadFileAsync(uri, localPath, headers, progress);
+            await Helpers.HttpUploadClient!.UploadFileAsync(uri, localPath, headers, progress, cancellationToken);
 
             return GetFinalPath(supabasePath);
         }
@@ -520,7 +521,7 @@ namespace Supabase.Storage
         }
 
         private async Task<string> UploadOrUpdate(byte[] data, string supabasePath, FileOptions options,
-            EventHandler<float>? onProgress = null)
+            EventHandler<float>? onProgress = null, CancellationToken cancellationToken = default)
         {
             Uri uri = new Uri($"{Url}/object/{GetFinalPath(supabasePath)}");
 
@@ -546,7 +547,7 @@ namespace Supabase.Storage
             if (onProgress != null)
                 progress.ProgressChanged += onProgress;
 
-            await Helpers.HttpUploadClient!.UploadBytesAsync(uri, data, headers, progress);
+            await Helpers.HttpUploadClient!.UploadBytesAsync(uri, data, headers, progress, cancellationToken);
 
             return GetFinalPath(supabasePath);
         }

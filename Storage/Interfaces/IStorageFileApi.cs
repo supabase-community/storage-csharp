@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Supabase.Storage.Interfaces
@@ -23,10 +24,10 @@ namespace Supabase.Storage.Interfaces
 		Task<bool> Copy(string fromPath, string toPath, DestinationOptions? options = null);
         Task<TFileObject?> Remove(string path);
 		Task<List<TFileObject>?> Remove(List<string> paths);
-        Task<string> Update(byte[] data, string supabasePath, FileOptions? options = null, EventHandler<float>? onProgress = null);
-		Task<string> Update(string localFilePath, string supabasePath, FileOptions? options = null, EventHandler<float>? onProgress = null);
-		Task<string> Upload(byte[] data, string supabasePath, FileOptions? options = null, EventHandler<float>? onProgress = null, bool inferContentType = true);
-		Task<string> Upload(string localFilePath, string supabasePath, FileOptions? options = null, EventHandler<float>? onProgress = null, bool inferContentType = true);
+        Task<string> Update(byte[] data, string supabasePath, FileOptions? options = null, EventHandler<float>? onProgress = null, CancellationToken cancellationToken = default);
+		Task<string> Update(string localFilePath, string supabasePath, FileOptions? options = null, EventHandler<float>? onProgress = null, CancellationToken cancellationToken = default);
+		Task<string> Upload(byte[] data, string supabasePath, FileOptions? options = null, EventHandler<float>? onProgress = null, bool inferContentType = true, CancellationToken cancellationToken = default);
+		Task<string> Upload(string localFilePath, string supabasePath, FileOptions? options = null, EventHandler<float>? onProgress = null, bool inferContentType = true, CancellationToken cancellationToken = default);
         Task<string> UploadToSignedUrl(byte[] data, UploadSignedUrl url, FileOptions? options = null, EventHandler<float>? onProgress = null, bool inferContentType = true);
         Task<string> UploadToSignedUrl(string localFilePath, UploadSignedUrl url, FileOptions? options = null, EventHandler<float>? onProgress = null, bool inferContentType = true);
 		Task<UploadSignedUrl> CreateUploadSignedUrl(string supabasePath);
