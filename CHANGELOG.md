@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.3.0](https://github.com/supabase-community/storage-csharp/compare/v2.2.0...v2.3.0) (2025-09-09)
+
+
+### Features
+
+* resumable upload ([#29](https://github.com/supabase-community/storage-csharp/issues/29)) ([e9a94f9](https://github.com/supabase-community/storage-csharp/commit/e9a94f98e9d18b9c9448e77537f974e4c56e3134))
+
 ## [2.2.0](https://github.com/supabase-community/storage-csharp/compare/v2.1.0...v2.2.0) (2025-06-06)
 
 
