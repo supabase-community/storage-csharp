@@ -270,7 +270,7 @@ public class StorageFileTests
 
         var options = new FileOptions { Duplex = "duplex", Metadata = metadata };
 
-        using var cts = new CancellationTokenSource(TimeSpan.FromSeconds(1));
+        using var cts = new CancellationTokenSource(TimeSpan.FromMilliseconds(300));
 
         try
         {
