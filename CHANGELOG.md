@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.4.0](https://github.com/supabase-community/storage-csharp/compare/v2.3.0...v2.4.0) (2025-09-09)
+
+
+### Features
+
+* implement cancelation token on some of upload method ([#30](https://github.com/supabase-community/storage-csharp/issues/30)) ([3befec0](https://github.com/supabase-community/storage-csharp/commit/3befec0181de15459fa427e32bebc4b92d82c161))
+
 ## [2.3.0](https://github.com/supabase-community/storage-csharp/compare/v2.2.0...v2.3.0) (2025-09-09)
 
 
