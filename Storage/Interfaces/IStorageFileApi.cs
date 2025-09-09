@@ -76,14 +76,16 @@ namespace Supabase.Storage.Interfaces
             string supabasePath,
             FileOptions? options = null,
             EventHandler<float>? onProgress = null,
-            bool inferContentType = true
+            bool inferContentType = true,
+            CancellationToken cancellationToken = default
         );
         Task<string> Upload(
             string localFilePath,
             string supabasePath,
             FileOptions? options = null,
             EventHandler<float>? onProgress = null,
-            bool inferContentType = true
+            bool inferContentType = true,
+            CancellationToken cancellationToken = default
         );
         Task UploadOrResume(
             string localPath,

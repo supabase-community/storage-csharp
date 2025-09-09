@@ -227,7 +227,8 @@ namespace Supabase.Storage
             string supabasePath,
             FileOptions? options = null,
             EventHandler<float>? onProgress = null,
-            bool inferContentType = true
+            bool inferContentType = true,
+            CancellationToken cancellationToken = default
         )
         {
             options ??= new FileOptions();
@@ -235,7 +236,7 @@ namespace Supabase.Storage
             if (inferContentType)
                 options.ContentType = MimeMapping.MimeUtility.GetMimeMapping(localFilePath);
 
-            var result = await UploadOrUpdate(localFilePath, supabasePath, options, onProgress);
+            var result = await UploadOrUpdate(localFilePath, supabasePath, options, onProgress, cancellationToken);
             return result;
         }
 
@@ -253,7 +254,8 @@ namespace Supabase.Storage
             string supabasePath,
             FileOptions? options = null,
             EventHandler<float>? onProgress = null,
-            bool inferContentType = true
+            bool inferContentType = true,
+            CancellationToken cancellationToken = default
         )
         {
             options ??= new FileOptions();
@@ -261,7 +263,7 @@ namespace Supabase.Storage
             if (inferContentType)
                 options.ContentType = MimeMapping.MimeUtility.GetMimeMapping(supabasePath);
 
-            var result = await UploadOrUpdate(data, supabasePath, options, onProgress);
+            var result = await UploadOrUpdate(data, supabasePath, options, onProgress, cancellationToken);
             return result;
         }
 
@@ -668,7 +670,8 @@ namespace Supabase.Storage
             string localPath,
             string supabasePath,
             FileOptions options,
-            EventHandler<float>? onProgress = null
+            EventHandler<float>? onProgress = null,
+            CancellationToken cancellationToken = default
         )
         {
             Uri uri = new Uri($"{Url}/object/{GetFinalPath(supabasePath)}");
@@ -695,7 +698,7 @@ namespace Supabase.Storage
             if (onProgress != null)
                 progress.ProgressChanged += onProgress;
 
-            await Helpers.HttpUploadClient!.UploadFileAsync(uri, localPath, headers, progress);
+            await Helpers.HttpUploadClient!.UploadFileAsync(uri, localPath, headers, progress, cancellationToken);
 
             return GetFinalPath(supabasePath);
         }
@@ -808,7 +811,8 @@ namespace Supabase.Storage
             byte[] data,
             string supabasePath,
             FileOptions options,
-            EventHandler<float>? onProgress = null
+            EventHandler<float>? onProgress = null,
+            CancellationToken cancellationToken = default
         )
         {
             Uri uri = new Uri($"{Url}/object/{GetFinalPath(supabasePath)}");
@@ -835,7 +839,7 @@ namespace Supabase.Storage
             if (onProgress != null)
                 progress.ProgressChanged += onProgress;
 
-            await Helpers.HttpUploadClient!.UploadBytesAsync(uri, data, headers, progress);
+            await Helpers.HttpUploadClient!.UploadBytesAsync(uri, data, headers, progress, cancellationToken);
 
             return GetFinalPath(supabasePath);
         }

@@ -270,7 +270,7 @@ public class StorageFileTests
 
         var options = new FileOptions { Duplex = "duplex", Metadata = metadata };
 
-        using var cts = new CancellationTokenSource(TimeSpan.FromSeconds(1));
+        using var cts = new CancellationTokenSource(TimeSpan.FromMilliseconds(300));
 
         try
         {
@@ -405,6 +405,33 @@ public class StorageFileTests
         Assert.IsTrue(sentProgressEvent);
 
         await _bucket.Remove(new List<string> { name });
+    }
+    
+    [TestMethod("File: Cancel Upload Arbitrary Byte Array")]
+    public async Task UploadArbitraryByteArrayCanceled()
+    {
+        var tsc = new TaskCompletionSource<bool>();
+        using var ctk = new CancellationTokenSource(TimeSpan.FromMilliseconds(1));
+
+        var data = new byte[20 * 1024 * 1024];
+        var rng = new Random();
+        rng.NextBytes(data);
+        var name = $"{Guid.NewGuid()}.bin";
+
+        var action = async () =>
+        {
+            await _bucket.Upload(data, name, null, (_, _) => tsc.TrySetResult(true), true, ctk.Token);
+        };
+
+        await Assert.ThrowsExceptionAsync<TaskCanceledException>(action);
+
+        var list = await _bucket.List();
+        Assert.IsNotNull(list);
+
+        var existing = list.Find(item => item.Name == name);
+        Assert.IsNull(existing);
+
+        await _bucket.Remove([name]);
     }
 
     [TestMethod("File: Download")]
