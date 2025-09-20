@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
+using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 using BirdMessenger;
 using BirdMessenger.Collections;
-using Newtonsoft.Json;
 using Supabase.Storage.Exceptions;
 
 namespace Supabase.Storage.Extensions
@@ -45,7 +45,10 @@ namespace Supabase.Storage.Extensions
                 if (!response.IsSuccessStatusCode)
                 {
                     var content = await response.Content.ReadAsStringAsync();
-                    var errorResponse = JsonConvert.DeserializeObject<ErrorResponse>(content);
+                    var errorResponse = JsonSerializer.Deserialize<ErrorResponse>(
+                        content,
+                        Helpers.JsonOptions
+                    );
                     var e = new SupabaseStorageException(errorResponse?.Message ?? content)
                     {
                         Content = content,
@@ -175,12 +178,15 @@ namespace Supabase.Storage.Extensions
                 }
             }
 
-			var response = await client.PostAsync(uri, content, cancellationToken);
+            var response = await client.PostAsync(uri, content, cancellationToken);
 
             if (!response.IsSuccessStatusCode)
             {
                 var httpContent = await response.Content.ReadAsStringAsync();
-                var errorResponse = JsonConvert.DeserializeObject<ErrorResponse>(httpContent);
+                var errorResponse = JsonSerializer.Deserialize<ErrorResponse>(
+                    httpContent,
+                    Helpers.JsonOptions
+                );
                 var e = new SupabaseStorageException(errorResponse?.Message ?? httpContent)
                 {
                     Content = httpContent,
@@ -301,7 +307,10 @@ namespace Supabase.Storage.Extensions
                 return responsePatch.OriginResponseMessage;
 
             var httpContent = await responsePatch.OriginResponseMessage.Content.ReadAsStringAsync();
-            var errorResponse = JsonConvert.DeserializeObject<ErrorResponse>(httpContent);
+            var errorResponse = JsonSerializer.Deserialize<ErrorResponse>(
+                httpContent,
+                Helpers.JsonOptions
+            );
             var e = new SupabaseStorageException(errorResponse?.Message ?? httpContent)
             {
                 Content = httpContent,

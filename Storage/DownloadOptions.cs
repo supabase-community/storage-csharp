@@ -1,7 +1,8 @@
-using Newtonsoft.Json;
-
 namespace Supabase.Storage
 {
+    /// <summary>
+    /// Represents options used when downloading files from storage.
+    /// </summary>
     public class DownloadOptions
     {
         /// <summary>
