@@ -7,6 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Supabase.Storage;
+using Supabase.Storage.Exceptions;
 using Supabase.Storage.Interfaces;
 using FileOptions = Supabase.Storage.FileOptions;
 
@@ -94,7 +95,7 @@ public class StorageFileTests
         var name = $"{Guid.NewGuid()}.png";
         var tempFilePath = Path.Combine(Path.GetTempPath(), $"{Guid.NewGuid()}.png");
 
-        var data = new byte[2 * 1024 * 1024]; 
+        var data = new byte[2 * 1024 * 1024];
         var rng = new Random();
         rng.NextBytes(data);
         await File.WriteAllBytesAsync(tempFilePath, data);
@@ -195,6 +196,66 @@ public class StorageFileTests
         await _bucket.Remove([name]);
     }
 
+    [TestMethod("File Resume Upload File as Byte Not Override Existing")]
+    public async Task UploadResumableByteNotOverrideExisting()
+    {
+        var didTriggerProgress = new TaskCompletionSource<bool>();
+        var data = new byte[1 * 1024 * 1024];
+        var rng = new Random();
+        rng.NextBytes(data);
+        var name = $"{Guid.NewGuid()}.png";
+        var metadata = new Dictionary<string, string>
+        {
+            ["custom"] = "metadata",
+            ["local_file"] = "local_file",
+        };
+
+        var headers = new Dictionary<string, string> { ["x-version"] = "123" };
+
+        var options = new FileOptions
+        {
+            Duplex = "duplex",
+            Metadata = metadata,
+            Headers = headers,
+        };
+
+        await _bucket.UploadOrResume(
+            data,
+            name,
+            options,
+            (x, y) =>
+            {
+                didTriggerProgress.TrySetResult(true);
+            }
+        );
+
+        var action = async () =>
+        {
+            await _bucket.UploadOrResume(
+                data,
+                name,
+                options,
+                (x, y) =>
+                {
+                    didTriggerProgress.TrySetResult(true);
+                }
+            );
+        };
+
+        await Assert.ThrowsExceptionAsync<SupabaseStorageException>(action);
+
+        var list = await _bucket.List();
+        Assert.IsNotNull(list);
+
+        var existing = list.Find(item => item.Name == name);
+        Assert.IsNotNull(existing);
+
+        var sentProgressEvent = await didTriggerProgress.Task;
+        Assert.IsTrue(sentProgressEvent);
+
+        await _bucket.Remove([name]);
+    }
+
     [TestMethod("File: Resume Upload as Byte override existing one")]
     public async Task UploadResumableByteDuplicate()
     {
@@ -270,7 +331,7 @@ public class StorageFileTests
 
         var options = new FileOptions { Duplex = "duplex", Metadata = metadata };
 
-        using var cts = new CancellationTokenSource(TimeSpan.FromMilliseconds(300));
+        using var cts = new CancellationTokenSource(TimeSpan.FromMilliseconds(500));
 
         try
         {
@@ -406,7 +467,7 @@ public class StorageFileTests
 
         await _bucket.Remove(new List<string> { name });
     }
-    
+
     [TestMethod("File: Cancel Upload Arbitrary Byte Array")]
     public async Task UploadArbitraryByteArrayCanceled()
     {
@@ -420,7 +481,14 @@ public class StorageFileTests
 
         var action = async () =>
         {
-            await _bucket.Upload(data, name, null, (_, _) => tsc.TrySetResult(true), true, ctk.Token);
+            await _bucket.Upload(
+                data,
+                name,
+                null,
+                (_, _) => tsc.TrySetResult(true),
+                true,
+                ctk.Token
+            );
         };
 
         await Assert.ThrowsExceptionAsync<TaskCanceledException>(action);
@@ -662,4 +730,3 @@ public class StorageFileTests
         Assert.IsTrue(Uri.IsWellFormedUriString(result.SignedUrl.ToString(), UriKind.Absolute));
     }
 }
-

@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace Supabase.Storage
 {
@@ -9,7 +9,7 @@ namespace Supabase.Storage
         /// The visibility of the bucket. Public buckets don't require an authorization token to download objects,
 		/// but still require a valid token for all other operations. By default, buckets are private.
         /// </summary>
-        [JsonProperty("public")]
+        [JsonPropertyName("public")]
         public bool Public { get; set; } = false;
 
         /// <summary>
@@ -17,7 +17,7 @@ namespace Supabase.Storage
         ///
         /// Expects a string value following a format like: '1kb', '50mb', '150kb', etc.
         /// </summary>
-        [JsonProperty("file_size_limit", NullValueHandling = NullValueHandling.Include)]
+        [JsonPropertyName("file_size_limit")]
         public string? FileSizeLimit { get; set; }
 
         /// <summary>
@@ -25,7 +25,8 @@ namespace Supabase.Storage
 		///
 		/// Expects a List of values such as: ['image/jpeg', 'image/png', etc]
         /// </summary>
-        [JsonProperty("allowed_mime_types", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonPropertyName("allowed_mime_types")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public List<string>? AllowedMimes { get; set; }
     }
 }

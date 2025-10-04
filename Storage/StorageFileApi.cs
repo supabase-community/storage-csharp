@@ -4,12 +4,11 @@ using System.Collections.Specialized;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
+using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
 using BirdMessenger.Collections;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 using Supabase.Storage.Exceptions;
 using Supabase.Storage.Extensions;
 using Supabase.Storage.Interfaces;
@@ -101,12 +100,13 @@ namespace Supabase.Storage
 
             if (transformOptions != null)
             {
-                var transformOptionsJson = JsonConvert.SerializeObject(
+                var transformOptionsJson = JsonSerializer.Serialize(
                     transformOptions,
-                    new StringEnumConverter()
+                    Helpers.JsonOptions
                 );
-                var transformOptionsObj = JsonConvert.DeserializeObject<Dictionary<string, object>>(
-                    transformOptionsJson
+                var transformOptionsObj = JsonSerializer.Deserialize<Dictionary<string, object>>(
+                    transformOptionsJson,
+                    Helpers.JsonOptions
                 );
                 body.Add("transform", transformOptionsObj);
             }
@@ -180,8 +180,8 @@ namespace Supabase.Storage
         {
             options ??= new SearchOptions();
 
-            var json = JsonConvert.SerializeObject(options);
-            var body = JsonConvert.DeserializeObject<Dictionary<string, object>>(json);
+            var json = JsonSerializer.Serialize(options, Helpers.JsonOptions);
+            var body = JsonSerializer.Deserialize<Dictionary<string, object>>(json, Helpers.JsonOptions);
 
             if (body != null)
                 body.Add("prefix", string.IsNullOrEmpty(path) ? "" : path);
@@ -777,7 +777,7 @@ namespace Supabase.Storage
                 headers.Add("x-upsert", options.Upsert.ToString().ToLower());
 
             if (options.Metadata != null)
-                metadata["metadata"] = JsonConvert.SerializeObject(options.Metadata);
+                metadata["metadata"] = JsonSerializer.Serialize(options.Metadata, Helpers.JsonOptions);
 
             options.Headers?.ToList().ForEach(x => headers.Add(x.Key, x.Value));
 
@@ -801,7 +801,7 @@ namespace Supabase.Storage
 
         private static string ParseMetadata(Dictionary<string, string> metadata)
         {
-            var json = JsonConvert.SerializeObject(metadata);
+            var json = JsonSerializer.Serialize(metadata, Helpers.JsonOptions);
             var base64 = Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(json));
 
             return base64;
@@ -904,4 +904,3 @@ namespace Supabase.Storage
         private string GetFinalPath(string path) => $"{BucketId}/{path}";
     }
 }
-

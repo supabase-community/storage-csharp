@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
+using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 using BirdMessenger;
 using BirdMessenger.Collections;
-using Newtonsoft.Json;
+using BirdMessenger.Delegates;
+using BirdMessenger.Infrastructure;
 using Supabase.Storage.Exceptions;
 
 namespace Supabase.Storage.Extensions
@@ -45,7 +47,10 @@ namespace Supabase.Storage.Extensions
                 if (!response.IsSuccessStatusCode)
                 {
                     var content = await response.Content.ReadAsStringAsync();
-                    var errorResponse = JsonConvert.DeserializeObject<ErrorResponse>(content);
+                    var errorResponse = JsonSerializer.Deserialize<ErrorResponse>(
+                        content,
+                        Helpers.JsonOptions
+                    );
                     var e = new SupabaseStorageException(errorResponse?.Message ?? content)
                     {
                         Content = content,
@@ -175,12 +180,15 @@ namespace Supabase.Storage.Extensions
                 }
             }
 
-			var response = await client.PostAsync(uri, content, cancellationToken);
+            var response = await client.PostAsync(uri, content, cancellationToken);
 
             if (!response.IsSuccessStatusCode)
             {
                 var httpContent = await response.Content.ReadAsStringAsync();
-                var errorResponse = JsonConvert.DeserializeObject<ErrorResponse>(httpContent);
+                var errorResponse = JsonSerializer.Deserialize<ErrorResponse>(
+                    httpContent,
+                    Helpers.JsonOptions
+                );
                 var e = new SupabaseStorageException(errorResponse?.Message ?? httpContent)
                 {
                     Content = httpContent,
@@ -273,7 +281,18 @@ namespace Supabase.Storage.Extensions
                 UploadLength = fileStream.Length,
             };
 
-            var responseCreate = await client.TusCreateAsync(createOption, cancellationToken);
+            TusCreateResponse? responseCreate;
+            try
+            {
+                responseCreate = await client.TusCreateAsync(createOption, cancellationToken);
+            }
+            catch (Exception exception)
+            {
+                if (exception is not TusException response)
+                    throw;
+
+                throw await HandleResponseError(response);
+            }
 
             var patchOption = new TusPatchRequestOption
             {
@@ -281,16 +300,7 @@ namespace Supabase.Storage.Extensions
                 Stream = fileStream,
                 UploadBufferSize = 6 * 1024 * 1024,
                 UploadType = UploadType.Chunk,
-                OnProgressAsync = x =>
-                {
-                    if (progress == null)
-                        return Task.CompletedTask;
-
-                    var uploadedProgress = (float)x.UploadedSize / x.TotalSize * 100f;
-                    progress.Report(uploadedProgress);
-
-                    return Task.CompletedTask;
-                },
+                OnProgressAsync = x => ReportProgressAsync(progress, x),
                 OnCompletedAsync = _ => Task.CompletedTask,
                 OnFailedAsync = _ => Task.CompletedTask,
             };
@@ -300,19 +310,57 @@ namespace Supabase.Storage.Extensions
             if (responsePatch.OriginResponseMessage.IsSuccessStatusCode)
                 return responsePatch.OriginResponseMessage;
 
-            var httpContent = await responsePatch.OriginResponseMessage.Content.ReadAsStringAsync();
-            var errorResponse = JsonConvert.DeserializeObject<ErrorResponse>(httpContent);
-            var e = new SupabaseStorageException(errorResponse?.Message ?? httpContent)
+            throw await HandleResponseError(responsePatch.OriginResponseMessage);
+        }
+
+        private static Task ReportProgressAsync(
+            IProgress<float>? progress,
+            UploadProgressEvent progressInfo
+        )
+        {
+            if (progress == null)
+                return Task.CompletedTask;
+
+            var uploadedProgress = (float)progressInfo.UploadedSize / progressInfo.TotalSize * 100f;
+            progress.Report(uploadedProgress);
+
+            return Task.CompletedTask;
+        }
+
+        private static async Task<SupabaseStorageException> HandleResponseError(
+            HttpResponseMessage response
+        )
+        {
+            var httpContent = await response.Content.ReadAsStringAsync();
+            var errorResponse = JsonSerializer.Deserialize<ErrorResponse>(
+                httpContent,
+                Helpers.JsonOptions
+            );
+            var error = new SupabaseStorageException(errorResponse?.Message ?? httpContent)
             {
                 Content = httpContent,
-                Response = responsePatch.OriginResponseMessage,
-                StatusCode =
-                    errorResponse?.StatusCode
-                    ?? (int)responsePatch.OriginResponseMessage.StatusCode,
+                Response = response,
+                StatusCode = errorResponse?.StatusCode ?? (int)response.StatusCode,
             };
+            error.AddReason();
 
-            e.AddReason();
-            throw e;
+            return error;
+        }
+
+        private static async Task<SupabaseStorageException> HandleResponseError(
+            TusException response
+        )
+        {
+            var httpContent = await response.OriginHttpResponse.Content.ReadAsStringAsync();
+            var error = new SupabaseStorageException(httpContent)
+            {
+                Content = httpContent,
+                Response = response.OriginHttpResponse,
+                StatusCode = (int)response.OriginHttpResponse.StatusCode,
+            };
+            error.AddReason();
+
+            return error;
         }
     }
 }

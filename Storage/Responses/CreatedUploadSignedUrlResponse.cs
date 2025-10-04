@@ -1,10 +1,10 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 
 namespace Supabase.Storage.Responses
 {
 	internal class CreatedUploadSignedUrlResponse
 	{
-		[JsonProperty("url")]
+		[JsonPropertyName("url")]
 		public string? Url { get; set; }
 	}
 }
