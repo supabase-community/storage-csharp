@@ -22,7 +22,7 @@ namespace Supabase.Storage
 
         internal static HttpClient? HttpDownloadClient;
 
-        internal static JsonSerializerOptions JsonOptions = new JsonSerializerOptions()
+        internal static readonly JsonSerializerOptions JsonOptions = new JsonSerializerOptions()
         {
             PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
             PropertyNameCaseInsensitive = true,

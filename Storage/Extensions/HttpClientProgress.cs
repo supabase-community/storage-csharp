@@ -294,6 +294,15 @@ namespace Supabase.Storage.Extensions
                 throw await HandleResponseError(response);
             }
 
+            var headOption = new TusHeadRequestOption()
+            {
+                FileLocation = responseCreate.FileLocation,
+                OnPreSendRequestAsync = null
+            };
+            
+            var responseHead = await client.TusHeadAsync(headOption, cancellationToken);
+            Console.WriteLine($"total upload offset: {responseHead.UploadOffset}");
+
             var patchOption = new TusPatchRequestOption
             {
                 FileLocation = responseCreate.FileLocation,

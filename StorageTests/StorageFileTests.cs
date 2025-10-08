@@ -318,6 +318,12 @@ public class StorageFileTests
         var firstUploadProgressTriggered = new TaskCompletionSource<bool>();
         var resumeUploadProgressTriggered = new TaskCompletionSource<bool>();
 
+        var assetFileName = "jetbrains.dmg";
+        var basePath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)?.Replace("file:", "");
+        Assert.IsNotNull(basePath);
+
+        var imagePath = Path.Combine(basePath!, "Assets", assetFileName);
+        
         var data = new byte[200 * 1024 * 1024];
         var rng = new Random();
         rng.NextBytes(data);
@@ -331,17 +337,22 @@ public class StorageFileTests
 
         var options = new FileOptions { Duplex = "duplex", Metadata = metadata };
 
-        using var cts = new CancellationTokenSource(TimeSpan.FromMilliseconds(500));
+        using var cts = new CancellationTokenSource();
 
         try
         {
             await _bucket.UploadOrResume(
-                data,
+                imagePath,
                 name,
                 options,
                 (_, progress) =>
                 {
                     Console.WriteLine($"First upload progress: {progress}");
+                    if (progress >= 30)
+                    {
+                        cts.Cancel();
+                        Console.WriteLine("Cancelling first upload");
+                    }
                     firstUploadProgressTriggered.TrySetResult(true);
                 },
                 cts.Token
@@ -369,7 +380,7 @@ public class StorageFileTests
         );
 
         await _bucket.UploadOrResume(
-            data,
+            imagePath,
             name,
             options,
             (_, progress) =>
