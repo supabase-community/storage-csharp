@@ -270,7 +270,7 @@ public class StorageFileTests
 
         var options = new FileOptions { Duplex = "duplex", Metadata = metadata };
 
-        using var cts = new CancellationTokenSource(TimeSpan.FromMilliseconds(300));
+        using var cts = new CancellationTokenSource();
 
         try
         {
@@ -280,6 +280,9 @@ public class StorageFileTests
                 options,
                 (_, progress) =>
                 {
+                    if (progress > 20)
+                        cts.Cancel();
+                    
                     Console.WriteLine($"First upload progress: {progress}");
                     firstUploadProgressTriggered.TrySetResult(true);
                 },

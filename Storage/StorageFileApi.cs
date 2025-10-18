@@ -744,8 +744,8 @@ namespace Supabase.Storage
             await Helpers.HttpUploadClient!.UploadOrContinueFileAsync(
                 uri,
                 localPath,
-                headers,
                 metadata,
+                headers,
                 progress,
                 cancellationToken
             );
@@ -792,8 +792,8 @@ namespace Supabase.Storage
             await Helpers.HttpUploadClient!.UploadOrContinueByteAsync(
                 uri,
                 data,
-                headers,
                 metadata,
+                headers,
                 progress,
                 cancellationToken
             );
