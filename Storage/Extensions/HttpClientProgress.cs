@@ -201,8 +201,8 @@ namespace Supabase.Storage.Extensions
             this HttpClient client,
             Uri uri,
             string filePath,
+            MetadataCollection metadata,
             Dictionary<string, string>? headers = null,
-            MetadataCollection? metadata = null,
             Progress<float>? progress = null,
             CancellationToken cancellationToken = default
         )
@@ -212,8 +212,8 @@ namespace Supabase.Storage.Extensions
                 client,
                 uri,
                 fileStream,
-                headers,
                 metadata,
+                headers,
                 progress,
                 cancellationToken
             );
@@ -223,8 +223,8 @@ namespace Supabase.Storage.Extensions
             this HttpClient client,
             Uri uri,
             byte[] data,
+            MetadataCollection metadata,
             Dictionary<string, string>? headers = null,
-            MetadataCollection? metadata = null,
             Progress<float>? progress = null,
             CancellationToken cancellationToken = default
         )
@@ -234,8 +234,8 @@ namespace Supabase.Storage.Extensions
                 client,
                 uri,
                 stream,
-                headers,
                 metadata,
+                headers,
                 progress,
                 cancellationToken
             );
@@ -245,8 +245,8 @@ namespace Supabase.Storage.Extensions
             this HttpClient client,
             Uri uri,
             Stream fileStream,
+            MetadataCollection metadata,
             Dictionary<string, string>? headers = null,
-            MetadataCollection? metadata = null,
             IProgress<float>? progress = null,
             CancellationToken cancellationToken = default
         )
@@ -268,10 +268,8 @@ namespace Supabase.Storage.Extensions
                 }
             }
 
-            string? cacheKey = null;
-            if (metadata != null)
-                cacheKey =
-                    $"{metadata["bucketName"]}/{metadata["objectName"]}/{metadata["contentType"]}";
+            var cacheKey =
+                $"{metadata["bucketName"]}/{metadata["objectName"]}/{metadata["contentType"]}";
 
             UploadMemoryCache.TryGet(cacheKey, out var upload);
             Uri? fileLocation = null;
@@ -284,13 +282,15 @@ namespace Supabase.Storage.Extensions
                     UploadLength = fileStream.Length,
                 };
 
-                TusCreateResponse responseCreate;
                 try
                 {
-                    responseCreate = await client.TusCreateAsync(createOption, cancellationToken);
-                    
+                    var responseCreate = await client.TusCreateAsync(
+                        createOption,
+                        cancellationToken
+                    );
+
                     fileLocation = responseCreate.FileLocation;
-                    UploadMemoryCache.Set(cacheKey, fileLocation.ToString()); 
+                    UploadMemoryCache.Set(cacheKey, fileLocation.ToString());
                 }
                 catch (TusException error)
                 {
@@ -308,7 +308,11 @@ namespace Supabase.Storage.Extensions
                 UploadBufferSize = 6 * 1024 * 1024,
                 UploadType = UploadType.Chunk,
                 OnProgressAsync = x => ReportProgressAsync(progress, x),
-                OnCompletedAsync = _ => Task.CompletedTask,
+                OnCompletedAsync = _ =>
+                {
+                    UploadMemoryCache.Remove(cacheKey);
+                    return Task.CompletedTask;
+                },
                 OnFailedAsync = _ => Task.CompletedTask,
             };
 
