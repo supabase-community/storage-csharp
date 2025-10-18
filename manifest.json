@@ -432,6 +432,20 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/Supabase.Storage.UploadMemoryCache.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Supabase.Storage.UploadMemoryCache.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Supabase.Storage.UploadMemoryCache",
+      "Summary": "<p sourcefile=\"api/Supabase.Storage.UploadMemoryCache.yml\" sourcestartlinenumber=\"1\">Provides thread-safe in-memory caching for resumable upload URLs with sliding expiration.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/Supabase.Storage.UploadSignedUrl.yml",
       "output": {
         ".html": {
@@ -462,11 +476,11 @@
       "type": "Toc",
       "source_relative_path": "api/toc.yml",
       "output": {
-        ".json": {
-          "relative_path": "api/toc.json"
-        },
         ".html": {
           "relative_path": "api/toc.html"
+        },
+        ".json": {
+          "relative_path": "api/toc.json"
         }
       },
       "version": ""
@@ -485,11 +499,11 @@
       "type": "Toc",
       "source_relative_path": "toc.yml",
       "output": {
-        ".json": {
-          "relative_path": "toc.json"
-        },
         ".html": {
           "relative_path": "toc.html"
+        },
+        ".json": {
+          "relative_path": "toc.json"
         }
       },
       "version": ""

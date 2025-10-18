@@ -2298,6 +2298,99 @@ references:
   isSpec: "True"
   fullName: Supabase.Storage.TransformOptions.Width
   nameWithType: TransformOptions.Width
+- uid: Supabase.Storage.UploadMemoryCache
+  name: UploadMemoryCache
+  href: api/Supabase.Storage.UploadMemoryCache.html
+  commentId: T:Supabase.Storage.UploadMemoryCache
+  fullName: Supabase.Storage.UploadMemoryCache
+  nameWithType: UploadMemoryCache
+- uid: Supabase.Storage.UploadMemoryCache.Clear
+  name: Clear()
+  href: api/Supabase.Storage.UploadMemoryCache.html#Supabase_Storage_UploadMemoryCache_Clear
+  commentId: M:Supabase.Storage.UploadMemoryCache.Clear
+  fullName: Supabase.Storage.UploadMemoryCache.Clear()
+  nameWithType: UploadMemoryCache.Clear()
+- uid: Supabase.Storage.UploadMemoryCache.Clear*
+  name: Clear
+  href: api/Supabase.Storage.UploadMemoryCache.html#Supabase_Storage_UploadMemoryCache_Clear_
+  commentId: Overload:Supabase.Storage.UploadMemoryCache.Clear
+  isSpec: "True"
+  fullName: Supabase.Storage.UploadMemoryCache.Clear
+  nameWithType: UploadMemoryCache.Clear
+- uid: Supabase.Storage.UploadMemoryCache.Count
+  name: Count
+  href: api/Supabase.Storage.UploadMemoryCache.html#Supabase_Storage_UploadMemoryCache_Count
+  commentId: P:Supabase.Storage.UploadMemoryCache.Count
+  fullName: Supabase.Storage.UploadMemoryCache.Count
+  nameWithType: UploadMemoryCache.Count
+- uid: Supabase.Storage.UploadMemoryCache.Count*
+  name: Count
+  href: api/Supabase.Storage.UploadMemoryCache.html#Supabase_Storage_UploadMemoryCache_Count_
+  commentId: Overload:Supabase.Storage.UploadMemoryCache.Count
+  isSpec: "True"
+  fullName: Supabase.Storage.UploadMemoryCache.Count
+  nameWithType: UploadMemoryCache.Count
+- uid: Supabase.Storage.UploadMemoryCache.Remove(System.String)
+  name: Remove(string)
+  href: api/Supabase.Storage.UploadMemoryCache.html#Supabase_Storage_UploadMemoryCache_Remove_System_String_
+  commentId: M:Supabase.Storage.UploadMemoryCache.Remove(System.String)
+  name.vb: Remove(String)
+  fullName: Supabase.Storage.UploadMemoryCache.Remove(string)
+  fullName.vb: Supabase.Storage.UploadMemoryCache.Remove(String)
+  nameWithType: UploadMemoryCache.Remove(string)
+  nameWithType.vb: UploadMemoryCache.Remove(String)
+- uid: Supabase.Storage.UploadMemoryCache.Remove*
+  name: Remove
+  href: api/Supabase.Storage.UploadMemoryCache.html#Supabase_Storage_UploadMemoryCache_Remove_
+  commentId: Overload:Supabase.Storage.UploadMemoryCache.Remove
+  isSpec: "True"
+  fullName: Supabase.Storage.UploadMemoryCache.Remove
+  nameWithType: UploadMemoryCache.Remove
+- uid: Supabase.Storage.UploadMemoryCache.Set(System.String,System.String,System.Nullable{System.TimeSpan})
+  name: Set(string, string, TimeSpan?)
+  href: api/Supabase.Storage.UploadMemoryCache.html#Supabase_Storage_UploadMemoryCache_Set_System_String_System_String_System_Nullable_System_TimeSpan__
+  commentId: M:Supabase.Storage.UploadMemoryCache.Set(System.String,System.String,System.Nullable{System.TimeSpan})
+  name.vb: Set(String, String, TimeSpan?)
+  fullName: Supabase.Storage.UploadMemoryCache.Set(string, string, System.TimeSpan?)
+  fullName.vb: Supabase.Storage.UploadMemoryCache.Set(String, String, System.TimeSpan?)
+  nameWithType: UploadMemoryCache.Set(string, string, TimeSpan?)
+  nameWithType.vb: UploadMemoryCache.Set(String, String, TimeSpan?)
+- uid: Supabase.Storage.UploadMemoryCache.Set*
+  name: Set
+  href: api/Supabase.Storage.UploadMemoryCache.html#Supabase_Storage_UploadMemoryCache_Set_
+  commentId: Overload:Supabase.Storage.UploadMemoryCache.Set
+  isSpec: "True"
+  fullName: Supabase.Storage.UploadMemoryCache.Set
+  nameWithType: UploadMemoryCache.Set
+- uid: Supabase.Storage.UploadMemoryCache.SetDefaultTtl(System.TimeSpan)
+  name: SetDefaultTtl(TimeSpan)
+  href: api/Supabase.Storage.UploadMemoryCache.html#Supabase_Storage_UploadMemoryCache_SetDefaultTtl_System_TimeSpan_
+  commentId: M:Supabase.Storage.UploadMemoryCache.SetDefaultTtl(System.TimeSpan)
+  fullName: Supabase.Storage.UploadMemoryCache.SetDefaultTtl(System.TimeSpan)
+  nameWithType: UploadMemoryCache.SetDefaultTtl(TimeSpan)
+- uid: Supabase.Storage.UploadMemoryCache.SetDefaultTtl*
+  name: SetDefaultTtl
+  href: api/Supabase.Storage.UploadMemoryCache.html#Supabase_Storage_UploadMemoryCache_SetDefaultTtl_
+  commentId: Overload:Supabase.Storage.UploadMemoryCache.SetDefaultTtl
+  isSpec: "True"
+  fullName: Supabase.Storage.UploadMemoryCache.SetDefaultTtl
+  nameWithType: UploadMemoryCache.SetDefaultTtl
+- uid: Supabase.Storage.UploadMemoryCache.TryGet(System.String,System.String@)
+  name: TryGet(string, out string?)
+  href: api/Supabase.Storage.UploadMemoryCache.html#Supabase_Storage_UploadMemoryCache_TryGet_System_String_System_String__
+  commentId: M:Supabase.Storage.UploadMemoryCache.TryGet(System.String,System.String@)
+  name.vb: TryGet(String, String)
+  fullName: Supabase.Storage.UploadMemoryCache.TryGet(string, out string?)
+  fullName.vb: Supabase.Storage.UploadMemoryCache.TryGet(String, String)
+  nameWithType: UploadMemoryCache.TryGet(string, out string?)
+  nameWithType.vb: UploadMemoryCache.TryGet(String, String)
+- uid: Supabase.Storage.UploadMemoryCache.TryGet*
+  name: TryGet
+  href: api/Supabase.Storage.UploadMemoryCache.html#Supabase_Storage_UploadMemoryCache_TryGet_
+  commentId: Overload:Supabase.Storage.UploadMemoryCache.TryGet
+  isSpec: "True"
+  fullName: Supabase.Storage.UploadMemoryCache.TryGet
+  nameWithType: UploadMemoryCache.TryGet
 - uid: Supabase.Storage.UploadSignedUrl
   name: UploadSignedUrl
   href: api/Supabase.Storage.UploadSignedUrl.html
