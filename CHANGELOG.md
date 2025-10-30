@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.4.1](https://github.com/supabase-community/storage-csharp/compare/v2.4.0...v2.4.1) (2025-10-18)
+
+
+### Bug Fixes
+
+* implement in-memory caching for resumable uploads, optimize erro… ([#35](https://github.com/supabase-community/storage-csharp/issues/35)) ([7a78ea7](https://github.com/supabase-community/storage-csharp/commit/7a78ea759024832e28a538e0d8eb195b5eee7226))
+
 ## [2.4.0](https://github.com/supabase-community/storage-csharp/compare/v2.3.0...v2.4.0) (2025-09-09)
 
 
