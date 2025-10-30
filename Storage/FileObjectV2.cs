@@ -1,49 +1,92 @@
 ﻿using System;
 using System.Collections.Generic;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace Supabase.Storage
 {
+    /// <summary>
+    /// Represents a file object in Supabase Storage with its associated metadata and properties.
+    /// This class is used for version 2 of the Storage API.
+    /// </summary>
     public class FileObjectV2
     {
         
-        [JsonProperty("id")]
+        /// <summary>
+        /// The unique identifier of the file.
+        /// </summary>
+        [JsonPropertyName("id")]
         public string Id { get; set; }
-        
-        [JsonProperty("version")]
+
+        /// <summary>
+        /// The version of the file.
+        /// </summary>
+        [JsonPropertyName("version")]
         public string Version { get; set; }
-        
-        [JsonProperty("name")]
+
+        /// <summary>
+        /// The name of the file.
+        /// </summary>
+        [JsonPropertyName("name")]
         public string? Name { get; set; }
 
-        [JsonProperty("bucket_id")]
+        /// <summary>
+        /// The identifier of the bucket containing the file.
+        /// </summary>
+        [JsonPropertyName("bucket_id")]
         public string? BucketId { get; set; }
 
-        [JsonProperty("updated_at")]
+        /// <summary>
+        /// The timestamp when the file was last updated.
+        /// </summary>
+        [JsonPropertyName("updated_at")]
         public DateTime? UpdatedAt { get; set; }
 
-        [JsonProperty("created_at")]
+        /// <summary>
+        /// The timestamp when the file was created.
+        /// </summary>
+        [JsonPropertyName("created_at")]
         public DateTime? CreatedAt { get; set; }
 
-        [JsonProperty("last_accessed_at")]
+        /// <summary>
+        /// The timestamp when the file was last accessed.
+        /// </summary>
+        [JsonPropertyName("last_accessed_at")]
         public DateTime? LastAccessedAt { get; set; }
-        
-        [JsonProperty("size")]
+
+        /// <summary>
+        /// The size of the file in bytes.
+        /// </summary>
+        [JsonPropertyName("size")]
         public int? Size { get; set; }
-        
-        [JsonProperty("cache_control")]
+
+        /// <summary>
+        /// The cache control directives for the file.
+        /// </summary>
+        [JsonPropertyName("cache_control")]
         public string? CacheControl { get; set; }
-        
-        [JsonProperty("content_type")]
+
+        /// <summary>
+        /// The MIME type of the file.
+        /// </summary>
+        [JsonPropertyName("content_type")]
         public string? ContentType { get; set; }
-        
-        [JsonProperty("etag")]
+
+        /// <summary>
+        /// The ETag of the file for caching purposes.
+        /// </summary>
+        [JsonPropertyName("etag")]
         public string? Etag { get; set; }
-        
-        [JsonProperty("last_modified")]
+
+        /// <summary>
+        /// The timestamp when the file was last modified.
+        /// </summary>
+        [JsonPropertyName("last_modified")]
         public DateTime? LastModified { get; set; }
-        
-        [JsonProperty("metadata")]
+
+        /// <summary>
+        /// The custom metadata associated with the file.
+        /// </summary>
+        [JsonPropertyName("metadata")]
         public Dictionary<string, string>? Metadata { get; set; } 
     }
 }

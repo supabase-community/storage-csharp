@@ -118,4 +118,3 @@ namespace Supabase.Storage.Interfaces
         Task<UploadSignedUrl> CreateUploadSignedUrl(string supabasePath);
     }
 }
-

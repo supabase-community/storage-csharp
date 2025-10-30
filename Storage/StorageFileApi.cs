@@ -4,12 +4,11 @@ using System.Collections.Specialized;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
+using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
 using BirdMessenger.Collections;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 using Supabase.Storage.Exceptions;
 using Supabase.Storage.Extensions;
 using Supabase.Storage.Interfaces;
@@ -17,13 +16,38 @@ using Supabase.Storage.Responses;
 
 namespace Supabase.Storage
 {
+    /// <summary>
+    /// Provides API methods for interacting with Supabase Storage files.
+    /// </summary>
     public class StorageFileApi : IStorageFileApi<FileObject>
     {
+        /// <summary>
+        /// Gets or sets the client options for the Storage API.
+        /// </summary>
         public ClientOptions Options { get; protected set; }
+
+        /// <summary>
+        /// Gets or sets the base URL for the Storage API.
+        /// </summary>
         protected string Url { get; set; }
+
+        /// <summary>
+        /// Gets or sets the HTTP headers used for API requests.
+        /// </summary>
         protected Dictionary<string, string> Headers { get; set; }
+
+        /// <summary>
+        /// Gets or sets the current bucket identifier.
+        /// </summary>
         protected string? BucketId { get; set; }
 
+        /// <summary>
+        /// Initializes a new instance of the StorageFileApi class with specified URL, bucket ID, options, and headers.
+        /// </summary>
+        /// <param name="url">The base URL for the Storage API.</param>
+        /// <param name="bucketId">The identifier of the bucket to operate on.</param>
+        /// <param name="options">Client options for configuring the API behavior.</param>
+        /// <param name="headers">Optional HTTP headers to include with requests.</param>
         public StorageFileApi(
             string url,
             string bucketId,
@@ -35,6 +59,12 @@ namespace Supabase.Storage
             Options = options ?? new ClientOptions();
         }
 
+        /// <summary>
+        /// Initializes a new instance of the StorageFileApi class with specified URL, optional headers, and bucket ID.
+        /// </summary>
+        /// <param name="url">The base URL for the Storage API.</param>
+        /// <param name="headers">Optional HTTP headers to include with requests.</param>
+        /// <param name="bucketId">Optional bucket identifier to operate on.</param>
         public StorageFileApi(
             string url,
             Dictionary<string, string>? headers = null,
@@ -101,12 +131,13 @@ namespace Supabase.Storage
 
             if (transformOptions != null)
             {
-                var transformOptionsJson = JsonConvert.SerializeObject(
+                var transformOptionsJson = JsonSerializer.Serialize(
                     transformOptions,
-                    new StringEnumConverter()
+                    Helpers.JsonOptions
                 );
-                var transformOptionsObj = JsonConvert.DeserializeObject<Dictionary<string, object>>(
-                    transformOptionsJson
+                var transformOptionsObj = JsonSerializer.Deserialize<Dictionary<string, object>>(
+                    transformOptionsJson,
+                    Helpers.JsonOptions
                 );
                 body.Add("transform", transformOptionsObj);
             }
@@ -180,11 +211,10 @@ namespace Supabase.Storage
         {
             options ??= new SearchOptions();
 
-            var json = JsonConvert.SerializeObject(options);
-            var body = JsonConvert.DeserializeObject<Dictionary<string, object>>(json);
+            var json = JsonSerializer.Serialize(options, Helpers.JsonOptions);
+            var body = JsonSerializer.Deserialize<Dictionary<string, object>>(json, Helpers.JsonOptions);
 
-            if (body != null)
-                body.Add("prefix", string.IsNullOrEmpty(path) ? "" : path);
+            body?.Add("prefix", string.IsNullOrEmpty(path) ? "" : path);
 
             var response = await Helpers.MakeRequest<List<FileObject>>(
                 HttpMethod.Post,
@@ -221,6 +251,7 @@ namespace Supabase.Storage
         /// <param name="options"></param>
         /// <param name="onProgress"></param>
         /// <param name="inferContentType"></param>
+        /// <param name="cancellationToken"></param>
         /// <returns></returns>
         public async Task<string> Upload(
             string localFilePath,
@@ -248,6 +279,7 @@ namespace Supabase.Storage
         /// <param name="options"></param>
         /// <param name="onProgress"></param>
         /// <param name="inferContentType"></param>
+        /// <param name="cancellationToken"></param>
         /// <returns></returns>
         public async Task<string> Upload(
             byte[] data,
@@ -291,13 +323,13 @@ namespace Supabase.Storage
 
             var headers = new Dictionary<string, string>(Headers)
             {
-                ["Authorization"] = $"Bearer {signedUrl.Token}",
-                ["cache-control"] = $"max-age={options.CacheControl}",
-                ["content-type"] = options.ContentType,
+                [StorageConstants.Headers.Authorization] = $"Bearer {signedUrl.Token}",
+                [StorageConstants.Headers.CacheControl] = $"max-age={options.CacheControl}",
+                [StorageConstants.Headers.ContentType] = options.ContentType,
             };
 
             if (options.Upsert)
-                headers.Add("x-upsert", options.Upsert.ToString().ToLower());
+                headers.Add(StorageConstants.Headers.Upsert, options.Upsert.ToString().ToLower());
 
             var progress = new Progress<float>();
 
@@ -338,13 +370,13 @@ namespace Supabase.Storage
 
             var headers = new Dictionary<string, string>(Headers)
             {
-                ["Authorization"] = $"Bearer {signedUrl.Token}",
-                ["cache-control"] = $"max-age={options.CacheControl}",
-                ["content-type"] = options.ContentType,
+                [StorageConstants.Headers.Authorization] = $"Bearer {signedUrl.Token}",
+                [StorageConstants.Headers.CacheControl] = $"max-age={options.CacheControl}",
+                [StorageConstants.Headers.ContentType] = options.ContentType,
             };
 
             if (options.Upsert)
-                headers.Add("x-upsert", options.Upsert.ToString().ToLower());
+                headers.Add(StorageConstants.Headers.Upsert, options.Upsert.ToString().ToLower());
 
             var progress = new Progress<float>();
 
@@ -676,22 +708,7 @@ namespace Supabase.Storage
         {
             Uri uri = new Uri($"{Url}/object/{GetFinalPath(supabasePath)}");
 
-            var headers = new Dictionary<string, string>(Headers)
-            {
-                { "cache-control", $"max-age={options.CacheControl}" },
-                { "content-type", options.ContentType },
-            };
-
-            if (options.Upsert)
-                headers.Add("x-upsert", options.Upsert.ToString().ToLower());
-
-            if (options.Metadata != null)
-                headers.Add("x-metadata", ParseMetadata(options.Metadata));
-
-            options.Headers?.ToList().ForEach(x => headers.Add(x.Key, x.Value));
-
-            if (options.Duplex != null)
-                headers.Add("x-duplex", options.Duplex.ToLower());
+            var headers = BuildUploadHeaders(options);
 
             var progress = new Progress<float>();
 
@@ -715,7 +732,7 @@ namespace Supabase.Storage
 
             var headers = new Dictionary<string, string>(Headers)
             {
-                { "cache-control", $"max-age={options.CacheControl}" },
+                { StorageConstants.Headers.CacheControl, $"max-age={options.CacheControl}" },
             };
 
             var metadata = new MetadataCollection
@@ -726,15 +743,15 @@ namespace Supabase.Storage
             };
 
             if (options.Upsert)
-                headers.Add("x-upsert", options.Upsert.ToString().ToLower());
+                headers.Add(StorageConstants.Headers.Upsert, options.Upsert.ToString().ToLower());
 
             if (options.Metadata != null)
-                headers.Add("x-metadata", ParseMetadata(options.Metadata));
+                headers.Add(StorageConstants.Headers.Metadata, ParseMetadata(options.Metadata));
 
             options.Headers?.ToList().ForEach(x => headers.Add(x.Key, x.Value));
 
             if (options.Duplex != null)
-                headers.Add("x-duplex", options.Duplex.ToLower());
+                headers.Add(StorageConstants.Headers.Duplex, options.Duplex.ToLower());
 
             var progress = new Progress<float>();
 
@@ -763,7 +780,7 @@ namespace Supabase.Storage
 
             var headers = new Dictionary<string, string>(Headers)
             {
-                { "cache-control", $"max-age={options.CacheControl}" },
+                { StorageConstants.Headers.CacheControl, $"max-age={options.CacheControl}" },
             };
 
             var metadata = new MetadataCollection
@@ -774,15 +791,15 @@ namespace Supabase.Storage
             };
 
             if (options.Upsert)
-                headers.Add("x-upsert", options.Upsert.ToString().ToLower());
+                headers.Add(StorageConstants.Headers.Upsert, options.Upsert.ToString().ToLower());
 
             if (options.Metadata != null)
-                metadata["metadata"] = JsonConvert.SerializeObject(options.Metadata);
+                metadata["metadata"] = JsonSerializer.Serialize(options.Metadata, Helpers.JsonOptions);
 
             options.Headers?.ToList().ForEach(x => headers.Add(x.Key, x.Value));
 
             if (options.Duplex != null)
-                headers.Add("x-duplex", options.Duplex.ToLower());
+                headers.Add(StorageConstants.Headers.Duplex, options.Duplex.ToLower());
 
             var progress = new Progress<float>();
 
@@ -801,7 +818,7 @@ namespace Supabase.Storage
 
         private static string ParseMetadata(Dictionary<string, string> metadata)
         {
-            var json = JsonConvert.SerializeObject(metadata);
+            var json = JsonSerializer.Serialize(metadata, Helpers.JsonOptions);
             var base64 = Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(json));
 
             return base64;
@@ -817,22 +834,7 @@ namespace Supabase.Storage
         {
             Uri uri = new Uri($"{Url}/object/{GetFinalPath(supabasePath)}");
 
-            var headers = new Dictionary<string, string>(Headers)
-            {
-                { "cache-control", $"max-age={options.CacheControl}" },
-                { "content-type", options.ContentType },
-            };
-
-            if (options.Upsert)
-                headers.Add("x-upsert", options.Upsert.ToString().ToLower());
-
-            if (options.Metadata != null)
-                headers.Add("x-metadata", ParseMetadata(options.Metadata));
-
-            options.Headers?.ToList().ForEach(x => headers.Add(x.Key, x.Value));
-
-            if (options.Duplex != null)
-                headers.Add("x-duplex", options.Duplex.ToLower());
+            var headers = BuildUploadHeaders(options);
 
             var progress = new Progress<float>();
 
@@ -902,6 +904,27 @@ namespace Supabase.Storage
         }
 
         private string GetFinalPath(string path) => $"{BucketId}/{path}";
+
+        private Dictionary<string, string> BuildUploadHeaders(FileOptions options)
+        {
+            var headers = new Dictionary<string, string>(Headers)
+            {
+                { StorageConstants.Headers.CacheControl, $"max-age={options.CacheControl}" },
+                { StorageConstants.Headers.ContentType, options.ContentType },
+            };
+            
+            if (options.Upsert)
+                headers.Add(StorageConstants.Headers.Upsert, options.Upsert.ToString().ToLower());
+            
+            if (options.Metadata != null)
+                headers.Add(StorageConstants.Headers.Metadata, ParseMetadata(options.Metadata));
+            
+            options.Headers?.ToList().ForEach(x => headers.Add(x.Key, x.Value));
+            
+            if (options.Duplex != null)
+                headers.Add(StorageConstants.Headers.Duplex, options.Duplex.ToLower());
+            
+            return headers;
+        }
     }
 }
-

@@ -1,5 +1,5 @@
 ﻿using System.Runtime.Serialization;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 using Supabase.Core.Attributes;
 
 namespace Supabase.Storage
@@ -25,13 +25,13 @@ namespace Supabase.Storage
         /// <summary>
         /// The width of the image in pixels.
         /// </summary>
-        [JsonProperty("width")]
+        [JsonPropertyName("width")]
         public int? Width { get; set; }
 
         /// <summary>
         /// The height of the image in pixels.
         /// </summary>
-        [JsonProperty("height")]
+        [JsonPropertyName("height")]
         public int? Height { get; set; }
 
         /// <summary>
@@ -40,13 +40,13 @@ namespace Supabase.Storage
         /// - Contain resizes the image to maintain it's aspect ratio while fitting the entire image within the width and height.
         /// - Fill resizes the image to fill the entire width and height.If the object's aspect ratio does not match the width and height, the image will be stretched to fit.
         /// </summary>
-        [JsonProperty("resize")]
+        [JsonPropertyName("resize")]
         public ResizeType Resize { get; set; } = ResizeType.Cover;
 
         /// <summary>
         /// Set the quality of the returned image, this is percentage based, default 80
         /// </summary>
-        [JsonProperty("quality")]
+        [JsonPropertyName("quality")]
         public int Quality { get; set; } = 80;
 
         /// <summary>
@@ -55,7 +55,7 @@ namespace Supabase.Storage
         /// When using 'origin' we force the format to be the same as the original image,
         /// bypassing automatic browser optimisation such as webp conversion
         /// </summary>
-        [JsonProperty("format")]
+        [JsonPropertyName("format")]
         public string Format { get; set; } = "origin";
     }
 }
