@@ -347,6 +347,9 @@ public class StorageFileTests
                 options,
                 (_, progress) =>
                 {
+                    if (progress > 20)
+                        cts.Cancel();
+                    
                     Console.WriteLine($"First upload progress: {progress}");
                     if (progress >= 30)
                     {

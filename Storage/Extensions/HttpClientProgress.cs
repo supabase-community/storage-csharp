@@ -207,8 +207,8 @@ namespace Supabase.Storage.Extensions
             this HttpClient client,
             Uri uri,
             string filePath,
+            MetadataCollection metadata,
             Dictionary<string, string>? headers = null,
-            MetadataCollection? metadata = null,
             Progress<float>? progress = null,
             CancellationToken cancellationToken = default
         )
@@ -218,8 +218,8 @@ namespace Supabase.Storage.Extensions
                 client,
                 uri,
                 fileStream,
-                headers,
                 metadata,
+                headers,
                 progress,
                 cancellationToken
             );
@@ -229,8 +229,8 @@ namespace Supabase.Storage.Extensions
             this HttpClient client,
             Uri uri,
             byte[] data,
+            MetadataCollection metadata,
             Dictionary<string, string>? headers = null,
-            MetadataCollection? metadata = null,
             Progress<float>? progress = null,
             CancellationToken cancellationToken = default
         )
@@ -240,8 +240,8 @@ namespace Supabase.Storage.Extensions
                 client,
                 uri,
                 stream,
-                headers,
                 metadata,
+                headers,
                 progress,
                 cancellationToken
             );
@@ -251,8 +251,8 @@ namespace Supabase.Storage.Extensions
             this HttpClient client,
             Uri uri,
             Stream fileStream,
+            MetadataCollection metadata,
             Dictionary<string, string>? headers = null,
-            MetadataCollection? metadata = null,
             IProgress<float>? progress = null,
             CancellationToken cancellationToken = default
         )
@@ -274,43 +274,51 @@ namespace Supabase.Storage.Extensions
                 }
             }
 
-            var createOption = new TusCreateRequestOption()
-            {
-                Endpoint = uri,
-                Metadata = metadata,
-                UploadLength = fileStream.Length,
-            };
+            var cacheKey =
+                $"{metadata["bucketName"]}/{metadata["objectName"]}/{metadata["contentType"]}";
 
-            TusCreateResponse? responseCreate;
-            try
+            UploadMemoryCache.TryGet(cacheKey, out var upload);
+            Uri? fileLocation = null;
+            if (upload == null)
             {
-                responseCreate = await client.TusCreateAsync(createOption, cancellationToken);
+                var createOption = new TusCreateRequestOption()
+                {
+                    Endpoint = uri,
+                    Metadata = metadata,
+                    UploadLength = fileStream.Length,
+                };
+
+                try
+                {
+                    var responseCreate = await client.TusCreateAsync(
+                        createOption,
+                        cancellationToken
+                    );
+
+                    fileLocation = responseCreate.FileLocation;
+                    UploadMemoryCache.Set(cacheKey, fileLocation.ToString());
+                }
+                catch (TusException error)
+                {
+                    throw await HandleResponseError(error);
+                }
             }
-            catch (Exception exception)
-            {
-                if (exception is not TusException response)
-                    throw;
 
-                throw await HandleResponseError(response);
-            }
-
-            var headOption = new TusHeadRequestOption()
-            {
-                FileLocation = responseCreate.FileLocation,
-                OnPreSendRequestAsync = null
-            };
-            
-            var responseHead = await client.TusHeadAsync(headOption, cancellationToken);
-            Console.WriteLine($"total upload offset: {responseHead.UploadOffset}");
+            if (upload != null)
+                fileLocation = new Uri(upload);
 
             var patchOption = new TusPatchRequestOption
             {
-                FileLocation = responseCreate.FileLocation,
+                FileLocation = fileLocation,
                 Stream = fileStream,
                 UploadBufferSize = 6 * 1024 * 1024,
                 UploadType = UploadType.Chunk,
                 OnProgressAsync = x => ReportProgressAsync(progress, x),
-                OnCompletedAsync = _ => Task.CompletedTask,
+                OnCompletedAsync = _ =>
+                {
+                    UploadMemoryCache.Remove(cacheKey);
+                    return Task.CompletedTask;
+                },
                 OnFailedAsync = _ => Task.CompletedTask,
             };
 
