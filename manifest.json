@@ -292,6 +292,20 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/Supabase.Storage.Header.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Supabase.Storage.Header.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Supabase.Storage.Header",
+      "Summary": "<p sourcefile=\"api/Supabase.Storage.Header.yml\" sourcestartlinenumber=\"1\">Represents a container for HTTP headers, providing functionality for adding and retrieving headers.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/Supabase.Storage.Interfaces.IStorageBucketApi-1.yml",
       "output": {
         ".html": {

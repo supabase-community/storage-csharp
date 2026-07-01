@@ -967,6 +967,50 @@ references:
   isSpec: "True"
   fullName: Supabase.Storage.GenericResponse.Message
   nameWithType: GenericResponse.Message
+- uid: Supabase.Storage.Header
+  name: Header
+  href: api/Supabase.Storage.Header.html
+  commentId: T:Supabase.Storage.Header
+  fullName: Supabase.Storage.Header
+  nameWithType: Header
+- uid: Supabase.Storage.Header.Add(System.Collections.Generic.Dictionary{System.String,System.String})
+  name: Add(Dictionary<string, string>)
+  href: api/Supabase.Storage.Header.html#Supabase_Storage_Header_Add_System_Collections_Generic_Dictionary_System_String_System_String__
+  commentId: M:Supabase.Storage.Header.Add(System.Collections.Generic.Dictionary{System.String,System.String})
+  name.vb: Add(Dictionary(Of String, String))
+  fullName: Supabase.Storage.Header.Add(System.Collections.Generic.Dictionary<string, string>)
+  fullName.vb: Supabase.Storage.Header.Add(System.Collections.Generic.Dictionary(Of String, String))
+  nameWithType: Header.Add(Dictionary<string, string>)
+  nameWithType.vb: Header.Add(Dictionary(Of String, String))
+- uid: Supabase.Storage.Header.Add(System.String,System.String)
+  name: Add(string, string)
+  href: api/Supabase.Storage.Header.html#Supabase_Storage_Header_Add_System_String_System_String_
+  commentId: M:Supabase.Storage.Header.Add(System.String,System.String)
+  name.vb: Add(String, String)
+  fullName: Supabase.Storage.Header.Add(string, string)
+  fullName.vb: Supabase.Storage.Header.Add(String, String)
+  nameWithType: Header.Add(string, string)
+  nameWithType.vb: Header.Add(String, String)
+- uid: Supabase.Storage.Header.Add*
+  name: Add
+  href: api/Supabase.Storage.Header.html#Supabase_Storage_Header_Add_
+  commentId: Overload:Supabase.Storage.Header.Add
+  isSpec: "True"
+  fullName: Supabase.Storage.Header.Add
+  nameWithType: Header.Add
+- uid: Supabase.Storage.Header.Get
+  name: Get()
+  href: api/Supabase.Storage.Header.html#Supabase_Storage_Header_Get
+  commentId: M:Supabase.Storage.Header.Get
+  fullName: Supabase.Storage.Header.Get()
+  nameWithType: Header.Get()
+- uid: Supabase.Storage.Header.Get*
+  name: Get
+  href: api/Supabase.Storage.Header.html#Supabase_Storage_Header_Get_
+  commentId: Overload:Supabase.Storage.Header.Get
+  isSpec: "True"
+  fullName: Supabase.Storage.Header.Get
+  nameWithType: Header.Get
 - uid: Supabase.Storage.Interfaces
   name: Supabase.Storage.Interfaces
   href: api/Supabase.Storage.Interfaces.html
@@ -2090,6 +2134,12 @@ references:
   isSpec: "True"
   fullName: Supabase.Storage.StorageFileApi.Remove
   nameWithType: StorageFileApi.Remove
+- uid: Supabase.Storage.StorageFileApi.StorageHeader
+  name: StorageHeader
+  href: api/Supabase.Storage.StorageFileApi.html#Supabase_Storage_StorageFileApi_StorageHeader
+  commentId: F:Supabase.Storage.StorageFileApi.StorageHeader
+  fullName: Supabase.Storage.StorageFileApi.StorageHeader
+  nameWithType: StorageFileApi.StorageHeader
 - uid: Supabase.Storage.StorageFileApi.Update(System.Byte[],System.String,Supabase.Storage.FileOptions,System.EventHandler{System.Single})
   name: Update(byte[], string, FileOptions?, EventHandler<float>?)
   href: api/Supabase.Storage.StorageFileApi.html#Supabase_Storage_StorageFileApi_Update_System_Byte___System_String_Supabase_Storage_FileOptions_System_EventHandler_System_Single__
