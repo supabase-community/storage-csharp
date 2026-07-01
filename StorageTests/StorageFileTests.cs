@@ -664,5 +664,182 @@ public class StorageFileTests
         var result = await _bucket.CreateUploadSignedUrl("test.png");
         Assert.IsTrue(Uri.IsWellFormedUriString(result.SignedUrl.ToString(), UriKind.Absolute));
     }
+    
+    [TestMethod("File: Test List Default Values")]
+    public async Task GetListDefaultValues()
+    {
+        var tsc = new TaskCompletionSource<bool>();
+
+        var name1 = $"1-{Guid.NewGuid()}.bin";
+        var name2 = $"2-{Guid.NewGuid()}.bin";
+        var name3 = $"3-{Guid.NewGuid()}.bin";
+
+        await _bucket.Upload(
+            new Byte[] { 0x0, 0x0, 0x0 },
+            name1,
+            null,
+            (_, _) => tsc.TrySetResult(true)
+        );
+        
+        await _bucket.Upload(
+            new Byte[] { 0x0, 0x0, 0x0 },
+            name2,
+            null,
+            (_, _) => tsc.TrySetResult(true)
+        );
+        
+        await _bucket.Upload(
+            new Byte[] { 0x0, 0x0, 0x0 },
+            name3,
+            null,
+            (_, _) => tsc.TrySetResult(true)
+        );
+        
+        var list = await _bucket.List();
+        Assert.IsNotNull(list);
+        Assert.AreEqual(3, list.Count);
+        Assert.AreEqual(name1, list[0].Name);
+        Assert.AreEqual(name2, list[1].Name);
+        Assert.AreEqual(name3, list[2].Name);
+    }
+    
+    [TestMethod("File: Test List Ordered Values")]
+    public async Task GetListOrderedValues()
+    {
+        var tsc = new TaskCompletionSource<bool>();
+
+        var name1 = $"1-{Guid.NewGuid()}.bin";
+        var name2 = $"2-{Guid.NewGuid()}.bin";
+        var name3 = $"3-{Guid.NewGuid()}.bin";
+
+        await _bucket.Upload(
+            new Byte[] { 0x0, 0x0, 0x0 },
+            name1,
+            null,
+            (_, _) => tsc.TrySetResult(true)
+        );
+        
+        await _bucket.Upload(
+            new Byte[] { 0x0, 0x0, 0x0 },
+            name2,
+            null,
+            (_, _) => tsc.TrySetResult(true)
+        );
+        
+        await _bucket.Upload(
+            new Byte[] { 0x0, 0x0, 0x0 },
+            name3,
+            null,
+            (_, _) => tsc.TrySetResult(true)
+        );
+        var sortBy = new SortBy()
+        {
+            Order = "desc"
+        };
+        var options = new SearchOptions
+        {
+            SortBy = sortBy
+        };
+        
+        var list = await _bucket.List("", options);
+        Assert.IsNotNull(list);
+        Assert.AreEqual(3, list.Count);
+        Assert.AreEqual(name3, list[0].Name);
+        Assert.AreEqual(name2, list[1].Name);
+        Assert.AreEqual(name1, list[2].Name);
+    }
+    
+    [TestMethod("File: Test List Column Values")]
+    public async Task GetListColumnValues()
+    {
+        var tsc = new TaskCompletionSource<bool>();
+
+        var name1 = $"1-{Guid.NewGuid()}.bin";
+        var name2 = $"2-{Guid.NewGuid()}.bin";
+        var name3 = $"3-{Guid.NewGuid()}.bin";
+
+        await _bucket.Upload(
+            new Byte[] { 0x0, 0x0, 0x0 },
+            name1,
+            null,
+            (_, _) => tsc.TrySetResult(true)
+        );
+        
+        await _bucket.Upload(
+            new Byte[] { 0x0, 0x0, 0x0 },
+            name2,
+            null,
+            (_, _) => tsc.TrySetResult(true)
+        );
+        
+        await _bucket.Upload(
+            new Byte[] { 0x0, 0x0, 0x0 },
+            name3,
+            null,
+            (_, _) => tsc.TrySetResult(true)
+        );
+        var sortBy = new SortBy()
+        {
+            Column = "created_at",
+        };
+        var options = new SearchOptions
+        {
+            SortBy = sortBy
+        };
+        
+        var list = await _bucket.List("", options);
+        Assert.IsNotNull(list);
+        Assert.AreEqual(3, list.Count);
+        Assert.AreEqual(name1, list[0].Name);
+        Assert.AreEqual(name2, list[1].Name);
+        Assert.AreEqual(name3, list[2].Name);
+    }
+    
+    [TestMethod("File: Test List Override Sort Values")]
+    public async Task GetListOverrideSortValues()
+    {
+        var tsc = new TaskCompletionSource<bool>();
+
+        var name1 = $"1-{Guid.NewGuid()}.bin";
+        var name2 = $"2-{Guid.NewGuid()}.bin";
+        var name3 = $"3-{Guid.NewGuid()}.bin";
+
+        await _bucket.Upload(
+            new Byte[] { 0x0, 0x0, 0x0 },
+            name1,
+            null,
+            (_, _) => tsc.TrySetResult(true)
+        );
+        
+        await _bucket.Upload(
+            new Byte[] { 0x0, 0x0, 0x0 },
+            name2,
+            null,
+            (_, _) => tsc.TrySetResult(true)
+        );
+        
+        await _bucket.Upload(
+            new Byte[] { 0x0, 0x0, 0x0 },
+            name3,
+            null,
+            (_, _) => tsc.TrySetResult(true)
+        );
+        var sortBy = new SortBy()
+        {
+            Column = "created_at",
+            Order = "desc"
+        };
+        var options = new SearchOptions
+        {
+            SortBy = sortBy
+        };
+        
+        var list = await _bucket.List("", options);
+        Assert.IsNotNull(list);
+        Assert.AreEqual(3, list.Count);
+        Assert.AreEqual(name3, list[0].Name);
+        Assert.AreEqual(name2, list[1].Name);
+        Assert.AreEqual(name1, list[2].Name);
+    }
 }
 
