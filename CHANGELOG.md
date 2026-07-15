@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.4.2](https://github.com/supabase-community/storage-csharp/compare/v2.4.1...v2.4.2) (2026-07-15)
+
+
+### Bug Fixes
+
+* lower Newtonsoft.Json minimum version to 13.0.2 ([#39](https://github.com/supabase-community/storage-csharp/issues/39)) ([89cc79f](https://github.com/supabase-community/storage-csharp/commit/89cc79f6316a386fe57d4e916a51da002e03e681))
+
 ## [2.4.1](https://github.com/supabase-community/storage-csharp/compare/v2.4.0...v2.4.1) (2025-10-18)
 
 
