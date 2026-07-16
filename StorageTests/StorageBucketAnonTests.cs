@@ -22,7 +22,7 @@ public class StorageBucketAnonTests
         Assert.IsNotNull(buckets);
         Assert.IsTrue(buckets.Count == 0);
 
-        await Assert.ThrowsExceptionAsync<SupabaseStorageException>(async () =>
+        await Assert.ThrowsAsync<SupabaseStorageException>(async () =>
         {
             String newParentBucket = "parent";
 
@@ -48,7 +48,7 @@ public class StorageBucketAnonTests
     [TestMethod("Bucket: Throws when attempting to Create")]
     public async Task CreatePublic()
     {
-        await Assert.ThrowsExceptionAsync<SupabaseStorageException>(async () =>
+        await Assert.ThrowsAsync<SupabaseStorageException>(async () =>
         {
             await Storage.CreateBucket("parent");
         });
@@ -60,7 +60,7 @@ public class StorageBucketAnonTests
         var id = Guid.NewGuid().ToString();
         await AdminStorage.CreateBucket(id);
 
-        await Assert.ThrowsExceptionAsync<SupabaseStorageException>(async () =>
+        await Assert.ThrowsAsync<SupabaseStorageException>(async () =>
         {
             await Storage.UpdateBucket(id, new BucketUpsertOptions { Public = true });
         });
@@ -74,7 +74,7 @@ public class StorageBucketAnonTests
         var id = Guid.NewGuid().ToString();
         await AdminStorage.CreateBucket(id);
 
-        await Assert.ThrowsExceptionAsync<SupabaseStorageException>(async () =>
+        await Assert.ThrowsAsync<SupabaseStorageException>(async () =>
         {
             await Storage.EmptyBucket(id);
         });
@@ -88,7 +88,7 @@ public class StorageBucketAnonTests
         var id = Guid.NewGuid().ToString();
         await AdminStorage.CreateBucket(id);
 
-        await Assert.ThrowsExceptionAsync<SupabaseStorageException>(async () =>
+        await Assert.ThrowsAsync<SupabaseStorageException>(async () =>
         {
             await Storage.DeleteBucket(id);
         });
