@@ -14,7 +14,7 @@ public class ExceptionTests
     {
         var noAuthorizationClient = new Client(Helpers.StorageUrl);
         
-        var ex = await Assert.ThrowsExceptionAsync<SupabaseStorageException>(() =>
+        var ex = await Assert.ThrowsAsync<SupabaseStorageException>(() =>
             noAuthorizationClient.CreateBucket("expected-to-fail"));
         
         Assert.IsTrue(ex.Reason == FailureHint.Reason.NotAuthorized);
@@ -28,7 +28,7 @@ public class ExceptionTests
             ["Authorization"] = "Bearer GarbageKey"
         });
         
-        var ex = await Assert.ThrowsExceptionAsync<SupabaseStorageException>(() =>
+        var ex = await Assert.ThrowsAsync<SupabaseStorageException>(() =>
             badAuthorization.CreateBucket("expected-to-fail"));
         
         Assert.IsTrue(ex.Reason == FailureHint.Reason.NotAuthorized);
@@ -42,7 +42,7 @@ public class ExceptionTests
             ["Authorization"] = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
         });
         
-        var ex = await Assert.ThrowsExceptionAsync<SupabaseStorageException>(() =>
+        var ex = await Assert.ThrowsAsync<SupabaseStorageException>(() =>
             badAuthorization.CreateBucket("expected-to-fail"));
         
         Assert.IsTrue(ex.Reason == FailureHint.Reason.NotAuthorized);

@@ -6,7 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using BirdMessenger;
 using BirdMessenger.Collections;
-using BirdMessenger.Delegates;
+using BirdMessenger.Events;
 using BirdMessenger.Infrastructure;
 using Newtonsoft.Json;
 using Supabase.Storage.Exceptions;
@@ -329,10 +329,10 @@ namespace Supabase.Storage.Extensions
             UploadProgressEvent progressInfo
         )
         {
-            if (progress == null)
+            if (progress == null || progressInfo.TotalSize == null)
                 return Task.CompletedTask;
 
-            var uploadedProgress = (float)progressInfo.UploadedSize / progressInfo.TotalSize * 100f;
+            var uploadedProgress = (float)progressInfo.UploadedSize / progressInfo.TotalSize.Value * 100f;
             progress.Report(uploadedProgress);
 
             return Task.CompletedTask;

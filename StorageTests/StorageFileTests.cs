@@ -426,7 +426,7 @@ public class StorageFileTests
             await _bucket.Upload(data, name, null, (_, _) => tsc.TrySetResult(true), true, ctk.Token);
         };
 
-        await Assert.ThrowsExceptionAsync<TaskCanceledException>(action);
+        await Assert.ThrowsAsync<TaskCanceledException>(action);
 
         var list = await _bucket.List();
         Assert.IsNotNull(list);

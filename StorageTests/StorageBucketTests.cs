@@ -83,7 +83,7 @@ public class StorageBucketTests
         Assert.IsNotNull(bucket);
         Assert.IsTrue(bucket.Public);
 
-        var ex = await Assert.ThrowsExceptionAsync<SupabaseStorageException>(() => Storage.CreateBucket(id));
+        var ex = await Assert.ThrowsAsync<SupabaseStorageException>(() => Storage.CreateBucket(id));
         Assert.IsTrue(ex.Reason == FailureHint.Reason.AlreadyExists);
         
         await Storage.DeleteBucket(id);
@@ -145,7 +145,7 @@ public class StorageBucketTests
             await Storage.From(id).Upload(new Byte[] { 0x0, 0x0, 0x0 }, $"test-{i}.bin");
         }
 
-        await Assert.ThrowsExceptionAsync<SupabaseStorageException>(async () =>
+        await Assert.ThrowsAsync<SupabaseStorageException>(async () =>
         {
             await Storage.DeleteBucket(id);
         });

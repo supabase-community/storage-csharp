@@ -62,7 +62,7 @@ public class StorageFileAnonTests
 
         var imagePath = Path.Combine(basePath, "Assets", asset);
 
-        await Assert.ThrowsExceptionAsync<SupabaseStorageException>(async () =>
+        await Assert.ThrowsAsync<SupabaseStorageException>(async () =>
         {
             await _bucket.Upload(imagePath, name);
         });
@@ -73,7 +73,7 @@ public class StorageFileAnonTests
     {
         var name = $"{Guid.NewGuid()}.bin";
 
-        await Assert.ThrowsExceptionAsync<SupabaseStorageException>(async () =>
+        await Assert.ThrowsAsync<SupabaseStorageException>(async () =>
         {
             await _bucket.Upload(new Byte[] { 0x0, 0x0, 0x0 }, name);
         });
@@ -95,7 +95,7 @@ public class StorageFileAnonTests
 
         var downloadPath = Path.Combine(basePath, name);
 
-        await Assert.ThrowsExceptionAsync<SupabaseStorageException>(async () =>
+        await Assert.ThrowsAsync<SupabaseStorageException>(async () =>
         {
             await _bucket.Download(name, downloadPath, null);
         });
@@ -111,7 +111,7 @@ public class StorageFileAnonTests
 
         await _adminBucket.Upload(data, name);
 
-        await Assert.ThrowsExceptionAsync<SupabaseStorageException>(async () =>
+        await Assert.ThrowsAsync<SupabaseStorageException>(async () =>
         {
             await _bucket.Download(name, null);
         });
@@ -125,7 +125,7 @@ public class StorageFileAnonTests
         var name = $"{Guid.NewGuid()}.bin";
         await _adminBucket.Upload(new Byte[] { 0x0, 0x1 }, name);
 
-        await Assert.ThrowsExceptionAsync<SupabaseStorageException>(async () =>
+        await Assert.ThrowsAsync<SupabaseStorageException>(async () =>
         {
             await _bucket.Move(name, "new-file.bin");
         });
@@ -137,7 +137,7 @@ public class StorageFileAnonTests
         var name = $"{Guid.NewGuid()}.bin";
         await _adminBucket.Upload(new Byte[] { 0x0, 0x1 }, name);
 
-        await Assert.ThrowsExceptionAsync<SupabaseStorageException>(async () =>
+        await Assert.ThrowsAsync<SupabaseStorageException>(async () =>
         {
             await _bucket.Copy(name, "new-file.bin");
         });
@@ -160,7 +160,7 @@ public class StorageFileAnonTests
         var name = $"{Guid.NewGuid()}.bin";
         await _adminBucket.Upload(new Byte[] { 0x0, 0x1 }, name);
 
-        await Assert.ThrowsExceptionAsync<SupabaseStorageException>(async () =>
+        await Assert.ThrowsAsync<SupabaseStorageException>(async () =>
         {
             var url = await _bucket.CreateSignedUrl(name, 3600);
         });
@@ -177,7 +177,7 @@ public class StorageFileAnonTests
         var name2 = $"{Guid.NewGuid()}.bin";
         await _adminBucket.Upload(new Byte[] { 0x0, 0x1 }, name2);
 
-        await Assert.ThrowsExceptionAsync<SupabaseStorageException>(async () =>
+        await Assert.ThrowsAsync<SupabaseStorageException>(async () =>
         {
             await _bucket.CreateSignedUrls(new List<string> { name1, name2 }, 3600);
         });
@@ -194,7 +194,7 @@ public class StorageFileAnonTests
         var name2 = $"{Guid.NewGuid()}.bin";
         await _adminBucket.Upload(new Byte[] { 0x0, 0x1 }, name2);
         
-        await Assert.ThrowsExceptionAsync<SupabaseStorageException>(async () =>
+        await Assert.ThrowsAsync<SupabaseStorageException>(async () =>
         {
             await _bucket.CreateSignedUrls(new List<string> { name1, name2 }, 3600);
         });
