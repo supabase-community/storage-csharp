@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using Newtonsoft.Json;
 using System.Runtime.CompilerServices;
+using Supabase.Core.Diagnostics;
 using Supabase.Storage.Exceptions;
 using System.Threading;
 
@@ -86,25 +88,48 @@ namespace Supabase.Storage
 					requestMessage.Headers.TryAddWithoutValidation(kvp.Key, kvp.Value);
 			}
 
-			var response = await HttpRequestClient!.SendAsync(requestMessage, cancellationToken);
+			using var activity = StorageInstrumentation.StartHttpActivity(method, builder.Uri);
+			var startTimestamp = Stopwatch.GetTimestamp();
+			int? statusCode = null;
+			string? errorType = null;
 
-			var content = await response.Content.ReadAsStringAsync();
-
-			if (!response.IsSuccessStatusCode)
+			try
 			{
-				var errorResponse = JsonConvert.DeserializeObject<ErrorResponse>(content);
-				var e = new SupabaseStorageException(errorResponse?.Message ?? content)
+				var response = await HttpRequestClient!.SendAsync(requestMessage, cancellationToken);
+				statusCode = (int)response.StatusCode;
+				activity.SetHttpResponseTags(statusCode.Value);
+
+				var content = await response.Content.ReadAsStringAsync();
+
+				if (!response.IsSuccessStatusCode)
 				{
-					Content = content,
-					Response = response,
-					StatusCode = errorResponse?.StatusCode ?? (int)response.StatusCode
-				};
-					
-				e.AddReason();
-				throw e;
+					var errorResponse = JsonConvert.DeserializeObject<ErrorResponse>(content);
+					var resolvedStatus = errorResponse?.StatusCode ?? (int)response.StatusCode;
+					errorType = resolvedStatus.ToString();
+					var e = new SupabaseStorageException(errorResponse?.Message ?? content)
+					{
+						Content = content,
+						Response = response,
+						StatusCode = resolvedStatus
+					};
+
+					e.AddReason();
+					throw e;
+				}
+
+				return response;
 			}
-				
-			return response;
+			catch (Exception e) when (!(e is SupabaseStorageException))
+			{
+				// Transport-level failures (no response); Storage surfaces these raw, so tag and rethrow.
+				errorType = e.GetType().FullName;
+				activity.SetFailure(e);
+				throw;
+			}
+			finally
+			{
+				StorageInstrumentation.RecordRequest(method, builder.Uri, statusCode, errorType, startTimestamp);
+			}
 		}
 	}
 
