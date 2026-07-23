@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.5.0](https://github.com/supabase-community/storage-csharp/compare/v2.4.2...v2.5.0) (2026-07-23)
+
+
+### Features
+
+* emit observability via System.Diagnostics ([#43](https://github.com/supabase-community/storage-csharp/issues/43)) ([df7ee9e](https://github.com/supabase-community/storage-csharp/commit/df7ee9e04c021d8fff9a41967dc7d50ad801a563))
+
 ## [2.4.2](https://github.com/supabase-community/storage-csharp/compare/v2.4.1...v2.4.2) (2026-07-15)
 
 
