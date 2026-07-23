@@ -1840,6 +1840,18 @@ references:
   isSpec: "True"
   fullName: Supabase.Storage.StorageBucketApi.Url
   nameWithType: StorageBucketApi.Url
+- uid: Supabase.Storage.StorageDiagnostics
+  name: StorageDiagnostics
+  href: api/Supabase.Storage.StorageDiagnostics.html
+  commentId: T:Supabase.Storage.StorageDiagnostics
+  fullName: Supabase.Storage.StorageDiagnostics
+  nameWithType: StorageDiagnostics
+- uid: Supabase.Storage.StorageDiagnostics.SourceName
+  name: SourceName
+  href: api/Supabase.Storage.StorageDiagnostics.html#Supabase_Storage_StorageDiagnostics_SourceName
+  commentId: F:Supabase.Storage.StorageDiagnostics.SourceName
+  fullName: Supabase.Storage.StorageDiagnostics.SourceName
+  nameWithType: StorageDiagnostics.SourceName
 - uid: Supabase.Storage.StorageFileApi
   name: StorageFileApi
   href: api/Supabase.Storage.StorageFileApi.html

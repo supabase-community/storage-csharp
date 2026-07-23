@@ -404,6 +404,20 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/Supabase.Storage.StorageDiagnostics.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Supabase.Storage.StorageDiagnostics.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Supabase.Storage.StorageDiagnostics",
+      "Summary": "<p sourcefile=\"api/Supabase.Storage.StorageDiagnostics.yml\" sourcestartlinenumber=\"1\">Names of the diagnostic sources the Storage client emits to. Pass these when wiring up\nOpenTelemetry so you don't have to hardcode (case-sensitive) source names:\n<code>TracerProviderBuilder.AddSource(StorageDiagnostics.SourceName)</code> and\n<code>MeterProviderBuilder.AddMeter(StorageDiagnostics.SourceName)</code>.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/Supabase.Storage.StorageFileApi.yml",
       "output": {
         ".html": {

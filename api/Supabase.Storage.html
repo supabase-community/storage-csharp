@@ -166,6 +166,14 @@ Classes
       <dd></dd>
     </dl>
     <dl class="jumplist">
+      <dt><a class="xref" href="Supabase.Storage.StorageDiagnostics.html">StorageDiagnostics</a></dt>
+      <dd><p>Names of the diagnostic sources the Storage client emits to. Pass these when wiring up
+OpenTelemetry so you don't have to hardcode (case-sensitive) source names:
+<code>TracerProviderBuilder.AddSource(StorageDiagnostics.SourceName)</code> and
+<code>MeterProviderBuilder.AddMeter(StorageDiagnostics.SourceName)</code>.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
       <dt><a class="xref" href="Supabase.Storage.StorageFileApi.html">StorageFileApi</a></dt>
       <dd></dd>
     </dl>
