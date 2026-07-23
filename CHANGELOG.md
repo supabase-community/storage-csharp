@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.5.1](https://github.com/supabase-community/storage-csharp/compare/v2.5.0...v2.5.1) (2026-07-23)
+
+
+### Bug Fixes
+
+* non-JSON Storage error now throws SupabaseStorageException ([#46](https://github.com/supabase-community/storage-csharp/issues/46)) ([1c54194](https://github.com/supabase-community/storage-csharp/commit/1c5419443a914b7c2b3643a2441c0a3ca6282e97))
+
 ## [2.5.0](https://github.com/supabase-community/storage-csharp/compare/v2.4.2...v2.5.0) (2026-07-23)
 
 
