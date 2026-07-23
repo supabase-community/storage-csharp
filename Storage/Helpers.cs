@@ -103,7 +103,7 @@ namespace Supabase.Storage
 
 				if (!response.IsSuccessStatusCode)
 				{
-					var errorResponse = JsonConvert.DeserializeObject<ErrorResponse>(content);
+					var errorResponse = ErrorResponse.TryParse(content);
 					var resolvedStatus = errorResponse?.StatusCode ?? (int)response.StatusCode;
 					errorType = resolvedStatus.ToString();
 					var e = new SupabaseStorageException(errorResponse?.Message ?? content)
@@ -143,8 +143,25 @@ namespace Supabase.Storage
 	{
 		[JsonProperty("statusCode")]
 		public int StatusCode { get; set; }
-		
+
 		[JsonProperty("message")]
 		public string? Message { get; set; }
+
+		/// <summary>
+		/// Parses a Storage error body, returning null when the body is not the expected JSON
+		/// (e.g. a gateway or plain-text error) so callers fall back to the raw content and status.
+		/// </summary>
+		/// <param name="content">The raw response body.</param>
+		internal static ErrorResponse? TryParse(string content)
+		{
+			try
+			{
+				return JsonConvert.DeserializeObject<ErrorResponse>(content);
+			}
+			catch (JsonException)
+			{
+				return null;
+			}
+		}
 	}
 }

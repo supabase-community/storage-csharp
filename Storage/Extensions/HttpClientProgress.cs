@@ -59,7 +59,7 @@ namespace Supabase.Storage.Extensions
                     if (!response.IsSuccessStatusCode)
                     {
                         var content = await response.Content.ReadAsStringAsync();
-                        var errorResponse = JsonConvert.DeserializeObject<ErrorResponse>(content);
+                        var errorResponse = ErrorResponse.TryParse(content);
                         var resolvedStatus = errorResponse?.StatusCode ?? (int)response.StatusCode;
                         errorType = resolvedStatus.ToString();
                         var e = new SupabaseStorageException(errorResponse?.Message ?? content)
@@ -217,7 +217,7 @@ namespace Supabase.Storage.Extensions
                 if (!response.IsSuccessStatusCode)
                 {
                     var httpContent = await response.Content.ReadAsStringAsync();
-                    var errorResponse = JsonConvert.DeserializeObject<ErrorResponse>(httpContent);
+                    var errorResponse = ErrorResponse.TryParse(httpContent);
                     var resolvedStatus = errorResponse?.StatusCode ?? (int)response.StatusCode;
                     errorType = resolvedStatus.ToString();
                     var e = new SupabaseStorageException(errorResponse?.Message ?? httpContent)
@@ -419,7 +419,7 @@ namespace Supabase.Storage.Extensions
         )
         {
             var httpContent = await response.Content.ReadAsStringAsync();
-            var errorResponse = JsonConvert.DeserializeObject<ErrorResponse>(httpContent);
+            var errorResponse = ErrorResponse.TryParse(httpContent);
             var error = new SupabaseStorageException(errorResponse?.Message ?? httpContent)
             {
                 Content = httpContent,
