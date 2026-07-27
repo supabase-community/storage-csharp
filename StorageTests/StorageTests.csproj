@@ -5,9 +5,14 @@
         <IsPackable>false</IsPackable>
         <Nullable>enable</Nullable>
         <LangVersion>default</LangVersion>
+        <EnableNETAnalyzers>true</EnableNETAnalyzers>
+        <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+        <AnalysisLevel>latest</AnalysisLevel>
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="FluentAssertions" Version="[7.2.2]" />
+        <PackageReference Include="NSubstitute" Version="[6.0.0]" />
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.8.1" />
         <PackageReference Include="MSTest.TestAdapter" Version="4.3.2" />
         <PackageReference Include="MSTest.TestFramework" Version="4.3.2" />
