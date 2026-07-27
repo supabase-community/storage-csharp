@@ -20,33 +20,38 @@ namespace Supabase.Storage.Interfaces
             int expiresIn,
             DownloadOptions? options = null
         );
-        Task<byte[]> Download(string supabasePath, EventHandler<float>? onProgress = null);
+        Task<byte[]> Download(string supabasePath, EventHandler<float>? onProgress = null, CancellationToken cancellationToken = default);
         Task<byte[]> Download(
             string supabasePath,
             TransformOptions? transformOptions = null,
-            EventHandler<float>? onProgress = null
+            EventHandler<float>? onProgress = null,
+            CancellationToken cancellationToken = default
         );
         Task<string> Download(
             string supabasePath,
             string localPath,
-            EventHandler<float>? onProgress = null
+            EventHandler<float>? onProgress = null,
+            CancellationToken cancellationToken = default
         );
         Task<string> Download(
             string supabasePath,
             string localPath,
             TransformOptions? transformOptions = null,
-            EventHandler<float>? onProgress = null
+            EventHandler<float>? onProgress = null,
+            CancellationToken cancellationToken = default
         );
         Task<byte[]> DownloadPublicFile(
             string supabasePath,
             TransformOptions? transformOptions = null,
-            EventHandler<float>? onProgress = null
+            EventHandler<float>? onProgress = null,
+            CancellationToken cancellationToken = default
         );
         Task<string> DownloadPublicFile(
             string supabasePath,
             string localPath,
             TransformOptions? transformOptions = null,
-            EventHandler<float>? onProgress = null
+            EventHandler<float>? onProgress = null,
+            CancellationToken cancellationToken = default
         );
         string GetPublicUrl(
             string path,
