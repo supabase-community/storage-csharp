@@ -20,6 +20,13 @@ namespace Supabase.Storage.Extensions
     /// </summary>
     internal static class HttpClientProgress
     {
+        /// <summary>
+        /// Buffer size for stream copies, matching the BCL's default <see cref="Stream.CopyTo(Stream)"/>
+        /// size (80 KB). Kept just under the 85,000-byte Large Object Heap threshold so the buffer
+        /// stays on the gen-0 heap. This is set to the default expected value.
+        /// </summary>
+        private const int CopyBufferSize = 81920;
+
         public static async Task<MemoryStream> DownloadDataAsync(
             this HttpClient client,
             Uri uri,
@@ -49,7 +56,8 @@ namespace Supabase.Storage.Extensions
                 using (
                     var response = await client.SendAsync(
                         message,
-                        HttpCompletionOption.ResponseHeadersRead
+                        HttpCompletionOption.ResponseHeadersRead,
+                        cancellationToken
                     )
                 )
                 {
@@ -76,10 +84,9 @@ namespace Supabase.Storage.Extensions
                     var contentLength = response.Content.Headers.ContentLength;
                     using (var download = await response.Content.ReadAsStreamAsync())
                     {
-                        // no progress... no contentLength... very sad
                         if (progress is null || !contentLength.HasValue)
                         {
-                            await download.CopyToAsync(destination);
+                            await download.CopyToAsync(destination, CopyBufferSize, cancellationToken);
                             return destination;
                         }
 
@@ -89,7 +96,7 @@ namespace Supabase.Storage.Extensions
                         );
                         await download.CopyToAsync(
                             destination,
-                            81920,
+                            CopyBufferSize,
                             progressWrapper,
                             cancellationToken
                         );
