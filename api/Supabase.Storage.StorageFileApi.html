@@ -533,7 +533,7 @@ Class StorageFileApi  <a class="header-action link-secondary" title="View source
 
   <h3 id="Supabase_Storage_StorageFileApi_CreateUploadSignedUrl_System_String_" data-uid="Supabase.Storage.StorageFileApi.CreateUploadSignedUrl(System.String)">
   CreateUploadSignedUrl(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/supabase-community/storage-csharp/blob/master/Storage/StorageFileApi.cs/#L640"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/supabase-community/storage-csharp/blob/master/Storage/StorageFileApi.cs/#L651"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Creates an upload signed URL. Use it to upload a file straight to the bucket without credentials</p>
@@ -569,17 +569,17 @@ Class StorageFileApi  <a class="header-action link-secondary" title="View source
 
   <a id="Supabase_Storage_StorageFileApi_Download_" data-uid="Supabase.Storage.StorageFileApi.Download*"></a>
 
-  <h3 id="Supabase_Storage_StorageFileApi_Download_System_String_Supabase_Storage_TransformOptions_System_EventHandler_System_Single__" data-uid="Supabase.Storage.StorageFileApi.Download(System.String,Supabase.Storage.TransformOptions,System.EventHandler{System.Single})">
-  Download(string, TransformOptions?, EventHandler&lt;float&gt;?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/supabase-community/storage-csharp/blob/master/Storage/StorageFileApi.cs/#L551"><i class="bi bi-code-slash"></i></a>
+  <h3 id="Supabase_Storage_StorageFileApi_Download_System_String_Supabase_Storage_TransformOptions_System_EventHandler_System_Single__System_Threading_CancellationToken_" data-uid="Supabase.Storage.StorageFileApi.Download(System.String,Supabase.Storage.TransformOptions,System.EventHandler{System.Single},System.Threading.CancellationToken)">
+  Download(string, TransformOptions?, EventHandler&lt;float&gt;?, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/supabase-community/storage-csharp/blob/master/Storage/StorageFileApi.cs/#L556"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Downloads a byte array from a private bucket to be used programmatically. For public buckets <a class="xref" href="Supabase.Storage.StorageFileApi.html#Supabase_Storage_StorageFileApi_DownloadPublicFile_System_String_Supabase_Storage_TransformOptions_System_EventHandler_System_Single__">DownloadPublicFile(string, TransformOptions?, EventHandler&lt;float&gt;?)</a></p>
+  <div class="markdown level1 summary"><p>Downloads a byte array from a private bucket to be used programmatically. For public buckets DownloadPublicFile(string, TransformOptions?, EventHandler&lt;float&gt;?)</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;byte[]&gt; Download(string supabasePath, TransformOptions? transformOptions = null, EventHandler&lt;float&gt;? onProgress = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public Task&lt;byte[]&gt; Download(string supabasePath, TransformOptions? transformOptions = null, EventHandler&lt;float&gt;? onProgress = null, CancellationToken cancellationToken = default)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -590,6 +590,8 @@ Class StorageFileApi  <a class="header-action link-secondary" title="View source
     <dd></dd>
     <dt><code>onProgress</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a>&gt;</dt>
     <dd></dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
   </dl>
 
   <h4 class="section">Returns</h4>
@@ -610,17 +612,17 @@ Class StorageFileApi  <a class="header-action link-secondary" title="View source
 
   <a id="Supabase_Storage_StorageFileApi_Download_" data-uid="Supabase.Storage.StorageFileApi.Download*"></a>
 
-  <h3 id="Supabase_Storage_StorageFileApi_Download_System_String_System_EventHandler_System_Single__" data-uid="Supabase.Storage.StorageFileApi.Download(System.String,System.EventHandler{System.Single})">
-  Download(string, EventHandler&lt;float&gt;?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/supabase-community/storage-csharp/blob/master/Storage/StorageFileApi.cs/#L567"><i class="bi bi-code-slash"></i></a>
+  <h3 id="Supabase_Storage_StorageFileApi_Download_System_String_System_EventHandler_System_Single__System_Threading_CancellationToken_" data-uid="Supabase.Storage.StorageFileApi.Download(System.String,System.EventHandler{System.Single},System.Threading.CancellationToken)">
+  Download(string, EventHandler&lt;float&gt;?, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/supabase-community/storage-csharp/blob/master/Storage/StorageFileApi.cs/#L574"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Downloads a byte array from a private bucket to be used programmatically. For public buckets <a class="xref" href="Supabase.Storage.StorageFileApi.html#Supabase_Storage_StorageFileApi_DownloadPublicFile_System_String_Supabase_Storage_TransformOptions_System_EventHandler_System_Single__">DownloadPublicFile(string, TransformOptions?, EventHandler&lt;float&gt;?)</a></p>
+  <div class="markdown level1 summary"><p>Downloads a byte array from a private bucket to be used programmatically. For public buckets DownloadPublicFile(string, TransformOptions?, EventHandler&lt;float&gt;?)</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;byte[]&gt; Download(string supabasePath, EventHandler&lt;float&gt;? onProgress = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public Task&lt;byte[]&gt; Download(string supabasePath, EventHandler&lt;float&gt;? onProgress = null, CancellationToken cancellationToken = default)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -629,6 +631,8 @@ Class StorageFileApi  <a class="header-action link-secondary" title="View source
     <dd></dd>
     <dt><code>onProgress</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a>&gt;</dt>
     <dd></dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
   </dl>
 
   <h4 class="section">Returns</h4>
@@ -649,17 +653,17 @@ Class StorageFileApi  <a class="header-action link-secondary" title="View source
 
   <a id="Supabase_Storage_StorageFileApi_Download_" data-uid="Supabase.Storage.StorageFileApi.Download*"></a>
 
-  <h3 id="Supabase_Storage_StorageFileApi_Download_System_String_System_String_Supabase_Storage_TransformOptions_System_EventHandler_System_Single__" data-uid="Supabase.Storage.StorageFileApi.Download(System.String,System.String,Supabase.Storage.TransformOptions,System.EventHandler{System.Single})">
-  Download(string, string, TransformOptions?, EventHandler&lt;float&gt;?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/supabase-community/storage-csharp/blob/master/Storage/StorageFileApi.cs/#L517"><i class="bi bi-code-slash"></i></a>
+  <h3 id="Supabase_Storage_StorageFileApi_Download_System_String_System_String_Supabase_Storage_TransformOptions_System_EventHandler_System_Single__System_Threading_CancellationToken_" data-uid="Supabase.Storage.StorageFileApi.Download(System.String,System.String,Supabase.Storage.TransformOptions,System.EventHandler{System.Single},System.Threading.CancellationToken)">
+  Download(string, string, TransformOptions?, EventHandler&lt;float&gt;?, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/supabase-community/storage-csharp/blob/master/Storage/StorageFileApi.cs/#L518"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Downloads a file from a private bucket. For public buckets, use <a class="xref" href="Supabase.Storage.StorageFileApi.html#Supabase_Storage_StorageFileApi_DownloadPublicFile_System_String_System_String_Supabase_Storage_TransformOptions_System_EventHandler_System_Single__">DownloadPublicFile(string, string, TransformOptions?, EventHandler&lt;float&gt;?)</a></p>
+  <div class="markdown level1 summary"><p>Downloads a file from a private bucket. For public buckets, use DownloadPublicFile(string, string, TransformOptions?, EventHandler&lt;float&gt;?)</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;string&gt; Download(string supabasePath, string localPath, TransformOptions? transformOptions = null, EventHandler&lt;float&gt;? onProgress = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public Task&lt;string&gt; Download(string supabasePath, string localPath, TransformOptions? transformOptions = null, EventHandler&lt;float&gt;? onProgress = null, CancellationToken cancellationToken = default)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -671,6 +675,8 @@ Class StorageFileApi  <a class="header-action link-secondary" title="View source
     <dt><code>transformOptions</code> <a class="xref" href="Supabase.Storage.TransformOptions.html">TransformOptions</a></dt>
     <dd></dd>
     <dt><code>onProgress</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a>&gt;</dt>
+    <dd></dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
     <dd></dd>
   </dl>
 
@@ -692,17 +698,17 @@ Class StorageFileApi  <a class="header-action link-secondary" title="View source
 
   <a id="Supabase_Storage_StorageFileApi_Download_" data-uid="Supabase.Storage.StorageFileApi.Download*"></a>
 
-  <h3 id="Supabase_Storage_StorageFileApi_Download_System_String_System_String_System_EventHandler_System_Single__" data-uid="Supabase.Storage.StorageFileApi.Download(System.String,System.String,System.EventHandler{System.Single})">
-  Download(string, string, EventHandler&lt;float&gt;?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/supabase-community/storage-csharp/blob/master/Storage/StorageFileApi.cs/#L538"><i class="bi bi-code-slash"></i></a>
+  <h3 id="Supabase_Storage_StorageFileApi_Download_System_String_System_String_System_EventHandler_System_Single__System_Threading_CancellationToken_" data-uid="Supabase.Storage.StorageFileApi.Download(System.String,System.String,System.EventHandler{System.Single},System.Threading.CancellationToken)">
+  Download(string, string, EventHandler&lt;float&gt;?, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/supabase-community/storage-csharp/blob/master/Storage/StorageFileApi.cs/#L541"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Downloads a file from a private bucket. For public buckets, use <a class="xref" href="Supabase.Storage.StorageFileApi.html#Supabase_Storage_StorageFileApi_DownloadPublicFile_System_String_System_String_Supabase_Storage_TransformOptions_System_EventHandler_System_Single__">DownloadPublicFile(string, string, TransformOptions?, EventHandler&lt;float&gt;?)</a></p>
+  <div class="markdown level1 summary"><p>Downloads a file from a private bucket. For public buckets, use DownloadPublicFile(string, string, TransformOptions?, EventHandler&lt;float&gt;?)</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;string&gt; Download(string supabasePath, string localPath, EventHandler&lt;float&gt;? onProgress = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public Task&lt;string&gt; Download(string supabasePath, string localPath, EventHandler&lt;float&gt;? onProgress = null, CancellationToken cancellationToken = default)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -712,6 +718,8 @@ Class StorageFileApi  <a class="header-action link-secondary" title="View source
     <dt><code>localPath</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
     <dd></dd>
     <dt><code>onProgress</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a>&gt;</dt>
+    <dd></dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
     <dd></dd>
   </dl>
 
@@ -733,9 +741,9 @@ Class StorageFileApi  <a class="header-action link-secondary" title="View source
 
   <a id="Supabase_Storage_StorageFileApi_DownloadPublicFile_" data-uid="Supabase.Storage.StorageFileApi.DownloadPublicFile*"></a>
 
-  <h3 id="Supabase_Storage_StorageFileApi_DownloadPublicFile_System_String_Supabase_Storage_TransformOptions_System_EventHandler_System_Single__" data-uid="Supabase.Storage.StorageFileApi.DownloadPublicFile(System.String,Supabase.Storage.TransformOptions,System.EventHandler{System.Single})">
-  DownloadPublicFile(string, TransformOptions?, EventHandler&lt;float&gt;?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/supabase-community/storage-csharp/blob/master/Storage/StorageFileApi.cs/#L596"><i class="bi bi-code-slash"></i></a>
+  <h3 id="Supabase_Storage_StorageFileApi_DownloadPublicFile_System_String_Supabase_Storage_TransformOptions_System_EventHandler_System_Single__System_Threading_CancellationToken_" data-uid="Supabase.Storage.StorageFileApi.DownloadPublicFile(System.String,Supabase.Storage.TransformOptions,System.EventHandler{System.Single},System.Threading.CancellationToken)">
+  DownloadPublicFile(string, TransformOptions?, EventHandler&lt;float&gt;?, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/supabase-community/storage-csharp/blob/master/Storage/StorageFileApi.cs/#L606"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Downloads a byte array from a private bucket to be used programmatically. This method DOES NOT VERIFY that the file is actually public.</p>
@@ -743,7 +751,7 @@ Class StorageFileApi  <a class="header-action link-secondary" title="View source
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;byte[]&gt; DownloadPublicFile(string supabasePath, TransformOptions? transformOptions = null, EventHandler&lt;float&gt;? onProgress = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public Task&lt;byte[]&gt; DownloadPublicFile(string supabasePath, TransformOptions? transformOptions = null, EventHandler&lt;float&gt;? onProgress = null, CancellationToken cancellationToken = default)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -753,6 +761,8 @@ Class StorageFileApi  <a class="header-action link-secondary" title="View source
     <dt><code>transformOptions</code> <a class="xref" href="Supabase.Storage.TransformOptions.html">TransformOptions</a></dt>
     <dd></dd>
     <dt><code>onProgress</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a>&gt;</dt>
+    <dd></dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
     <dd></dd>
   </dl>
 
@@ -774,9 +784,9 @@ Class StorageFileApi  <a class="header-action link-secondary" title="View source
 
   <a id="Supabase_Storage_StorageFileApi_DownloadPublicFile_" data-uid="Supabase.Storage.StorageFileApi.DownloadPublicFile*"></a>
 
-  <h3 id="Supabase_Storage_StorageFileApi_DownloadPublicFile_System_String_System_String_Supabase_Storage_TransformOptions_System_EventHandler_System_Single__" data-uid="Supabase.Storage.StorageFileApi.DownloadPublicFile(System.String,System.String,Supabase.Storage.TransformOptions,System.EventHandler{System.Single})">
-  DownloadPublicFile(string, string, TransformOptions?, EventHandler&lt;float&gt;?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/supabase-community/storage-csharp/blob/master/Storage/StorageFileApi.cs/#L578"><i class="bi bi-code-slash"></i></a>
+  <h3 id="Supabase_Storage_StorageFileApi_DownloadPublicFile_System_String_System_String_Supabase_Storage_TransformOptions_System_EventHandler_System_Single__System_Threading_CancellationToken_" data-uid="Supabase.Storage.StorageFileApi.DownloadPublicFile(System.String,System.String,Supabase.Storage.TransformOptions,System.EventHandler{System.Single},System.Threading.CancellationToken)">
+  DownloadPublicFile(string, string, TransformOptions?, EventHandler&lt;float&gt;?, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/supabase-community/storage-csharp/blob/master/Storage/StorageFileApi.cs/#L586"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Downloads a public file to the filesystem. This method DOES NOT VERIFY that the file is actually public.</p>
@@ -784,7 +794,7 @@ Class StorageFileApi  <a class="header-action link-secondary" title="View source
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;string&gt; DownloadPublicFile(string supabasePath, string localPath, TransformOptions? transformOptions = null, EventHandler&lt;float&gt;? onProgress = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public Task&lt;string&gt; DownloadPublicFile(string supabasePath, string localPath, TransformOptions? transformOptions = null, EventHandler&lt;float&gt;? onProgress = null, CancellationToken cancellationToken = default)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -796,6 +806,8 @@ Class StorageFileApi  <a class="header-action link-secondary" title="View source
     <dt><code>transformOptions</code> <a class="xref" href="Supabase.Storage.TransformOptions.html">TransformOptions</a></dt>
     <dd></dd>
     <dt><code>onProgress</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a>&gt;</dt>
+    <dd></dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
     <dd></dd>
   </dl>
 
@@ -982,7 +994,7 @@ This function does not verify if the bucket is public. If a public URL is create
 
   <h3 id="Supabase_Storage_StorageFileApi_Remove_System_Collections_Generic_List_System_String__" data-uid="Supabase.Storage.StorageFileApi.Remove(System.Collections.Generic.List{System.String})">
   Remove(List&lt;string&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/supabase-community/storage-csharp/blob/master/Storage/StorageFileApi.cs/#L622"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/supabase-community/storage-csharp/blob/master/Storage/StorageFileApi.cs/#L633"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Deletes files within the same bucket</p>
@@ -1020,7 +1032,7 @@ This function does not verify if the bucket is public. If a public URL is create
 
   <h3 id="Supabase_Storage_StorageFileApi_Remove_System_String_" data-uid="Supabase.Storage.StorageFileApi.Remove(System.String)">
   Remove(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/supabase-community/storage-csharp/blob/master/Storage/StorageFileApi.cs/#L611"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/supabase-community/storage-csharp/blob/master/Storage/StorageFileApi.cs/#L622"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Deletes file within the same bucket</p>
