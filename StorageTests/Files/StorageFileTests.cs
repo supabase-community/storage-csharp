@@ -193,16 +193,17 @@ public class StorageFileTests
     }
 
     [TestMethod]
-    public async Task Download_ShouldCancelAndStoreNothing_GivenCancelledToken()
+    public async Task Download_ShouldCancelAndLeaveNoFile_GivenCancelledToken()
     {
-        using var cts = new CancellationTokenSource(TimeSpan.FromMilliseconds(1));
-        var progressed = new TaskCompletionSource<bool>();
+        using var cts = new CancellationTokenSource();
+        await cts.CancelAsync();
         var name = $"{Guid.NewGuid()}.png";
         var imagePath = Path.Combine(BasePath(), "Assets", "supabase-csharp.png");
         await this.bucket.Upload(imagePath, name);
         var downloadPath = Path.Combine(BasePath(), name);
-        var act = () => this.bucket.Download(name, downloadPath, (_, _) => progressed.TrySetResult(true), cts.Token);
-        await act.Should().ThrowAsync<TaskCanceledException>();
+        var act = () => this.bucket.Download(name, downloadPath, null, cts.Token);
+        await act.Should().ThrowAsync<OperationCanceledException>();
+        File.Exists(downloadPath).Should().BeFalse();
         await this.bucket.Remove(new List<string> { name });
     }
 
