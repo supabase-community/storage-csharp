@@ -676,20 +676,15 @@ namespace Supabase.Storage
             return new UploadSignedUrl(generatedUri, token, supabasePath);
         }
 
-        public async Task<GenericResponse?> PurgeCache(
-            string path, 
+        /// <inheritdoc />
+        public Task<GenericResponse?> PurgeCache(
+            string path,
             PurgeCacheOptions? options = null,
-            FetchParameter? fetchParameter = null,
             CancellationToken cancellationToken = default
-            )
+        )
         {
-            var finalPath = this.GetFinalPath(path);
-            var queryParams = HttpUtility.ParseQueryString(string.Empty);
-            if (options != null)
-                queryParams.Add(options.ToQueryCollection());
-            
-            var url = $"{Url}/cdn/{finalPath}?{queryParams}";
-            return await Helpers.MakeRequest<GenericResponse>(HttpMethod.Delete, url, fetchParameter, Headers, cancellationToken);
+            var url = options.ToPurgeUrl($"{Url}/cdn/{GetFinalPath(path)}");
+            return Helpers.MakeRequest<GenericResponse>(HttpMethod.Delete, url, null, Headers, cancellationToken);
         }
         
         private async Task<string> UploadOrUpdate(

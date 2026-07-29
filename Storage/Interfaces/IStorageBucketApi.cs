@@ -17,6 +17,22 @@ namespace Supabase.Storage.Interfaces
 		Task<TBucket?> GetBucket(string id);
 		Task<List<TBucket>?> ListBuckets();
 		Task<TBucket?> UpdateBucket(string id, BucketUpsertOptions? options = null);
-		Task<GenericResponse?> PurgeBucketCache(string id, PurgeCacheOptions? options = null, FetchParameter? fetchParameter = null, CancellationToken cancellationToken = default);
+
+		/// <summary>
+		/// Purges the CDN cache for every object in a bucket. Requires a service-role key.
+		/// </summary>
+		/// <param name="id">The bucket whose cached objects should be purged.</param>
+		/// <param name="options">
+		/// When <see cref="PurgeCacheOptions.Transformations"/> is <c>true</c>, only the transformed
+		/// variants are purged; otherwise every cached version is purged.
+		/// </param>
+		/// <param name="cancellationToken">Token used to cancel the request.</param>
+		/// <returns>The service acknowledgement of the purge.</returns>
+		/// <example>
+		/// <code>
+		/// await storage.PurgeBucketCache("avatars", new PurgeCacheOptions { Transformations = true });
+		/// </code>
+		/// </example>
+		Task<GenericResponse?> PurgeBucketCache(string id, PurgeCacheOptions? options = null, CancellationToken cancellationToken = default);
 	}
 }

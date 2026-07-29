@@ -121,8 +121,23 @@ namespace Supabase.Storage.Interfaces
             bool inferContentType = true
         );
         Task<UploadSignedUrl> CreateUploadSignedUrl(string supabasePath);
-        
-        Task<GenericResponse?> PurgeCache(string path, PurgeCacheOptions? options = null, FetchParameter? fetchParameter = null, CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Purges the CDN cache for a single object. Requires a service-role key.
+        /// </summary>
+        /// <param name="path">The object path within the bucket to purge.</param>
+        /// <param name="options">
+        /// When <see cref="PurgeCacheOptions.Transformations"/> is <c>true</c>, only the transformed
+        /// variants are purged; otherwise every cached version is purged.
+        /// </param>
+        /// <param name="cancellationToken">Token used to cancel the request.</param>
+        /// <returns>The service acknowledgement of the purge.</returns>
+        /// <example>
+        /// <code>
+        /// await storage.From("avatars").PurgeCache("folder/avatar.png");
+        /// </code>
+        /// </example>
+        Task<GenericResponse?> PurgeCache(string path, PurgeCacheOptions? options = null, CancellationToken cancellationToken = default);
     }
 }
 
