@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using FluentAssertions;
 using FluentAssertions.Execution;
@@ -132,5 +133,33 @@ public class StorageBucketTests
         await this.Storage.EmptyBucket(id);
         await this.Storage.DeleteBucket(id);
         (await this.Storage.GetBucket(id)).Should().BeNull();
+    }
+
+    [TestMethod]
+    public async Task PurgeCacheBucket_ShouldCancelPurgeBucketCache_GivenBucket()
+    {
+        using var cts = new CancellationTokenSource();
+        await cts.CancelAsync();
+        var id = Guid.NewGuid().ToString();
+        var fetch = new FetchParameter
+        {
+            Cache = FetchCache.Cache,
+        };
+        var act = () => this.Storage.PurgeBucketCache(id, new PurgeCacheOptions(), fetch, cts.Token);
+        await act.Should().ThrowAsync<OperationCanceledException>();
+    }
+
+    [TestMethod]
+    public async Task PurgeCacheBucket_ShouldThrowUnknown_GivenCdnEnvEmptyBucket()
+    {
+        var id = Guid.NewGuid().ToString();
+        await this.Storage.CreateBucket(id);
+        var fetch = new FetchParameter
+        {
+            Cache = FetchCache.Cache,
+        };
+        var act = () => this.Storage.PurgeBucketCache(id, new PurgeCacheOptions(), fetch);
+        await act.Should().ThrowAsync<SupabaseStorageException>("Missing Required Parameter CDN_PURGE_ENDPOINT_URL is not set");
+        await this.Storage.DeleteBucket(id);
     }
 }

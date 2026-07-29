@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Web;
 using Supabase.Core;
 using Supabase.Core.Extensions;
 using Supabase.Storage.Exceptions;
+using Supabase.Storage.Extensions;
 using Supabase.Storage.Interfaces;
 
 namespace Supabase.Storage
@@ -151,5 +154,19 @@ namespace Supabase.Storage
         public Task<GenericResponse?> DeleteBucket(string id) =>
             Helpers.MakeRequest<GenericResponse>(HttpMethod.Delete, $"{Url}/bucket/{id}", null, Headers);
 
+        public Task<GenericResponse?> PurgeBucketCache(
+            string id, 
+            PurgeCacheOptions? options = null,
+            FetchParameter? fetchParameter = null,
+            CancellationToken cancellationToken = default
+        )
+        {
+            var queryParams = HttpUtility.ParseQueryString(string.Empty);
+            if (options != null)
+                queryParams.Add(options.ToQueryCollection());
+            
+            var url = $"{Url}/cdn/{id}?{queryParams}";
+            return Helpers.MakeRequest<GenericResponse>(HttpMethod.Delete, url, fetchParameter, Headers, cancellationToken);
+        } 
     }
 }

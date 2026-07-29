@@ -9,6 +9,7 @@ using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using StorageTests;
 using Supabase.Storage;
+using Supabase.Storage.Exceptions;
 using Supabase.Storage.Interfaces;
 using FileOptions = Supabase.Storage.FileOptions;
 
@@ -378,6 +379,28 @@ public class StorageFileTests
         var options = new SearchOptions { SortBy = new SortBy { Column = "created_at", Order = "desc" } };
         var list = await this.bucket.List("", options);
         list!.Select(item => item.Name).Should().Equal(names[2], names[1], names[0]);
+    }
+
+    [TestMethod]
+    public async Task PurgeCacheFile_ShouldCancelPurgeCache_GivenFile()
+    {
+        using var cts = new CancellationTokenSource();
+        await cts.CancelAsync();
+        var imagePath = Path.Combine(BasePath(), "Assets", "supabase-csharp.png");
+
+        var act = () => this.bucket.PurgeCache(imagePath, new PurgeCacheOptions(), null, cts.Token);
+        await act.Should().ThrowAsync<OperationCanceledException>();
+    }
+
+    [TestMethod]
+    public async Task PurgeCacheFile_ShouldThrowUnknown_GivenCdnEnvEmpty()
+    {
+        using var cts = new CancellationTokenSource();
+        await cts.CancelAsync();
+        var imagePath = Path.Combine(BasePath(), "Assets", "supabase-csharp.png");
+
+        var act = () => this.bucket.PurgeCache(imagePath, new PurgeCacheOptions(), null, cts.Token);
+        await act.Should().ThrowAsync<TaskCanceledException>("Missing Required Parameter CDN_PURGE_ENDPOINT_URL is not set");
     }
 
     private async Task<string[]> UploadThreeNumbered()

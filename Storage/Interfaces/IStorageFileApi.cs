@@ -121,6 +121,8 @@ namespace Supabase.Storage.Interfaces
             bool inferContentType = true
         );
         Task<UploadSignedUrl> CreateUploadSignedUrl(string supabasePath);
+        
+        Task<GenericResponse?> PurgeCache(string path, PurgeCacheOptions? options = null, FetchParameter? fetchParameter = null, CancellationToken cancellationToken = default);
     }
 }
 

@@ -1,5 +1,6 @@
 ﻿using Supabase.Core.Interfaces;
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Supabase.Storage.Interfaces
@@ -16,5 +17,6 @@ namespace Supabase.Storage.Interfaces
 		Task<TBucket?> GetBucket(string id);
 		Task<List<TBucket>?> ListBuckets();
 		Task<TBucket?> UpdateBucket(string id, BucketUpsertOptions? options = null);
+		Task<GenericResponse?> PurgeBucketCache(string id, PurgeCacheOptions? options = null, FetchParameter? fetchParameter = null, CancellationToken cancellationToken = default);
 	}
 }
