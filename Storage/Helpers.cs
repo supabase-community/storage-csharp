@@ -41,11 +41,12 @@ namespace Supabase.Storage
 		/// <param name="url"></param>
 		/// <param name="data"></param>
 		/// <param name="headers"></param>
+		/// <param name="cancellationToken"></param>
 		/// <returns></returns>
 		public static async Task<T?> MakeRequest<T>(HttpMethod method, string url, object? data = null,
-			Dictionary<string, string>? headers = null) where T : class
+			Dictionary<string, string>? headers = null, CancellationToken cancellationToken = default) where T : class
 		{
-			var response = await MakeRequest(method, url, data, headers);
+			var response = await MakeRequest(method, url, data, headers, cancellationToken);
 			var content = await response.Content.ReadAsStringAsync();
 
 			return JsonConvert.DeserializeObject<T>(content);
