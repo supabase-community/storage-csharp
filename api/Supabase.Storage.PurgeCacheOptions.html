@@ -2,11 +2,11 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>Class ErrorResponse | storage-csharp </title>
+      <title>Class PurgeCacheOptions | storage-csharp </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content="Class ErrorResponse | storage-csharp ">
+      <meta name="title" content="Class PurgeCacheOptions | storage-csharp ">
       
-      
+      <meta name="description" content="Options for  and .">
       <link rel="icon" href="../favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/supabase-community/storage-csharp/new/master/apiSpec/new?filename=Supabase_Storage_ErrorResponse.md&amp;value=---%0Auid%3A%20Supabase.Storage.ErrorResponse%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="docfx:docurl" content="https://github.com/supabase-community/storage-csharp/new/master/apiSpec/new?filename=Supabase_Storage_PurgeCacheOptions.md&amp;value=---%0Auid%3A%20Supabase.Storage.PurgeCacheOptions%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -84,12 +84,12 @@
           <nav id="breadcrumb"></nav>
         </div>
 
-        <article data-uid="Supabase.Storage.ErrorResponse">
+        <article data-uid="Supabase.Storage.PurgeCacheOptions">
 
 
 
-  <h1 id="Supabase_Storage_ErrorResponse" data-uid="Supabase.Storage.ErrorResponse" class="text-break">
-Class ErrorResponse  <a class="header-action link-secondary" title="View source" href="https://github.com/supabase-community/storage-csharp/blob/master/Storage/Helpers.cs/#L143"><i class="bi bi-code-slash"></i></a>
+  <h1 id="Supabase_Storage_PurgeCacheOptions" data-uid="Supabase.Storage.PurgeCacheOptions" class="text-break">
+Class PurgeCacheOptions  <a class="header-action link-secondary" title="View source" href="https://github.com/supabase-community/storage-csharp/blob/master/Storage/PurgeCacheOptions.cs/#L7"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -97,11 +97,13 @@ Class ErrorResponse  <a class="header-action link-secondary" title="View source"
   <dl><dt>Assembly</dt><dd>Supabase.Storage.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"></div>
+  <div class="markdown summary"><p>Options for <a class="xref" href="Supabase.Storage.Interfaces.IStorageFileApi-1.html#Supabase_Storage_Interfaces_IStorageFileApi_1_PurgeCache_System_String_Supabase_Storage_PurgeCacheOptions_System_Threading_CancellationToken_">PurgeCache(string, PurgeCacheOptions?, CancellationToken)</a> and
+<a class="xref" href="Supabase.Storage.Interfaces.IStorageBucketApi-1.html#Supabase_Storage_Interfaces_IStorageBucketApi_1_PurgeBucketCache_System_String_Supabase_Storage_PurgeCacheOptions_System_Threading_CancellationToken_">PurgeBucketCache(string, PurgeCacheOptions?, CancellationToken)</a>.</p>
+</div>
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class ErrorResponse</code></pre>
+    <pre><code class="lang-csharp hljs">public class PurgeCacheOptions</code></pre>
   </div>
 
 
@@ -111,7 +113,7 @@ Class ErrorResponse  <a class="header-action link-secondary" title="View source"
     <dt>Inheritance</dt>
     <dd>
       <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
-      <div><span class="xref">ErrorResponse</span></div>
+      <div><span class="xref">PurgeCacheOptions</span></div>
     </dd>
   </dl>
 
@@ -143,6 +145,16 @@ Class ErrorResponse  <a class="header-action link-secondary" title="View source"
     </div>
   </dd></dl>
 
+  <dl class="typelist extensionMethods">
+    <dt>Extension Methods</dt>
+    <dd>
+  <div>
+      <a class="xref" href="Supabase.Storage.Extensions.PurgeCacheOptionsExtension.html#Supabase_Storage_Extensions_PurgeCacheOptionsExtension_ToPurgeUrl_Supabase_Storage_PurgeCacheOptions_System_String_">PurgeCacheOptionsExtension.ToPurgeUrl(PurgeCacheOptions?, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Supabase.Storage.Extensions.PurgeCacheOptionsExtension.html#Supabase_Storage_Extensions_PurgeCacheOptionsExtension_ToQueryCollection_Supabase_Storage_PurgeCacheOptions_">PurgeCacheOptionsExtension.ToQueryCollection(PurgeCacheOptions)</a>
+  </div>
+  </dd></dl>
 
 
 
@@ -152,19 +164,21 @@ Class ErrorResponse  <a class="header-action link-secondary" title="View source"
 </h2>
 
 
-  <a id="Supabase_Storage_ErrorResponse_Message_" data-uid="Supabase.Storage.ErrorResponse.Message*"></a>
+  <a id="Supabase_Storage_PurgeCacheOptions_Transformations_" data-uid="Supabase.Storage.PurgeCacheOptions.Transformations*"></a>
 
-  <h3 id="Supabase_Storage_ErrorResponse_Message" data-uid="Supabase.Storage.ErrorResponse.Message">
-  Message
-  <a class="header-action link-secondary" title="View source" href="https://github.com/supabase-community/storage-csharp/blob/master/Storage/Helpers.cs/#L148"><i class="bi bi-code-slash"></i></a>
+  <h3 id="Supabase_Storage_PurgeCacheOptions_Transformations" data-uid="Supabase.Storage.PurgeCacheOptions.Transformations">
+  Transformations
+  <a class="header-action link-secondary" title="View source" href="https://github.com/supabase-community/storage-csharp/blob/master/Storage/PurgeCacheOptions.cs/#L14"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>If <code>true</code>, purges only the transformations (resized/formatted variants) for the object
+or bucket, leaving the original cached file intact. If left <code>null</code>, all cached versions
+are purged.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[JsonProperty(&quot;message&quot;)]
-public string? Message { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public bool? Transformations { get; set; }</code></pre>
   </div>
 
 
@@ -173,39 +187,7 @@ public string? Message { get; set; }</code></pre>
 
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-  <a id="Supabase_Storage_ErrorResponse_StatusCode_" data-uid="Supabase.Storage.ErrorResponse.StatusCode*"></a>
-
-  <h3 id="Supabase_Storage_ErrorResponse_StatusCode" data-uid="Supabase.Storage.ErrorResponse.StatusCode">
-  StatusCode
-  <a class="header-action link-secondary" title="View source" href="https://github.com/supabase-community/storage-csharp/blob/master/Storage/Helpers.cs/#L145"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[JsonProperty(&quot;statusCode&quot;)]
-public int StatusCode { get; set; }</code></pre>
-  </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>?</dt>
     <dd></dd>
   </dl>
 
@@ -220,7 +202,7 @@ public int StatusCode { get; set; }</code></pre>
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/supabase-community/storage-csharp/blob/master/Storage/Helpers.cs/#L143" class="edit-link">Edit this page</a>
+          <a href="https://github.com/supabase-community/storage-csharp/blob/master/Storage/PurgeCacheOptions.cs/#L7" class="edit-link">Edit this page</a>
         </div>
 
 

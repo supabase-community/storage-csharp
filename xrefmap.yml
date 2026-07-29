@@ -541,6 +541,41 @@ references:
   isSpec: "True"
   fullName: Supabase.Storage.Extensions.DownloadOptionsExtension.ToQueryCollection
   nameWithType: DownloadOptionsExtension.ToQueryCollection
+- uid: Supabase.Storage.Extensions.PurgeCacheOptionsExtension
+  name: PurgeCacheOptionsExtension
+  href: api/Supabase.Storage.Extensions.PurgeCacheOptionsExtension.html
+  commentId: T:Supabase.Storage.Extensions.PurgeCacheOptionsExtension
+  fullName: Supabase.Storage.Extensions.PurgeCacheOptionsExtension
+  nameWithType: PurgeCacheOptionsExtension
+- uid: Supabase.Storage.Extensions.PurgeCacheOptionsExtension.ToPurgeUrl(Supabase.Storage.PurgeCacheOptions,System.String)
+  name: ToPurgeUrl(PurgeCacheOptions?, string)
+  href: api/Supabase.Storage.Extensions.PurgeCacheOptionsExtension.html#Supabase_Storage_Extensions_PurgeCacheOptionsExtension_ToPurgeUrl_Supabase_Storage_PurgeCacheOptions_System_String_
+  commentId: M:Supabase.Storage.Extensions.PurgeCacheOptionsExtension.ToPurgeUrl(Supabase.Storage.PurgeCacheOptions,System.String)
+  name.vb: ToPurgeUrl(PurgeCacheOptions, String)
+  fullName: Supabase.Storage.Extensions.PurgeCacheOptionsExtension.ToPurgeUrl(Supabase.Storage.PurgeCacheOptions?, string)
+  fullName.vb: Supabase.Storage.Extensions.PurgeCacheOptionsExtension.ToPurgeUrl(Supabase.Storage.PurgeCacheOptions, String)
+  nameWithType: PurgeCacheOptionsExtension.ToPurgeUrl(PurgeCacheOptions?, string)
+  nameWithType.vb: PurgeCacheOptionsExtension.ToPurgeUrl(PurgeCacheOptions, String)
+- uid: Supabase.Storage.Extensions.PurgeCacheOptionsExtension.ToPurgeUrl*
+  name: ToPurgeUrl
+  href: api/Supabase.Storage.Extensions.PurgeCacheOptionsExtension.html#Supabase_Storage_Extensions_PurgeCacheOptionsExtension_ToPurgeUrl_
+  commentId: Overload:Supabase.Storage.Extensions.PurgeCacheOptionsExtension.ToPurgeUrl
+  isSpec: "True"
+  fullName: Supabase.Storage.Extensions.PurgeCacheOptionsExtension.ToPurgeUrl
+  nameWithType: PurgeCacheOptionsExtension.ToPurgeUrl
+- uid: Supabase.Storage.Extensions.PurgeCacheOptionsExtension.ToQueryCollection(Supabase.Storage.PurgeCacheOptions)
+  name: ToQueryCollection(PurgeCacheOptions)
+  href: api/Supabase.Storage.Extensions.PurgeCacheOptionsExtension.html#Supabase_Storage_Extensions_PurgeCacheOptionsExtension_ToQueryCollection_Supabase_Storage_PurgeCacheOptions_
+  commentId: M:Supabase.Storage.Extensions.PurgeCacheOptionsExtension.ToQueryCollection(Supabase.Storage.PurgeCacheOptions)
+  fullName: Supabase.Storage.Extensions.PurgeCacheOptionsExtension.ToQueryCollection(Supabase.Storage.PurgeCacheOptions)
+  nameWithType: PurgeCacheOptionsExtension.ToQueryCollection(PurgeCacheOptions)
+- uid: Supabase.Storage.Extensions.PurgeCacheOptionsExtension.ToQueryCollection*
+  name: ToQueryCollection
+  href: api/Supabase.Storage.Extensions.PurgeCacheOptionsExtension.html#Supabase_Storage_Extensions_PurgeCacheOptionsExtension_ToQueryCollection_
+  commentId: Overload:Supabase.Storage.Extensions.PurgeCacheOptionsExtension.ToQueryCollection
+  isSpec: "True"
+  fullName: Supabase.Storage.Extensions.PurgeCacheOptionsExtension.ToQueryCollection
+  nameWithType: PurgeCacheOptionsExtension.ToQueryCollection
 - uid: Supabase.Storage.Extensions.TransformOptionsExtension
   name: TransformOptionsExtension
   href: api/Supabase.Storage.Extensions.TransformOptionsExtension.html
@@ -1149,6 +1184,24 @@ references:
   fullName.vb: Supabase.Storage.Interfaces.IStorageBucketApi(Of TBucket).Options
   nameWithType: IStorageBucketApi<TBucket>.Options
   nameWithType.vb: IStorageBucketApi(Of TBucket).Options
+- uid: Supabase.Storage.Interfaces.IStorageBucketApi`1.PurgeBucketCache(System.String,Supabase.Storage.PurgeCacheOptions,System.Threading.CancellationToken)
+  name: PurgeBucketCache(string, PurgeCacheOptions?, CancellationToken)
+  href: api/Supabase.Storage.Interfaces.IStorageBucketApi-1.html#Supabase_Storage_Interfaces_IStorageBucketApi_1_PurgeBucketCache_System_String_Supabase_Storage_PurgeCacheOptions_System_Threading_CancellationToken_
+  commentId: M:Supabase.Storage.Interfaces.IStorageBucketApi`1.PurgeBucketCache(System.String,Supabase.Storage.PurgeCacheOptions,System.Threading.CancellationToken)
+  name.vb: PurgeBucketCache(String, PurgeCacheOptions, CancellationToken)
+  fullName: Supabase.Storage.Interfaces.IStorageBucketApi<TBucket>.PurgeBucketCache(string, Supabase.Storage.PurgeCacheOptions?, System.Threading.CancellationToken)
+  fullName.vb: Supabase.Storage.Interfaces.IStorageBucketApi(Of TBucket).PurgeBucketCache(String, Supabase.Storage.PurgeCacheOptions, System.Threading.CancellationToken)
+  nameWithType: IStorageBucketApi<TBucket>.PurgeBucketCache(string, PurgeCacheOptions?, CancellationToken)
+  nameWithType.vb: IStorageBucketApi(Of TBucket).PurgeBucketCache(String, PurgeCacheOptions, CancellationToken)
+- uid: Supabase.Storage.Interfaces.IStorageBucketApi`1.PurgeBucketCache*
+  name: PurgeBucketCache
+  href: api/Supabase.Storage.Interfaces.IStorageBucketApi-1.html#Supabase_Storage_Interfaces_IStorageBucketApi_1_PurgeBucketCache_
+  commentId: Overload:Supabase.Storage.Interfaces.IStorageBucketApi`1.PurgeBucketCache
+  isSpec: "True"
+  fullName: Supabase.Storage.Interfaces.IStorageBucketApi<TBucket>.PurgeBucketCache
+  fullName.vb: Supabase.Storage.Interfaces.IStorageBucketApi(Of TBucket).PurgeBucketCache
+  nameWithType: IStorageBucketApi<TBucket>.PurgeBucketCache
+  nameWithType.vb: IStorageBucketApi(Of TBucket).PurgeBucketCache
 - uid: Supabase.Storage.Interfaces.IStorageBucketApi`1.UpdateBucket(System.String,Supabase.Storage.BucketUpsertOptions)
   name: UpdateBucket(string, BucketUpsertOptions?)
   href: api/Supabase.Storage.Interfaces.IStorageBucketApi-1.html#Supabase_Storage_Interfaces_IStorageBucketApi_1_UpdateBucket_System_String_Supabase_Storage_BucketUpsertOptions_
@@ -1436,6 +1489,24 @@ references:
   fullName.vb: Supabase.Storage.Interfaces.IStorageFileApi(Of TFileObject).Options
   nameWithType: IStorageFileApi<TFileObject>.Options
   nameWithType.vb: IStorageFileApi(Of TFileObject).Options
+- uid: Supabase.Storage.Interfaces.IStorageFileApi`1.PurgeCache(System.String,Supabase.Storage.PurgeCacheOptions,System.Threading.CancellationToken)
+  name: PurgeCache(string, PurgeCacheOptions?, CancellationToken)
+  href: api/Supabase.Storage.Interfaces.IStorageFileApi-1.html#Supabase_Storage_Interfaces_IStorageFileApi_1_PurgeCache_System_String_Supabase_Storage_PurgeCacheOptions_System_Threading_CancellationToken_
+  commentId: M:Supabase.Storage.Interfaces.IStorageFileApi`1.PurgeCache(System.String,Supabase.Storage.PurgeCacheOptions,System.Threading.CancellationToken)
+  name.vb: PurgeCache(String, PurgeCacheOptions, CancellationToken)
+  fullName: Supabase.Storage.Interfaces.IStorageFileApi<TFileObject>.PurgeCache(string, Supabase.Storage.PurgeCacheOptions?, System.Threading.CancellationToken)
+  fullName.vb: Supabase.Storage.Interfaces.IStorageFileApi(Of TFileObject).PurgeCache(String, Supabase.Storage.PurgeCacheOptions, System.Threading.CancellationToken)
+  nameWithType: IStorageFileApi<TFileObject>.PurgeCache(string, PurgeCacheOptions?, CancellationToken)
+  nameWithType.vb: IStorageFileApi(Of TFileObject).PurgeCache(String, PurgeCacheOptions, CancellationToken)
+- uid: Supabase.Storage.Interfaces.IStorageFileApi`1.PurgeCache*
+  name: PurgeCache
+  href: api/Supabase.Storage.Interfaces.IStorageFileApi-1.html#Supabase_Storage_Interfaces_IStorageFileApi_1_PurgeCache_
+  commentId: Overload:Supabase.Storage.Interfaces.IStorageFileApi`1.PurgeCache
+  isSpec: "True"
+  fullName: Supabase.Storage.Interfaces.IStorageFileApi<TFileObject>.PurgeCache
+  fullName.vb: Supabase.Storage.Interfaces.IStorageFileApi(Of TFileObject).PurgeCache
+  nameWithType: IStorageFileApi<TFileObject>.PurgeCache
+  nameWithType.vb: IStorageFileApi(Of TFileObject).PurgeCache
 - uid: Supabase.Storage.Interfaces.IStorageFileApi`1.Remove(System.Collections.Generic.List{System.String})
   name: Remove(List<string>)
   href: api/Supabase.Storage.Interfaces.IStorageFileApi-1.html#Supabase_Storage_Interfaces_IStorageFileApi_1_Remove_System_Collections_Generic_List_System_String__
@@ -1571,6 +1642,25 @@ references:
   fullName.vb: Supabase.Storage.Interfaces.IStorageFileApi(Of TFileObject).UploadToSignedUrl
   nameWithType: IStorageFileApi<TFileObject>.UploadToSignedUrl
   nameWithType.vb: IStorageFileApi(Of TFileObject).UploadToSignedUrl
+- uid: Supabase.Storage.PurgeCacheOptions
+  name: PurgeCacheOptions
+  href: api/Supabase.Storage.PurgeCacheOptions.html
+  commentId: T:Supabase.Storage.PurgeCacheOptions
+  fullName: Supabase.Storage.PurgeCacheOptions
+  nameWithType: PurgeCacheOptions
+- uid: Supabase.Storage.PurgeCacheOptions.Transformations
+  name: Transformations
+  href: api/Supabase.Storage.PurgeCacheOptions.html#Supabase_Storage_PurgeCacheOptions_Transformations
+  commentId: P:Supabase.Storage.PurgeCacheOptions.Transformations
+  fullName: Supabase.Storage.PurgeCacheOptions.Transformations
+  nameWithType: PurgeCacheOptions.Transformations
+- uid: Supabase.Storage.PurgeCacheOptions.Transformations*
+  name: Transformations
+  href: api/Supabase.Storage.PurgeCacheOptions.html#Supabase_Storage_PurgeCacheOptions_Transformations_
+  commentId: Overload:Supabase.Storage.PurgeCacheOptions.Transformations
+  isSpec: "True"
+  fullName: Supabase.Storage.PurgeCacheOptions.Transformations
+  nameWithType: PurgeCacheOptions.Transformations
 - uid: Supabase.Storage.SearchOptions
   name: SearchOptions
   href: api/Supabase.Storage.SearchOptions.html
@@ -1811,6 +1901,22 @@ references:
   isSpec: "True"
   fullName: Supabase.Storage.StorageBucketApi.Options
   nameWithType: StorageBucketApi.Options
+- uid: Supabase.Storage.StorageBucketApi.PurgeBucketCache(System.String,Supabase.Storage.PurgeCacheOptions,System.Threading.CancellationToken)
+  name: PurgeBucketCache(string, PurgeCacheOptions?, CancellationToken)
+  href: api/Supabase.Storage.StorageBucketApi.html#Supabase_Storage_StorageBucketApi_PurgeBucketCache_System_String_Supabase_Storage_PurgeCacheOptions_System_Threading_CancellationToken_
+  commentId: M:Supabase.Storage.StorageBucketApi.PurgeBucketCache(System.String,Supabase.Storage.PurgeCacheOptions,System.Threading.CancellationToken)
+  name.vb: PurgeBucketCache(String, PurgeCacheOptions, CancellationToken)
+  fullName: Supabase.Storage.StorageBucketApi.PurgeBucketCache(string, Supabase.Storage.PurgeCacheOptions?, System.Threading.CancellationToken)
+  fullName.vb: Supabase.Storage.StorageBucketApi.PurgeBucketCache(String, Supabase.Storage.PurgeCacheOptions, System.Threading.CancellationToken)
+  nameWithType: StorageBucketApi.PurgeBucketCache(string, PurgeCacheOptions?, CancellationToken)
+  nameWithType.vb: StorageBucketApi.PurgeBucketCache(String, PurgeCacheOptions, CancellationToken)
+- uid: Supabase.Storage.StorageBucketApi.PurgeBucketCache*
+  name: PurgeBucketCache
+  href: api/Supabase.Storage.StorageBucketApi.html#Supabase_Storage_StorageBucketApi_PurgeBucketCache_
+  commentId: Overload:Supabase.Storage.StorageBucketApi.PurgeBucketCache
+  isSpec: "True"
+  fullName: Supabase.Storage.StorageBucketApi.PurgeBucketCache
+  nameWithType: StorageBucketApi.PurgeBucketCache
 - uid: Supabase.Storage.StorageBucketApi.UpdateBucket(System.String,Supabase.Storage.BucketUpsertOptions)
   name: UpdateBucket(string, BucketUpsertOptions?)
   href: api/Supabase.Storage.StorageBucketApi.html#Supabase_Storage_StorageBucketApi_UpdateBucket_System_String_Supabase_Storage_BucketUpsertOptions_
@@ -2121,6 +2227,22 @@ references:
   isSpec: "True"
   fullName: Supabase.Storage.StorageFileApi.Options
   nameWithType: StorageFileApi.Options
+- uid: Supabase.Storage.StorageFileApi.PurgeCache(System.String,Supabase.Storage.PurgeCacheOptions,System.Threading.CancellationToken)
+  name: PurgeCache(string, PurgeCacheOptions?, CancellationToken)
+  href: api/Supabase.Storage.StorageFileApi.html#Supabase_Storage_StorageFileApi_PurgeCache_System_String_Supabase_Storage_PurgeCacheOptions_System_Threading_CancellationToken_
+  commentId: M:Supabase.Storage.StorageFileApi.PurgeCache(System.String,Supabase.Storage.PurgeCacheOptions,System.Threading.CancellationToken)
+  name.vb: PurgeCache(String, PurgeCacheOptions, CancellationToken)
+  fullName: Supabase.Storage.StorageFileApi.PurgeCache(string, Supabase.Storage.PurgeCacheOptions?, System.Threading.CancellationToken)
+  fullName.vb: Supabase.Storage.StorageFileApi.PurgeCache(String, Supabase.Storage.PurgeCacheOptions, System.Threading.CancellationToken)
+  nameWithType: StorageFileApi.PurgeCache(string, PurgeCacheOptions?, CancellationToken)
+  nameWithType.vb: StorageFileApi.PurgeCache(String, PurgeCacheOptions, CancellationToken)
+- uid: Supabase.Storage.StorageFileApi.PurgeCache*
+  name: PurgeCache
+  href: api/Supabase.Storage.StorageFileApi.html#Supabase_Storage_StorageFileApi_PurgeCache_
+  commentId: Overload:Supabase.Storage.StorageFileApi.PurgeCache
+  isSpec: "True"
+  fullName: Supabase.Storage.StorageFileApi.PurgeCache
+  nameWithType: StorageFileApi.PurgeCache
 - uid: Supabase.Storage.StorageFileApi.Remove(System.Collections.Generic.List{System.String})
   name: Remove(List<string>)
   href: api/Supabase.Storage.StorageFileApi.html#Supabase_Storage_StorageFileApi_Remove_System_Collections_Generic_List_System_String__

@@ -208,6 +208,20 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/Supabase.Storage.Extensions.PurgeCacheOptionsExtension.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Supabase.Storage.Extensions.PurgeCacheOptionsExtension.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Supabase.Storage.Extensions.PurgeCacheOptionsExtension",
+      "Summary": "<p sourcefile=\"api/Supabase.Storage.Extensions.PurgeCacheOptionsExtension.yml\" sourcestartlinenumber=\"1\">Translates <xref href=\"Supabase.Storage.PurgeCacheOptions\" data-throw-if-not-resolved=\"false\"></xref> into the query string the CDN purge endpoint expects.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/Supabase.Storage.Extensions.TransformOptionsExtension.yml",
       "output": {
         ".html": {
@@ -359,6 +373,20 @@
       "IsMRef": true,
       "Title": "Supabase.Storage.Interfaces",
       "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Supabase.Storage.PurgeCacheOptions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Supabase.Storage.PurgeCacheOptions.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Supabase.Storage.PurgeCacheOptions",
+      "Summary": "<p sourcefile=\"api/Supabase.Storage.PurgeCacheOptions.yml\" sourcestartlinenumber=\"1\">Options for <xref href=\"Supabase.Storage.Interfaces.IStorageFileApi%601.PurgeCache(System.String%2cSupabase.Storage.PurgeCacheOptions%2cSystem.Threading.CancellationToken)\" data-throw-if-not-resolved=\"false\"></xref> and\n<xref href=\"Supabase.Storage.Interfaces.IStorageBucketApi%601.PurgeBucketCache(System.String%2cSupabase.Storage.PurgeCacheOptions%2cSystem.Threading.CancellationToken)\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
     },
     {
       "type": "ManagedReference",

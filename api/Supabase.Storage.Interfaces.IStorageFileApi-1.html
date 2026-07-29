@@ -726,6 +726,55 @@ Interface IStorageFileApi&lt;TFileObject&gt;  <a class="header-action link-secon
 
 
 
+  <a id="Supabase_Storage_Interfaces_IStorageFileApi_1_PurgeCache_" data-uid="Supabase.Storage.Interfaces.IStorageFileApi`1.PurgeCache*"></a>
+
+  <h3 id="Supabase_Storage_Interfaces_IStorageFileApi_1_PurgeCache_System_String_Supabase_Storage_PurgeCacheOptions_System_Threading_CancellationToken_" data-uid="Supabase.Storage.Interfaces.IStorageFileApi`1.PurgeCache(System.String,Supabase.Storage.PurgeCacheOptions,System.Threading.CancellationToken)">
+  PurgeCache(string, PurgeCacheOptions?, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/supabase-community/storage-csharp/blob/master/Storage/Interfaces/IStorageFileApi.cs/#L140"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Purges the CDN cache for a single object. Requires a service-role key.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;GenericResponse?&gt; PurgeCache(string path, PurgeCacheOptions? options = null, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>path</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The object path within the bucket to purge.</p>
+</dd>
+    <dt><code>options</code> <a class="xref" href="Supabase.Storage.PurgeCacheOptions.html">PurgeCacheOptions</a></dt>
+    <dd><p>When <a class="xref" href="Supabase.Storage.PurgeCacheOptions.html#Supabase_Storage_PurgeCacheOptions_Transformations">Transformations</a> is <code>true</code>, only the transformed
+variants are purged; otherwise every cached version is purged.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>Token used to cancel the request.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="Supabase.Storage.GenericResponse.html">GenericResponse</a>&gt;</dt>
+    <dd><p>The service acknowledgement of the purge.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="Supabase_Storage_Interfaces_IStorageFileApi_1_PurgeCache_System_String_Supabase_Storage_PurgeCacheOptions_System_Threading_CancellationToken__examples">Examples</h4>
+  <pre><code class="lang-csharp">await storage.From("avatars").PurgeCache("folder/avatar.png");</code></pre>
+
+
+
+
+
+
   <a id="Supabase_Storage_Interfaces_IStorageFileApi_1_Remove_" data-uid="Supabase.Storage.Interfaces.IStorageFileApi`1.Remove*"></a>
 
   <h3 id="Supabase_Storage_Interfaces_IStorageFileApi_1_Remove_System_Collections_Generic_List_System_String__" data-uid="Supabase.Storage.Interfaces.IStorageFileApi`1.Remove(System.Collections.Generic.List{System.String})">
