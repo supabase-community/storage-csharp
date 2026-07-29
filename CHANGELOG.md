@@ -1,5 +1,19 @@
 # Changelog
 
+## [2.6.0](https://github.com/supabase-community/storage-csharp/compare/v2.5.0...v2.6.0) (2026-07-29)
+
+
+### Features
+
+* add cancelation token on download method ([#49](https://github.com/supabase-community/storage-csharp/issues/49)) ([82af2b8](https://github.com/supabase-community/storage-csharp/commit/82af2b8fbcf44684b6bd618493c3bb80c798513f))
+* implement purge cache issue ([#50](https://github.com/supabase-community/storage-csharp/issues/50)) ([41ee1f8](https://github.com/supabase-community/storage-csharp/commit/41ee1f86a39e921b781886fe6c44b3c567d711fc))
+
+
+### Bug Fixes
+
+* clear trailing '?' on CreateSignedUrl ([#51](https://github.com/supabase-community/storage-csharp/issues/51)) ([7ca4723](https://github.com/supabase-community/storage-csharp/commit/7ca4723fe4a192b1470818793d369568850c5393))
+* non-JSON Storage error now throws SupabaseStorageException ([#46](https://github.com/supabase-community/storage-csharp/issues/46)) ([1c54194](https://github.com/supabase-community/storage-csharp/commit/1c5419443a914b7c2b3643a2441c0a3ca6282e97))
+
 ## [2.5.0](https://github.com/supabase-community/storage-csharp/compare/v2.4.2...v2.5.0) (2026-07-23)
 
 
