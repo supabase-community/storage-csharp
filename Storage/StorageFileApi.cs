@@ -126,8 +126,8 @@ namespace Supabase.Storage
                 );
 
             var downloadQueryParams = downloadOptions?.ToQueryCollection().ToString();
-
-            return $"{Url}{response.SignedUrl}?{downloadQueryParams}";
+            var downloadSeparator = string.IsNullOrEmpty(downloadQueryParams) ? "" : "&";
+            return $"{Url}{response.SignedUrl}{downloadSeparator}{downloadQueryParams}";
         }
 
         /// <summary>
@@ -156,6 +156,7 @@ namespace Supabase.Storage
             );
 
             var downloadQueryParams = downloadOptions?.ToQueryCollection().ToString();
+            var downloadSeparator = string.IsNullOrEmpty(downloadQueryParams) ? "" : "&";
             if (response != null)
             {
                 foreach (var item in response)
@@ -165,7 +166,7 @@ namespace Supabase.Storage
                             $"Signed Url for {item.Path} returned empty, do you have permission?"
                         );
 
-                    item.SignedUrl = $"{Url}{item.SignedUrl}?{downloadQueryParams}";
+                    item.SignedUrl = $"{Url}{item.SignedUrl}{downloadSeparator}{downloadQueryParams}";
                 }
             }
 

@@ -85,6 +85,25 @@ public class StorageFileApiContractTests
     }
 
     [TestMethod]
+    public async Task CreateSignedUrl_ShouldNotAppendTrailingQuestionMark_GivenNoDownloadOptions()
+    {
+        this.Respond($"/storage/v1/object/sign/{Bucket}/a.png", "POST", 200,
+            "{\"signedURL\":\"/object/sign/bucket/a.png?token=abc\"}");
+        var url = await this.client.From(Bucket).CreateSignedUrl("a.png", 3600);
+        url.Should().Be($"{this.server.Url}/storage/v1/object/sign/bucket/a.png?token=abc");
+    }
+
+    [TestMethod]
+    public async Task CreateSignedUrl_ShouldAppendDownloadWithAmpersand_GivenDownloadOptions()
+    {
+        this.Respond($"/storage/v1/object/sign/{Bucket}/a.png", "POST", 200,
+            "{\"signedURL\":\"/object/sign/bucket/a.png?token=abc\"}");
+        var url = await this.client.From(Bucket)
+            .CreateSignedUrl("a.png", 3600, null, new DownloadOptions { FileName = "photo.png" });
+        url.Should().Be($"{this.server.Url}/storage/v1/object/sign/bucket/a.png?token=abc&download=photo.png");
+    }
+
+    [TestMethod]
     public async Task CreateSignedUrl_ShouldIncludeTransform_GivenTransformOptions()
     {
         this.Respond($"/storage/v1/object/sign/{Bucket}/a.png", "POST", 200,
@@ -113,6 +132,27 @@ public class StorageFileApiContractTests
                 .StartWith($"{this.server.Url}/storage/v1/object/sign/bucket/a.png");
             this.SingleRequest().Body.Should().Contain("\"paths\":[\"a.png\"]");
         }
+    }
+
+    [TestMethod]
+    public async Task CreateSignedUrls_ShouldNotAppendTrailingQuestionMark_GivenNoDownloadOptions()
+    {
+        this.Respond($"/storage/v1/object/sign/{Bucket}", "POST", 200,
+            "[{\"signedURL\":\"/object/sign/bucket/a.png?token=abc\",\"path\":\"a.png\"}]");
+        var urls = await this.client.From(Bucket).CreateSignedUrls(new List<string> { "a.png" }, 3600);
+        urls.Should().ContainSingle().Which.SignedUrl.Should()
+            .Be($"{this.server.Url}/storage/v1/object/sign/bucket/a.png?token=abc");
+    }
+
+    [TestMethod]
+    public async Task CreateSignedUrls_ShouldAppendDownloadWithAmpersand_GivenDownloadOptions()
+    {
+        this.Respond($"/storage/v1/object/sign/{Bucket}", "POST", 200,
+            "[{\"signedURL\":\"/object/sign/bucket/a.png?token=abc\",\"path\":\"a.png\"}]");
+        var urls = await this.client.From(Bucket)
+            .CreateSignedUrls(new List<string> { "a.png" }, 3600, new DownloadOptions { FileName = "photo.png" });
+        urls.Should().ContainSingle().Which.SignedUrl.Should()
+            .Be($"{this.server.Url}/storage/v1/object/sign/bucket/a.png?token=abc&download=photo.png");
     }
 
     [TestMethod]
