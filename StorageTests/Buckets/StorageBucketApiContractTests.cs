@@ -133,6 +133,38 @@ public class StorageBucketApiContractTests
         }
     }
 
+    [TestMethod]
+    public async Task PurgeBucketCache_ShouldDeleteTheCdnPathWithNoBodyAndReturnTheMessage()
+    {
+        this.Respond("/storage/v1/cdn/photos", "DELETE", 200, "{\"message\":\"success\"}");
+        var response = await this.client.PurgeBucketCache("photos", new PurgeCacheOptions { Transformations = true });
+        using (new AssertionScope())
+        {
+            response!.Message.Should().Be("success");
+            var request = this.SingleRequest();
+            request.Method.Should().Be("DELETE");
+            request.Path.Should().Be("/storage/v1/cdn/photos");
+            request.Body.Should().BeNullOrEmpty("options travel in the query string, so the purge carries no payload");
+        }
+    }
+
+    [TestMethod]
+    public async Task PurgeBucketCache_ShouldPurgeEveryVersion_GivenDefaultOptions()
+    {
+        this.Respond("/storage/v1/cdn/photos", "DELETE", 200, "{\"message\":\"success\"}");
+        await this.client.PurgeBucketCache("photos", new PurgeCacheOptions());
+        this.SingleRequest().Query.Should().BeNullOrEmpty(
+            "unset options must purge every cached version, not only the transformations");
+    }
+
+    [TestMethod]
+    public async Task PurgeBucketCache_ShouldRequestTransformationsOnly_GivenTheTransformationsOption()
+    {
+        this.Respond("/storage/v1/cdn/photos", "DELETE", 200, "{\"message\":\"success\"}");
+        await this.client.PurgeBucketCache("photos", new PurgeCacheOptions { Transformations = true });
+        this.SingleRequest().Query.Should().Contain(pair => pair.Key == "transformations" && pair.Value.Contains("true"));
+    }
+
     private void Respond(string path, string method, int statusCode, string body) =>
         this.server.Given(Request.Create().WithPath(path).UsingMethod(method))
             .RespondWith(Response.Create().WithStatusCode(statusCode)

@@ -251,6 +251,21 @@ public class StorageFileApiContractTests
     }
 
     [TestMethod]
+    public async Task PurgeCache_ShouldDeleteTheCdnObjectPathWithNoBodyAndReturnTheMessage()
+    {
+        this.Respond($"/storage/v1/cdn/{Bucket}/a.png", "DELETE", 200, "{\"message\":\"success\"}");
+        var response = await this.client.From(Bucket).PurgeCache("a.png", new PurgeCacheOptions { Transformations = true });
+        using (new AssertionScope())
+        {
+            response!.Message.Should().Be("success");
+            var request = this.SingleRequest();
+            request.Method.Should().Be("DELETE");
+            request.Path.Should().Be($"/storage/v1/cdn/{Bucket}/a.png");
+            request.Body.Should().BeNullOrEmpty("options travel in the query string, so the purge carries no payload");
+        }
+    }
+
+    [TestMethod]
     public async Task List_ShouldSurfaceStorageException_GivenNonJsonError()
     {
         const string body = "502 Bad Gateway";
