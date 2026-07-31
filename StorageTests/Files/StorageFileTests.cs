@@ -193,6 +193,20 @@ public class StorageFileTests
     }
 
     [TestMethod]
+    public async Task Download_ShouldWriteFileToDisk_GivenCacheNonce()
+    {
+        var progressed = new TaskCompletionSource<bool>();
+        var name = $"{Guid.NewGuid()}.png";
+        var imagePath = Path.Combine(BasePath(), "Assets", "supabase-csharp.png");
+        await this.bucket.Upload(imagePath, name);
+        var downloadPath = Path.Combine(BasePath(), name);
+        await this.bucket.Download(name, downloadPath, (_, _) => progressed.TrySetResult(true), CancellationToken.None, DateTime.UtcNow.ToShortDateString());
+        (await progressed.Task).Should().BeTrue();
+        File.Exists(downloadPath).Should().BeTrue();
+        await this.bucket.Remove(new List<string> { name });
+    }
+
+    [TestMethod]
     public async Task Download_ShouldCancelAndLeaveNoFile_GivenCancelledToken()
     {
         using var cts = new CancellationTokenSource();
@@ -282,6 +296,16 @@ public class StorageFileTests
     }
 
     [TestMethod]
+    public async Task GetPublicUrl_ShouldAppendTheDownloadName_GivenFullFilledDownloadOptions()
+    {
+        var name = $"{Guid.NewGuid()}.bin";
+        await this.bucket.Upload(new byte[] { 0x0, 0x1 }, name);
+        var url = this.bucket.GetPublicUrl(name, null, new DownloadOptions { FileName = "custom-file.png", CacheNonce = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ssZ") });
+        url.Should().Contain("download=custom-file.png&cacheNonce");
+        await this.bucket.Remove(new List<string> { name });
+    }
+
+    [TestMethod]
     public async Task GetPublicUrl_ShouldAppendDownloadTrue_GivenTransformAndOriginalName()
     {
         var name = $"{Guid.NewGuid()}.bin";
@@ -320,6 +344,17 @@ public class StorageFileTests
         var url = await this.bucket.CreateSignedUrl(name, 3600, null, new DownloadOptions { FileName = "custom-file.png" });
         Uri.IsWellFormedUriString(url, UriKind.Absolute).Should().BeTrue();
         url.Should().Contain("download=custom-file.png");
+        await this.bucket.Remove(new List<string> { name });
+    }
+
+    [TestMethod]
+    public async Task CreateSignedUrl_ShouldAppendTheDownloadName_GivenFullFilledDownloadOptions()
+    {
+        var name = $"{Guid.NewGuid()}.bin";
+        await this.bucket.Upload(new byte[] { 0x0, 0x1 }, name);
+        var url = await this.bucket.CreateSignedUrl(name, 3600, null, new DownloadOptions { FileName = "custom-file.png", CacheNonce = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ssZ")});
+        Uri.IsWellFormedUriString(url, UriKind.Absolute).Should().BeTrue();
+        url.Should().Contain("download=custom-file.png&cacheNonce");
         await this.bucket.Remove(new List<string> { name });
     }
 

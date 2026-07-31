@@ -14,12 +14,16 @@ namespace Supabase.Storage.Extensions
         {
             var query = HttpUtility.ParseQueryString(string.Empty);
 
-            if (download.FileName == null)
+            if (download.FileName != null)
             {
-                return query;
+                query.Add("download", string.IsNullOrEmpty(download.FileName) ? "true" : download.FileName);
             }
             
-            query.Add("download", string.IsNullOrEmpty(download.FileName) ? "true" : download.FileName);
+            
+            if (download.CacheNonce != null)
+            {
+                query.Add("cacheNonce", download.CacheNonce);
+            }
 
             return query;
         }

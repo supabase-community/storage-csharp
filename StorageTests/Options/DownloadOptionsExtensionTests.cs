@@ -1,3 +1,4 @@
+using System;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Supabase.Storage;
@@ -33,5 +34,12 @@ public class DownloadOptionsExtensionTests
     {
         var query = new DownloadOptions { FileName = "custom-file.png" }.ToQueryCollection();
         query["download"].Should().Be("custom-file.png");
+    }
+
+    [TestMethod]
+    public void ToQueryCollection_ShouldEmitTheCacheNonce_GivenAName()
+    {
+        var query = new DownloadOptions { CacheNonce = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ssZ") }.ToQueryCollection();
+        query["cacheNonce"].Should().Be(DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ssZ"));
     }
 }
