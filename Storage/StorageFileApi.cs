@@ -16,15 +16,36 @@ using Supabase.Storage.Responses;
 
 namespace Supabase.Storage
 {
+    /// <inheritdoc />
     public class StorageFileApi : IStorageFileApi<FileObject>
     {
+        /// <inheritdoc />
         public ClientOptions Options { get; protected set; }
+        /// <summary>
+        /// 
+        /// </summary>
         protected string Url { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         protected Dictionary<string, string> Headers { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         protected string? BucketId { get; set; }
 
-        protected Header StorageHeader = new();
+        /// <summary>
+        /// 
+        /// </summary>
+        protected readonly Header StorageHeader = new();
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="url"></param>
+        /// <param name="bucketId"></param>
+        /// <param name="options"></param>
+        /// <param name="headers"></param>
         public StorageFileApi(
             string url,
             string bucketId,
@@ -36,6 +57,12 @@ namespace Supabase.Storage
             Options = options ?? new ClientOptions();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="url"></param>
+        /// <param name="headers"></param>
+        /// <param name="bucketId"></param>
         public StorageFileApi(
             string url,
             Dictionary<string, string>? headers = null,
@@ -50,7 +77,7 @@ namespace Supabase.Storage
         }
 
         /// <summary>
-        /// A simple convenience function to get the URL for an asset in a public bucket.If you do not want to use this function, you can construct the public URL by concatenating the bucket URL with the path to the asset.
+        /// A simple convenience function to get the URL for an asset in a public bucket. If you do not want to use this function, you can construct the public URL by concatenating the bucket URL with the path to the asset.
         /// This function does not verify if the bucket is public. If a public URL is created for a bucket which is not public, you will not be able to download the asset.
         /// </summary>
         /// <param name="path"></param>
@@ -84,9 +111,9 @@ namespace Supabase.Storage
         }
 
         /// <summary>
-        /// Create signed url to download file without requiring permissions. This URL can be valid for a set number of seconds.
+        /// Create signed url to download a file without requiring permissions. This URL can be valid for a set number of seconds.
         /// </summary>
-        /// <param name="path">The file path to be downloaded, including the current file name. For example `folder/image.png`.</param>
+        /// <param name="path">The file path to be downloaded, including the current file name. For example, `folder/image.png`.</param>
         /// <param name="expiresIn">The number of seconds until the signed URL expires. For example, `60` for a URL which is valid for one minute.</param>
         /// <param name="transformOptions"></param>
         /// <param name="downloadOptions"></param>
@@ -133,7 +160,7 @@ namespace Supabase.Storage
         /// <summary>
         /// Create signed URLs to download files without requiring permissions. These URLs can be valid for a set number of seconds.
         /// </summary>
-        /// <param name="paths">paths The file paths to be downloaded, including the current file names. For example [`folder/image.png`, 'folder2/image2.png'].</param>
+        /// <param name="paths">The file paths to be downloaded, including the current file names. For example [`folder/image.png`, 'folder2/image2.png'].</param>
         /// <param name="expiresIn">The number of seconds until the signed URLs expire. For example, `60` for URLs which are valid for one minute.</param>
         /// <param name="downloadOptions"></param>
         /// <returns></returns>
@@ -224,6 +251,7 @@ namespace Supabase.Storage
         /// <param name="options"></param>
         /// <param name="onProgress"></param>
         /// <param name="inferContentType"></param>
+        /// <param name="cancellationToken"></param>
         /// <returns></returns>
         public async Task<string> Upload(
             string localFilePath,
@@ -250,7 +278,28 @@ namespace Supabase.Storage
         /// <param name="supabasePath">The relative file path. Should be of the format `folder/subfolder/filename.png`. The bucket must already exist before attempting to upload.</param>
         /// <param name="options"></param>
         /// <param name="onProgress"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        public Task<string> Upload(
+            byte[] data,
+            string supabasePath,
+            FileOptions? options = null,
+            EventHandler<float>? onProgress = null,
+            CancellationToken cancellationToken = default
+        )
+        {
+            return Upload(data, supabasePath, options, onProgress, true, cancellationToken);
+        }
+
+        /// <summary>
+        /// Uploads a byte array to an existing bucket.
+        /// </summary>
+        /// <param name="data"></param>
+        /// <param name="supabasePath">The relative file path. Should be of the format `folder/subfolder/filename.png`. The bucket must already exist before attempting to upload.</param>
+        /// <param name="options"></param>
+        /// <param name="onProgress"></param>
         /// <param name="inferContentType"></param>
+        /// <param name="cancellationToken"></param>
         /// <returns></returns>
         public async Task<string> Upload(
             byte[] data,
@@ -508,7 +557,9 @@ namespace Supabase.Storage
         }
 
         /// <summary>
-        /// Downloads a file from a private bucket. For public buckets, use <see cref="DownloadPublicFile(string, string, TransformOptions?, EventHandler{float}?)"/>
+        /// Downloads a file from a private bucket. For public buckets, use <see>
+        ///     <cref>DownloadPublicFile(string, string, TransformOptions?, EventHandler{float}?)</cref>
+        /// </see>
         /// </summary>
         /// <param name="supabasePath"></param>
         /// <param name="localPath"></param>
@@ -534,7 +585,9 @@ namespace Supabase.Storage
         }
 
         /// <summary>
-        /// Downloads a file from a private bucket. For public buckets, use <see cref="DownloadPublicFile(string, string, TransformOptions?, EventHandler{float}?)"/>
+        /// Downloads a file from a private bucket. For public buckets, use <see>
+        ///     <cref>DownloadPublicFile(string, string, TransformOptions?, EventHandler{float}?)</cref>
+        /// </see>
         /// </summary>
         /// <param name="supabasePath"></param>
         /// <param name="localPath"></param>
@@ -551,7 +604,9 @@ namespace Supabase.Storage
         ) => Download(supabasePath, localPath, null, onProgress: onProgress, cancellationToken, cacheNonce);
 
         /// <summary>
-        /// Downloads a byte array from a private bucket to be used programmatically. For public buckets <see cref="DownloadPublicFile(string, TransformOptions?, EventHandler{float}?)"/>
+        /// Downloads a byte array from a private bucket to be used programmatically. For public buckets <see>
+        ///     <cref>DownloadPublicFile(string, TransformOptions?, EventHandler{float}?)</cref>
+        /// </see>
         /// </summary>
         /// <param name="supabasePath"></param>
         /// <param name="transformOptions"></param>
@@ -572,7 +627,9 @@ namespace Supabase.Storage
         }
 
         /// <summary>
-        /// Downloads a byte array from a private bucket to be used programmatically. For public buckets <see cref="DownloadPublicFile(string, TransformOptions?, EventHandler{float}?)"/>
+        /// Downloads a byte array from a private bucket to be used programmatically. For public buckets <see>
+        ///     <cref>DownloadPublicFile(string, TransformOptions?, EventHandler{float}?)</cref>
+        /// </see>
         /// </summary>
         /// <param name="supabasePath"></param>
         /// <param name="onProgress"></param>
@@ -627,20 +684,20 @@ namespace Supabase.Storage
         }
 
         /// <summary>
-        /// Deletes file within the same bucket
+        /// Deletes a file within the same bucket
         /// </summary>
-        /// <param name="path">A path to delete, for example `folder/image.png`.</param>
+        /// <param name="path">A path to delete, for example, `folder/image.png`.</param>
         /// <returns></returns>
         public async Task<FileObject?> Remove(string path)
         {
-            var result = await Remove(new List<string> { path });
+            var result = await Remove([path]);
             return result?.FirstOrDefault();
         }
 
         /// <summary>
         /// Deletes files within the same bucket
         /// </summary>
-        /// <param name="paths">An array of files to be deletes, including the path and file name. For example [`folder/image.png`].</param>
+        /// <param name="paths">An array of files to be deleted, including the path and file name. For example [`folder/image.png`].</param>
         /// <returns></returns>
         public async Task<List<FileObject>?> Remove(List<string> paths)
         {
@@ -658,7 +715,7 @@ namespace Supabase.Storage
         /// <summary>
         /// Creates an upload signed URL. Use it to upload a file straight to the bucket without credentials
         /// </summary>
-        /// <param name="supabasePath">The file path, including the current file name. For example `folder/image.png`.</param>
+        /// <param name="supabasePath">The file path, including the current file name. For example, `folder/image.png`.</param>
         /// <returns></returns>
         public async Task<UploadSignedUrl> CreateUploadSignedUrl(string supabasePath)
         {
