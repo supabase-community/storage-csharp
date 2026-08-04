@@ -15,5 +15,10 @@ namespace Supabase.Storage
         ///     <p>When field is empty, the original file name will be used. Use <see cref="UseOriginalFileName"/> for quick initialized with original file names.</p>
         /// </summary>
         public string? FileName { get; set; }
+        
+        /// <summary>
+        /// Append a cache nonce parameter to the URL to invalidate the cache
+        /// </summary>
+        public string? CacheNonce { get; set; }
     }
 }

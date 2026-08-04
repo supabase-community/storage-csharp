@@ -515,20 +515,22 @@ namespace Supabase.Storage
         /// <param name="transformOptions"></param>
         /// <param name="onProgress"></param>
         /// <param name="cancellationToken"></param>
+        /// <param name="cacheNonce"></param>
         /// <returns></returns>
         public Task<string> Download(
             string supabasePath,
             string localPath,
             TransformOptions? transformOptions = null,
             EventHandler<float>? onProgress = null,
-            CancellationToken cancellationToken = default
+            CancellationToken cancellationToken = default,
+            string? cacheNonce = null
         )
         {
             var url =
                 transformOptions != null
                     ? $"{Url}/render/image/authenticated/{GetFinalPath(supabasePath)}"
                     : $"{Url}/object/{GetFinalPath(supabasePath)}";
-            return DownloadFile(url, localPath, transformOptions, onProgress, cancellationToken);
+            return DownloadFile(url, localPath, transformOptions, onProgress, cancellationToken, cacheNonce);
         }
 
         /// <summary>
@@ -538,13 +540,15 @@ namespace Supabase.Storage
         /// <param name="localPath"></param>
         /// <param name="onProgress"></param>
         /// <param name="cancellationToken"></param>
+        /// <param name="cacheNonce"></param>
         /// <returns></returns>
         public Task<string> Download(
             string supabasePath,
             string localPath,
             EventHandler<float>? onProgress = null,
-            CancellationToken cancellationToken = default
-        ) => Download(supabasePath, localPath, null, onProgress: onProgress, cancellationToken);
+            CancellationToken cancellationToken = default,
+            string? cacheNonce = null
+        ) => Download(supabasePath, localPath, null, onProgress: onProgress, cancellationToken, cacheNonce);
 
         /// <summary>
         /// Downloads a byte array from a private bucket to be used programmatically. For public buckets <see cref="DownloadPublicFile(string, TransformOptions?, EventHandler{float}?)"/>
@@ -553,16 +557,18 @@ namespace Supabase.Storage
         /// <param name="transformOptions"></param>
         /// <param name="onProgress"></param>
         /// <param name="cancellationToken"></param>
+        /// <param name="cacheNonce"></param>
         /// <returns></returns>
         public Task<byte[]> Download(
             string supabasePath,
             TransformOptions? transformOptions = null,
             EventHandler<float>? onProgress = null,
-            CancellationToken cancellationToken = default
+            CancellationToken cancellationToken = default,
+            string? cacheNonce = null
         )
         {
             var url = $"{Url}/object/{GetFinalPath(supabasePath)}";
-            return DownloadBytes(url, transformOptions, onProgress, cancellationToken);
+            return DownloadBytes(url, transformOptions, onProgress, cancellationToken, cacheNonce);
         }
 
         /// <summary>
@@ -571,9 +577,10 @@ namespace Supabase.Storage
         /// <param name="supabasePath"></param>
         /// <param name="onProgress"></param>
         /// <param name="cancellationToken"></param>
+        /// <param name="cacheNonce"></param>
         /// <returns></returns>
-        public Task<byte[]> Download(string supabasePath, EventHandler<float>? onProgress = null, CancellationToken cancellationToken = default) =>
-            Download(supabasePath, transformOptions: null, onProgress: onProgress, cancellationToken);
+        public Task<byte[]> Download(string supabasePath, EventHandler<float>? onProgress = null, CancellationToken cancellationToken = default, string? cacheNonce = null) =>
+            Download(supabasePath, transformOptions: null, onProgress: onProgress, cancellationToken, cacheNonce);
 
         /// <summary>
         /// Downloads a public file to the filesystem. This method DOES NOT VERIFY that the file is actually public.
@@ -583,17 +590,19 @@ namespace Supabase.Storage
         /// <param name="transformOptions"></param>
         /// <param name="onProgress"></param>
         /// <param name="cancellationToken"></param>
+        /// <param name="cacheNonce"></param>
         /// <returns></returns>
         public Task<string> DownloadPublicFile(
             string supabasePath,
             string localPath,
             TransformOptions? transformOptions = null,
             EventHandler<float>? onProgress = null,
-            CancellationToken cancellationToken = default
+            CancellationToken cancellationToken = default,
+            string? cacheNonce = null
         )
         {
             var url = GetPublicUrl(supabasePath, transformOptions);
-            return DownloadFile(url, localPath, transformOptions, onProgress, cancellationToken);
+            return DownloadFile(url, localPath, transformOptions, onProgress, cancellationToken, cacheNonce);
         }
 
         /// <summary>
@@ -603,16 +612,18 @@ namespace Supabase.Storage
         /// <param name="transformOptions"></param>
         /// <param name="onProgress"></param>
         /// <param name="cancellationToken"></param>
+        /// <param name="cacheNonce"></param>
         /// <returns></returns>
         public Task<byte[]> DownloadPublicFile(
             string supabasePath,
             TransformOptions? transformOptions = null,
             EventHandler<float>? onProgress = null,
-            CancellationToken cancellationToken = default
+            CancellationToken cancellationToken = default,
+            string? cacheNonce = null
         )
         {
             var url = GetPublicUrl(supabasePath, transformOptions);
-            return DownloadBytes(url, transformOptions, onProgress, cancellationToken);
+            return DownloadBytes(url, transformOptions, onProgress, cancellationToken, cacheNonce);
         }
 
         /// <summary>
@@ -859,14 +870,21 @@ namespace Supabase.Storage
             string localPath,
             TransformOptions? transformOptions = null,
             EventHandler<float>? onProgress = null,
-            CancellationToken cancellationToken = default
+            CancellationToken cancellationToken = default,
+            string? cacheNonce = null
         )
         {
+            var query = HttpUtility.ParseQueryString(string.Empty);
             var builder = new UriBuilder(url);
             var progress = new Progress<float>();
 
             if (transformOptions != null)
-                builder.Query = transformOptions.ToQueryCollection().ToString();
+                query.Add(transformOptions.ToQueryCollection());
+
+            if (cacheNonce != null)
+                query.Add("cacheNonce", cacheNonce);
+            
+            builder.Query = query.ToString();
 
             if (onProgress != null)
                 progress.ProgressChanged += onProgress;
@@ -893,14 +911,21 @@ namespace Supabase.Storage
             string url,
             TransformOptions? transformOptions = null,
             EventHandler<float>? onProgress = null,
-            CancellationToken cancellationToken = default
+            CancellationToken cancellationToken = default,
+            string? cacheNonce = null
         )
         {
+            var query = HttpUtility.ParseQueryString(string.Empty);
             var builder = new UriBuilder(url);
             var progress = new Progress<float>();
 
             if (transformOptions != null)
-                builder.Query = transformOptions.ToQueryCollection().ToString();
+                query.Add(transformOptions.ToQueryCollection());
+
+            if (cacheNonce != null)
+                query.Add("cacheNonce", cacheNonce);
+
+            builder.Query = query.ToString();
 
             if (onProgress != null)
                 progress.ProgressChanged += onProgress;

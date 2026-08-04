@@ -34,4 +34,11 @@ public class DownloadOptionsExtensionTests
         var query = new DownloadOptions { FileName = "custom-file.png" }.ToQueryCollection();
         query["download"].Should().Be("custom-file.png");
     }
+
+    [TestMethod]
+    public void ToQueryCollection_ShouldEmitTheCacheNonce_GivenACacheNonce()
+    {
+        var query = new DownloadOptions { CacheNonce = "nonce-123" }.ToQueryCollection();
+        query["cacheNonce"].Should().Be("nonce-123");
+    }
 }
