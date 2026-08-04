@@ -8,8 +8,9 @@ namespace StorageTests.Files;
 
 /// <summary>
 /// Covers <see cref="StorageFileApi.GetPublicUrl"/>, the pure URL builder: it targets the public
-/// object path by default, switches to the image-render path when transform options are supplied,
-/// and appends the download attribute when download options ask for it.
+/// object path by default, switches to the image-render path only when a transform is actually
+/// requested (an empty options object is not), and appends the download attribute when download
+/// options ask for it.
 /// </summary>
 [TestClass]
 [TestCategory("Unit")]
@@ -32,6 +33,14 @@ public class PublicUrlTests
     {
         var url = Bucket().GetPublicUrl("a.png", new TransformOptions { Width = 100, Height = 100 });
         url.Should().Contain("/render/image/public/bucket/a.png").And.Contain("width=100");
+    }
+
+    [TestMethod]
+    public void GetPublicUrl_ShouldTargetThePublicObjectPath_GivenEmptyTransformOptions()
+    {
+        var url = Bucket().GetPublicUrl("a.png", new TransformOptions());
+        url.Should().StartWith($"{BaseUrl}/object/public/bucket/a.png").And.NotContain("/render/image/",
+            "an empty TransformOptions requests no transform, so it must not route to the render endpoint (issue #37)");
     }
 
     [TestMethod]

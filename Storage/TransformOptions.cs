@@ -57,5 +57,19 @@ namespace Supabase.Storage
         /// </summary>
         [JsonProperty("format")]
         public string Format { get; set; } = "origin";
+
+        private static readonly TransformOptions Default = new();
+
+        /// <summary>
+        /// True when no transform has been requested — every field still holds its constructed default,
+        /// so the caller wants the original object, not a render. Callers use this to keep an
+        /// unconfigured instance off the image-render endpoint (issue #37).
+        /// </summary>
+        internal bool IsEmpty =>
+            Width == Default.Width
+            && Height == Default.Height
+            && Resize == Default.Resize
+            && Quality == Default.Quality
+            && Format == Default.Format;
     }
 }
