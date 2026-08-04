@@ -246,6 +246,12 @@ namespace Supabase.Storage
         /// <summary>
         /// Uploads a file to an existing bucket.
         /// </summary>
+        /// <remarks>
+        /// This is a single-request upload and is subject to the gateway's request-size limit; a file
+        /// past that limit fails with a <see cref="SupabaseStorageException"/> of
+        /// <see cref="FailureHint.Reason.EntityTooLarge"/>. For large files use the resumable
+        /// <see cref="UploadOrResume(string, string, FileOptions?, EventHandler{float}?, CancellationToken)"/>.
+        /// </remarks>
         /// <param name="localFilePath">File Source Path</param>
         /// <param name="supabasePath">The relative file path. Should be of the format `folder/subfolder/filename.png`. The bucket must already exist before attempting to upload.</param>
         /// <param name="options"></param>
@@ -274,6 +280,12 @@ namespace Supabase.Storage
         /// <summary>
         /// Uploads a byte array to an existing bucket.
         /// </summary>
+        /// <remarks>
+        /// This is a single-request upload and is subject to the gateway's request-size limit; data
+        /// past that limit fails with a <see cref="SupabaseStorageException"/> of
+        /// <see cref="FailureHint.Reason.EntityTooLarge"/>. For large payloads use the resumable
+        /// <see cref="UploadOrResume(byte[], string, FileOptions?, EventHandler{float}?, CancellationToken)"/>.
+        /// </remarks>
         /// <param name="data"></param>
         /// <param name="supabasePath">The relative file path. Should be of the format `folder/subfolder/filename.png`. The bucket must already exist before attempting to upload.</param>
         /// <param name="options"></param>

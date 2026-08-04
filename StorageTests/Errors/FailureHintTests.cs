@@ -64,6 +64,12 @@ public class FailureHintTests
         FailureHint.DetectReason(Failure(409, "The resource already exists")).Should().Be(Reason.AlreadyExists);
 
     [TestMethod]
+    public void DetectReason_ShouldReturnEntityTooLarge_Given413() =>
+        FailureHint.DetectReason(Failure(413, "<html>413 Request Entity Too Large</html>")).Should()
+            .Be(Reason.EntityTooLarge,
+                "a 413 is the oversized-upload signal that should steer callers to a resumable upload (issue #14)");
+
+    [TestMethod]
     public void DetectReason_ShouldReturnInternal_Given500() =>
         FailureHint.DetectReason(Failure(500, "boom")).Should().Be(Reason.Internal);
 
