@@ -1,5 +1,18 @@
 # Changelog
 
+## [2.7.0](https://github.com/supabase-community/storage-csharp/compare/v2.6.0...v2.7.0) (2026-08-04)
+
+
+### Features
+
+* classify oversized-upload 413s ([#56](https://github.com/supabase-community/storage-csharp/issues/56)) ([724f46d](https://github.com/supabase-community/storage-csharp/commit/724f46d925a75c0f268d272cca06fc6f19af5b01))
+* put cache nonce as parameter on some route ([#53](https://github.com/supabase-community/storage-csharp/issues/53)) ([ed7a9c2](https://github.com/supabase-community/storage-csharp/commit/ed7a9c2c6d26432c8aa16ede437076ed86a0e59c))
+
+
+### Bug Fixes
+
+* treat an empty TransformOptions as no transform, not a render request ([#55](https://github.com/supabase-community/storage-csharp/issues/55)) ([9ae3581](https://github.com/supabase-community/storage-csharp/commit/9ae35812ea252c54410554429e0d0d1f8289f9a8))
+
 ## [2.6.0](https://github.com/supabase-community/storage-csharp/compare/v2.5.0...v2.6.0) (2026-07-29)
 
 
