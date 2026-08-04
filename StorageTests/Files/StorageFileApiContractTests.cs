@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Linq;
 using System.Collections.Generic;
 using System.Text;
@@ -13,6 +14,7 @@ using WireMock;
 using WireMock.RequestBuilders;
 using WireMock.ResponseBuilders;
 using WireMock.Server;
+using FileOptions = Supabase.Storage.FileOptions;
 
 namespace StorageTests.Files;
 
@@ -287,6 +289,35 @@ public class StorageFileApiContractTests
         {
             bytes.Should().Equal(payload);
             this.SingleRequest().Path.Should().Be($"/storage/v1/object/{Bucket}/a.bin");
+        }
+    }
+
+    [TestMethod]
+    public async Task Download_ShouldSendTheCacheNonceInTheQuery_GivenACacheNonce()
+    {
+        this.server.Given(Request.Create().WithPath($"/storage/v1/object/{Bucket}/a.bin").UsingGet())
+            .RespondWith(Response.Create().WithStatusCode(200).WithBody(Encoding.UTF8.GetBytes("file-bytes")));
+        await this.client.From(Bucket).Download("a.bin", (EventHandler<float>?) null, cacheNonce: "nonce-123");
+        this.SingleRequest().Query!.Should().ContainKey("cacheNonce")
+            .WhoseValue.Should().Contain("nonce-123", "the nonce must ride the request so the CDN cache is bypassed");
+    }
+
+    [TestMethod]
+    public async Task Download_ShouldSendTheCacheNonceInTheQuery_GivenACacheNonceAndLocalPath()
+    {
+        this.server.Given(Request.Create().WithPath($"/storage/v1/object/{Bucket}/a.bin").UsingGet())
+            .RespondWith(Response.Create().WithStatusCode(200).WithBody(Encoding.UTF8.GetBytes("file-bytes")));
+        var localPath = Path.Combine(Path.GetTempPath(), $"{Guid.NewGuid()}.bin");
+        try
+        {
+            await this.client.From(Bucket).Download("a.bin", localPath, (EventHandler<float>?) null, cacheNonce: "nonce-123");
+            this.SingleRequest().Query!.Should().ContainKey("cacheNonce")
+                .WhoseValue.Should().Contain("nonce-123", "the to-disk path must carry the nonce just as the byte path does");
+        }
+        finally
+        {
+            if (File.Exists(localPath))
+                File.Delete(localPath);
         }
     }
 
