@@ -337,6 +337,23 @@ public class StorageFileApiContractTests
     }
 
     [TestMethod]
+    public async Task Upload_ShouldSurfaceStorageException_GivenNonJsonError()
+    {
+        const string body = "<html><head><title>413 Request Entity Too Large</title></head></html>";
+        this.server.Given(Request.Create().WithPath($"/storage/v1/object/{Bucket}/big.bin").UsingPost())
+            .RespondWith(Response.Create().WithStatusCode(413).WithHeader("Content-Type", "text/html").WithBody(body));
+        var act = () => this.client.From(Bucket).Upload(new byte[] { 0x1 }, "big.bin");
+        var exception = (await act.Should().ThrowAsync<SupabaseStorageException>(
+            "an oversized upload returns a non-JSON gateway error that must not crash JSON parsing (issue #14)")).Which;
+        using (new AssertionScope())
+        {
+            exception.StatusCode.Should().Be(413);
+            exception.Content.Should().Be(body);
+            exception.Reason.Should().Be(FailureHint.Reason.EntityTooLarge);
+        }
+    }
+
+    [TestMethod]
     public async Task List_ShouldSurfaceStorageException_GivenNonJsonError()
     {
         const string body = "502 Bad Gateway";
