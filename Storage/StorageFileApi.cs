@@ -68,7 +68,7 @@ namespace Supabase.Storage
             if (downloadOptions != null)
                 queryParams.Add(downloadOptions.ToQueryCollection());
 
-            if (transformOptions == null)
+            if (transformOptions is null or { IsEmpty: true })
             {
                 var queryParamsString = queryParams.ToString();
                 return $"{Url}/object/public/{GetFinalPath(path)}?{queryParamsString}";
@@ -101,7 +101,7 @@ namespace Supabase.Storage
             var body = new Dictionary<string, object?> { { "expiresIn", expiresIn } };
             var url = $"{Url}/object/sign/{GetFinalPath(path)}";
 
-            if (transformOptions != null)
+            if (transformOptions is { IsEmpty: false })
             {
                 var transformOptionsJson = JsonConvert.SerializeObject(
                     transformOptions,
@@ -527,7 +527,7 @@ namespace Supabase.Storage
         )
         {
             var url =
-                transformOptions != null
+                transformOptions is { IsEmpty: false }
                     ? $"{Url}/render/image/authenticated/{GetFinalPath(supabasePath)}"
                     : $"{Url}/object/{GetFinalPath(supabasePath)}";
             return DownloadFile(url, localPath, transformOptions, onProgress, cancellationToken, cacheNonce);
@@ -878,7 +878,7 @@ namespace Supabase.Storage
             var builder = new UriBuilder(url);
             var progress = new Progress<float>();
 
-            if (transformOptions != null)
+            if (transformOptions is { IsEmpty: false })
                 query.Add(transformOptions.ToQueryCollection());
 
             if (cacheNonce != null)
@@ -919,7 +919,7 @@ namespace Supabase.Storage
             var builder = new UriBuilder(url);
             var progress = new Progress<float>();
 
-            if (transformOptions != null)
+            if (transformOptions is { IsEmpty: false })
                 query.Add(transformOptions.ToQueryCollection());
 
             if (cacheNonce != null)
