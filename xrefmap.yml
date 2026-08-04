@@ -2321,6 +2321,15 @@ references:
   fullName.vb: Supabase.Storage.StorageFileApi.Upload(Byte(), String, Supabase.Storage.FileOptions, System.EventHandler(Of Single), Boolean, System.Threading.CancellationToken)
   nameWithType: StorageFileApi.Upload(byte[], string, FileOptions?, EventHandler<float>?, bool, CancellationToken)
   nameWithType.vb: StorageFileApi.Upload(Byte(), String, FileOptions, EventHandler(Of Single), Boolean, CancellationToken)
+- uid: Supabase.Storage.StorageFileApi.Upload(System.Byte[],System.String,Supabase.Storage.FileOptions,System.EventHandler{System.Single},System.Threading.CancellationToken)
+  name: Upload(byte[], string, FileOptions?, EventHandler<float>?, CancellationToken)
+  href: api/Supabase.Storage.StorageFileApi.html#Supabase_Storage_StorageFileApi_Upload_System_Byte___System_String_Supabase_Storage_FileOptions_System_EventHandler_System_Single__System_Threading_CancellationToken_
+  commentId: M:Supabase.Storage.StorageFileApi.Upload(System.Byte[],System.String,Supabase.Storage.FileOptions,System.EventHandler{System.Single},System.Threading.CancellationToken)
+  name.vb: Upload(Byte(), String, FileOptions, EventHandler(Of Single), CancellationToken)
+  fullName: Supabase.Storage.StorageFileApi.Upload(byte[], string, Supabase.Storage.FileOptions?, System.EventHandler<float>?, System.Threading.CancellationToken)
+  fullName.vb: Supabase.Storage.StorageFileApi.Upload(Byte(), String, Supabase.Storage.FileOptions, System.EventHandler(Of Single), System.Threading.CancellationToken)
+  nameWithType: StorageFileApi.Upload(byte[], string, FileOptions?, EventHandler<float>?, CancellationToken)
+  nameWithType.vb: StorageFileApi.Upload(Byte(), String, FileOptions, EventHandler(Of Single), CancellationToken)
 - uid: Supabase.Storage.StorageFileApi.Upload(System.String,System.String,Supabase.Storage.FileOptions,System.EventHandler{System.Single},System.Boolean,System.Threading.CancellationToken)
   name: Upload(string, string, FileOptions?, EventHandler<float>?, bool, CancellationToken)
   href: api/Supabase.Storage.StorageFileApi.html#Supabase_Storage_StorageFileApi_Upload_System_String_System_String_Supabase_Storage_FileOptions_System_EventHandler_System_Single__System_Boolean_System_Threading_CancellationToken_
