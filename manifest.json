@@ -148,7 +148,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "Supabase.Storage.Exceptions.FailureHint.Reason",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/Supabase.Storage.Exceptions.FailureHint.Reason.yml\" sourcestartlinenumber=\"1\">A coarse classification of why a storage request failed, derived from its status code and body.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -162,7 +162,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "Supabase.Storage.Exceptions.FailureHint",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/Supabase.Storage.Exceptions.FailureHint.yml\" sourcestartlinenumber=\"1\">Maps a failed storage response onto a coarse <xref href=\"Supabase.Storage.Exceptions.FailureHint.Reason\" data-throw-if-not-resolved=\"false\"></xref> a caller can branch on.</p>\n"
     },
     {
       "type": "ManagedReference",

@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Enum FailureHint.Reason | storage-csharp ">
       
-      
+      <meta name="description" content="A coarse classification of why a storage request failed, derived from its status code and body.">
       <link rel="icon" href="../favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -90,7 +90,7 @@
 
 
   <h1 id="Supabase_Storage_Exceptions_FailureHint_Reason" data-uid="Supabase.Storage.Exceptions.FailureHint.Reason" class="text-break">
-Enum FailureHint.Reason  <a class="header-action link-secondary" title="View source" href="https://github.com/supabase-community/storage-csharp/blob/master/Storage/Exceptions/FailureHint.cs/#L8"><i class="bi bi-code-slash"></i></a>
+Enum FailureHint.Reason  <a class="header-action link-secondary" title="View source" href="https://github.com/supabase-community/storage-csharp/blob/master/Storage/Exceptions/FailureHint.cs/#L14"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -98,7 +98,8 @@ Enum FailureHint.Reason  <a class="header-action link-secondary" title="View sou
   <dl><dt>Assembly</dt><dd>Supabase.Storage.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"></div>
+  <div class="markdown summary"><p>A coarse classification of why a storage request failed, derived from its status code and body.</p>
+</div>
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
@@ -118,22 +119,35 @@ Enum FailureHint.Reason  <a class="header-action link-secondary" title="View sou
   <dl class="parameters">
     <dt id="Supabase_Storage_Exceptions_FailureHint_Reason_AlreadyExists"><code>AlreadyExists = 4</code></dt>
   
-  <dd></dd>
+  <dd><p>The resource being created already exists (HTTP 409).</p>
+</dd>
+    <dt id="Supabase_Storage_Exceptions_FailureHint_Reason_EntityTooLarge"><code>EntityTooLarge = 6</code></dt>
+  
+  <dd><p>The upload exceeded the gateway's request-size limit (HTTP 413). Retry it through a
+resumable upload (<code>UploadOrResume</code>) rather than a single request.</p>
+</dd>
     <dt id="Supabase_Storage_Exceptions_FailureHint_Reason_Internal"><code>Internal = 2</code></dt>
   
-  <dd></dd>
+  <dd><p>The storage service failed internally (HTTP 500).</p>
+</dd>
     <dt id="Supabase_Storage_Exceptions_FailureHint_Reason_InvalidInput"><code>InvalidInput = 5</code></dt>
   
-  <dd></dd>
+  <dd><p>The request was rejected as invalid (an HTTP 400 whose body indicates invalid input).</p>
+</dd>
     <dt id="Supabase_Storage_Exceptions_FailureHint_Reason_NotAuthorized"><code>NotAuthorized = 1</code></dt>
   
-  <dd></dd>
+  <dd><p>The request was rejected for authentication or authorization reasons (HTTP 401, or a
+400/403 whose body names an auth cause such as a missing or malformed token).</p>
+</dd>
     <dt id="Supabase_Storage_Exceptions_FailureHint_Reason_NotFound"><code>NotFound = 3</code></dt>
   
-  <dd></dd>
+  <dd><p>The requested object or bucket does not exist (HTTP 404).</p>
+</dd>
     <dt id="Supabase_Storage_Exceptions_FailureHint_Reason_Unknown"><code>Unknown = 0</code></dt>
   
-  <dd></dd>
+  <dd><p>The failure could not be attributed to a known cause — the status and body matched no
+recognised pattern, or the response carried no body to inspect.</p>
+</dd>
   </dl>
 
 
@@ -141,7 +155,7 @@ Enum FailureHint.Reason  <a class="header-action link-secondary" title="View sou
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/supabase-community/storage-csharp/blob/master/Storage/Exceptions/FailureHint.cs/#L8" class="edit-link">Edit this page</a>
+          <a href="https://github.com/supabase-community/storage-csharp/blob/master/Storage/Exceptions/FailureHint.cs/#L14" class="edit-link">Edit this page</a>
         </div>
 
 

@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Class FailureHint | storage-csharp ">
       
-      
+      <meta name="description" content="Maps a failed storage response onto a coarse  a caller can branch on.">
       <link rel="icon" href="../favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -89,7 +89,7 @@
 
 
   <h1 id="Supabase_Storage_Exceptions_FailureHint" data-uid="Supabase.Storage.Exceptions.FailureHint" class="text-break">
-Class FailureHint  <a class="header-action link-secondary" title="View source" href="https://github.com/supabase-community/storage-csharp/blob/master/Storage/Exceptions/FailureHint.cs/#L6"><i class="bi bi-code-slash"></i></a>
+Class FailureHint  <a class="header-action link-secondary" title="View source" href="https://github.com/supabase-community/storage-csharp/blob/master/Storage/Exceptions/FailureHint.cs/#L9"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -97,7 +97,8 @@ Class FailureHint  <a class="header-action link-secondary" title="View source" h
   <dl><dt>Assembly</dt><dd>Supabase.Storage.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"></div>
+  <div class="markdown summary"><p>Maps a failed storage response onto a coarse <a class="xref" href="Supabase.Storage.Exceptions.FailureHint.Reason.html">FailureHint.Reason</a> a caller can branch on.</p>
+</div>
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
@@ -156,10 +157,11 @@ Class FailureHint  <a class="header-action link-secondary" title="View source" h
 
   <h3 id="Supabase_Storage_Exceptions_FailureHint_DetectReason_Supabase_Storage_Exceptions_SupabaseStorageException_" data-uid="Supabase.Storage.Exceptions.FailureHint.DetectReason(Supabase.Storage.Exceptions.SupabaseStorageException)">
   DetectReason(SupabaseStorageException)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/supabase-community/storage-csharp/blob/master/Storage/Exceptions/FailureHint.cs/#L18"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/supabase-community/storage-csharp/blob/master/Storage/Exceptions/FailureHint.cs/#L60"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Classifies a failed storage request from its status code and response body.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -169,13 +171,15 @@ Class FailureHint  <a class="header-action link-secondary" title="View source" h
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>storageException</code> <a class="xref" href="Supabase.Storage.Exceptions.SupabaseStorageException.html">SupabaseStorageException</a></dt>
-    <dd></dd>
+    <dd><p>The failure to classify.</p>
+</dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="Supabase.Storage.Exceptions.FailureHint.html">FailureHint</a>.<a class="xref" href="Supabase.Storage.Exceptions.FailureHint.Reason.html">Reason</a></dt>
-    <dd></dd>
+    <dd><p>The matching <a class="xref" href="Supabase.Storage.Exceptions.FailureHint.Reason.html">FailureHint.Reason</a>, or <a class="xref" href="Supabase.Storage.Exceptions.FailureHint.Reason.html#Supabase_Storage_Exceptions_FailureHint_Reason_Unknown">Unknown</a> when nothing matches.</p>
+</dd>
   </dl>
 
 
@@ -192,7 +196,7 @@ Class FailureHint  <a class="header-action link-secondary" title="View source" h
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/supabase-community/storage-csharp/blob/master/Storage/Exceptions/FailureHint.cs/#L6" class="edit-link">Edit this page</a>
+          <a href="https://github.com/supabase-community/storage-csharp/blob/master/Storage/Exceptions/FailureHint.cs/#L9" class="edit-link">Edit this page</a>
         </div>
 
 

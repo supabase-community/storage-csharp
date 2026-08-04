@@ -400,6 +400,12 @@ references:
   commentId: F:Supabase.Storage.Exceptions.FailureHint.Reason.AlreadyExists
   fullName: Supabase.Storage.Exceptions.FailureHint.Reason.AlreadyExists
   nameWithType: FailureHint.Reason.AlreadyExists
+- uid: Supabase.Storage.Exceptions.FailureHint.Reason.EntityTooLarge
+  name: EntityTooLarge
+  href: api/Supabase.Storage.Exceptions.FailureHint.Reason.html#Supabase_Storage_Exceptions_FailureHint_Reason_EntityTooLarge
+  commentId: F:Supabase.Storage.Exceptions.FailureHint.Reason.EntityTooLarge
+  fullName: Supabase.Storage.Exceptions.FailureHint.Reason.EntityTooLarge
+  nameWithType: FailureHint.Reason.EntityTooLarge
 - uid: Supabase.Storage.Exceptions.FailureHint.Reason.Internal
   name: Internal
   href: api/Supabase.Storage.Exceptions.FailureHint.Reason.html#Supabase_Storage_Exceptions_FailureHint_Reason_Internal
